@@ -4,11 +4,12 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
-{% set maxPosts = collections.posts.length | min(3) %}
-<h1>Latest {% if maxPosts == 1 %}Post{% else %}{{ maxPosts }} Posts{% endif %}</h1>
+<h2>Hello!</h2>
+<p>I'm a software developer with 3 years of experience doing Full Stack development with React, TypeScript, and C#.</p>
+<p>I'm currently contributing to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, in particular the accessibility module of the Blink rendering engine.</p>
+<a href="#chromium-contributions">See my work</a>
 
-{% set postslist = collections.posts | head(-3) %}
-{% set postslistCounter = collections.posts | length %}
-{% include "postslist.njk" %}
-
-<p>More posts can be found in <a href="{{ '/posts/' | url }}">the archive</a>.</p>
+<h2 id="chromium-contributions">Chromium contributions</h2>
+<h3>Recently completed</h3>
+<h3>Under review</h3>
+<h3>Prototyping</h3>
