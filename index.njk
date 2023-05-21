@@ -4,6 +4,8 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
+{% from "displayChange.njk" import displayChange %}
+
 <h2>Hello!</h2>
 <p>I'm a software developer with 3 years of experience doing Full Stack development with React, TypeScript, and C#.</p>
 <p>I'm currently contributing to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, in particular the accessibility module of the Blink rendering engine. See <a href="#chromium-contributions">my work</a> or check out <a href="/posts">my blog.</a> 🙂</p>
@@ -11,13 +13,17 @@ eleventyNavigation:
 <h2 id="chromium-contributions">Chromium contributions</h2>
 {% if chromiumChanges.inProgress | length %}
   <h3>In Progress</h3>
-  {% for change in chromiumChanges.inProgress %}
-    <div>{{ change.subject }}</div>
-  {% endfor %}
+  <ul>
+    {% for change in chromiumChanges.inProgress %}
+      <li>{{ displayChange(change) }}</li>
+    {% endfor %}
+  </ul>
   <!-- We only want to show separate headings if there is some change in progress. 
          Otherwise the headings add needless noise.-->
   <h3>Merged</h3>
 {% endif %}
-{% for change in chromiumChanges.merged %}
-  <div>{{ change.subject }}</div>
-{% endfor %}
+<ul>
+  {% for change in chromiumChanges.merged %}
+    <li>{{ displayChange(change) }}</li>
+  {% endfor %}
+</ul>
