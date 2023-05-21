@@ -10,6 +10,8 @@ eleventyNavigation:
 <a href="#chromium-contributions">See my work</a>
 
 <h2 id="chromium-contributions">Chromium contributions</h2>
+{% for change in chromiumChanges %}
+  <div>{{ change.subject }}</div>
+{% endfor %}
 <h3>Recently completed</h3>
 <h3>Under review</h3>
-<h3>Prototyping</h3>
