@@ -10,8 +10,15 @@ eleventyNavigation:
 <a href="#chromium-contributions">See my work</a>
 
 <h2 id="chromium-contributions">Chromium contributions</h2>
-{% for change in chromiumChanges %}
+{% if chromiumChanges.inProgress|length %}
+  <h3>In Progress</h3>
+  {% for change in chromiumChanges.inProgress %}
+    <div>{{ change.subject }}</div>
+  {% endfor %}
+  <!-- We only want to show separate headings if there is some change in progress. 
+         Otherwise the headings add needless noise.-->
+  <h3>Merged</h3>
+{% endif %}
+{% for change in chromiumChanges.merged %}
   <div>{{ change.subject }}</div>
 {% endfor %}
-<h3>Recently completed</h3>
-<h3>Under review</h3>

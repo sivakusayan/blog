@@ -1,9 +1,9 @@
-module.exports = async function() {
+const getChanges = async function () {
 	const url = "https://chromium-review.googlesource.com/changes/?q=owner:1523927";
 	let res = await fetch(url);
-	let changes;
+	let data;
 	try {
-		changes = await res.json();
+		data = await res.json();
 	}
 	catch(e) {
 		// The chromium gerrit API seems to currently return rogue characters in the first
@@ -13,10 +13,15 @@ module.exports = async function() {
 		let badData = await res.text();
 		// We just need to delete the first line to get good JSON data.
 		badData = badData.substring(badData.indexOf("\n") + 1);
-		changes = JSON.parse(badData);
+		data = JSON.parse(badData);
 	}
+	return data;
+}
 
-	// We don't care about displaying abandoned changes.
-	changes = changes.filter(change => change.status !== "ABANDONED");
-	return changes;
+module.exports = async function() {
+	const data = await getChanges();
+	return {
+		inProgress: data.filter(change => change.status === "NEW"),
+		merged: data.filter(change => change.status === "MERGED")
+	};
 };
