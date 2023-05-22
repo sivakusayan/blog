@@ -2,6 +2,7 @@
 :root {
   --font-family: -apple-system, system-ui, sans-serif;
   --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
+  --theme-transition-duration: 0.23s;
 }
 
 /* Theme colors */
@@ -17,17 +18,41 @@
   --text-color-link-visited: #17050F;
 }
 
+body.dark-theme {
+  --color-gray-20: #e0e0e0;
+  --color-gray-50: #C0C0C0;
+  --color-gray-90: #dad8d8;
+
+  --text-color: var(--color-gray-90);
+  --text-color-link: #1493fb;
+  --text-color-link-visited: #a6a6f8;
+
+  --background-color: #15202b;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-gray-20: #e0e0e0;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #dad8d8;
 
-    /* --text-color is assigned to --color-gray-_ above */
+    --text-color: var(--color-gray-90);
     --text-color-link: #1493fb;
     --text-color-link-visited: #a6a6f8;
 
     --background-color: #15202b;
+  }
+
+  body.light-theme {
+    --color-gray-20: #e0e0e0;
+    --color-gray-50: #C0C0C0;
+    --color-gray-90: #333;
+  
+    --background-color: #fff;
+  
+    --text-color: var(--color-gray-90);
+    --text-color-link: #082840;
+    --text-color-link-visited: #17050F;
   }
 }
 
@@ -44,6 +69,8 @@ body {
   font-family: var(--font-family);
   color: var(--text-color);
   background-color: var(--background-color);
+  height: 100%;
+  transition: color var(--theme-transition-duration) ease, background var(--theme-transition-duration) ease;
 }
 
 p:last-child {
@@ -61,6 +88,7 @@ p,
 
 a[href] {
   color: var(--text-color-link);
+  transition: color var(--theme-transition-duration) ease;
 }
 a[href]:visited {
   color: var(--text-color-link-visited);
@@ -73,7 +101,7 @@ main :first-child {
   margin-top: 0;
 }
 header {
-  border-bottom: 1px dashed var(--color-gray-20);
+  border-bottom: 1px solid var(--color-gray-20);
 }
 header:after {
   content: "";
