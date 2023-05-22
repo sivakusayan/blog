@@ -29,12 +29,20 @@ script: index.js
         {%- endfor %}
       </ul>
 
-      <div>
-        <span>Theme: </span>
-        <button id="light-theme-button">Light</button>
-        <button id="dark-theme-button">Dark</button>
-        <button id="default-theme-button">Default</button>
-      </div>
+      <fieldset aria-label="Theme">
+        <div>
+          <input class="visually-hidden" type="radio" name="theme" id="light-theme-radio">
+          <label for="light-theme-radio">{% lucide "sun", { "aria-label": "Light" } %}</label>
+        </div>
+        <div>
+          <input class="visually-hidden" type="radio" name="theme" id="dark-theme-radio">
+          <label for="dark-theme-radio">{% lucide "moon", { "aria-label": "Dark" }%}</label>
+        </div>
+        <div>
+          <input class="visually-hidden" type="radio" name="theme" id="system-theme-radio" checked>
+          <label for="system-theme-radio">{% lucide "monitor", { "aria-label": "System" } %}</label>
+        </div>
+      </fieldset>
     </header>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>

@@ -1,17 +1,17 @@
 const Themes = Object.freeze({
   LIGHT: "LIGHT",
   DARK: "DARK",
-  DEFAULT: "DEFAULT",
+  SYSTEM: "SYSTEM",
 });
 
-const setupThemeButtons = () => {
-  const lightThemeButton = document.getElementById("light-theme-button");
-  const darkThemeButton = document.getElementById("dark-theme-button");
-  const defaultThemeButton = document.getElementById("default-theme-button");
+const setupThemeRadios = () => {
+  const lightThemeRadio = document.getElementById("light-theme-radio");
+  const darkThemeRadio = document.getElementById("dark-theme-radio");
+  const systemThemeRadio = document.getElementById("system-theme-radio");
 
-  lightThemeButton.onclick = () => setTheme(Themes.LIGHT);
-  darkThemeButton.onclick = () => setTheme(Themes.DARK);
-  defaultThemeButton.onclick = () => setTheme(Themes.DEFAULT);
+  lightThemeRadio.onchange = () => setTheme(Themes.LIGHT);
+  darkThemeRadio.onchange = () => setTheme(Themes.DARK);
+  systemThemeRadio.onchange = () => setTheme(Themes.SYSTEM);
 };
 
 const setTheme = (theme) => {
@@ -22,7 +22,7 @@ const setTheme = (theme) => {
     case Themes.DARK:
       document.body.className = "dark-theme";
       break;
-    case Themes.DEFAULT:
+    case Themes.SYSTEM:
       document.body.className = "";
       break;
     default:
@@ -30,4 +30,4 @@ const setTheme = (theme) => {
   }
 };
 
-setupThemeButtons();
+setupThemeRadios();

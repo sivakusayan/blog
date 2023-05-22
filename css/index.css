@@ -290,3 +290,19 @@ a[href].direct-link:focus:visited,
 :hover > a[href].direct-link:visited {
   color: #aaa;
 }
+
+/* This will ensure things are NOT removed from the AX tree.
+We need to keep their semantics around to make sure interaction
+works as expected. However, for the sake of more powerful styling,
+we will need to hide them. 
+https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
+*/
+.visually-hidden {
+  clip: rect(0 0 0 0); 
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap; 
+  width: 1px;
+}
