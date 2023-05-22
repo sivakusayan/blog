@@ -2,7 +2,7 @@
 :root {
   --font-family: -apple-system, system-ui, sans-serif;
   --font-family-monospace: Consolas, Menlo, Monaco, Andale Mono WT, Andale Mono, Lucida Console, Lucida Sans Typewriter, DejaVu Sans Mono, Bitstream Vera Sans Mono, Liberation Mono, Nimbus Mono L, Courier New, Courier, monospace;
-  --theme-transition-duration: 0.23s;
+  --theme-transition-duration: 0.2s;
 }
 
 /* Theme colors */
@@ -73,6 +73,10 @@ body {
   transition: color var(--theme-transition-duration) ease, background var(--theme-transition-duration) ease;
 }
 
+body {
+  padding: 0.25em 4em;
+}
+
 p:last-child {
   margin-bottom: 0;
 }
@@ -101,7 +105,15 @@ main :first-child {
   margin-top: 0;
 }
 header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: fit-content(30%) 1fr fit-content(30%);
+  column-gap: 2em;
   border-bottom: 1px solid var(--color-gray-20);
+  padding: 0.25em 2em;
+}
+header > * {
+  margin-block-start: 1em;
 }
 header:after {
   content: "";
@@ -146,8 +158,6 @@ code {
 
 /* Header */
 .home {
-  padding: 0 1rem;
-  float: left;
   margin: 1rem 0; /* 16px /16 */
   font-size: 1em; /* 16px /16 */
 }
@@ -159,8 +169,6 @@ code {
 .nav {
   padding: 0;
   list-style: none;
-  float: left;
-  margin-left: 1em;
 }
 .nav-item {
   display: inline-block;
