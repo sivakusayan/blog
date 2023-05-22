@@ -14,6 +14,9 @@ script: index.js
     <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+    <script>
+    if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);
+    </script>
   </head>
   <body>
     <header>
@@ -40,10 +43,28 @@ script: index.js
           <label for="dark-theme-radio">{% lucide "moon", { "aria-label": "Dark" }%}</label>
         </div>
         <div class="radio-container">
-          <input class="visually-hidden" type="radio" name="theme" id="system-theme-radio" checked>
+          <input class="visually-hidden" type="radio" name="theme" id="system-theme-radio">
           <label for="system-theme-radio">{% lucide "monitor", { "aria-label": "System" } %}</label>
         </div>
       </fieldset>
+      <script>
+        if (localStorage.theme) {
+            switch (localStorage.theme) {
+    case "LIGHT":
+      radio = document.getElementById("light-theme-radio");
+      break;
+    case "DARK":
+      radio = document.getElementById("dark-theme-radio");
+      break;
+    case "SYSTEM":
+      radio = document.getElementById("system-theme-radio");
+      break;
+    default:
+      break;
+  }
+  radio.checked = true;
+        }
+      </script>
     </header>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>

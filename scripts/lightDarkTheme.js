@@ -4,6 +4,26 @@ const Themes = Object.freeze({
   SYSTEM: "SYSTEM",
 });
 
+const initializeTheme = () => {
+  let radio;
+  switch (localStorage.theme) {
+    case Themes.LIGHT:
+      radio = document.getElementById("light-theme-radio");
+      break;
+    case Themes.DARK:
+      radio = document.getElementById("dark-theme-radio");
+      break;
+    case Themes.SYSTEM:
+      radio = document.getElementById("system-theme-radio");
+      break;
+    default:
+      break;
+  }
+
+  radio.checked = true;
+  radio.dispatchEvent(new Event('change'));
+}
+
 const setupThemeRadios = () => {
   const lightThemeRadio = document.getElementById("light-theme-radio");
   const darkThemeRadio = document.getElementById("dark-theme-radio");
@@ -15,19 +35,9 @@ const setupThemeRadios = () => {
 };
 
 const setTheme = (theme) => {
-  switch (theme) {
-    case Themes.LIGHT:
-      document.body.className = "light-theme";
-      break;
-    case Themes.DARK:
-      document.body.className = "dark-theme";
-      break;
-    case Themes.SYSTEM:
-      document.body.className = "";
-      break;
-    default:
-      break;
-  }
+  document.documentElement.setAttribute("data-theme", theme)
+  localStorage.theme = theme;
 };
 
 setupThemeRadios();
+initializeTheme();

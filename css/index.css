@@ -18,7 +18,7 @@
   --text-color-link-visited: #17050F;
 }
 
-body.dark-theme {
+html[data-theme="DARK"] {
   --color-gray-20: #e0e0e0;
   --color-gray-50: #C0C0C0;
   --color-gray-90: #dad8d8;
@@ -43,7 +43,7 @@ body.dark-theme {
     --background-color: #15202b;
   }
 
-  body.light-theme {
+  html[data-theme="LIGHT"] {
     --color-gray-20: #e0e0e0;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #333;
