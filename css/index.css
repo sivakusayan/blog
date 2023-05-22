@@ -112,9 +112,6 @@ header {
   border-bottom: 1px solid var(--color-gray-20);
   padding: 0.25em 2em;
 }
-header > * {
-  margin-block-start: 1em;
-}
 header:after {
   content: "";
   display: table;
@@ -305,4 +302,25 @@ https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
   position: absolute;
   white-space: nowrap; 
   width: 1px;
+}
+
+.theme-picker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 0;
+  height: 3em;
+}
+
+.theme-picker label {
+  display: inline-block;
+  padding: 0.25em 1em;
+}
+
+.theme-picker .radio-container:not(:last-child) {
+  border-right: 1px solid black;
+}
+
+.theme-picker input:checked+label {
+
 }

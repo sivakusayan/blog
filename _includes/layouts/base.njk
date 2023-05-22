@@ -8,6 +8,7 @@ script: index.js
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
+    <link rel="stylesheet" href="{{ '/css/reset.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
     <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
@@ -29,16 +30,16 @@ script: index.js
         {%- endfor %}
       </ul>
 
-      <fieldset aria-label="Theme">
-        <div>
+      <fieldset class="theme-picker" aria-label="Theme">
+        <div class="radio-container">
           <input class="visually-hidden" type="radio" name="theme" id="light-theme-radio">
           <label for="light-theme-radio">{% lucide "sun", { "aria-label": "Light" } %}</label>
         </div>
-        <div>
+        <div class="radio-container">
           <input class="visually-hidden" type="radio" name="theme" id="dark-theme-radio">
           <label for="dark-theme-radio">{% lucide "moon", { "aria-label": "Dark" }%}</label>
         </div>
-        <div>
+        <div class="radio-container">
           <input class="visually-hidden" type="radio" name="theme" id="system-theme-radio" checked>
           <label for="system-theme-radio">{% lucide "monitor", { "aria-label": "System" } %}</label>
         </div>
