@@ -20,20 +20,18 @@
   </head>
   <body>
     <header>
-      <h1 class="home">
-        <a href="{{ '/' | url }}">{{ metadata.title }}</a>
-      </h1>
+      <div class="header-wrapper">
+        {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
+        <ul class="nav">
+          {%- for entry in collections.all | eleventyNavigation %}
+            <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
+              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+            </li>
+          {%- endfor %}
+        </ul>
 
-      {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-      <ul class="nav">
-        {%- for entry in collections.all | eleventyNavigation %}
-          <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
-            <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-          </li>
-        {%- endfor %}
-      </ul>
-
-      {{ themePicker() }}
+        {{ themePicker() }}
+      </div>
     </header>
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>

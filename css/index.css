@@ -27,7 +27,7 @@ html[data-theme="DARK"] {
   --text-color-link: #1493fb;
   --text-color-link-visited: #a6a6f8;
 
-  --background-color: #15202b;
+  --background-color: #1c1d22;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,16 +40,16 @@ html[data-theme="DARK"] {
     --text-color-link: #1493fb;
     --text-color-link-visited: #a6a6f8;
 
-    --background-color: #15202b;
+    --background-color: #1c1d22;
   }
 
   html[data-theme="LIGHT"] {
     --color-gray-20: #e0e0e0;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #333;
-  
+
     --background-color: #fff;
-  
+
     --text-color: var(--color-gray-90);
     --text-color-link: #082840;
     --text-color-link-visited: #17050F;
@@ -80,11 +80,7 @@ body {
 p:last-child {
   margin-bottom: 0;
 }
-p,
-.tmpl-post li,
-img {
-  max-width: 37.5em; /* 600px /16 */
-}
+
 p,
 .tmpl-post li {
   line-height: 1.45;
@@ -94,34 +90,38 @@ a[href] {
   color: var(--text-color-link);
   transition: color var(--theme-transition-duration) ease;
 }
+
 a[href]:visited {
   color: var(--text-color-link-visited);
 }
 
 main {
-  padding: 1rem;
+  max-width: 37.5em;
+  padding: 1em 0;
+  margin: auto;
 }
+
 main :first-child {
   margin-top: 0;
 }
+
 header {
-  width: 100%;
-  display: grid;
-  grid-template-columns: fit-content(30%) 1fr fit-content(30%);
-  column-gap: 2em;
   border-bottom: 1px solid var(--color-gray-20);
-  padding: 0.25em 2em;
-  align-items: center;
 }
-header:after {
-  content: "";
-  display: table;
-  clear: both;
+
+.header-wrapper {
+  display: grid;
+  grid-template-columns: 1fr fit-content(30%);
+  align-items: center;
+  margin: auto;
+  max-width: 37.5em;
+  padding: 0.5em 0;
 }
 
 table {
   margin: 1em 0;
 }
+
 table td,
 table th {
   padding-right: 1em;
@@ -132,6 +132,7 @@ code {
   font-family: var(--font-family-monospace);
   line-height: 1.5;
 }
+
 pre {
   font-size: 14px;
   line-height: 1.375;
@@ -150,17 +151,9 @@ pre {
   margin: .5em 0;
   background-color: #f6f6f6;
 }
+
 code {
   word-break: break-all;
-}
-
-/* Header */
-.home {
-  margin: 1rem 0; /* 16px /16 */
-  font-size: 1em; /* 16px /16 */
-}
-.home :link:not(:hover) {
-  text-decoration: none;
 }
 
 /* Nav */
@@ -168,13 +161,16 @@ code {
   padding: 0;
   list-style: none;
 }
+
 .nav-item {
   display: inline-block;
   margin-right: 1em;
 }
+
 .nav-item a[href]:not(:hover) {
   text-decoration: none;
 }
+
 .nav-item-active {
   font-weight: 700;
   text-decoration: underline;
@@ -185,6 +181,7 @@ code {
   list-style: none;
   padding: 0;
 }
+
 .postlist-item {
   display: flex;
   flex-wrap: wrap;
@@ -192,6 +189,7 @@ code {
   counter-increment: start-from -1;
   line-height: 1.8;
 }
+
 .postlist-item:before {
   display: inline-block;
   pointer-events: none;
@@ -199,14 +197,18 @@ code {
   line-height: 100%;
   text-align: right;
 }
+
 .postlist-date,
 .postlist-item:before {
-  font-size: 0.8125em; /* 13px /16 */
+  font-size: 0.8125em;
+  /* 13px /16 */
   color: var(--color-gray-90);
 }
+
 .postlist-date {
   word-spacing: -0.5px;
 }
+
 .postlist-link {
   padding-left: .25em;
   padding-right: .25em;
@@ -214,11 +216,14 @@ code {
   text-underline-offset: 0;
   text-decoration-thickness: 1px;
 }
+
 .postlist-item-active .postlist-link {
   font-weight: bold;
 }
+
 .tmpl-home .postlist-link {
-  font-size: 1.1875em; /* 19px /16 */
+  font-size: 1.1875em;
+  /* 19px /16 */
   font-weight: 700;
 }
 
@@ -229,26 +234,35 @@ code {
   align-items: center;
   justify-content: center;
   text-transform: uppercase;
-  font-size: 0.75em; /* 12px /16 */
-  padding: 0.08333333333333em 0.3333333333333em; /* 1px 4px /12 */
-  margin-left: 0.6666666666667em; /* 8px /12 */
-  margin-top: 0.5em; /* 6px /12 */
-  margin-bottom: 0.5em; /* 6px /12 */
+  font-size: 0.75em;
+  /* 12px /16 */
+  padding: 0.08333333333333em 0.3333333333333em;
+  /* 1px 4px /12 */
+  margin-left: 0.6666666666667em;
+  /* 8px /12 */
+  margin-top: 0.5em;
+  /* 6px /12 */
+  margin-bottom: 0.5em;
+  /* 6px /12 */
   color: var(--color-gray-90);
   border: 1px solid var(--color-gray-50);
-  border-radius: 0.25em; /* 3px /12 */
+  border-radius: 0.25em;
+  /* 3px /12 */
   text-decoration: none;
   line-height: 1.8;
 }
+
 a[href].post-tag,
 a[href].post-tag:visited {
   color: inherit;
 }
+
 a[href].post-tag:hover,
 a[href].post-tag:focus {
   background-color: var(--color-gray-20);
 }
-.postlist-item > .post-tag {
+
+.postlist-item>.post-tag {
   align-self: center;
 }
 
@@ -256,6 +270,7 @@ a[href].post-tag:focus {
 :root {
   --color-infobox: #ffc;
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --color-infobox: #082840;
@@ -265,8 +280,10 @@ a[href].post-tag:focus {
 .infobox {
   background-color: var(--color-infobox);
   color: var(--color-gray-90);
-  padding: 1em 0.625em; /* 16px 10px /16 */
+  padding: 1em 0.625em;
+  /* 16px 10px /16 */
 }
+
 .infobox ol:only-child {
   margin: 0;
 }
@@ -278,14 +295,16 @@ a[href].post-tag:focus {
   font-style: normal;
   margin-left: .1em;
 }
+
 a[href].direct-link,
 a[href].direct-link:visited {
   color: transparent;
 }
+
 a[href].direct-link:focus,
 a[href].direct-link:focus:visited,
-:hover > a[href].direct-link,
-:hover > a[href].direct-link:visited {
+:hover>a[href].direct-link,
+:hover>a[href].direct-link:visited {
   color: #aaa;
 }
 
@@ -296,12 +315,12 @@ we will need to hide them.
 https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
 */
 .visually-hidden {
-  clip: rect(0 0 0 0); 
+  clip: rect(0 0 0 0);
   clip-path: inset(50%);
   height: 1px;
   overflow: hidden;
   position: absolute;
-  white-space: nowrap; 
+  white-space: nowrap;
   width: 1px;
 }
 
