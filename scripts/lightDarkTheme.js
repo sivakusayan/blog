@@ -21,6 +21,7 @@ const setTheme = (theme) => {
   checkThemeRadio(theme);
 };
 
+/** Align UI state of theme picker with whatever the current theme is */
 checkThemeRadio = (theme) => {
   let radio;
   switch (localStorage.theme) {
