@@ -1,3 +1,29 @@
+html {
+  --scrollbarBG: var(--background-color);
+  --thumbBG: var(--text-color);
+}
+
+body::-webkit-scrollbar {
+  width: 0.65em;
+}
+
+body {
+  scrollbar-width: auto;
+  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--scrollbarBG);
+  transition: var(--theme-transition-duration) ease;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--thumbBG);
+  border-radius: 6px;
+  border: 3px solid var(--scrollbarBG);
+  transition: var(--theme-transition-duration) ease;
+}
+
 /* Defaults */
 :root {
   --font-family: -apple-system, system-ui, sans-serif;
@@ -64,6 +90,7 @@ html[data-theme="DARK"] {
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 html,
@@ -379,50 +406,21 @@ h2:not(:first-child) {
   outline-offset: 2px;
 }
 
-.theme-picker:has(input:focus) {
-  outline-offset: 4px;
-}
-
 *,
 .theme-picker {
   outline: 3px solid transparent;
   outline-offset: 5px;
-}
-
-.theme-picker {
-  outline-offset: 8px;
   transition: color var(--theme-transition-duration) ease, outline-offset 0.2s ease;
 }
 
-.gerritLink {
-  position: relative;
-  display: block;
-  overflow: hidden;
+a[href] {
+  display: inline;
+  text-decoration: none;
+  border-bottom: 1px dashed black;
+  transition: color var(--theme-transition-duration) ease, border-width 0.1s ease, outline-offset 0.2s ease;
 }
 
-.gerritLink span {
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-  transform: translateX(-100%);
-  transition: transform 275ms ease;
-  box-shadow: inset 0 -2px 0 0 rgb(211, 80, 161);
-}
-
-.gerritLink span::before {
-  display: inline-block;
-  content: attr(data-content);
+a[href]:hover {
   color: rgb(211, 80, 161);
-  transform: translateX(100%);
-  transition: transform 275ms ease;
-  text-decoration: underline;
-}
-
-.gerritLink:hover span {
-  transform: translateX(0);
-}
-
-.gerritLink:hover span::before {
-  transform: translateX(0);
+  border-bottom: 2px solid rgb(211, 80, 161);
 }
