@@ -1,0 +1,18 @@
+{% macro themePicker() %}
+    <fieldset class="theme-picker" aria-label="Theme">
+        <div class="radio-container">
+          <input class="visually-hidden" type="radio" name="theme" id="light-theme-radio">
+          <label for="light-theme-radio">{% lucide "sun", { "aria-label": "Light" } %}</label>
+        </div>
+        <div class="radio-container">
+          <input class="visually-hidden" type="radio" name="theme" id="dark-theme-radio">
+          <label for="dark-theme-radio">{% lucide "moon", { "aria-label": "Dark" }%}</label>
+        </div>
+        <div class="radio-container">
+          <input class="visually-hidden" type="radio" name="theme" id="system-theme-radio">
+          <label for="system-theme-radio">{% lucide "monitor", { "aria-label": "System" } %}</label>
+        </div>
+    </fieldset>
+    <!-- We unfortunately have to load this here to prevent FOUS of the theme picker -->
+    <script src="/scripts/lightDarkTheme.js"></script>
+{% endmacro %}

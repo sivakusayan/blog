@@ -4,7 +4,7 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
-{% from "displayChange.njk" import displayChange %}
+{% from "gerritLink.njk" import gerritLink %}
 
 <h2>Hello!</h2>
 <p>I'm a software developer with 3 years of experience doing Full Stack development with React, TypeScript, and C#.</p>
@@ -15,7 +15,7 @@ eleventyNavigation:
   <h3>In Progress</h3>
   <ul>
     {% for change in chromiumChanges.inProgress %}
-      <li>{{ displayChange(change) }}</li>
+      <li>{{ gerritLink(change) }}</li>
     {% endfor %}
   </ul>
   <!-- We only want to show separate headings if there is some change in progress. 
@@ -24,6 +24,6 @@ eleventyNavigation:
 {% endif %}
 <ul>
   {% for change in chromiumChanges.merged %}
-    <li>{{ displayChange(change) }}</li>
+    <li>{{ gerritLink(change) }}</li>
   {% endfor %}
 </ul>
