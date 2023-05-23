@@ -1,0 +1,45 @@
+.theme-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 0;
+    height: 2.5em;
+    border: 1px solid black;
+    border-radius: 5px;
+
+    /* Needed for focus styles */
+    outline: 3px solid transparent;
+    outline-offset: 5px;
+    transition: outline-offset 0.2s ease;
+}
+
+.theme-picker .radio-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.theme-picker label {
+    display: inline-block;
+    padding: 0.25em 0.75em;
+}
+
+.theme-picker .radio-container:not(:last-child) {
+    border-right: 1px solid black;
+}
+
+/* Distinguish the selected theme */
+.theme-picker .radio-container:has(input:checked) {
+    background-color: black;
+}
+
+.theme-picker input:checked+label svg {
+    stroke: white;
+}
+
+/* Since the radio button is hidden, 
+focus style the container instead */
+.theme-picker:has(input:focus) {
+    outline: 3px solid rgb(211, 80, 161);
+    outline-offset: 2px;
+}

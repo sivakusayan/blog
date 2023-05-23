@@ -25,8 +25,9 @@
   },
   "homepage": "https://github.com/11ty/eleventy-base-blog#readme",
   "dependencies": {
-    "@11ty/eleventy": "^1.0.1",
+    "@11ty/eleventy": "^2.0.1-beta.2",
     "@11ty/eleventy-navigation": "^0.3.3",
+    "@11ty/eleventy-plugin-bundle": "^1.0.4",
     "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
     "@grimlink/eleventy-plugin-lucide-icons": "^1.0.2",
     "luxon": "^2.4.0",

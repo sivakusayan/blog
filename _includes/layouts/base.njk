@@ -7,12 +7,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title or metadata.title }}</title>
     <meta name="description" content="{{ description or metadata.description }}">
-    <link rel="stylesheet" href="{{ '/css/reset.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/index.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-base16-monokai.dark.css' | url }}">
-    <link rel="stylesheet" href="{{ '/css/prism-diff.css' | url }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
+		
+    <!-- Serve CSS inline on prod for performance -->
+    {%- css %}{% include "css/reset.css" %}{% endcss %}
+    {%- css %}{% include "css/index.css" %}{% endcss %}
+    {%- css %}{% include "css/link.css" %}{% endcss %}
+    {%- css %}{% include "css/scrollbar.css" %}{% endcss %}
+    {%- css %}{% include "css/themePicker.css" %}{% endcss %}
+		{%- if eleventy.env.runMode === "serve" %}
+		<link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
+		{%- else  %}
+		<style>{% getBundle "css" %}</style>
+		{%- endif %}
+
     <!-- Needed to prevent FOUS -->
     <script>
       if (localStorage.theme) document.documentElement.setAttribute("data-theme", localStorage.theme);

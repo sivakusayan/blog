@@ -1,29 +1,3 @@
-html {
-  --scrollbarBG: var(--background-color);
-  --thumbBG: var(--text-color);
-}
-
-body::-webkit-scrollbar {
-  width: 0.65em;
-}
-
-body {
-  scrollbar-width: auto;
-  scrollbar-color: var(--thumbBG) var(--scrollbarBG);
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--scrollbarBG);
-  transition: var(--theme-transition-duration) ease;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--thumbBG);
-  border-radius: 6px;
-  border: 3px solid var(--scrollbarBG);
-  transition: var(--theme-transition-duration) ease;
-}
-
 /* Defaults */
 :root {
   --font-family: -apple-system, system-ui, sans-serif;
@@ -115,15 +89,6 @@ p:last-child {
 p,
 .tmpl-post li {
   line-height: 1.45;
-}
-
-a[href] {
-  color: var(--text-color-link);
-  transition: color var(--theme-transition-duration) ease, outline-offset 0.2s ease;
-}
-
-a[href]:visited {
-  color: var(--text-color-link-visited);
 }
 
 main {
@@ -297,46 +262,12 @@ a[href].post-tag:focus {
   align-self: center;
 }
 
-/* Infobox */
-:root {
-  --color-infobox: #ffc;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-infobox: #082840;
-  }
-}
-
-.infobox {
-  background-color: var(--color-infobox);
-  color: var(--color-gray-90);
-  padding: 1em 0.625em;
-  /* 16px 10px /16 */
-}
-
-.infobox ol:only-child {
-  margin: 0;
-}
-
 /* Direct Links / Markdown Headers */
 .direct-link {
   font-family: sans-serif;
   text-decoration: none;
   font-style: normal;
   margin-left: .1em;
-}
-
-a[href].direct-link,
-a[href].direct-link:visited {
-  color: transparent;
-}
-
-a[href].direct-link:focus,
-a[href].direct-link:focus:visited,
-:hover>a[href].direct-link,
-:hover>a[href].direct-link:visited {
-  color: #aaa;
 }
 
 /* This will ensure things are NOT removed from the AX tree.
@@ -355,39 +286,6 @@ https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
   width: 1px;
 }
 
-.theme-picker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  line-height: 0;
-  height: 2.5em;
-  border: 1px solid black;
-  border-radius: 5px;
-}
-
-.theme-picker .radio-container {
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.theme-picker .radio-container:has(input:checked) {
-  background-color: black;
-}
-
-.theme-picker label {
-  display: inline-block;
-  padding: 0.25em 0.75em;
-}
-
-.theme-picker .radio-container:not(:last-child) {
-  border-right: 1px solid black;
-}
-
-.theme-picker input:checked+label svg {
-  stroke: white;
-}
-
 h1 {
   margin-bottom: 0.3em;
 }
@@ -398,29 +296,4 @@ p:not(:last-child) {
 
 h2:not(:first-child) {
   margin-top: 1em;
-}
-
-*:focus,
-.theme-picker:has(input:focus) {
-  outline: 3px solid rgb(211, 80, 161);
-  outline-offset: 2px;
-}
-
-*,
-.theme-picker {
-  outline: 3px solid transparent;
-  outline-offset: 5px;
-  transition: color var(--theme-transition-duration) ease, outline-offset 0.2s ease;
-}
-
-a[href] {
-  display: inline;
-  text-decoration: none;
-  border-bottom: 1px dashed black;
-  transition: color var(--theme-transition-duration) ease, border-width 0.1s ease, outline-offset 0.2s ease;
-}
-
-a[href]:hover {
-  color: rgb(211, 80, 161);
-  border-bottom: 2px solid rgb(211, 80, 161);
 }

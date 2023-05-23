@@ -7,6 +7,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginLucideIcons = require("@grimlink/eleventy-plugin-lucide-icons");
+const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 
 module.exports = function (eleventyConfig) {
   // Copy the `img` and `css` folders to the output
@@ -18,6 +19,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginLucideIcons);
+  eleventyConfig.addPlugin(pluginBundler);
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(

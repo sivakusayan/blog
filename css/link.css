@@ -1,0 +1,26 @@
+a[href] {
+    color: var(--text-color-link);
+    display: inline;
+    text-decoration: none;
+    border-bottom: 1px dashed black;
+    transition: color var(--theme-transition-duration) ease,
+        border-width 0.1s ease,
+        outline-offset 0.2s ease;
+
+    outline: 3px solid transparent;
+    outline-offset: 5px;
+}
+
+a[href]:visited {
+    color: var(--text-color-link-visited);
+}
+
+a[href]:hover {
+    color: rgb(211, 80, 161);
+    border-bottom: 0.1875em solid rgb(211, 80, 161);
+}
+
+a[href]:focus {
+    outline: 3px solid rgb(211, 80, 161);
+    outline-offset: 2px;
+}
