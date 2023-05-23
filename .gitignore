@@ -4,3 +4,4 @@ package-lock.json
 .vscode
 yarn.lock
 .DS_STORE
+.editorconfig
