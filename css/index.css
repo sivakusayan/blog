@@ -62,6 +62,10 @@ html[data-theme="DARK"] {
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   padding: 0;
@@ -88,7 +92,7 @@ p,
 
 a[href] {
   color: var(--text-color-link);
-  transition: color var(--theme-transition-duration) ease;
+  transition: color var(--theme-transition-duration) ease, outline-offset 0.2s ease;
 }
 
 a[href]:visited {
@@ -355,4 +359,70 @@ https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
 
 .theme-picker input:checked+label svg {
   stroke: white;
+}
+
+h1 {
+  margin-bottom: 0.3em;
+}
+
+p:not(:last-child) {
+  margin-bottom: 0.5em;
+}
+
+h2:not(:first-child) {
+  margin-top: 1em;
+}
+
+*:focus,
+.theme-picker:has(input:focus) {
+  outline: 3px solid rgb(211, 80, 161);
+  outline-offset: 2px;
+}
+
+.theme-picker:has(input:focus) {
+  outline-offset: 4px;
+}
+
+*,
+.theme-picker {
+  outline: 3px solid transparent;
+  outline-offset: 5px;
+}
+
+.theme-picker {
+  outline-offset: 8px;
+  transition: color var(--theme-transition-duration) ease, outline-offset 0.2s ease;
+}
+
+.gerritLink {
+  position: relative;
+  display: block;
+  overflow: hidden;
+}
+
+.gerritLink span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  transform: translateX(-100%);
+  transition: transform 275ms ease;
+  box-shadow: inset 0 -2px 0 0 rgb(211, 80, 161);
+}
+
+.gerritLink span::before {
+  display: inline-block;
+  content: attr(data-content);
+  color: rgb(211, 80, 161);
+  transform: translateX(100%);
+  transition: transform 275ms ease;
+  text-decoration: underline;
+}
+
+.gerritLink:hover span {
+  transform: translateX(0);
+}
+
+.gerritLink:hover span::before {
+  transform: translateX(0);
 }
