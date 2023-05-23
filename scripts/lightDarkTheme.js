@@ -1,3 +1,8 @@
+const lightThemeRadio = document.getElementById("light-theme-radio");
+const darkThemeRadio = document.getElementById("dark-theme-radio");
+const systemThemeRadio = document.getElementById("system-theme-radio");
+let currentCheckedRadio = null;
+
 const Themes = Object.freeze({
   LIGHT: "LIGHT",
   DARK: "DARK",
@@ -5,15 +10,18 @@ const Themes = Object.freeze({
 });
 
 const initializeThemeRadios = () => {
-  const lightThemeRadio = document.getElementById("light-theme-radio");
-  const darkThemeRadio = document.getElementById("dark-theme-radio");
-  const systemThemeRadio = document.getElementById("system-theme-radio");
-
   lightThemeRadio.onchange = () => setTheme(Themes.LIGHT);
   darkThemeRadio.onchange = () => setTheme(Themes.DARK);
   systemThemeRadio.onchange = () => setTheme(Themes.SYSTEM);
+};
 
-  // Decide what radio should start off checked.
+const setTheme = (theme) => {
+  document.documentElement.setAttribute("data-theme", theme)
+  localStorage.theme = theme;
+  checkThemeRadio(theme);
+};
+
+checkThemeRadio = (theme) => {
   let radio;
   switch (localStorage.theme) {
     case Themes.LIGHT:
@@ -27,12 +35,13 @@ const initializeThemeRadios = () => {
       radio = systemThemeRadio;
       break;
   }
+  if (currentCheckedRadio) {
+    currentCheckedRadio.parentElement.removeAttribute("data-checked");
+  }
   radio.checked = true;
-};
-
-const setTheme = (theme) => {
-  document.documentElement.setAttribute("data-theme", theme)
-  localStorage.theme = theme;
-};
+  radio.parentElement.setAttribute("data-checked", "true");
+  currentCheckedRadio = radio;
+}
 
 initializeThemeRadios();
+setTheme(localStorage.theme);

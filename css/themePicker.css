@@ -29,7 +29,7 @@
 }
 
 /* Distinguish the selected theme */
-.theme-picker .radio-container:has(input:checked) {
+.theme-picker .radio-container[data-checked="true"] {
     background-color: black;
 }
 
@@ -39,7 +39,7 @@
 
 /* Since the radio button is hidden, 
 focus style the container instead */
-.theme-picker:has(input:focus) {
+.theme-picker:focus-within {
     outline: 3px solid rgb(211, 80, 161);
     outline-offset: 2px;
 }
