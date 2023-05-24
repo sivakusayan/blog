@@ -23,7 +23,7 @@ header {
 }
 
 .nav-item a[href] {
-    color: var(--text-color-link);
+    color: var(--text-color);
     border-bottom: none;
     text-decoration: none;
     transition: color var(--theme-transition-duration) ease,
@@ -38,6 +38,6 @@ header {
 
 .nav-item-active a[href] {
     font-weight: 700;
-    border-bottom: 0.1875em solid var(--text-color-link);
+    border-bottom: 0.1875em solid var(--text-color);
     pointer-events: none;
 }

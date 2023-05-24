@@ -2,13 +2,18 @@ a[href] {
     color: var(--text-color-link);
     display: inline;
     text-decoration: none;
-    border-bottom: 1.25px dashed var(--text-color-link);
+    border-bottom: 1px var(--link-border-style) var(--text-color-link);
     transition: color var(--theme-transition-duration) ease,
         border-width 0.1s ease,
         outline-offset 0.2s ease;
 
     outline: 3px solid transparent;
     outline-offset: 5px;
+}
+
+a[href]:visited {
+    color: var(--text-color-link-visited);
+    border-bottom: 1px var(--link-border-style) var(--text-color-link-visited);
 }
 
 a[href]:hover {
