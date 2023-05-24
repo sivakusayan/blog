@@ -22,6 +22,6 @@ a[href]:hover {
 }
 
 a[href]:focus-visible {
-    outline: 3px solid var(--primary-color);
+    outline: 3.5px solid var(--primary-color);
     outline-offset: 2px;
 }

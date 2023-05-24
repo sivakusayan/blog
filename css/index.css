@@ -23,14 +23,14 @@
 html[data-theme="DARK"] {
   --color-gray-20: #e0e0e0;
   --color-gray-50: #C0C0C0;
-  --color-gray-90: #dfdfdf;
+  --color-gray-90: #d3d3d3;
 
   --primary-color: rgb(227, 107, 181);
   --background-color: #1c1d22;
 
   --text-color: var(--color-gray-90);
-  --text-color-link: #d9d9e1;
-  --text-color-link-visited: #797A7C;
+  --text-color-link: #c8c8d1;
+  --text-color-link-visited: #6F6F71;
   --link-border-style: solid;
 }
 
