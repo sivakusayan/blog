@@ -4,7 +4,7 @@
     align-items: center;
     line-height: 0;
     height: 2.5em;
-    border: 1px solid black;
+    border: 1px solid var(--text-color);
     border-radius: 5px;
 
     /* Needed for focus styles */
@@ -17,6 +17,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    transition: background-color var(--theme-transition-duration) ease;
 }
 
 .theme-picker label {
@@ -30,16 +31,17 @@
 
 /* Distinguish the selected theme */
 .theme-picker .radio-container[data-checked="true"] {
-    background-color: black;
+    background-color: var(--text-color);
 }
 
-.theme-picker input:checked+label svg {
-    stroke: white;
+.theme-picker .radio-container[data-checked="true"] label svg {
+    stroke: var(--background-color);
+    transition: stroke var(--theme-transition-duration) ease;
 }
 
 /* Since the radio button is hidden, 
 focus style the container instead */
-.theme-picker:focus-within {
-    outline: 3px solid rgb(211, 80, 161);
+.theme-picker:has(input:focus-visible) {
+    outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }

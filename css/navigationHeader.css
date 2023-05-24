@@ -23,22 +23,21 @@ header {
 }
 
 .nav-item a[href] {
+    color: var(--text-color-link);
+    border-bottom: none;
     text-decoration: none;
     transition: color var(--theme-transition-duration) ease,
         border var(--theme-transition-duration) ease,
         outline-offset 0.2s ease;
 }
 
-.nav-item a[href] {
-    border-bottom: none;
+.nav-item a[href]:hover {
+    color: var(--primary-color);
+    border-bottom: 0.1875em solid var(--primary-color);
 }
 
 .nav-item-active a[href] {
     font-weight: 700;
-    border-bottom: 0.1875em solid black;
-}
-
-.nav-item a[href]:hover,
-.nav-item-active a[href]:hover {
-    border-bottom: 0.3em solid rgb(211, 80, 161);
+    border-bottom: 0.1875em solid var(--text-color-link);
+    pointer-events: none;
 }

@@ -11,11 +11,11 @@
   --color-gray-50: #C0C0C0;
   --color-gray-90: #333;
 
-  --background-color: #fff;
+  --primary-color: rgb(211, 80, 161);
+  --background-color: #e6e4e4;
 
   --text-color: var(--color-gray-90);
   --text-color-link: #082840;
-  --text-color-link-visited: #17050F;
 }
 
 html[data-theme="DARK"] {
@@ -23,11 +23,11 @@ html[data-theme="DARK"] {
   --color-gray-50: #C0C0C0;
   --color-gray-90: #dad8d8;
 
-  --text-color: var(--color-gray-90);
-  --text-color-link: #1493fb;
-  --text-color-link-visited: #a6a6f8;
-
+  --primary-color: rgb(227, 107, 181);
   --background-color: #1c1d22;
+
+  --text-color: var(--color-gray-90);
+  --text-color-link: #d3d3ff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -36,11 +36,11 @@ html[data-theme="DARK"] {
     --color-gray-50: #C0C0C0;
     --color-gray-90: #dad8d8;
 
-    --text-color: var(--color-gray-90);
-    --text-color-link: #1493fb;
-    --text-color-link-visited: #a6a6f8;
-
+    --primary-color: rgb(227, 107, 181);
     --background-color: #1c1d22;
+
+    --text-color: var(--color-gray-90);
+    --text-color-link: #bdbdfa;
   }
 
   html[data-theme="LIGHT"] {
@@ -48,11 +48,11 @@ html[data-theme="DARK"] {
     --color-gray-50: #C0C0C0;
     --color-gray-90: #333;
 
+    --primary-color: rgb(211, 80, 161);
     --background-color: #fff;
 
     --text-color: var(--color-gray-90);
     --text-color-link: #082840;
-    --text-color-link-visited: #17050F;
   }
 }
 
@@ -221,7 +221,7 @@ a[href].post-tag:visited {
 }
 
 a[href].post-tag:hover,
-a[href].post-tag:focus {
+a[href].post-tag:focus-visible {
   background-color: var(--color-gray-20);
 }
 

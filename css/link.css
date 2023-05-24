@@ -2,7 +2,7 @@ a[href] {
     color: var(--text-color-link);
     display: inline;
     text-decoration: none;
-    border-bottom: 1px dashed black;
+    border-bottom: 1.25px dashed var(--text-color-link);
     transition: color var(--theme-transition-duration) ease,
         border-width 0.1s ease,
         outline-offset 0.2s ease;
@@ -11,16 +11,12 @@ a[href] {
     outline-offset: 5px;
 }
 
-a[href]:visited {
-    color: var(--text-color-link-visited);
-}
-
 a[href]:hover {
-    color: rgb(211, 80, 161);
-    border-bottom: 0.1875em solid rgb(211, 80, 161);
+    color: var(--primary-color);
+    border-bottom: 0.1875em solid var(--primary-color);
 }
 
-a[href]:focus {
-    outline: 3px solid rgb(211, 80, 161);
+a[href]:focus-visible {
+    outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
