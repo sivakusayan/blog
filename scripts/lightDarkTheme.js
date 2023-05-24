@@ -11,7 +11,7 @@ const Themes = Object.freeze({
   SYSTEM: "SYSTEM",
 });
 
-const initializeThemeRadios = () => {
+const initializeEventListeners = () => {
   lightThemeRadio.onchange = (e) => onThemeRadioChecked(Themes.LIGHT);
   darkThemeRadio.onchange = (e) => onThemeRadioChecked(Themes.DARK);
   systemThemeRadio.onchange = (e) => onThemeRadioChecked(Themes.SYSTEM);
@@ -21,7 +21,18 @@ const initializeThemeRadios = () => {
   // Assistive tech interactions should register as clicks if they
   // use the standard APIs, so they likely won't go through here.
   // Regardless, it seems like we only need delay for the keyboard anyway.
-  document.getElementById("theme-picker").onkeydown = () => selectionFromKeyboard = true;
+  document.getElementById("theme-picker").onkeydown = (e) => {
+    switch (e.key) {
+      case "ArrowDown":
+      case "ArrowUp":
+      case "ArrowLeft":
+      case "ArrowRight":
+        selectionFromKeyboard = true;
+        break;
+      default:
+        break;
+    }
+  };
 };
 
 const onThemeRadioChecked = (theme) => {
@@ -83,8 +94,8 @@ updateThemePickerSelection = (theme) => {
   currentCheckedRadio = radio;
 }
 
-initializeThemeRadios();
-// The concern described in `initializeThemeRadios()`
+initializeEventListeners();
+// The concern described in `onThemeRadioChecked()`
 // doesn't apply when setting the theme on webpage load.
 // So no need to set the delay parameter here.
 setTheme(localStorage.theme);
