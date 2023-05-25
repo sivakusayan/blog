@@ -23,6 +23,15 @@
 .theme-picker label {
     display: inline-block;
     padding: 0.25em 0.75em;
+    cursor: pointer;
+}
+
+.theme-picker svg {
+    transition: stroke var(--theme-transition-duration) ease;
+}
+
+.theme-picker svg:hover {
+    stroke: var(--primary-color);
 }
 
 .theme-picker .radio-container:not(:last-child) {
@@ -32,6 +41,11 @@
 /* Distinguish the selected theme */
 .theme-picker .radio-container[data-checked="true"] {
     background-color: var(--text-color);
+}
+
+.theme-picker .radio-container[data-checked="true"] label {
+    cursor: default;
+    pointer-events: none;
 }
 
 .theme-picker .radio-container[data-checked="true"] label svg {
