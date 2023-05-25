@@ -100,6 +100,8 @@ module.exports = function (eleventyConfig) {
     ghostMode: false,
   });
 
+  eleventyConfig.addWatchTarget("./src/css/index.css");
+
   return {
     // Control which files Eleventy will process
     // e.g.: *.md, *.njk, *.html, *.liquid
@@ -127,7 +129,7 @@ module.exports = function (eleventyConfig) {
 
     // These are all optional (defaults are shown):
     dir: {
-      input: ".",
+      input: "src",
       includes: "_includes",
       data: "_data",
       output: "_site",

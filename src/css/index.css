@@ -110,7 +110,7 @@ main>* {
 }
 
 main>*:last-child {
-  margin-bottom: 3.5em;
+  margin-bottom: 5em;
 }
 
 table {
@@ -265,4 +265,8 @@ h2 {
 
 p:not(:last-child) {
   margin-bottom: 0.5em;
+}
+
+svg {
+  stroke-width: 1.5px;
 }

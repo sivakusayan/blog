@@ -1,0 +1,38 @@
+footer {
+    border-top: 1px solid var(--color-gray-20);
+}
+
+.footer-wrapper {
+    height: 72px; /* hardcode this for now to be equal to the header height */
+    margin: auto;
+    max-width: 37.5em;
+    padding: 0.5em 0;
+
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr fit-content(30%);
+}
+
+.social-media a[href]:not(:last-child) {
+    margin-right: 0.5em;
+}
+
+.social-media a[href]:not(:hover) {
+    /* These don't need underlines since it's a common
+    enough pattern that the icons should be recognizable as
+    clickable on their own. */
+    border-bottom: none;
+    transform: scale(1.2);
+}
+
+/* Hack to make these links have bigger hit targets */
+.social-media a[href] {
+    position: relative;
+} 
+.social-media a[href]:after {
+    content:"";
+    padding: 20px;  
+    position: absolute;
+    left: -7.5px;
+    top: -16px;
+} 

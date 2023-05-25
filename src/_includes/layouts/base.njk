@@ -1,4 +1,5 @@
 {% from "partials/header.njk" import header %}
+{% from "partials/footer.njk" import footer %}
 
 <!doctype html>
 <html lang="{{ metadata.language }}">
@@ -11,13 +12,13 @@
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
 
     <!-- Serve CSS inline on prod for performance -->
-    {%- css %}{% include "css/reset.css" %}{% endcss %}
-    {%- css %}{% include "css/index.css" %}{% endcss %}
-    {%- css %}{% include "css/link.css" %}{% endcss %}
-    {%- css %}{% include "css/header.css" %}{% endcss %}
-    {%- css %}{% include "css/footer.css" %}{% endcss %}
-    {%- css %}{% include "css/scrollbar.css" %}{% endcss %}
-    {%- css %}{% include "css/themePicker.css" %}{% endcss %}
+    {%- css %}{% include "src/css/reset.css" %}{% endcss %}
+    {%- css %}{% include "src/css/index.css" %}{% endcss %}
+    {%- css %}{% include "src/css/link.css" %}{% endcss %}
+    {%- css %}{% include "src/css/header.css" %}{% endcss %}
+    {%- css %}{% include "src/css/footer.css" %}{% endcss %}
+    {%- css %}{% include "src/css/scrollbar.css" %}{% endcss %}
+    {%- css %}{% include "src/css/themePicker.css" %}{% endcss %}
     {%- if eleventy.env.runMode === "serve" %}
       <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
     {%- else  %}
@@ -35,17 +36,13 @@
     </script>
   </head>
   <body>
-    {{ header(collections.all) }}
+    {{ header(collections.all, page.url) }}
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
     </main>
-    <footer>
-      <div class="footer-wrapper">
-        <span>Powered by <a href="https://www.11ty.dev">Eleventy</a>.</span>
-      </div>
-    </footer>
 
+    {{ footer() }}
     <!-- Current page: {{ page.url | url }} -->
   </body>
 </html>

@@ -1,3 +1,0 @@
-{% macro gerritLink(change) %}
-    <a class = "gerritLink" href={{"https://chromium-review.googlesource.com/c/chromium/src/+/" + change._number }}><span data-content="{{ change.subject }}" aria-hidden="true"></span>{{ change.subject }}</a>
-{% endmacro %}
