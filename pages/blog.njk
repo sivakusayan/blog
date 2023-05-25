@@ -1,6 +1,6 @@
 ---
 title: Sayan Sivakumaran - Blog
-layout: layouts/home.njk
+layout: layouts/base.njk
 permalink: /posts/
 eleventyNavigation:
   key: Blog
@@ -10,4 +10,4 @@ eleventyNavigation:
 <h1>Archive</h1>
 
 {% set postslist = collections.posts %}
-{% include "postslist.njk" %}
+{% include "partials/postslist.njk" %}

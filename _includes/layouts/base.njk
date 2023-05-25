@@ -1,4 +1,4 @@
-{% from "themePicker.njk" import themePicker %}
+{% from "partials/header.njk" import header %}
 
 <!doctype html>
 <html lang="{{ metadata.language }}">
@@ -35,20 +35,7 @@
     </script>
   </head>
   <body>
-    <header>
-      <div class="header-wrapper">
-        {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
-        <ul class="nav">
-          {%- for entry in collections.all | eleventyNavigation %}
-            <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}">
-              <a href="{{ entry.url | url }}">{{ entry.title }}</a>
-            </li>
-          {%- endfor %}
-        </ul>
-
-        {{ themePicker() }}
-      </div>
-    </header>
+    {{ header(collections.all) }}
 
     <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
       {{ content | safe }}
