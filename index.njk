@@ -7,27 +7,27 @@ eleventyNavigation:
 {% from "gerritLink.njk" import gerritLink %}
 
 <div id="landingPagePart1">
-<h1>Hello, I'm Sayan</h1>
-<p>I'm a software developer with 3 years of experience doing Full Stack development with React, TypeScript, and C#.</p>
-<p>I'm currently contributing to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, in particular the accessibility module of the rendering engine. See my work below, or check out <a href="/posts">my blog</a>, if you'd like. 🙂</p>
+  <h1>Hello, I'm Sayan</h1>
+  <p>I'm a software developer with 3 years of experience doing Full Stack development with React, TypeScript, and C#.</p>
+  <p>I'm currently contributing to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, in particular the accessibility module of the rendering engine. See my work below, or check out <a href="/posts">my blog</a>, if you'd like. 🙂</p>
 </div>
 
 <div id="landingPagePart2">
-<h2 id="chromium-contributions">Chromium contributions</h2>
-{% if chromiumChanges.inProgress | length %}
-  <h3>In Progress</h3>
+  <h2 id="chromium-contributions">Chromium contributions</h2>
+  {% if chromiumChanges.inProgress | length %}
+    <h3>In Progress</h3>
+    <ul>
+      {% for change in chromiumChanges.inProgress %}
+        <li>{{ gerritLink(change) }}</li>
+      {% endfor %}
+    </ul>
+    <!-- We only want to show separate headings if there is some change in progress. 
+         Otherwise the headings add needless noise.-->
+    <h3>Merged</h3>
+  {% endif %}
   <ul>
-    {% for change in chromiumChanges.inProgress %}
+    {% for change in chromiumChanges.merged %}
       <li>{{ gerritLink(change) }}</li>
     {% endfor %}
   </ul>
-  <!-- We only want to show separate headings if there is some change in progress. 
-         Otherwise the headings add needless noise.-->
-  <h3>Merged</h3>
-{% endif %}
-<ul>
-  {% for change in chromiumChanges.merged %}
-    <li>{{ gerritLink(change) }}</li>
-  {% endfor %}
-</ul>
 </div>

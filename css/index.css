@@ -7,17 +7,17 @@
 
 /* Theme colors */
 :root {
-  --color-gray-20: #e0e0e0;
-  --color-gray-50: #C0C0C0;
-  --color-gray-90: #333;
+    --color-gray-20: #e0e0e0;
+    --color-gray-50: #C0C0C0;
+    --color-gray-90: #333;
 
-  --primary-color: rgb(211, 80, 161);
-  --background-color: #fff;
+    --primary-color: rgb(211, 80, 161);
+    --background-color: #fff;
 
-  --text-color: var(--color-gray-90);
-  --text-color-link: #26699c;
-  --text-color-link-visited: #6F7071;
-  --link-border-style: dashed;
+    --text-color: var(--color-gray-90);
+    --text-color-link: #082840;
+    --text-color-link-visited: #949494;
+    --link-border-style: dashed;
 }
 
 html[data-theme="DARK"] {
@@ -107,6 +107,10 @@ main {
 
 main>* {
   margin-top: 3.5em;
+}
+
+main>*:last-child {
+  margin-bottom: 3.5em;
 }
 
 table {
