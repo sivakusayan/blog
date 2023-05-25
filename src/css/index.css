@@ -270,3 +270,27 @@ p:not(:last-child) {
 svg {
   stroke-width: 1.5px;
 }
+
+code {
+  background-color: #eee;
+  border-radius: 3px;
+  font-family: courier, monospace;
+  padding: 0 3px;
+}
+
+li:not(:last-child) {
+  margin-bottom: 0.25em;
+}
+
+.tidbits-container {
+  margin-top: 2em;
+}
+
+.tidbits-wrapper li:not(:last-child) {
+  margin-bottom: 2em;
+}
+
+.tidbits-link-wrapper {
+  display: inline-block;
+  margin-bottom: 0.5em;
+}
