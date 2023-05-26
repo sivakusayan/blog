@@ -1,5 +1,5 @@
 ---
-title: Tidbits
+title: Sayan Sivakumaran - Tidbits
 layout: layouts/base.njk
 permalink: /tidbits/
 eleventyNavigation:
@@ -15,18 +15,18 @@ Here are a collection of external articles/fun facts that I either find interest
         <li>
             <span class="tidbits-link-wrapper">
                 <a href="https://dbaron.org/mozilla/visited-privacy">Preventing attacks on a user's history through CSS :visited selectors</a>
-            </span><br>Browsers have special handling around the <code>:visited</code> selector due to  the ways it can be abused to track the user - for instance, by querying the color of a link or detecting how unvisited/visited links influence the layout of the page. David Baron wrote great indepth article regarding the history of this.
+            </span><br>Browsers have special handling around the <code class="language-css">:visited</code> selector due to  the ways it can be abused to track the user - for instance, by querying the color of a link or detecting how unvisited/visited links influence the layout of the page. David Baron wrote great indepth article regarding the history of this.
     </li>
         <li>
             <span class="tidbits-link-wrapper">
                 <a href="https://mariospr.org/2013/02/03/accessibility-in-webkitgtk/">Accessibility in [WebKit]GTK+</a>
-            </span><br>When talking about the Linux accessibility APIs, I often saw people use the terms ATK/AT-SPI together, but I was always confused why. This article by Mario Sánchez Prada gives a good high level overview of what ATK and AT-SPI are and how they relate to each other.
+            </span><br>When talking about the Linux accessibility APIs, I often saw people use the terms ATK/AT-SPI together, but I was always confused why. This article by Mario Sánchez Prada, an old contributor to the GNOME accessibility project, gives a good high level overview of what ATK and AT-SPI are and how they relate to each other.
     </li>
     </li>
     <li>
         <span class="tidbits-link-wrapper">
             <a href="https://www.w3.org/TR/core-aam-1.2/#mapping_nodirect">Core-AAM: Exposing attributes that do not directly map to accessibility API properties</a>
-        </span><br>If you're using some kind of tool to debug a browser's accessibility tree, you might notice that assistive technology might obtain information that you don't expect. For example, if you're using Accessibility Insights for Windows to debug UIAutomation, you might see that the following HTML: <pre>&lt;input type="checkbox" readonly&gt;</pre> doesn't expose some sort of <code>Readonly</code> property in its accessibility node, but NVDA will read this checkbox as "read only" anyway. This is because sometimes the accessibility APIs themselves don't support certain semantics on certain controls, so <a href="https://github.com/w3c/core-aam/issues/127">browsers expose this in a different way</a>.
+        </span><br>If you're using some kind of tool to debug a browser's accessibility tree, you might notice that assistive technology is able to obtain information that you don't expect. For example, if you're using Accessibility Insights for Windows to debug UIAutomation, you might see that the following HTML: <pre class="language-html">&lt;input type="checkbox" readonly&gt;</pre> doesn't expose some sort of <code>Readonly</code> property in its accessibility node, but NVDA will read this checkbox as "read only" anyway. This is because sometimes the accessibility APIs themselves don't support certain semantics on certain controls, so <a href="https://github.com/w3c/core-aam/issues/127">browsers expose this information in a different way</a>.
     </li>
 </ul>
 </div>

@@ -2,12 +2,6 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 ---
-{%- css %}
-/* Only include the syntax highlighter CSS on blog posts */
-{% include "src/css/prism-diff.css" %}
-{% include "src/css/prism-base16-monokai.dark.css" %}
-{%- endcss %}
-
 <h1>{{ title }}</h1>
 
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>

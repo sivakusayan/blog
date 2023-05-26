@@ -1,0 +1,119 @@
+/*--------------------------------------------------------------------------------------------------------------
+Sliding of color in text.
+--------------------------------------------------------------------------------------------------------------*/
+
+.color-slide-container {
+  position: relative;
+}
+
+.color-slide-animation {
+  background-image: linear-gradient(
+    135deg,
+    var(--text-color) 33%,
+    var(--primary-color-light) 33% 66%,
+    var(--text-color) 66%
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation-name: color-slide;
+  animation-duration: 1s;
+  animation-timing-function: cubic-bezier(.37,.96,.48,.3);
+  animation-delay: 0.5s;
+  animation-fill-mode: backwards;
+}
+
+@keyframes color-slide {
+  0% {
+    background-position: 105%;
+  }
+  
+  80% {
+    background-position: 77%;
+  }
+  
+  100% {
+    background-position: 15%;
+  }
+}
+
+/*--------------------------------------------------------------------------------------------------------------
+Ball that appears after color has finished sliding.
+--------------------------------------------------------------------------------------------------------------*/
+  
+.ball-ride {
+  position: absolute;
+  bottom: 12px;
+  left: 230px;
+
+  animation: move 2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+  animation-delay: 1.35s;
+}
+
+.ball {
+  height: 0px;
+  width: 0px;
+  border-radius: 100%;
+  background: var(--primary-color-light);
+
+  animation: 1s drop 1.35s, 1s pulse 2.22s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(0px);
+  }
+  35% {
+    transform: translateY(-20px);
+    height: 20px;
+    width: 20px;
+  }
+  65% {
+    transform: translateY(0px);
+  }
+  70% {
+    transform: translateY(0px);
+    height: 15px;
+  }
+  75% {
+    transform: translateY(0px);
+    height: 22px;
+  }
+  85% {
+    transform: translateY(-10px);
+    height: 20px;
+  }
+  97% {
+    transform: translateY(0px);
+    height: 17px;
+  }
+  100% {
+    transform: translateY(0px);
+    height: 20px;
+    width: 20px;
+    background: var(--primary-color);
+  }
+}
+
+@keyframes move {
+  100% {
+    transform: translateX(15px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    outline: 10px solid var(--primary-color);
+    outline-offset: -15px;
+  }
+  100% {
+    outline: 1px solid transparent;
+    outline-offset: 100px;
+  }
+}
