@@ -60,9 +60,21 @@ Ball that appears after color has finished sliding.
   border-radius: 100%;
   background: var(--primary-color-light);
 
-  animation: 1s drop 1.35s, 1s pulse 2.22s;
+  animation: 1s drop 1.35s, 0.75s pulse 1.35s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
+}
+
+@media (prefers-reduced-motion) {
+  .ball-ride {
+    transform: translateX(15px);
+  }
+  .ball {
+    transform: translateY(0px);
+    height: 20px;
+    width: 20px;
+    background: var(--primary-color);
+  }
 }
 
 @keyframes drop {
@@ -114,6 +126,6 @@ Ball that appears after color has finished sliding.
   }
   100% {
     outline: 1px solid transparent;
-    outline-offset: 100px;
+    outline-offset: 50px;
   }
 }

@@ -26,8 +26,8 @@ html[data-theme="DARK"] {
   --color-gray-50: #C0C0C0;
   --color-gray-90: #d3d3d3;
 
-  --primary-color: rgb(227, 107, 181);
-  --primary-color-light: #F07DC4;
+  --primary-color: #fab5e0;
+  --primary-color-light: #f895d2;
   --background-color: #1c1d22;
 
   --text-color: var(--color-gray-90);
@@ -42,8 +42,8 @@ html[data-theme="DARK"] {
     --color-gray-50: #C0C0C0;
     --color-gray-90: #dad8d8;
 
-    --primary-color: rgb(227, 107, 181);
-    --primary-color-light: #F07DC4;
+    --primary-color: #fab5e0;
+    --primary-color-light: #f895d2;
     --background-color: #1c1d22;
 
     --text-color: var(--color-gray-90);
