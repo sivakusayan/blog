@@ -65,6 +65,8 @@ Ball that appears after color has finished sliding.
   animation-fill-mode: forwards;
 }
 
+/* We'll need to apply the final states in the keyframes to the classes instead of relying on
+animation-fill-mode to do it for us */
 @media (prefers-reduced-motion) {
   .ball-ride {
     transform: translateX(15px);
@@ -83,32 +85,32 @@ Ball that appears after color has finished sliding.
   }
   35% {
     transform: translateY(-20px);
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
   }
   65% {
     transform: translateY(0px);
   }
   70% {
     transform: translateY(0px);
-    height: 15px;
+    height: 12px;
   }
   75% {
     transform: translateY(0px);
-    height: 22px;
+    height: 17px;
   }
   85% {
     transform: translateY(-10px);
-    height: 20px;
+    height: 15px;
   }
   97% {
     transform: translateY(0px);
-    height: 17px;
+    height: 13px;
   }
   100% {
     transform: translateY(0px);
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     background: var(--primary-color);
   }
 }
