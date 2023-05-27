@@ -7,18 +7,18 @@
 
 /* Theme colors */
 :root {
-    --color-gray-20: #e0e0e0;
-    --color-gray-50: #C0C0C0;
-    --color-gray-90: #333;
+  --color-gray-20: #e0e0e0;
+  --color-gray-50: #C0C0C0;
+  --color-gray-90: #333;
 
-    --primary-color: rgb(211, 80, 161);
-    --primary-color-light: #F07DC4;
-    --background-color: #fff;
+  --primary-color: rgb(211, 80, 161);
+  --primary-color-light: #F07DC4;
+  --background-color: #fff;
 
-    --text-color: var(--color-gray-90);
-    --text-color-link: #082840;
-    --text-color-link-visited: #757575;
-    --link-border-style: dashed;
+  --text-color: var(--color-gray-90);
+  --text-color-link: #082840;
+  --text-color-link-visited: #757575;
+  --link-border-style: dashed;
 }
 
 html[data-theme="DARK"] {
@@ -261,4 +261,18 @@ li:not(:last-child) {
 .tidbits-link-wrapper {
   display: inline-block;
   margin-bottom: 0.5em;
+}
+
+@keyframes move {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  38% {
+    transform: translateX(25px);
+  }
+
+  100% {
+    transform: translateX(5px);
+  }
 }
