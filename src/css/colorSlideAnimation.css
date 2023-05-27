@@ -19,7 +19,7 @@ Sliding of color in text.
   -webkit-text-fill-color: transparent;
 
   animation-name: color-slide;
-  animation-duration: 1s;
+  animation-duration: 1.25s;
   animation-timing-function: cubic-bezier(.37, .96, .48, .3);
   animation-delay: 0.5s;
   animation-fill-mode: backwards;
@@ -39,6 +39,20 @@ Sliding of color in text.
   }
 }
 
+@keyframes move {
+  0% {
+    transform: translateX(-10px);
+  }
+
+  38% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translateX(5px);
+  }
+}
+
 /*--------------------------------------------------------------------------------------------------------------
 Ball that appears after color has finished sliding.
 --------------------------------------------------------------------------------------------------------------*/
@@ -47,7 +61,7 @@ Ball that appears after color has finished sliding.
   animation: move 2s;
   animation-timing-function: ease-out;
   animation-fill-mode: forwards;
-  animation-delay: 1.35s;
+  animation-delay: 1.65s;
 }
 
 .ball {
@@ -56,7 +70,7 @@ Ball that appears after color has finished sliding.
   border-radius: 100%;
   background: var(--primary-color-light);
 
-  animation: 1s drop 1.35s, 0.75s pulse 1.45s;
+  animation: 1s drop 1.65s, 0.75s pulse 1.76s;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
 }
@@ -121,12 +135,16 @@ animation-fill-mode to do it for us */
 
 @keyframes pulse {
   0% {
-    outline: 10px solid var(--primary-color-light);
+    outline: 1px solid var(--primary-color-light);
     outline-offset: 0px;
+  }
+
+  50% {
+    outline: 5px solid var(--primary-color-light);
   }
 
   100% {
     outline: 1px solid transparent;
-    outline-offset: 70px;
+    outline-offset: 40px;
   }
 }

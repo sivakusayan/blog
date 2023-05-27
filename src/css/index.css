@@ -262,17 +262,3 @@ li:not(:last-child) {
   display: inline-block;
   margin-bottom: 0.5em;
 }
-
-@keyframes move {
-  0% {
-    transform: translateX(-10px);
-  }
-
-  38% {
-    transform: translateX(25px);
-  }
-
-  100% {
-    transform: translateX(5px);
-  }
-}
