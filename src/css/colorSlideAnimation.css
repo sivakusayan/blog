@@ -10,13 +10,12 @@ Sliding of color in text.
 .color-slide-animation {
   background-image: linear-gradient(135deg,
       var(--text-color) 33%,
-      var(--primary-color-light) 33% 66%,
+      var(--secondary-color) 33% 66%,
       var(--text-color) 66%);
   background-size: 300% 100%;
   background-position: -10%;
   -webkit-background-clip: text;
   background-clip: text;
-  -webkit-text-fill-color: transparent;
 
   animation-name: color-slide;
   animation-duration: 1.25s;
@@ -27,15 +26,22 @@ Sliding of color in text.
 
 @keyframes color-slide {
   0% {
+    -webkit-text-fill-color: transparent;
     background-position: 105%;
   }
 
   90% {
+    -webkit-text-fill-color: transparent;
     background-position: 45%;
   }
 
-  100% {
+  99% {
+    -webkit-text-fill-color: transparent;
     background-position: -10%;
+  }
+
+  100% {
+    -webkit-text-fill-color: unset;
   }
 }
 
@@ -72,7 +78,7 @@ Ball that appears after color has finished sliding.
   height: 0px;
   width: 0px;
   border-radius: 100%;
-  background: var(--primary-color-light);
+  background: var(--secondary-color);
 
   animation: 1s drop 1.65s, 0.75s pulse 1.76s;
   animation-timing-function: ease-in;
@@ -139,12 +145,12 @@ animation-fill-mode to do it for us */
 
 @keyframes pulse {
   0% {
-    outline: 1px solid var(--primary-color-light);
+    outline: 1px solid var(--secondary-color);
     outline-offset: 0px;
   }
 
   50% {
-    outline: 5px solid var(--primary-color-light);
+    outline: 5px solid var(--secondary-color);
   }
 
   100% {

@@ -12,7 +12,7 @@
   --color-gray-90: #333;
 
   --primary-color: rgb(211, 80, 161);
-  --primary-color-light: #d11288;
+  --secondary-color: #d11288;
   --background-color: #fff;
 
   --text-color: var(--color-gray-90);
@@ -27,7 +27,7 @@ html[data-theme="DARK"] {
   --color-gray-90: #d3d3d3;
 
   --primary-color: #ce4599;
-  --primary-color-light: #da2e98;
+  --secondary-color: #da2e98;
   --background-color: #1c1d22;
 
   --text-color: var(--color-gray-90);
@@ -43,7 +43,7 @@ html[data-theme="DARK"] {
     --color-gray-90: #dad8d8;
 
     --primary-color: #ce4599;
-    --primary-color-light: #b2267c;
+    --secondary-color: #b2267c;
     --background-color: #1c1d22;
 
     --text-color: var(--color-gray-90);
@@ -59,7 +59,7 @@ html[data-theme="DARK"] {
     --color-gray-90: #333;
 
     --primary-color: rgb(211, 80, 161);
-    --primary-color-light: #d11288;
+    --secondary-color: #d11288;
     --background-color: #fff;
 
     --text-color: var(--color-gray-90);
@@ -73,6 +73,11 @@ html[data-theme="DARK"] {
 /* Global stylesheet */
 * {
   box-sizing: border-box;
+}
+
+::selection {
+  color: white;
+  background: var(--secondary-color);
 }
 
 html {
