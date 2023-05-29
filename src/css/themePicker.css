@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     line-height: 0;
-    height: 2.5em;
+    height: 2em;
     border: 1px solid var(--text-color);
     border-radius: 5px;
 
@@ -18,24 +18,23 @@
     display: flex;
     align-items: center;
     transition: background-color var(--theme-transition-duration) ease;
+    border-radius: 2px;
 }
 
 .theme-picker label {
     display: inline-block;
-    padding: 0.25em 0.75em;
+    padding: 0.25em 0.5em;
     cursor: pointer;
 }
 
 .theme-picker svg {
-    transition: stroke var(--theme-transition-duration) ease;
+    width: 1.3em;
+    transition: stroke var(--theme-transition-duration) ease, stroke-width var(--theme-transition-duration) ease;
 }
 
-.theme-picker svg:hover {
+svg:hover {
     stroke: var(--primary-color);
-}
-
-.theme-picker .radio-container:not(:last-child) {
-    border-right: 1px solid black;
+    stroke-width: var(--svg-hover-stroke-width);
 }
 
 /* Distinguish the selected theme */

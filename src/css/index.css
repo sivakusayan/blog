@@ -19,6 +19,7 @@
   --text-color-link: #082840;
   --text-color-link-visited: #757575;
   --link-border-style: dashed;
+  --svg-hover-stroke-width: 3px;
 }
 
 html[data-theme="DARK"] {
@@ -34,6 +35,7 @@ html[data-theme="DARK"] {
   --text-color-link: #c8c8d1;
   --text-color-link-visited: #868688;
   --link-border-style: solid;
+  --svg-hover-stroke-width: 2px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -50,7 +52,7 @@ html[data-theme="DARK"] {
     --text-color-link: #bdbdfa;
     --text-color-link-visited: #868688;
     --link-border-style: solid;
-
+    --svg-hover-stroke-width: 2px;
   }
 
   html[data-theme="LIGHT"] {
@@ -66,6 +68,7 @@ html[data-theme="DARK"] {
     --text-color-link: #082840;
     --text-color-link-visited: #757575;
     --link-border-style: dashed;
+    --svg-hover-stroke-width: 3px;
   }
 }
 
