@@ -25,10 +25,10 @@
 html[data-theme="DARK"] {
   --color-gray-20: #e0e0e0;
   --color-gray-50: #C0C0C0;
-  --color-gray-90: #d3d3d3;
+  --color-gray-90: #cfcfcf;
 
   --primary-color: #ce4599;
-  --secondary-color: #da2e98;
+  --secondary-color: #b2267c;
   --background-color: #1c1d22;
 
   --text-color: var(--color-gray-90);
@@ -42,14 +42,14 @@ html[data-theme="DARK"] {
   :root {
     --color-gray-20: #e0e0e0;
     --color-gray-50: #C0C0C0;
-    --color-gray-90: #dad8d8;
+    --color-gray-90: #cfcfcf;
 
     --primary-color: #ce4599;
     --secondary-color: #b2267c;
     --background-color: #1c1d22;
 
     --text-color: var(--color-gray-90);
-    --text-color-link: #bdbdfa;
+    --text-color-link: #c8c8d1;
     --text-color-link-visited: #868688;
     --link-border-style: solid;
     --svg-hover-stroke-width: 2px;
