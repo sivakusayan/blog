@@ -117,6 +117,10 @@ main {
   margin: auto;
 }
 
+main>*:first-child {
+  margin-top: 3em;
+}
+
 main>* {
   margin-top: 3.5em;
 }
@@ -172,10 +176,10 @@ li:not(:last-child) {
 }
 
 .tidbits-wrapper li:not(:last-child) {
-  margin-bottom: 2em;
+  margin-bottom: 2.5em;
 }
 
 .tidbits-link-wrapper {
   display: inline-block;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.6em;
 }
