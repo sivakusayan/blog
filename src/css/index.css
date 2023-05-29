@@ -164,6 +164,8 @@ p:not(:last-child) {
 }
 
 svg {
+  width: 1.5em;
+  height: 1.5em;
   stroke-width: 1.5px;
 }
 
@@ -182,4 +184,60 @@ li:not(:last-child) {
 .tidbits-link-wrapper {
   display: inline-block;
   margin-bottom: 0.6em;
+}
+
+html {
+  font-size: calc(15px + 0.390625vw);
+}
+
+@media only screen and (max-width: 480px) {
+  body {
+    padding: 0.25em 2em;
+  }
+
+  main>*:first-child {
+    margin-top: 2em;
+  }
+
+  ul.tidbits-container {
+    padding-left: 1.75em;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  body {
+    padding: 0.25em 1.25em;
+  }
+
+  main>*:first-child {
+    margin-top: 1.5em;
+  }
+
+  ul.tidbits-container {
+    padding-left: 1.25em;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  body {
+    padding: 0.25em 1.25em;
+  }
+
+  main>*:first-child {
+    margin-top: 1.5em;
+  }
+
+  ul.tidbits-container {
+    padding-left: 1.25em;
+  }
+}
+
+@media only screen and (max-width: 340px) {
+  body {
+    padding: 0.25em 1em;
+  }
+
+  ul {
+    padding-left: 1.25em;
+  }
 }

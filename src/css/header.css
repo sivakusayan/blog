@@ -41,3 +41,10 @@ header {
     border-bottom: 0.1875em solid var(--text-color);
     pointer-events: none;
 }
+
+@media only screen and (max-width: 420px) {
+    .nav-item {
+        display: inline-block;
+        margin-right: 0.5em;
+    }
+}
