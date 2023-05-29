@@ -15,12 +15,13 @@
     {%- css %}{% include "src/css/reset.css" %}{% endcss %}
     {%- css %}{% include "src/css/index.css" %}{% endcss %}
     {%- css %}{% include "src/css/code.css" %}{% endcss %}
+    {%- css %}{% include "src/css/colorSlideAnimation.css" %}{% endcss %}
     {%- css %}{% include "src/css/footer.css" %}{% endcss %}
     {%- css %}{% include "src/css/link.css" %}{% endcss %}
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
+    {%- css %}{% include "src/css/posts.css" %}{% endcss %}
     {%- css %}{% include "src/css/scrollbar.css" %}{% endcss %}
     {%- css %}{% include "src/css/themePicker.css" %}{% endcss %}
-    {%- css %}{% include "src/css/colorSlideAnimation.css" %}{% endcss %}
     {%- if eleventy.env.runMode === "serve" %}
       <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
     {%- else  %}
