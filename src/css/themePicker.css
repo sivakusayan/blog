@@ -57,3 +57,9 @@ focus style the container instead */
     outline: 3px solid var(--primary-color);
     outline-offset: 5px;
 }
+
+@media only screen and (max-width: 360px) {
+    .theme-picker label {
+        padding: 0.25em 0.5em;
+    }
+}

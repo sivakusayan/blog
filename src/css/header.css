@@ -44,7 +44,12 @@ header {
 
 @media only screen and (max-width: 420px) {
     .nav-item {
-        display: inline-block;
         margin-right: 0.5em;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .nav-item {
+        margin-right: 0.25em;
     }
 }

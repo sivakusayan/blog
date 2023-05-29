@@ -218,7 +218,7 @@ html {
   }
 }
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 380px) {
   body {
     padding: 0.25em 1.25em;
   }
@@ -232,7 +232,7 @@ html {
   }
 }
 
-@media only screen and (max-width: 340px) {
+@media only screen and (max-width: 360px) {
   body {
     padding: 0.25em 1em;
   }
