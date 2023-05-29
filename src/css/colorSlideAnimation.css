@@ -48,6 +48,10 @@ Sliding of color in text.
     transform: translateX(20px);
   }
 
+  75% {
+    transform: translateX(7px);
+  }
+
   100% {
     transform: translateX(5px);
   }
@@ -127,8 +131,8 @@ animation-fill-mode to do it for us */
 
   100% {
     transform: translateY(0px);
-    height: 10px;
-    width: 10px;
+    height: 7px;
+    width: 7px;
     background: var(--primary-color);
   }
 }
