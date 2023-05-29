@@ -94,8 +94,8 @@ animation-fill-mode to do it for us */
 
   .ball {
     transform: translateY(0px);
-    height: 20px;
-    width: 20px;
+    height: 10px;
+    width: 10px;
     background: var(--primary-color);
   }
 }
@@ -156,5 +156,24 @@ animation-fill-mode to do it for us */
   100% {
     outline: 1px solid transparent;
     outline-offset: 40px;
+  }
+}
+
+/* Give the ball and pulse more oomph on larger screens */
+@media only screen and (min-width: 900px) {
+  @keyframes pulse {
+    0% {
+      outline: 1px solid var(--secondary-color);
+      outline-offset: 0px;
+    }
+
+    50% {
+      outline-width: 10px;
+    }
+
+    100% {
+      outline: 1px solid transparent;
+      outline-offset: 80px;
+    }
   }
 }
