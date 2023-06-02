@@ -6,6 +6,7 @@
     height: 2.5em;
     border: 1px solid var(--text-color);
     border-radius: 5px;
+    width: fit-content;
 
     /* Needed for focus styles */
     outline: 3px solid transparent;
@@ -56,10 +57,4 @@ focus style the container instead */
 .theme-picker:has(input:focus-visible) {
     outline: 3px solid var(--primary-color);
     outline-offset: 5px;
-}
-
-@media only screen and (max-width: 360px) {
-    .theme-picker label {
-        padding: 0.25em 0.5em;
-    }
 }

@@ -222,7 +222,7 @@ h1.color-slide-animation {
   }
 
   body {
-    padding: 0.25em 1.5em;
+    padding: 0.25em 1.75em;
   }
 }
 
@@ -235,10 +235,6 @@ h1.color-slide-animation {
 @media only screen and (max-width: 360px) {
   ul {
     padding-left: 1.25em;
-  }
-
-  h1.color-slide-animation {
-    font-size: 2em;
   }
 
   body {

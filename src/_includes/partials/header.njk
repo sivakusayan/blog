@@ -1,5 +1,3 @@
-{% from "partials/themePicker.njk" import themePicker %}
-
 {% macro header(collection, pageUrl) %}
     <header>
         <div class="header-wrapper">
@@ -11,8 +9,6 @@
                     </li>
                 {%- endfor %}
             </ul>
-
-            {{ themePicker() }}
         </div>
     </header>
 {% endmacro %}
