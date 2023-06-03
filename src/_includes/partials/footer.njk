@@ -3,12 +3,11 @@
 {% macro footer() %}
     <footer>
         <div class="footer-wrapper">
-            {{ themePicker() }}
             <div class="social-media">
-                <a href="https://github.com/sivakusayan">{% lucide "github", { "aria-label": "Github" } %}</a>
-                <a href="https://www.linkedin.com/in/sayan-sivakumaran-a70763239/">{% lucide "linkedin", { "aria-label": "LinkedIn" } %}</a>
+                <a href="https://github.com/sivakusayan">Github</a>
+                <a href="https://www.linkedin.com/in/sayan-sivakumaran-a70763239/">Linkedin</a>
             </div>
-            <span>Powered by <a href="https://www.11ty.dev">Eleventy</a>.</span>
+            {{ themePicker() }}
         </div>
     </footer>
 {% endmacro %}
