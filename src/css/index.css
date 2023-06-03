@@ -3,6 +3,8 @@
   --font-family: -apple-system, system-ui, sans-serif;
   --font-family-monospace: Courier, monospace;
   --theme-transition-duration: 0.2s;
+  --website-content-max-width: 37.5em;
+  --website-side-padding: 4em;
 }
 
 /* Theme colors */
@@ -100,7 +102,7 @@ body {
 }
 
 body {
-  padding: 0.25em 4em;
+  padding: 0.25em var(--website-side-padding);
 }
 
 p:last-child {
@@ -113,7 +115,7 @@ p,
 }
 
 main {
-  max-width: 37.5em;
+  max-width: var(--website-content-max-width);
   margin: auto;
 }
 
@@ -201,9 +203,8 @@ h1.color-slide-animation {
 }
 
 @media only screen and (max-width: 500px) {
-
-  body {
-    padding: 0.25em 2em;
+  :root {
+    --website-side-padding: 2em;
   }
 
   h1.color-slide-animation {
@@ -213,16 +214,16 @@ h1.color-slide-animation {
 
 
 @media only screen and (max-width: 400px) {
+  :root {
+    --website-side-padding: 1.75em;
+  }
+
   main>*:first-child {
     margin-top: 1.5em;
   }
 
   ul.tidbits-container {
     padding-left: 1.75em;
-  }
-
-  body {
-    padding: 0.25em 1.75em;
   }
 }
 
@@ -233,11 +234,11 @@ h1.color-slide-animation {
 }
 
 @media only screen and (max-width: 360px) {
+  :root {
+    --website-side-padding: 1.25em;
+  }
+  
   ul {
     padding-left: 1.25em;
-  }
-
-  body {
-    padding: 0.25em 1em;
   }
 }

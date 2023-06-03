@@ -1,13 +1,11 @@
 header {
     border-bottom: 1px solid var(--color-gray-20);
+    min-height: 5em;
 }
 
 .header-wrapper {
-    display: grid;
-    grid-template-columns: 1fr fit-content(30%);
-    align-items: center;
     margin: auto;
-    max-width: 37.5em;
+    max-width: var(--website-content-max-width);
     padding: 0.5em 0;
 }
 
@@ -40,8 +38,4 @@ header {
     font-weight: 700;
     border-bottom: 0.1875em solid var(--text-color);
     pointer-events: none;
-}
-
-.toggle-menu {
-    display: none;
 }
