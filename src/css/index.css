@@ -24,7 +24,7 @@
   --svg-hover-stroke-width: 3px;
 }
 
-html[data-theme="DARK"] {
+html[data-theme="dark"] {
   --color-gray-20: #393939;
   --color-gray-50: #C0C0C0;
   --color-gray-90: #cfcfcf;
@@ -57,7 +57,7 @@ html[data-theme="DARK"] {
     --svg-hover-stroke-width: 2px;
   }
 
-  html[data-theme="LIGHT"] {
+  html[data-theme="light"] {
     --color-gray-20: #e0e0e0;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #333;

@@ -6,7 +6,6 @@ const markdownItAnchor = require("markdown-it-anchor");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
-const pluginLucideIcons = require("@grimlink/eleventy-plugin-lucide-icons");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 
 module.exports = function (eleventyConfig) {
@@ -18,7 +17,6 @@ module.exports = function (eleventyConfig) {
   // Add plugins
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(pluginLucideIcons);
   eleventyConfig.addPlugin(pluginBundler);
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
