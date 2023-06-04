@@ -21,6 +21,7 @@ a[href]:hover {
     border-bottom: 0.1875em solid var(--primary-color);
 }
 
+select,
 a[href]:focus-visible {
     outline: 3.5px solid var(--primary-color);
     outline-offset: 2px;
