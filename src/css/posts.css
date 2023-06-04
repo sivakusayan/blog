@@ -5,29 +5,13 @@
 }
 
 .postlist-item {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    counter-increment: start-from -1;
     line-height: 1.8;
 }
 
-.postlist-item:before {
-    display: inline-block;
-    pointer-events: none;
-    content: "" counter(start-from, decimal-leading-zero) ". ";
-    line-height: 100%;
-    text-align: right;
-}
-
-.postlist-date,
-.postlist-item:before {
+.postlist-date {
     font-size: 0.8125em;
     /* 13px /16 */
     color: var(--color-gray-90);
-}
-
-.postlist-date {
     word-spacing: -0.5px;
 }
 

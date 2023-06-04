@@ -1,6 +1,7 @@
 pre,
 code {
   font-family: var(--font-family-monospace);
+  font-size: 0.8em;
   line-height: 1.5;
 }
 
@@ -15,7 +16,6 @@ pre {
   padding: 1em var(--eleventy-code-padding);
   margin: .5em 0;
 
-  font-size: 14px;
   line-height: 1.375;
   direction: ltr;
   text-align: left;
@@ -36,7 +36,6 @@ https://prismjs.com
 --------------------------------------------------------------------------------------------------------------*/
 
 code, pre {
-	font-size: 14px;
 	line-height: 1.375;
 	direction: ltr;
 	text-align: left;
