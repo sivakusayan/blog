@@ -4,19 +4,20 @@ eleventyNavigation:
   key: Home
   order: 1
 ---
-{%- css %}{% include "src/css/colorSlideAnimation.css" %}{% endcss %}
 {% from "partials/gerritLink.njk" import gerritLink %}
 
-<div>
+<div id="landing">
   <div class="color-slide-container">
-    <h1 class="color-slide-animation" id="Skip">Hello, I'm Sayan</h1>
-    <div class="ball-ride">
-      <div class="ball"></div>
-    </div>
+    <h1 class="color-slide" id="Skip">
+      <!-- This is the text that sits atop the line being drawn. Since it's position: absolute, it's removed from document flow. -->
+      <span class="text-above">Hello, <br class="responsive-display"> I'm Sayan</span>
+      <!-- We need this to avoid needing annoying layout positioning logic since we're absolutely positioning the previous text -->
+      <span aria-hidden="true">Hello, <br class="responsive-display"> I'm Sayan</span>
+    </h1>
   </div>
   <p>I'm a software developer with 3 years of experience doing full stack development in React, TypeScript, and C#.</p>
   <p>I have recently started contributing to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, in particular the accessibility module of the rendering engine. See my work below, or check out <a href="/posts">my blog</a>, if you'd like. 🙂</p>
-</div>
+</div id="landing">
 
 <div>
   <h2 id="chromium-contributions">Chromium contributions</h2>

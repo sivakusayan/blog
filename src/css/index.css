@@ -3,8 +3,9 @@
   --font-family: -apple-system, system-ui, sans-serif;
   --font-family-monospace: Courier, monospace;
   --theme-transition-duration: 0.2s;
-  --website-content-max-width: 37.5em;
-  --website-side-padding: 4em;
+  --website-content-max-width: 42rem;
+  --website-content-padding: 4.5rem;
+  --website-side-padding: 4rem;
 }
 
 /* Theme colors */
@@ -16,10 +17,11 @@
   --primary-color: rgb(211, 80, 161);
   --secondary-color: #d11288;
   --background-color: #fdf6f6;
+  --cta-background-color: #f9e5f6;
 
   --text-color: var(--color-gray-90);
   --text-color-link: #082840;
-  --text-color-link-visited: #6E6E6E;
+  --text-color-link-visited: #696969;
 
   --svg-hover-stroke-width: 3px;
   --link-underline-width: 1.5px;
@@ -33,6 +35,7 @@ html[data-theme="dark"] {
   --primary-color: #ce4599;
   --secondary-color: #b2267c;
   --background-color: #1c1d22;
+  --cta-background-color: #1a011342;
 
   --text-color: var(--color-gray-90);
   --text-color-link: #c8c8d1;
@@ -51,6 +54,7 @@ html[data-theme="dark"] {
     --primary-color: #ce4599;
     --secondary-color: #b2267c;
     --background-color: #1c1d22;
+    --cta-background-color: #131315;
 
     --text-color: var(--color-gray-90);
     --text-color-link: #c8c8d1;
@@ -68,10 +72,11 @@ html[data-theme="dark"] {
     --primary-color: rgb(211, 80, 161);
     --secondary-color: #d11288;
     --background-color: #fdf6f6;
+    --cta-background-color: #f9e5f6;
 
     --text-color: var(--color-gray-90);
     --text-color-link: #082840;
-    --text-color-link-visited: #6E6E6E;
+    --text-color-link-visited: #696969;
 
     --svg-hover-stroke-width: 3px;
     --link-underline-width: 1.5px;
@@ -118,27 +123,42 @@ p,
   line-height: 1.45;
 }
 
-main,
-header,
-footer {
+main {
   max-width: var(--website-content-max-width);
   margin: auto;
 }
 
-main {
-  border-block: 1px solid var(--color-gray-20);
+main > * {
+  padding: 0 var(--website-content-padding);
 }
 
 main>*:first-child {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 main>* {
-  margin-top: 3.5rem;
+  margin-top: 2rem;
 }
 
 main>*:last-child {
-  margin-bottom: 5rem;
+  margin-bottom: 3.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.1;
+}
+
+#landing {
+  position:relative;
+  background-color: var(--cta-background-color);
+  border-radius: 20px;
+  padding-top: 3.3rem;
+  padding-bottom: 4rem;
 }
 
 /* This will ensure things are NOT removed from the AX tree.
@@ -170,10 +190,6 @@ li:not(:last-child) {
   margin-bottom: 0.25em;
 }
 
-.tidbits-container {
-  margin-top: 2em;
-}
-
 .tidbits-wrapper li:not(:last-child) {
   margin-bottom: 2.5em;
 }
@@ -187,53 +203,37 @@ html {
   font-size: calc(15px + 0.390625vw);
 }
 
-h1.color-slide-animation {
-  font-size: calc(60px + 0.390625vw);
+#landing h1 {
+  font-size: clamp(2.5rem, 2rem + 1vw, 3.7rem)
 }
 
-@media only screen and (max-width: 650px) {
-  h1.color-slide-animation {
-    font-size: calc(40px + 0.390625vw);
-  }
+.responsive-display {
+  display: none;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 700px) {
   :root {
-    --website-side-padding: 2em;
-  }
-
-  h1.color-slide-animation {
-    font-size: calc(30px + 0.390625vw);
+    --website-side-padding: 1rem;
+    --website-content-padding: 2rem;
   }
 }
 
-
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 450px) {
   :root {
-    --website-side-padding: 1.75em;
+    --website-content-padding: 1.5rem;
   }
 
-  main>*:first-child {
-    margin-top: 1.5em;
+  .responsive-display {
+    display: initial;
   }
 
-  ul.tidbits-container {
-    padding-left: 1.75em;
-  }
-}
-
-@media only screen and (max-width: 380px) {
-  ul.tidbits-container {
-    padding-left: 1.25em;
+  #landing h1 {
+    font-size: clamp(2rem, 2rem + 4vw, 3.5rem);
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 350px) {
   :root {
-    --website-side-padding: 1.25em;
-  }
-  
-  ul {
-    padding-left: 1.25em;
+    --website-content-padding: 1rem;
   }
 }

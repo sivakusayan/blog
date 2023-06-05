@@ -1,12 +1,14 @@
 header {
     min-height: 5em;
     position: relative;
+    border-bottom: 1px solid var(--color-gray-20);
 }
 
 .header-wrapper {
+    max-width: var(--website-content-max-width);
+    padding: 0.5em var(--website-content-padding);
     margin: auto;
     max-width: var(--website-content-max-width);
-    padding: 0.5em 0;
 }
 
 /* Nav */
