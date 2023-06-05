@@ -6,7 +6,6 @@ footer {
 
 .footer-wrapper {
     margin: auto;
-    max-width: var(--website-content-max-width);
     padding: 0.5em 0;
     width: 100%;
 
