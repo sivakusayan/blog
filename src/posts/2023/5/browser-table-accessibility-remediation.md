@@ -1,5 +1,5 @@
 ---
-title: Exploring how browsers detect "fake" tables when making the AX tree
+title: Exploring the "Is this a real or fake table?" algorithm in browsers
 description: How browsers distinguish between "real" and "fake" tables for accessibility
 date: 2023-05-29
 tags:
@@ -10,23 +10,13 @@ layout: layouts/post.njk
 
 There are a lot of websites out there that, unfortunately, use the <code>&lt;table&gt;</code> HTML element as a styling tool. This poses a problem to users of assistive technology, as there is now a lot of incorrect semantic information in the page. 
 
-To mitigate this issue, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes, and then hints at that information to assistive technology.
-
-<aside>
-<dl>
-<lh>Definitions</lh>
-<dt>Layout table</dt>
-<dd>A table that is only used for styling, and not for showing tabular data.</dd>
-<dt>Data table</dt>
-<dd>Any table that isn't a layout table.</dd>
-</dl>
-</aside>
+To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes, and then hints at that information to assistive technology.
 
 I thought it would be interesting to look at this guessing algorithm in more detail, through minimal examples of <code>&lt;tables&gt;</code> that evaluate to layout tables and data tables in codepens. 🙂
 
 <details>
-    <summary>Testing methodology</summary>
-    As I am purely concerned with how browsers expose these tables, and not how assistive technology interprets them, here is how I get my results for each browser:
+    <summary>A note on testing</summary>
+    As I am purely concerned with how browsers expose this HTML in the accessibility APIs, here is how I get my results for each browser:
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table&gt;</code>'s IAccessible2 node using the dump tree utility. If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the Accessibility Inspector. If it's not, it's a layout table, otherwise it's a data table.
@@ -100,7 +90,7 @@ All four browsers do checks on the border of table cells. Chrome, Edge, and Safa
 
 ## Source code
 If you're curious, here is where you can walk through the algorithm's logic yourself in Chromium.
-Note how you can opt out of this entire guessing logic by just manually setting <code>role="table"</code> on the element. (Of course, don't use ARIA unless you need to)
+Note how you can opt out of this entire guessing logic by just manually setting <code>role="table"</code> on the element. (Of course, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">don't use ARIA unless you need to</a>)
 - <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_layout_object.cc;drc=99f969b129a7123125ac7af40afb24277dd4767a;l=1043">Chromium's layout table guess</a>
 
 As for the other browsers, I'm not exactly sure where the logic is since I haven't debugged those browsers and am not as familiar with their codebases, but I can give a fairly likely guess from reading the code:
@@ -108,3 +98,17 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
 There is some logic I did not cover in this post, so feel free to read through the code yourself if you're curious!
+
+<aside>
+<dl>
+<lh>Definitions</lh>
+<dt>Accessibility tree</dt>
+<dd>A tree data structure that represents a graphical user interface.</dd>
+<dt>Assistive technology</dt>
+<dd>Software or hardware that disabled people use to improve their quality of life.</dd>
+<dt>Layout table</dt>
+<dd>A table that is only used for styling, and not for showing tabular data.</dd>
+<dt>Data table</dt>
+<dd>Any table that isn't a layout table.</dd>
+</dl>
+</aside>
