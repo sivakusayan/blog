@@ -7,12 +7,10 @@ const Themes = Object.freeze({
 });
 
 const setTheme = (theme) => {
-  if (!theme) return;
-  
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.theme = theme;
   select.value = theme;
 };
 
 select.onchange = (e) => setTheme(e.target.value);
-setTheme(localStorage.theme);
+if (theme in localStorage) setTheme(localStorage.theme);

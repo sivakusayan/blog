@@ -159,6 +159,7 @@ h6 {
   border-radius: 20px;
   padding-top: 3.3rem;
   padding-bottom: 4rem;
+  transition: background-color var(--theme-transition-duration);
 }
 
 /* This will ensure things are NOT removed from the AX tree.
