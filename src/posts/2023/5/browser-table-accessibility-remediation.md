@@ -12,11 +12,11 @@ There are a lot of websites out there that, unfortunately, use the <code>&lt;tab
 
 To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes, and then hints at that information to assistive technology.
 
-I thought it would be interesting to look at this guessing algorithm in more detail, through minimal examples of <code>&lt;tables&gt;</code> that evaluate to layout tables and data tables in codepens. 🙂
+I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as layout tables, and then tweak them *just barely enough* to make browsers think they are data tables. 🙂
 
 <details>
     <summary>A note on testing</summary>
-    As I am purely concerned with how browsers expose this HTML in the accessibility APIs, here is how I get my results for each browser:
+    As this article is only concerned with how browsers expose this HTML in the accessibility APIs, here is how I get my results for each browser:
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table&gt;</code>'s IAccessible2 node using the dump tree utility. If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the Accessibility Inspector. If it's not, it's a layout table, otherwise it's a data table.
@@ -89,6 +89,8 @@ All four browsers do checks on the border of table cells. Chrome, Edge, and Safa
 <script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 ## Source code
+Reading the source code for this algorithm was really helpful in constructing these minimal codepens.
+
 If you're curious, here is where you can walk through the algorithm's logic yourself in Chromium.
 Note how you can opt out of this entire guessing logic by just manually setting <code>role="table"</code> on the element. (Of course, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">don't use ARIA unless you need to</a>)
 - <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_layout_object.cc;drc=99f969b129a7123125ac7af40afb24277dd4767a;l=1043">Chromium's layout table guess</a>
@@ -103,7 +105,7 @@ There is some logic I did not cover in this post, so feel free to read through t
 <dl>
 <lh>Definitions</lh>
 <dt>Accessibility tree</dt>
-<dd>A tree data structure that represents a graphical user interface.</dd>
+<dd>A tree data structure that represents a graphical user interface, commonly consumed by assistive technology (although they are not the only consumers).</dd>
 <dt>Assistive technology</dt>
 <dd>Software or hardware that disabled people use to improve their quality of life.</dd>
 <dt>Layout table</dt>
