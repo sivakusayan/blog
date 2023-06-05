@@ -200,6 +200,39 @@ h1.color-slide-animation {
   font-size: calc(60px + 0.390625vw);
 }
 
+:target {
+  scroll-margin-top: 30px;
+  animation: 0.7s highlight;
+}
+
+a[href="#Skip"] {
+  position: absolute;
+  left: -10000px;
+  z-index: 2;
+}
+
+a[href="#Skip"]:focus {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-65%);
+}
+
+
+@keyframes highlight {
+  0% {
+    outline: 8px solid var(--primary-color);
+    outline-offset: 20px;
+  }
+  70% {
+    outline-offset: 5px;
+    outline: 8px solid var(--primary-color);
+  }
+  100% {
+    outline: 8px solid transparent;
+  }
+}
+
 @media only screen and (max-width: 650px) {
   h1.color-slide-animation {
     font-size: calc(40px + 0.390625vw);
