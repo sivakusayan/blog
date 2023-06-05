@@ -15,11 +15,11 @@
 
   --primary-color: rgb(211, 80, 161);
   --secondary-color: #d11288;
-  --background-color: #fff;
+  --background-color: #fdf6f6;
 
   --text-color: var(--color-gray-90);
   --text-color-link: #082840;
-  --text-color-link-visited: #757575;
+  --text-color-link-visited: #6E6E6E;
 
   --svg-hover-stroke-width: 3px;
   --link-underline-width: 1.5px;
@@ -67,11 +67,11 @@ html[data-theme="dark"] {
 
     --primary-color: rgb(211, 80, 161);
     --secondary-color: #d11288;
-    --background-color: #fff;
+    --background-color: #fdf6f6;
 
     --text-color: var(--color-gray-90);
     --text-color-link: #082840;
-    --text-color-link-visited: #757575;
+    --text-color-link-visited: #6E6E6E;
 
     --svg-hover-stroke-width: 3px;
     --link-underline-width: 1.5px;
