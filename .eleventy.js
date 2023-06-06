@@ -10,10 +10,10 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 
 module.exports = function (eleventyConfig) {
-  // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/posts/resources");
   eleventyConfig.addPassthroughCopy("src/scripts");
+  eleventyConfig.addPassthroughCopy({ "src/img": "/" });
 
   // Add plugins
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
