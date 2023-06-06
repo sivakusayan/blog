@@ -11,14 +11,14 @@ a[href] {
     outline-offset: 5px;
 }
 
-a[href]:visited {
+a[href]:visited:not(.ignore-visited-styling) {
     color: var(--text-color-link-visited);
     border-color: var(--text-color-link-visited);
 }
 
 a[href]:hover {
-    color: var(--primary-color);
-    border-bottom: 0.3em solid var(--primary-color);
+    color: var(--primary-color) !important;
+    border-bottom: 0.3em solid var(--primary-color) !important;
 }
 
 a[href]:focus-visible {

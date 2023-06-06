@@ -13,4 +13,4 @@ const setTheme = (theme) => {
 };
 
 select.onchange = (e) => setTheme(e.target.value);
-if (theme in localStorage) setTheme(localStorage.theme);
+if ("theme" in localStorage) setTheme(localStorage.theme);

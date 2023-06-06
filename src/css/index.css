@@ -120,6 +120,10 @@ p:last-child {
 
 p,
 .tmpl-post li {
+  line-height: 1.35;
+}
+
+#landing p {
   line-height: 1.45;
 }
 
@@ -151,6 +155,19 @@ h4,
 h5,
 h6 {
   line-height: 1.1;
+}
+
+dt {
+  font-weight: bold;
+}
+
+ul,
+dd {
+  padding-inline-start: 2rem;
+}
+
+em {
+  font-family: serif;
 }
 
 #landing {
@@ -191,13 +208,13 @@ li:not(:last-child) {
   margin-bottom: 0.25em;
 }
 
-.tidbits-wrapper li:not(:last-child) {
-  margin-bottom: 2.5em;
+.tidbits-container li:not(:last-child) {
+  margin-bottom: 1.5rem;
 }
 
 .tidbits-link-wrapper {
   display: inline-block;
-  margin-bottom: 0.6em;
+  margin-bottom: 0.4em;
 }
 
 html {

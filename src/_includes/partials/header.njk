@@ -1,12 +1,12 @@
 {% macro header(collection, pageUrl) %}
     <header>
-        <a href="#Skip" accesskey="s">Skip to content</a>
+        <a href="#Skip" class="ignore-visited-styling" accesskey="s">Skip to content</a>
         <div class="header-wrapper">
             {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
             <ul class="nav">
                 {%- for entry in collection | eleventyNavigation%}
                     <li class="nav-item{% if entry.url == pageUrl %} nav-item-active{% endif %}">
-                        <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                        <a class="ignore-visited-styling" href="{{ entry.url | url }}">{{ entry.title }}</a>
                     </li>
                 {%- endfor %}
             </ul>

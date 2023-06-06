@@ -15,10 +15,24 @@ To mitigate this issue when creating the accessibility tree, browsers try to gue
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as layout tables, and then tweak them *just barely enough* to make browsers think they are data tables. 🙂
 
 <details>
+<summary>Definitions</summary>
+<dl>
+<dt id="accessibility-tree">Accessibility tree</dt>
+<dd>A tree data structure that represents a graphical user interface, commonly consumed by assistive technology (although they are not the only consumers).</dd>
+<dt id="assistive-technology">Assistive technology</dt>
+<dd>Software or hardware that disabled people use to improve their quality of life.</dd>
+<dt id="layout-table">Layout table</dt>
+<dd>A table that is only used for styling, and not for showing tabular data.</dd>
+<dt id="data-table">Data table</dt>
+<dd>Any table that isn't a layout table.</dd>
+</dl>
+</details>
+
+<details>
     <summary>A note on testing</summary>
     As this article is only concerned with how browsers expose this HTML in the accessibility APIs, here is how I get my results for each browser:
 
-- On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table&gt;</code>'s IAccessible2 node using the dump tree utility. If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
+- On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the dump tree utility. If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the Accessibility Inspector. If it's not, it's a layout table, otherwise it's a data table.
 - On Linux, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the dump tree utility. If it's not, it's a layout table, otherwise it's a data table.
 
@@ -100,17 +114,3 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
 There is some logic I did not cover in this post, so feel free to read through the code yourself if you're curious!
-
-<aside>
-<dl>
-<lh>Definitions</lh>
-<dt>Accessibility tree</dt>
-<dd>A tree data structure that represents a graphical user interface, commonly consumed by assistive technology (although they are not the only consumers).</dd>
-<dt>Assistive technology</dt>
-<dd>Software or hardware that disabled people use to improve their quality of life.</dd>
-<dt>Layout table</dt>
-<dd>A table that is only used for styling, and not for showing tabular data.</dd>
-<dt>Data table</dt>
-<dd>Any table that isn't a layout table.</dd>
-</dl>
-</aside>
