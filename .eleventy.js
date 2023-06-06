@@ -3,6 +3,7 @@ const fs = require("fs");
 const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
+const { headerLink } = require("./scripts/permalink.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -70,10 +71,8 @@ module.exports = function (eleventyConfig) {
     html: true,
     linkify: true,
   }).use(markdownItAnchor, {
-    permalink: markdownItAnchor.permalink.ariaHidden({
-      placement: "after",
-      class: "direct-link",
-      symbol: "#",
+    permalink: headerLink({
+      safariReaderFix: true
     }),
     level: [1, 2, 3, 4],
     slugify: eleventyConfig.getFilter("slugify"),

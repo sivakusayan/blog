@@ -1,36 +1,36 @@
 a[href] {
-    color: var(--text-color-link);
-    display: inline;
-    text-decoration: none;
-    border-bottom: var(--link-underline-width) solid var(--text-color-link);
-    transition: color var(--theme-transition-duration) ease,
-        border-width 0.1s ease,
-        outline-offset 0.2s ease;
+  color: var(--text-color-link);
+  display: inline;
+  text-decoration: none;
+  border-bottom: var(--link-underline-width) solid var(--text-color-link);
+  transition: color var(--theme-transition-duration) ease,
+    border-width 0.1s ease,
+    outline-offset 0.2s ease;
 
-    outline: 3px solid transparent;
-    outline-offset: 5px;
+  outline: 3px solid transparent;
+  outline-offset: 5px;
 }
 
-a[href]:visited:not(.ignore-visited-styling) {
-    color: var(--text-color-link-visited);
-    border-color: var(--text-color-link-visited);
+a[href]:visited:not(.ignore-visited-styling, .direct-link, .header-anchor) {
+  color: var(--text-color-link-visited);
+  border-color: var(--text-color-link-visited);
 }
 
 a[href]:hover {
-    color: var(--primary-color) !important;
-    border-bottom: 0.3em solid var(--primary-color) !important;
+  color: var(--primary-color) !important;
+  border-bottom: 0.3em solid var(--primary-color) !important;
 }
 
 a[href]:focus-visible {
-    outline: 3.5px solid var(--primary-color);
-    outline-offset: 2px;
+  outline: 3.5px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 :target {
   scroll-margin-top: 30px;
   animation: 0.7s highlight;
 }
-  
+
 a[href="#Skip"] {
   position: absolute;
   left: -10000px;
@@ -50,10 +50,12 @@ a[href="#Skip"]:focus {
     outline: 8px solid var(--primary-color);
     outline-offset: 20px;
   }
+
   70% {
     outline-offset: 5px;
     outline: 8px solid var(--primary-color);
   }
+
   100% {
     outline: 8px solid transparent;
   }
@@ -71,12 +73,15 @@ a[href="#Skip"]:focus {
     0% {
       outline: 8px solid transparent;
     }
+
     35% {
       outline: 8px solid var(--primary-color);
     }
+
     70% {
       outline: 8px solid var(--primary-color);
     }
+
     100% {
       outline: 8px solid transparent;
     }

@@ -32,21 +32,13 @@
     padding-top: 4px;
     padding-right: 8px;
     padding-left: 3px;
-  }
-
-/* Direct Links / Markdown Headers */
-.direct-link {
-    font-family: sans-serif;
-    text-decoration: none;
-    font-style: normal;
-    margin-left: .1em;
 }
 
 h2,
-.tmpl-post *:not(h2) + h3,
-.tmpl-post *:not(h3) + h4,
-.tmpl-post *:not(h4) + h5,
-.tmpl-post *:not(h5) + h6 {
+.tmpl-post *:not(h2)+h3,
+.tmpl-post *:not(h3)+h4,
+.tmpl-post *:not(h4)+h5,
+.tmpl-post *:not(h5)+h6 {
     margin-top: 3rem;
 }
 
@@ -68,4 +60,16 @@ details {
 
 details[open] summary {
     margin-bottom: 1rem;
+}
+
+/* Direct Links / Markdown Headers */
+a[href].header-anchor {
+    border-bottom: none;
+}
+
+.anchor {
+    font-family: sans-serif;
+    text-decoration: none;
+    font-style: normal;
+    margin-left: .3em;
 }
