@@ -34,6 +34,19 @@
     padding-left: 3px;
 }
 
+/* It seems the markdown-it-anchor library will focus
+a heading after it's activated in attempts to make
+screen readers read it. We already show an animation
+when a permalink header is followed, so I don't think
+this is necessary (headings aren't even interactive). */
+h2,
+h3,
+h4,
+h5,
+h6 {
+    outline: none;
+}
+
 h2,
 .tmpl-post *:not(h2)+h3,
 .tmpl-post *:not(h3)+h4,
