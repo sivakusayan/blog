@@ -208,7 +208,7 @@ p:not(:last-child) {
 }
 
 li:not(:last-child) {
-  margin-bottom: 0.25em;
+  margin-bottom: 0.3em;
 }
 
 .tidbits-container li:not(:last-child) {
@@ -255,6 +255,10 @@ html {
   ul,
   dd {
     padding-inline-start: 1.5rem;
+  }
+
+  li:not(:last-child) {
+    margin-bottom: 0.4em;
   }
 }
 
