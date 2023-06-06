@@ -118,9 +118,12 @@ p:last-child {
   margin-bottom: 0;
 }
 
-p,
-.tmpl-post li {
+p {
   line-height: 1.35;
+}
+
+details p {
+  line-height: 1.4;
 }
 
 #landing p {
