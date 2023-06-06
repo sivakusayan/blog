@@ -209,12 +209,12 @@ li:not(:last-child) {
 }
 
 .tidbits-container li:not(:last-child) {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.7rem;
 }
 
 .tidbits-link-wrapper {
   display: inline-block;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.2em;
 }
 
 html {
