@@ -10,8 +10,8 @@ const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 
 module.exports = function (eleventyConfig) {
   // Copy the `img` and `css` folders to the output
-  eleventyConfig.addPassthroughCopy("src/img");
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/posts/resources");
   eleventyConfig.addPassthroughCopy("src/scripts");
 
   // Add plugins

@@ -109,6 +109,11 @@ If you're curious, here is where you can walk through the algorithm's logic your
 Note how you can opt out of this entire guessing logic by just manually setting <code>role="table"</code> on the element. (Of course, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">don't use ARIA unless you need to</a>)
 - <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_layout_object.cc;drc=99f969b129a7123125ac7af40afb24277dd4767a;l=1043">Chromium's layout table guess</a>
 
+<details>
+<summary>If you can't access Chromium code search</summary>
+I've been told by a screen reader user that the Chromium code search isn't accessible. I'm really sorry if you are also running into issues 🙁. While not ideal, I hope this <a href="/posts/resources/chromiumTableLayoutGuess.txt">raw text version of the code</a> can be a temporary workaround.
+</details>
+
 As for the other browsers, I'm not exactly sure where the logic is since I haven't debugged those browsers and am not as familiar with their codebases, but I can give a fairly likely guess from reading the code:
 - <a href="https://searchfox.org/mozilla-central/rev/0c2945ad4769e2d4428c72e6ddd78d60eb920394/accessible/generic/TableAccessible.cpp#19">Probably Firefox's layout table guess</a>
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
