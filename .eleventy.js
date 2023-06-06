@@ -8,17 +8,29 @@ const { headerLink } = require("./scripts/permalink.js");
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
+const postcss = require('postcss');
+const cssnano = require('cssnano');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/posts/resources");
   eleventyConfig.addPassthroughCopy("src/scripts");
-  eleventyConfig.addPassthroughCopy({ "src/img": "/" });
 
-  // Add plugins
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
-  eleventyConfig.addPlugin(pluginBundler);
+  eleventyConfig.addPlugin(pluginBundler, {
+    transforms: [
+      async function (code) {
+        if (this.type === 'css') {
+          let result = await postcss([
+            cssnano
+          ]).process(code, { from: this.page.inputPath, to: null });
+          return result.css;
+        }
+        return code;
+      }
+    ]
+  });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
     return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
