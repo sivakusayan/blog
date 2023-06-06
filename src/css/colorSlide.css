@@ -14,26 +14,34 @@
     margin-bottom: 2rem;
   }
   
+.color-slide .text-above::before {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  background-color: var(--secondary-color);
+  width: 20px;
+  height: 0px;
+  bottom: -20px;
+  animation: 0.2s grow 0.5s, 0.15s slide 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes grow {
+  100% {
+    height: 20px;
+  }
+}
+
+@keyframes slide {
+  100% {
+    width: 105%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .color-slide .text-above::before {
-    z-index: -1;
-    content: "";
-    position: absolute;
-    background-color: var(--secondary-color);
-    width: 20px;
-    height: 0px;
-    bottom: -20px;
-    animation: 0.2s grow 0.5s, 0.15s slide 1s;
-    animation-fill-mode: forwards;
+    animation: none;
+    height: 20px;
+    width: 105%;
   }
-  
-  @keyframes grow {
-    100% {
-      height: 20px;
-    }
-  }
-  
-  @keyframes slide {
-    100% {
-      width: 105%;
-    }
-  }
+}

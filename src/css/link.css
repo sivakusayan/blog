@@ -27,34 +27,58 @@ a[href]:focus-visible {
 }
 
 :target {
-    scroll-margin-top: 30px;
-    animation: 0.7s highlight;
+  scroll-margin-top: 30px;
+  animation: 0.7s highlight;
+}
+  
+a[href="#Skip"] {
+  position: absolute;
+  left: -10000px;
+  z-index: 2;
+}
+
+a[href="#Skip"]:focus {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-65%);
+}
+
+
+@keyframes highlight {
+  0% {
+    outline: 8px solid var(--primary-color);
+    outline-offset: 20px;
   }
-  
-  a[href="#Skip"] {
-    position: absolute;
-    left: -10000px;
-    z-index: 2;
+  70% {
+    outline-offset: 5px;
+    outline: 8px solid var(--primary-color);
   }
-  
-  a[href="#Skip"]:focus {
-    position: absolute;
-    left: 5%;
-    top: 50%;
-    transform: translateY(-65%);
+  100% {
+    outline: 8px solid transparent;
   }
-  
-  
-  @keyframes highlight {
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :target {
+    outline-offset: 10px;
+    /* TODO: Currently the CSS reset disables all animations in reduced motion.
+      Maybe we should be a bit more granular here. */
+    animation: 1s highlight-reduced !important;
+  }
+
+  @keyframes highlight-reduced {
     0% {
+      outline: 8px solid transparent;
+    }
+    35% {
       outline: 8px solid var(--primary-color);
-      outline-offset: 20px;
     }
     70% {
-      outline-offset: 5px;
       outline: 8px solid var(--primary-color);
     }
     100% {
       outline: 8px solid transparent;
     }
   }
+}

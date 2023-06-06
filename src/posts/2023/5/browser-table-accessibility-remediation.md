@@ -32,9 +32,9 @@ I thought it would be interesting to look at this guessing algorithm in more det
     <summary>A note on testing</summary>
     As this article is only concerned with how browsers expose this HTML in the accessibility APIs, here is how I get my results for each browser:
 
-- On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the dump tree utility. If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
-- On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the Accessibility Inspector. If it's not, it's a layout table, otherwise it's a data table.
-- On Linux, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the dump tree utility. If it's not, it's a layout table, otherwise it's a data table.
+- On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
+- On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [Accessibility Inspector](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html). If it's not, it's a layout table, otherwise it's a data table.
+- On Linux, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If it's not, it's a layout table, otherwise it's a data table.
 
 At the time of this writing, I am testing with versions:
 - Chrome Version 114.0.5735.90
@@ -45,13 +45,13 @@ At the time of this writing, I am testing with versions:
 Finally, for simplicity's sake, I will not list browser + platform combinations as each individual browser's results don't seem to change with the platform. I will just list the results of each browser, and you can assume those results are true for each platform the browser is available on.
 
 If you don't want to verify these results in the above way, here are some shortcuts you can use, which aren't as rigorous, but can give you a basic way of verifying what I'm saying:
-- On Chrome, you can use the Accessibility Inspector in the developer tools.
-- On Edge, you can use the Accessibility Inspector in the developer tools.
+- On Chrome, you can use the [Accessibility Inspector](https://developer.chrome.com/docs/devtools/accessibility/reference/#pane) in the developer tools.
+- On Edge, you can use the [Accessibility Inspector](https://developer.chrome.com/docs/devtools/accessibility/reference/#pane) in the developer tools.
 - On Firefox, you can use:
-    - NVDA on Windows and use NVDA table shortcuts to see if it detects a table.
-    - Voiceover on Mac and use Voiceover table shortcuts to see if it detects a table.
-    - Orca on Linux and use Orca table shortcuts to see if it detects a table.
-- On Safari, you can use Voiceover and use Voiceover table shortcuts to see if it detects a table.
+    - NVDA on Windows and use [NVDA table shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts#nvda-tables) to see if it detects a table.
+    - Voiceover on Mac and use [Voiceover table shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts#vo-mac-tables) to see if it detects a table.
+    - Orca on Linux and use [Orca table shortcuts](https://help.gnome.org/users/orca/stable/commands_structural_navigation.html.en#tables) to see if it detects a table.
+- On Safari, you can use Voiceover and use [Voiceover table shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts#vo-mac-tables) to see if it detects a table.
 </details>
 
 ## Heuristics
