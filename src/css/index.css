@@ -132,7 +132,7 @@ main {
   margin: auto;
 }
 
-main > * {
+main>* {
   padding: 0 var(--website-content-padding);
 }
 
@@ -171,7 +171,7 @@ em {
 }
 
 #landing {
-  position:relative;
+  position: relative;
   background-color: var(--cta-background-color);
   border-radius: 20px;
   padding-top: 3.3rem;
@@ -247,6 +247,11 @@ html {
 
   #landing h1 {
     font-size: clamp(2rem, 2rem + 4vw, 3.5rem);
+  }
+
+  ul,
+  dd {
+    padding-inline-start: 1.5rem;
   }
 }
 
