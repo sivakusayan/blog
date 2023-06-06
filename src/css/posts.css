@@ -56,11 +56,45 @@ details {
     border-radius: 10px;
     margin-bottom: 1rem;
     padding: 0 1.5rem;
+
+    transition: color var(--theme-transition-duration) ease,
+        outline 0.2s ease;
+    outline: 4px solid transparent;
+    outline-offset: 6px;
 }
 
 details summary {
     padding: 1rem 0;
     cursor: pointer;
+    outline: none;
+}
+
+details:focus-within {
+    outline: 4px solid var(--primary-color);
+    outline-offset: 6px;
+}
+
+@supports selector(details:has(summary:focus-visible)) {
+    details {
+        transition: color var(--theme-transition-duration) ease,
+            outline-offset 0.2s ease;
+        outline-offset: 10px;
+    }
+
+    details:focus-within {
+        outline: unset;
+        outline-offset: unset;
+    }
+
+    details:has(summary:focus-visible) {
+        outline: 4px solid var(--primary-color);
+        outline-offset: 6px;
+    }
+}
+
+details:has(summary:focus-visible) {
+    outline: 4px solid var(--primary-color);
+    outline-offset: 6px;
 }
 
 details[open] {
