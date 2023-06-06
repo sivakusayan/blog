@@ -66,7 +66,7 @@ a[href="#Skip"]:focus {
     outline-offset: 10px;
     /* TODO: Currently the CSS reset disables all animations in reduced motion.
       Maybe we should be a bit more granular here. */
-    animation: 0.95s highlight-reduced !important;
+    animation: 0.7s highlight-reduced !important;
   }
 
   @keyframes highlight-reduced {
