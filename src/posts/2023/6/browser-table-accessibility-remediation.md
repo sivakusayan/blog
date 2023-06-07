@@ -10,7 +10,7 @@ layout: layouts/post.njk
 
 There are a lot of websites out there that, unfortunately, use the <code>&lt;table&gt;</code> HTML element as a styling tool. This poses a problem to users of assistive technology, as there is now a lot of incorrect semantic information in the page. 
 
-To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes. If they guess that a <code>&lt;table&gt;</code> might not *really* be a table, that information is then hinted to assistive technology. For example, [here is a <code>&lt;table&gt;</code>](https://codepen.io/sivakusayan/full/qBQBPmJ) that no major browser will expose as a table - you can take any screen reader to the linked codepen to verify for yourself.
+To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes. If they guess that a <code>&lt;table&gt;</code> might not *really* be a table, that information is then hinted to assistive technology. For example, [here is a <code>&lt;table&gt;</code>](https://codepen.io/sivakusayan/pen/qBQBPmJ) that no major browser will expose as a table - you can take any screen reader to the linked codepen to verify for yourself.
 
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as purely stylistic layout tables, and then tweak them *just barely enough* to make browsers think they are real data tables. 🙂
 
@@ -29,7 +29,7 @@ I thought it would be interesting to look at this guessing algorithm in more det
 </dl>
 </details>
 <details>
-    <summary>How I tested</summary>
+    <summary>A note on how I tested</summary>
     As this article is only concerned with how browsers expose certain HTML in the accessibility APIs, here is how I get my results for each browser:
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
@@ -43,21 +43,21 @@ At the time of this writing, I am testing with versions:
 - Safari Version 16.4 (18615.1.26.11.23)
 
 Finally, for simplicity's sake, I will not list browser + platform combinations as each individual browser's results don't seem to change with the platform. I will just list the results of each browser, and you can assume those results are true for each platform the browser is available on.
+</details>
+<details>
+<summary>A note if you want to test</summary>
+If you don't want to verify these results in the same way I did, here are some shortcuts you can use, which aren't as rigorous, but can give you a basic way of verifying what I'm saying:
 
-If you don't want to verify these results in the above way, here are some shortcuts you can use, which aren't as rigorous, but can give you a basic way of verifying what I'm saying:
 - On Chrome and Edge, you can use the [Accessibility Inspector](https://developer.chrome.com/docs/devtools/accessibility/reference/#pane) in the developer tools. Layout tables will be explicitly called out as layout tables here.
 - On Firefox, you can use:
     - NVDA on Windows and use [NVDA table shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts#nvda-tables) to see if it detects a table.
     - Voiceover on Mac and use [Voiceover table shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts#vo-mac-tables) to see if it detects a table.
     - Orca on Linux and use [Orca table shortcuts](https://help.gnome.org/users/orca/stable/commands_structural_navigation.html.en#tables) to see if it detects a table.
 - On Safari, you can use Voiceover and use [Voiceover table shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts#vo-mac-tables) to see if it detects a table.
-</details>
-<details>
-<summary>A note if you want to experiment</summary>
-<p>If you plan on modifying the codepens to experiment, you should use the CodePen editor directly instead of modifying the HTML through the developer tools. </p>
 
-<p>
-I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.</p>
+Finally, if you plan on modifying the HTML to experiment, you should use the CodePen editor directly instead of modifying the HTML through the developer tools.
+
+I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.
 </details>
 </aside>
 
@@ -65,7 +65,7 @@ I'm seeing that browsers don't necessarily update the guess of whether a table i
 ### Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.
 
-<a href="https://codepen.io/sivakusayan/full/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
+<a href="https://codepen.io/sivakusayan/pen/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
 
 ### Determining table-ness via the number of rows
 All major browsers will attempt to count the number of rows that a table has, and if it has sufficiently many it will be declared a data table. Chrome, Edge, Firefox, and Safari all agree that a table with at least 20 rows is a data table.
@@ -82,7 +82,7 @@ As soon as we make the table have 19 rows, however, every browser except Firefox
     </p>
 </details>
 
-<a href="https://codepen.io/sivakusayan/full/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
+<a href="https://codepen.io/sivakusayan/pen/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
 
 ### Determining table-ness via the CSS <code>background-color</code> of table rows
 The incorporation of CSS in this guessing algorithm is very interesting to me. 
@@ -92,7 +92,7 @@ All four browsers seem to agree that a table with alternating <code>background-c
 <a href="https://codepen.io/sivakusayan/pen/jOeoGoo">Codepen: Determining table-ness via the CSS background-color of table rows</a>
 
 ### Determining table-ness via the CSS <code>background-color</code> of table cells
-Chrome, Edge, and Safari all check the <code>background-color</code> of the table cells and sees if it is different from the <code>background-color</code> defined on the table. If this is true for at least half of the cells in the table, then it becomes a data table. However, note that the <code>background-color</code> has to be explicitly defined on the <code>&lt;td&gt;</code> - defining the <code>background-color</code> on the <code>&lt;tr&gt;</code> won't work. 
+Chrome, Edge, and Safari all check if any kind of <code>background-color</code> CSS property is defined on the table cell. If this is true for at least half of the cells in the table, then it becomes a data table. However, note that the <code>background-color</code> has to be explicitly defined on the <code>&lt;td&gt;</code> - defining the <code>background-color</code> on the <code>&lt;tr&gt;</code> won't work.
 
 Firefox does not seem to employ this heuristic at all.
 
@@ -123,4 +123,4 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://searchfox.org/mozilla-central/rev/0c2945ad4769e2d4428c72e6ddd78d60eb920394/accessible/generic/TableAccessible.cpp#19">Probably Firefox's layout table guess</a>
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
-There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I encourage you to read the code if you want to learn more!
+There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out some edge cases in order to simplify this post. I encourage you to read the code yourself if you want to learn more!
