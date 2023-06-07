@@ -27,7 +27,7 @@ details p:last-child {
     margin-bottom: 0;
 }
 
-p:last-child {
+.tmpl-post p:last-child {
     margin-bottom: 3rem;
 }
 
