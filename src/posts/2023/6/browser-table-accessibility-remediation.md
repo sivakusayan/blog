@@ -14,7 +14,7 @@ To mitigate this issue when creating the accessibility tree, browsers try to gue
 
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as purely stylistic layout tables, and then tweak them *just barely enough* to make browsers think they are real data tables. 🙂
 
-<aside aria-label="Before you read">
+<aside>
 <details>
 <summary>Definitions</summary>
 <dl>
@@ -65,14 +65,18 @@ I'm seeing that browsers don't necessarily update the guess of whether a table i
 ### Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.
 
-<a href="https://codepen.io/sivakusayan/full/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
+<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="jOeoGoo" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
+  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/jOeoGoo">
+  Determining table-ness via the CSS background-color of table rows</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
 
 ### Determining table-ness via the number of rows
 All major browsers will attempt to count the number of rows that a table has, and if it has sufficiently many it will be declared a data table. Chrome, Edge, Firefox, and Safari all agree that a table with at least 20 rows is a data table.
 
 As soon as we make the table have 19 rows, however, every browser except Firefox considers the table a layout table.
 
-<aside>
 <details>
     <summary>Thoughts on Firefox behavior</summary>
     <p>
@@ -82,7 +86,6 @@ As soon as we make the table have 19 rows, however, every browser except Firefox
     My immediate guess as to why (without examining with a debugger) is that Firefox seems to assume every table is a data table until proven otherwise, while other browsers assume that a table is a layout table until proven otherwise. Again, this is just speculation from reading the code, and I would need to use a debugger to verify my hypothesis.
     </p>
 </details>
-</aside>
 
 <a href="https://codepen.io/sivakusayan/full/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
 
@@ -116,12 +119,10 @@ If you're curious, here is where you can walk through the algorithm's logic your
 Note how you can opt out of this entire guessing logic by just manually setting <code>role="table"</code> on the element. (Of course, <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA">don't use ARIA unless you need to</a>)
 - <a href="https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_layout_object.cc;drc=99f969b129a7123125ac7af40afb24277dd4767a;l=1043">Chromium's layout table guess</a>
 
-<aside>
 <details>
 <summary>If you can't access Chromium code search</summary>
-I've been told by a screen reader user that the Chromium code search isn't accessible. I'm really sorry if you are also running into issues 🙁. While not ideal, I hope this <a href="/posts/resources/chromiumTableLayoutGuess.txt">raw text version of the code</a> can be a temporary workaround.
+I've been told by some users that the Chromium code search isn't accessible 🙁. While not ideal, I hope this <a href="/posts/resources/chromiumTableLayoutGuess.txt">raw text version of the code</a> can be a temporary workaround.
 </details>
-</aside>
 
 As for the other browsers, I'm not exactly sure where the logic is since I haven't debugged those browsers and am not as familiar with their codebases, but I can give a fairly likely guess from reading the code:
 - <a href="https://searchfox.org/mozilla-central/rev/0c2945ad4769e2d4428c72e6ddd78d60eb920394/accessible/generic/TableAccessible.cpp#19">Probably Firefox's layout table guess</a>

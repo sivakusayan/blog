@@ -71,11 +71,15 @@ h2+h3 {
     margin-top: 1rem;
 }
 
+aside {
+    margin-top: 2rem;
+}
+
 details {
     background-color: var(--cta-background-color);
     border: 1px solid var(--text-color);
     border-radius: 10px;
-    margin-bottom: 1rem;
+    margin-bottom: 0.6rem;
     padding: 0 1.5rem;
 
     transition: color var(--theme-transition-duration) ease,
