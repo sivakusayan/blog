@@ -65,12 +65,7 @@ I'm seeing that browsers don't necessarily update the guess of whether a table i
 ### Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.
 
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="jOeoGoo" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/jOeoGoo">
-  Determining table-ness via the CSS background-color of table rows</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+<a href="https://codepen.io/sivakusayan/full/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
 
 ### Determining table-ness via the number of rows
 All major browsers will attempt to count the number of rows that a table has, and if it has sufficiently many it will be declared a data table. Chrome, Edge, Firefox, and Safari all agree that a table with at least 20 rows is a data table.
