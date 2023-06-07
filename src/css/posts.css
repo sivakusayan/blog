@@ -23,6 +23,14 @@
     margin-bottom: 1rem;
 }
 
+details p:last-child {
+    margin-bottom: 0;
+}
+
+p:last-child {
+    margin-bottom: 3rem;
+}
+
 .post-content p:first-child::first-letter {
     color: var(--secondary-color);
     float: left;

@@ -31,13 +31,15 @@ a[href]:focus-visible {
   animation: 0.7s highlight;
 }
 
-a[href="#Skip"] {
+a.back-to-top {}
+
+a.skip-link {
   position: absolute;
   left: -10000px;
   z-index: 2;
 }
 
-a[href="#Skip"]:focus {
+a.skip-link:focus {
   position: absolute;
   left: 5%;
   top: 50%;
