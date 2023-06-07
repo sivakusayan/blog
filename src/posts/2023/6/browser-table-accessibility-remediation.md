@@ -14,7 +14,7 @@ To mitigate this issue when creating the accessibility tree, browsers try to gue
 
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as purely stylistic layout tables, and then tweak them *just barely enough* to make browsers think they are real data tables. 🙂
 
-<aside>
+<aside aria-label="Before you read">
 <details>
 <summary>Definitions</summary>
 <dl>
@@ -64,12 +64,8 @@ I'm seeing that browsers don't necessarily update the guess of whether a table i
 ## Heuristics
 ### Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="LYgozwL" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/LYgozwL">
-  Determining table-ness via the number of rows </a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<a href="https://codepen.io/sivakusayan/full/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
 
 ### Determining table-ness via the number of rows
 All major browsers will attempt to count the number of rows that a table has, and if it has sufficiently many it will be declared a data table. Chrome, Edge, Firefox, and Safari all agree that a table with at least 20 rows is a data table.
@@ -88,34 +84,21 @@ As soon as we make the table have 19 rows, however, every browser except Firefox
 </details>
 </aside>
 
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="KKGLXjj" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/KKGLXjj">
-  Determining table-ness via the CSS background-color of table rows</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+<a href="https://codepen.io/sivakusayan/full/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
 
 ### Determining table-ness via the CSS <code>background-color</code> of table rows
 The incorporation of CSS in this guessing algorithm is very interesting to me. 
 
 All four browsers seem to agree that a table with alternating <code>background-colors</code> on its rows is a data table, as long as the table has more than two rows. Firefox is the only browser that does not enforce a minimum of three rows when checking that the rows have alternating backgrounds.
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="jOeoGoo" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/jOeoGoo">
-  Determining table-ness via the CSS background-color of table rows</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<a href="https://codepen.io/sivakusayan/pen/jOeoGoo">Codepen: Determining table-ness via the CSS background-color of table rows</a>
 
 ### Determining table-ness via the CSS <code>background-color</code> of table cells
 Chrome, Edge, and Safari all check the <code>background-color</code> of the table cells and sees if it is different from the <code>background-color</code> defined on the table. If this is true for at least half of the cells in the table, then it becomes a data table. However, note that the <code>background-color</code> has to be explicitly defined on the <code>&lt;td&gt;</code> - defining the <code>background-color</code> on the <code>&lt;tr&gt;</code> won't work. 
 
 Firefox does not seem to employ this heuristic at all.
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="YzJbrmY" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/YzJbrmY">
-  Determining table-ness via the CSS background-color of table cells</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<a href="https://codepen.io/sivakusayan/pen/YzJbrmY">Codepen: Determining table-ness via the CSS background-color of table cells</a>
 
 ### Determining table-ness via the CSS <code>border</code> of table cells
 All major browsers do checks on the border of table cells to help determine whether something is a data table or not.
@@ -123,12 +106,8 @@ All major browsers do checks on the border of table cells to help determine whet
  Chrome, Edge, and Safari check to see if *any* side of the table cell has a border. If this is true for at least half the cells in the table, those browsers expose the table as a data table. 
  
  Firefox does it slightly differently - it only checks the first table cell, and checks if it has a border on *all* sides. If so, Firefox exposes the table as a data table.
-<p class="codepen" data-height="300" data-theme-id="dark" data-default-tab="result" data-slug-hash="wvYbrVR" data-editable="true" data-user="sivakusayan" style="height: 300px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;">
-  <span>See the Pen <a href="https://codepen.io/sivakusayan/pen/wvYbrVR">
-  Determining table-ness via the CSS background-color of table cells</a> by Sayan Sivakumaran (<a href="https://codepen.io/sivakusayan">@sivakusayan</a>)
-  on <a href="https://codepen.io">CodePen</a>.</span>
-</p>
-<script async src="https://cpwebassets.codepen.io/assets/embed/ei.js"></script>
+
+<a href="https://codepen.io/sivakusayan/pen/wvYbrVR">Codepen: Determining table-ness via the CSS border of table cells</a>
 
 ## Source code
 Reading the source code for this algorithm was really helpful in constructing these minimal codepens.
