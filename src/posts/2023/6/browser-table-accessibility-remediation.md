@@ -34,7 +34,9 @@ I thought it would be interesting to look at this guessing algorithm in more det
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [Accessibility Inspector](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html). If it's not, it's a layout table, otherwise it's a data table.
-- On Linux, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If it's not, it's a layout table, otherwise it's a data table.
+- On Linux:
+    - For Chrome, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If it's not, it's a layout table, otherwise it's a data table.
+    - For Firefox, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> AT-SPI2 node using [Accerciser](https://help.gnome.org/users/accerciser/stable/introduction.html.en). If a node has this attribute set to true, it's a layout table, otherwise it's a data table.
 
 At the time of this writing, I am testing with versions:
 - Chrome Version 114.0.5735.90
@@ -124,3 +126,9 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
 There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out some edge cases in order to simplify this post. I encourage you to read the code yourself if you want to learn more!
+
+Finally, here is some more code speculation/archaelogy that I did while doing research for this post:
+- [Probably where NVDA checks to see if a table is a layout table or a data table](https://github.com/search?q=repo%3Anvaccess%2Fnvda%20layout-guess&type=code)
+- [Probably where Orca checks to see if a table is a layout table or a data table](https://gitlab.gnome.org/GNOME/orca/-/blob/master/src/orca/script_utilities.py#L1452)
+
+Again, there might be some context I'm missing, but I think it's cool to see how everything connects together.
