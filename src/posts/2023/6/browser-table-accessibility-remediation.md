@@ -129,6 +129,6 @@ There is some logic I didn't cover - for example, Firefox seems to do checks on 
 
 Finally, here is some more code speculation/archaelogy that I did while doing research for this post:
 - [Probably where NVDA checks to see if a table is a layout table or a data table](https://github.com/search?q=repo%3Anvaccess%2Fnvda%20layout-guess&type=code)
-- [Probably where Orca checks to see if a table is a layout table or a data table](https://gitlab.gnome.org/GNOME/orca/-/blob/master/src/orca/script_utilities.py#L1452)
+- [Probably where Orca checks to see if a table is a layout table or a data table](https://gitlab.gnome.org/search?search=%27layout-guess%27&nav_source=navbar&project_id=1911&group_id=8&search_code=true&repository_ref=master)
 
 Again, there might be some context I'm missing, but I think it's cool to see how everything connects together.

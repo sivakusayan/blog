@@ -25,6 +25,9 @@
 
   --svg-hover-stroke-width: 3px;
   --link-underline-width: 1.5px;
+
+  --code-background-color: #272822;
+  --code-font-weight: 600;
 }
 
 html[data-theme="dark"] {
@@ -43,6 +46,9 @@ html[data-theme="dark"] {
 
   --svg-hover-stroke-width: 2px;
   --link-underline-width: 1px;
+
+  --code-background-color: #272822;
+  --code-font-weight: initial;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -62,6 +68,9 @@ html[data-theme="dark"] {
 
     --svg-hover-stroke-width: 2px;
     --link-underline-width: 1px;
+
+    --code-background-color: #272822;
+    --code-font-weight: initial;
   }
 
   html[data-theme="light"] {
@@ -80,6 +89,9 @@ html[data-theme="dark"] {
 
     --svg-hover-stroke-width: 3px;
     --link-underline-width: 1.5px;
+
+    --code-background-color: #d8d6d6;
+    --code-font-weight: 600;
   }
 }
 
