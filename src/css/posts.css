@@ -23,7 +23,7 @@
     margin-bottom: 1rem;
 }
 
-details p:last-child {
+details[open] p:last-child {
     margin-bottom: 0;
 }
 
