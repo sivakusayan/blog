@@ -31,19 +31,28 @@ a[href]:focus-visible {
   animation: 0.7s highlight;
 }
 
-a.back-to-top {}
-
-a.skip-link {
+.skip-link-wrapper {
   position: absolute;
   left: -10000px;
   z-index: 2;
+  transition: opacity var(--theme-transition-duration) ease;
+  background-color: var(--background-color);
+  padding: 1rem;
+  opacity: 0;
 }
 
-a.skip-link:focus {
+.skip-link-wrapper:focus-within {
   position: absolute;
   left: 5%;
   top: 50%;
-  transform: translateY(-65%);
+  transform: translateY(-56%);
+  opacity: 1;
+}
+
+@media only screen and (max-width: 1350px) {
+  .skip-link-wrapper {
+    border: 1px solid var(--text-color);
+  }
 }
 
 

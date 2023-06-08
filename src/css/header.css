@@ -4,6 +4,35 @@ header {
     border-bottom: 1px solid var(--color-gray-20);
 }
 
+.skip-link-wrapper {
+    position: absolute;
+    left: -10000px;
+    z-index: 2;
+    background-color: var(--background-color);
+    padding: 1rem;
+}
+
+.skip-link-wrapper:focus-within {
+    position: absolute;
+    left: 5%;
+    top: 50%;
+    transform: translateY(-56%);
+}
+
+@media only screen and (max-width: 1350px) {
+    header {
+        position: unset;
+    }
+
+    .skip-link-wrapper:focus-within {
+        border: 1px solid var(--text-color);
+        border-radius: 0.1rem;
+        top: 0;
+        left: 0;
+        transform: none;
+    }
+}
+
 .header-wrapper {
     max-width: var(--website-content-max-width);
     padding: 0.5em var(--website-content-padding);
