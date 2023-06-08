@@ -1,34 +1,18 @@
-select {
-    width: 10rem;
-    background-color: var(--background-color);
-    color: var(--text-color);
-    appearance: none;
-
-    transition: color var(--theme-transition-duration) ease,
-    background-color 0.1s ease,
-    outline-offset 0.2s ease;
-    border: 1px solid var(--color-gray-90);
-
-outline: 3px solid transparent;
-outline-offset: 5px;
-
-padding: 5px 10px;
-border-radius: 10px;
+.theme-picker {
+  transform: scale(0.9);
 }
 
-select:focus-visible {
-    outline: 3.5px solid var(--primary-color);
-    outline-offset: 2px;
+.theme-picker button {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  border: 1px solid var(--text-color);
+  border-radius: 0.3rem;
+  padding: 0.5rem 1rem;
+  transition: color var(--theme-transition-duration) ease,
+    border var(--theme-transition-duration) ease;
 }
 
-.select-wrapper {
-    position: relative;
-  }
-  
-  .select-wrapper::after {
-    content: "▼";
-    font-size: 0.7em;
-    top: 11px;
-    right: 20px;
-    position: absolute;
-  }
+.theme-picker button:hover {
+  color: var(--primary-color);
+  border: 5px solid var(--primary-color);
+}

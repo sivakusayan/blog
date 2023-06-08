@@ -1,10 +1,7 @@
 {% macro themePicker() %}
-<div class="select-wrapper">
-<select id="theme-select" aria-label="Theme">
-<option disabled="" selected="">Select Theme</option>
-<option value="light">Light</option>
-<option value="dark">Dark</option>
-<option value="">System</option>
-</select>
+<div class="theme-picker">
+    <button id="light-theme-button" aria-pressed="false">Light Theme</button>
+    <button id="dark-theme-button" aria-pressed="false">Dark Theme</button>
+    <button id="system-theme-button" aria-pressed="false">Default Theme</button>
 </div>
 {% endmacro %}
