@@ -1,7 +1,14 @@
 {% macro themePicker() %}
 <div class="theme-picker">
+    <!-- Needed to show focus styles, since buttons already styled with outline property -->
+    <div class="button-wrapper">
     <button id="light-theme-button" aria-pressed="false">Light Theme</button>
+    </div>
+    <div class="button-wrapper">
     <button id="dark-theme-button" aria-pressed="false">Dark Theme</button>
+    </div>
+    <div class="button-wrapper">
     <button id="system-theme-button" aria-pressed="true">Default Theme</button>
+    </div>
 </div>
 {% endmacro %}

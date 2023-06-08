@@ -30,6 +30,17 @@
   pointer-events: none;
 }
 
+.theme-picker .button-wrapper {
+  transition: outline-offset 0.2s ease;
+  outline: 3px solid transparent;
+  outline-offset: 6px;
+}
+
+
+.theme-picker .button-wrapper:focus-within {
+  outline: 3.5px solid var(--primary-color);
+  outline-offset: 3px;
+}
 
 @media only screen and (max-width: 450px) {
   .theme-picker {
