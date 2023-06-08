@@ -48,4 +48,8 @@
     flex-direction: column;
     gap: 0.75rem;
   }
+
+  .theme-picker button {
+    width: 8.5rem;
+  }
 }
