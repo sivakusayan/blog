@@ -103,7 +103,7 @@ Firefox does not seem to employ this heuristic at all.
 ### Determining table-ness via the CSS <code>border</code> of table cells
 All major browsers do checks on the border of table cells to help determine whether something is a data table or not.
 
- Chrome, Edge, and Safari check to see if *any* side of the table cell has a border. If this is true for at least half the cells in the table, those browsers expose the table as a data table. 
+ Chrome, Edge, and Safari check to see if *any* side of the table cell has a border. If this is true for at least half of the cells in the table, those browsers expose the table as a data table. 
  
  Firefox does it slightly differently - it only checks the first table cell, and checks if it has a border on *all* sides. If so, Firefox exposes the table as a data table.
 
