@@ -3,7 +3,7 @@
         <div class="skip-link-wrapper">
             <a href="#Skip" class="skip-link ignore-visited-styling" accesskey="s">Skip to content</a>
         </div>
-        <div class="header-wrapper">
+        <nav>
             {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
             <ul class="nav">
                 {%- for entry in collection | eleventyNavigation%}
@@ -12,6 +12,6 @@
                     </li>
                 {%- endfor %}
             </ul>
-        </div>
+        </nav>
     </header>
 {% endmacro %}

@@ -33,7 +33,7 @@ header {
     }
 }
 
-.header-wrapper {
+nav {
     max-width: var(--website-content-max-width);
     padding: 0.5em var(--website-content-padding);
     margin: auto;
