@@ -1,6 +1,7 @@
 const lightThemeButton = document.getElementById("light-theme-button");
 const darkThemeButton = document.getElementById("dark-theme-button");
 const systemThemeButton = document.getElementById("system-theme-button");
+let currentToggledButton;
 
 const Themes = Object.freeze({
   LIGHT: "LIGHT",
@@ -11,7 +12,24 @@ const Themes = Object.freeze({
 const setTheme = (theme) => {
   document.documentElement.setAttribute("data-theme", theme);
   localStorage.theme = theme;
-  select.value = theme;
+
+  if (currentToggledButton) {
+    currentToggledButton.setAttribute("aria-pressed", "false");
+  }
+  switch (theme) {
+    case Themes.LIGHT:
+      currentToggledButton = lightThemeButton;
+      break;
+    case Themes.DARK:
+      currentToggledButton = darkThemeButton;
+      break;
+    case Themes.SYSTEM:
+      currentToggledButton = systemThemeButton;
+      break;
+    default:
+      break;
+  }
+  currentToggledButton.setAttribute("aria-pressed", "true");
 };
 
 lightThemeButton.onclick = (e) => setTheme(Themes.LIGHT);

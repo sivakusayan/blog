@@ -1,18 +1,40 @@
 .theme-picker {
-  transform: scale(0.9);
+  display: flex;
+  font-size: 80%;
+  gap: 0.5rem;
 }
 
 .theme-picker button {
   background-color: var(--background-color);
   color: var(--text-color);
-  border: 1px solid var(--text-color);
+  border: none;
   border-radius: 0.3rem;
+  outline: 1px solid var(--text-color);
+
   padding: 0.5rem 1rem;
+  cursor: pointer;
   transition: color var(--theme-transition-duration) ease,
-    border var(--theme-transition-duration) ease;
+    outline 0.1s ease,
+    background-color var(--theme-transition-duration) ease;
 }
 
 .theme-picker button:hover {
   color: var(--primary-color);
-  border: 5px solid var(--primary-color);
+  outline: 5px solid var(--primary-color);
+}
+
+.theme-picker button[aria-pressed="true"] {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  outline: var(--background-color);
+  pointer-events: none;
+}
+
+
+@media only screen and (max-width: 450px) {
+  .theme-picker {
+    font-size: 100%;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }

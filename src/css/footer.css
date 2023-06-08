@@ -16,14 +16,28 @@ footer {
 }
 
 .social-media a[href]:not(:last-child) {
-    margin-right: 0.5em;
+    margin-right: 0.5rem;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 630px) {
     .footer-wrapper {
-        padding: 1em var(--website-content-padding);
+        padding: 1rem var(--website-content-padding);
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+}
+
+
+@media only screen and (max-width: 450px) {
+    .footer-wrapper {
+        flex-direction: row;
+        align-items: start;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .footer-wrapper {
         flex-direction: column;
         align-items: center;
-        gap: 1.5em;
     }
 }
