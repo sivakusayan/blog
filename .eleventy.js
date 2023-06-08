@@ -10,6 +10,7 @@ const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 const postcss = require('postcss');
 const cssnano = require('cssnano');
+const uglifyJS = require("uglify-js");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
@@ -26,6 +27,14 @@ module.exports = function (eleventyConfig) {
             cssnano
           ]).process(code, { from: this.page.inputPath, to: null });
           return result.css;
+        }
+        if (this.type === 'js') {
+          let minified = uglifyJS.minify(code);
+          if (minified.error) {
+            console.log("UglifyJS error: ", minified.error);
+            return code;
+          }
+          return minified.code;
         }
         return code;
       }
