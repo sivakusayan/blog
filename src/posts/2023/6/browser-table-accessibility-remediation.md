@@ -59,7 +59,7 @@ If you don't want to verify these results in the same way I did, here are some s
 
 Finally, if you plan on modifying the HTML to experiment, you should use the CodePen editor directly instead of modifying the HTML through the developer tools.
 
-I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.
+I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't always work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.
 </details>
 </aside>
 
