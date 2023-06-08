@@ -127,7 +127,7 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 
 There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out mobile platforms in order to simplify this post, as the mobile behavior isn't as consistent and would require some nuance. I encourage you to read the code yourself if you want to learn more!
 
-Finally, here is some more code speculation/archaelogy that I did while doing research for this post:
+Finally, here is some more code speculation/archaeology that I did while doing research for this post:
 - [Probably where NVDA checks to see if a table is a layout table or a data table](https://github.com/search?q=repo%3Anvaccess%2Fnvda%20layout-guess&type=code)
 - [Probably where Orca checks to see if a table is a layout table or a data table](https://gitlab.gnome.org/search?search=%27layout-guess%27&nav_source=navbar&project_id=1911&group_id=8&search_code=true&repository_ref=master)
 
