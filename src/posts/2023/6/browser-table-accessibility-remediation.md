@@ -1,6 +1,6 @@
 ---
-title: Exploring the "Is this a real or fake table?" algorithm in browsers
-description: How browsers distinguish between "real" and "fake" tables for accessibility
+title: Exploring the "Is this a real or fake table?" algorithm in desktop browsers
+description: Looking at some minimal codepens that demonstrate how browsers distinguish between "real" and "fake" tables for accessibility.
 date: 2023-06-06
 tags:
   - Accessibility
@@ -10,7 +10,7 @@ layout: layouts/post.njk
 
 There are a lot of websites out there that, unfortunately, use the <code>&lt;table&gt;</code> HTML element as a styling tool. This poses a problem to users of assistive technology, as there is now a lot of incorrect semantic information in the page. 
 
-To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes. If they guess that a <code>&lt;table&gt;</code> might not *really* be a table, that information is then hinted to assistive technology. For example, [here is a <code>&lt;table&gt;</code>](https://codepen.io/sivakusayan/pen/qBQBPmJ) that no major browser will expose as a table - you can take any screen reader to the linked codepen to verify for yourself.
+To mitigate this issue when creating the accessibility tree, browsers try to guess when a <code>&lt;table&gt;</code> is being used for purely styling purposes. If they guess that a <code>&lt;table&gt;</code> might not *really* be a table, that information is then hinted to assistive technology. For example, [here is a <code>&lt;table&gt;</code>](https://codepen.io/sivakusayan/pen/qBQBPmJ) that no major browser on desktop will expose as a table - you can take any screen reader to the linked codepen to verify for yourself.
 
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as purely stylistic layout tables, and then tweak them *just barely enough* to make browsers think they are real data tables. 🙂
 
@@ -30,7 +30,7 @@ I thought it would be interesting to look at this guessing algorithm in more det
 </details>
 <details>
     <summary>A note on how I tested</summary>
-    As this article is only concerned with how browsers expose certain HTML in the accessibility APIs, here is how I get my results for each browser:
+    As this article is only concerned with how browsers expose tables in the desktop accessibility APIs, here is how I get my results for each browser:
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [Accessibility Inspector](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html). If it's not, it's a layout table, otherwise it's a data table.
@@ -44,7 +44,7 @@ At the time of this writing, I am testing with versions:
 - Firefox Version 113.0.2
 - Safari Version 16.4 (18615.1.26.11.23)
 
-Finally, for simplicity's sake, I will not list browser + platform combinations as each individual browser's results don't seem to change with the platform. I will just list the results of each browser, and you can assume those results are true for each platform the browser is available on.
+Finally, for simplicity's sake, I will not list browser + platform combinations as each individual browser's results don't seem to change with the desktop platform. I will just list the results of each browser, and you can assume those results are true for Windows, Mac, and Linux.
 </details>
 <details>
 <summary>A note if you want to test</summary>
@@ -125,7 +125,7 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://searchfox.org/mozilla-central/rev/0c2945ad4769e2d4428c72e6ddd78d60eb920394/accessible/generic/TableAccessible.cpp#19">Probably Firefox's layout table guess</a>
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
-There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out some edge cases in order to simplify this post. I encourage you to read the code yourself if you want to learn more!
+There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out mobile platforms in order to simplify this post, as the mobile behavior isn't as consistent and would require some nuance. I encourage you to read the code yourself if you want to learn more!
 
 Finally, here is some more code speculation/archaelogy that I did while doing research for this post:
 - [Probably where NVDA checks to see if a table is a layout table or a data table](https://github.com/search?q=repo%3Anvaccess%2Fnvda%20layout-guess&type=code)
