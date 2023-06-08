@@ -1,7 +1,7 @@
 const lightThemeButton = document.getElementById("light-theme-button");
 const darkThemeButton = document.getElementById("dark-theme-button");
 const systemThemeButton = document.getElementById("system-theme-button");
-let currentToggledButton;
+let currentToggledButton = systemThemeButton;
 
 const Themes = Object.freeze({
   LIGHT: "LIGHT",
