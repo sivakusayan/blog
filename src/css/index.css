@@ -29,7 +29,7 @@
   --link-underline-width: 1.5px;
 
   --code-background-color: #d8d6d6;
-  --code-font-weight: 600;
+  --code-font-weight: bold;
 }
 
 html[data-theme="DARK"] {
@@ -93,7 +93,7 @@ html[data-theme="DARK"] {
     --link-underline-width: 1.5px;
 
     --code-background-color: #d8d6d6;
-    --code-font-weight: 600;
+    --code-font-weight: bold;
   }
 }
 
