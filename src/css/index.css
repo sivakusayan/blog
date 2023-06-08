@@ -6,6 +6,8 @@
   --website-content-max-width: 42rem;
   --website-content-padding: 4.5rem;
   --website-side-padding: 4rem;
+
+  font-size: calc(0.9375rem + 0.390625vw);
 }
 
 /* Theme colors */
@@ -237,10 +239,6 @@ li:not(:last-child) {
 .tidbits-link-wrapper {
   display: inline-block;
   margin-bottom: 0.2em;
-}
-
-html {
-  font-size: calc(15px + 0.390625vw);
 }
 
 #landing h1 {
