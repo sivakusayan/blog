@@ -84,14 +84,17 @@ details {
 
     transition: color var(--theme-transition-duration) ease,
         outline 0.2s ease;
-    outline: 4px solid transparent;
-    outline-offset: 6px;
 }
 
 details summary {
     padding: 1rem 0;
     cursor: pointer;
     outline: none;
+    transition: margin var(--theme-transition-duration) ease;
+}
+
+details summary:hover {
+    margin-left: 0.2rem;
 }
 
 details:focus-within {
