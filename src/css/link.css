@@ -53,7 +53,7 @@ a[href]:focus-visible {
     outline-offset: 10px;
     /* TODO: Currently the CSS reset disables all animations in reduced motion.
       Maybe we should be a bit more granular here. */
-    animation: 0.7s highlight-reduced !important;
+    animation: 0.6s highlight-reduced !important;
   }
 
   @keyframes highlight-reduced {
@@ -61,11 +61,11 @@ a[href]:focus-visible {
       outline: 8px solid transparent;
     }
 
-    35% {
+    20% {
       outline: 8px solid var(--primary-color);
     }
 
-    70% {
+    80% {
       outline: 8px solid var(--primary-color);
     }
 
