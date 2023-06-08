@@ -151,13 +151,6 @@ main {
 
 main>* {
   padding: 0 var(--website-content-padding);
-}
-
-main>*:first-child {
-  margin-top: 2rem;
-}
-
-main>* {
   margin-top: 2rem;
 }
 

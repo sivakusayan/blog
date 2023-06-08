@@ -21,6 +21,7 @@
     {%- css %}{% include "src/css/footer.css" %}{% endcss %}
     {%- css %}{% include "src/css/link.css" %}{% endcss %}
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
+    {%- css %}{% include "src/css/printStyles.css" %}{% endcss %}
     {%- css %}{% include "src/css/posts.css" %}{% endcss %}
     {%- css %}{% include "src/css/scrollbar.css" %}{% endcss %}
     {%- css %}{% include "src/css/themePicker.css" %}{% endcss %}
@@ -48,6 +49,14 @@
     </main>
 
     {{ footer() }}
-    <script src={{ "/scripts/theming.js" | url }}></script>
+    {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
+    {%- if eleventy.env.runMode === "serve" %}
+      <script src="{% getBundleFileUrl "js" %}"></script>
+    {%- else  %}
+      <script>
+        {% getBundle "js" %}
+      </script>
+    {%- endif %}
   </body>
 </html>
