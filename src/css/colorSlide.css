@@ -38,6 +38,24 @@
   }
 }
 
+/** This is when the landing page header breaks onto two lines.
+    Increase the width to make it more dramatic 
+    (since the line would stop earlier without this). */
+@media only screen and (max-width: 450px) {
+  @keyframes slide {
+    100% {
+      width: 115%;
+    }
+  }
+}
+
+/** Any smaller than this and the animation just looks weird. */
+@media only screen and (max-width: 300px) {
+  .color-slide .text-above {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .color-slide .text-above::before {
     animation: none;
