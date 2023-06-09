@@ -222,20 +222,24 @@ h6 {
 }
 
 p:not(:last-child) {
-  margin-bottom: 0.5em;
+  margin-bottom: 0.5rem;
 }
 
 li:not(:last-child) {
-  margin-bottom: 0.3em;
+  margin-bottom: 0.3rem;
+}
+
+.tidbits-container {
+  margin-top: 2rem;
 }
 
 .tidbits-container li:not(:last-child) {
-  margin-bottom: 1.7rem;
+  margin-bottom: 2rem;
 }
 
 .tidbits-link-wrapper {
   display: inline-block;
-  margin-bottom: 0.2em;
+  margin-bottom: 0.2rem;
 }
 
 #landing h1 {
