@@ -36,7 +36,7 @@ I thought it would be interesting to look at this guessing algorithm in more det
 - On Mac, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [Accessibility Inspector](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html). If it's not, it's a layout table, otherwise it's a data table.
 - On Linux:
     - For Chrome, I will look to see if the <code>&lt;table&gt;</code> is exposed as a table in the accessibility tree using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If it's not, it's a layout table, otherwise it's a data table.
-    - For Firefox, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> AT-SPI2 node using [Accerciser](https://help.gnome.org/users/accerciser/stable/introduction.html.en). If a node has this attribute set to true, it's a layout table, otherwise it's a data table.
+    - For Firefox, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> <abbr title="Assistive Technology - Service Provider Interface">AT-SPI</abbr> node using [Accerciser](https://help.gnome.org/users/accerciser/stable/introduction.html.en). If a node has this attribute set to true, it's a layout table, otherwise it's a data table.
 
 At the time of this writing, I am testing with versions:
 - Chrome Version 114.0.5735.90
