@@ -125,7 +125,7 @@ As for the other browsers, I'm not exactly sure where the logic is since I haven
 - <a href="https://searchfox.org/mozilla-central/rev/0c2945ad4769e2d4428c72e6ddd78d60eb920394/accessible/generic/TableAccessible.cpp#19">Probably Firefox's layout table guess</a>
 - <a href="https://github.com/WebKit/WebKit/blob/023f54b8e5b80830c6d4eee7f54143aa4d15b9b9/Source/WebCore/accessibility/AccessibilityTable.cpp#L114">Probably Safari's layout table guess</a>
 
-There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out mobile platforms in order to simplify this post, as the mobile behavior doesn't seem as consistent and would require some nuance. I encourage you to read the code yourself if you want to learn more!
+There is some logic I didn't cover - for example, Firefox seems to do checks on how wide the <code>&lt;table&gt;</code> is relative to the entire page. I also left out mobile platforms in order to simplify this post, as the mobile behavior doesn't seem as consistent at an initial glance and would require some nuance. I encourage you to read the code yourself if you want to learn more!
 
 Finally, here is some more code speculation/archaeology that I did while doing research for this post:
 - [Probably where NVDA checks to see if a table is a layout table or a data table](https://github.com/search?q=repo%3Anvaccess%2Fnvda%20layout-guess&type=code)
