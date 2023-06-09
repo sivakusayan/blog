@@ -44,7 +44,7 @@
 
 @media only screen and (max-width: 450px) {
   .theme-picker {
-    font-size: 100%;
+    font-size: 90%;
     flex-direction: column;
     gap: 0.75rem;
   }

@@ -20,7 +20,7 @@
 }
 
 .tmpl-post p {
-    margin-bottom: 0.6rem;
+    margin-bottom: 1rem;
 }
 
 details[open] p:last-child {
@@ -64,7 +64,7 @@ h6 a[href].header-anchor {
 }
 
 h2 {
-    margin-top: 3.5rem;
+    margin-top: 4rem;
     margin-bottom: 0.8rem;
 }
 
@@ -72,11 +72,11 @@ h2 {
 .tmpl-post *:not(h3)+h4,
 .tmpl-post *:not(h4)+h5,
 .tmpl-post *:not(h5)+h6 {
-    margin-top: 3rem;
+    margin-top: 3.5rem;
 }
 
 h2+h3 {
-    margin-top: 1rem;
+    margin-top: 1.25rem;
 }
 
 aside {
