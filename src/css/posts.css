@@ -84,7 +84,7 @@ aside {
 }
 
 details {
-    background-color: var(--cta-background-color);
+    background-color: var(--details-background-color);
     border: 1px solid var(--text-color);
     border-radius: 10px;
     margin-bottom: 0.6rem;
