@@ -11,14 +11,16 @@ a[href] {
   outline-offset: 5px;
 }
 
-a[href]:visited:not(.ignore-visited-styling, .direct-link, .header-anchor) {
+/** We need the additional :not(:hover) selector due to specificity troubles. 
+Otherwise, all visited links would not change color on hover.*/
+a[href]:visited:not(.ignore-visited-styling, .header-anchor):not(:hover) {
   color: var(--text-color-link-visited);
   border-color: var(--text-color-link-visited);
 }
 
 a[href]:hover {
-  color: var(--primary-color) !important;
-  border-bottom: 0.3em solid var(--primary-color) !important;
+  color: var(--primary-color);
+  border-bottom: 0.3em solid var(--primary-color);
 }
 
 a[href]:focus-visible {
