@@ -184,6 +184,11 @@ em {
   font-family: serif;
 }
 
+abbr {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+}
+
 #landing {
   position: relative;
   background-color: var(--cta-background-color);
