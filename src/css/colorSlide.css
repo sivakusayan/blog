@@ -50,7 +50,7 @@
 }
 
 /** Any smaller than this and the animation just looks weird. */
-@media only screen and (max-width: 230px) {
+@media only screen and (max-width: 270px) {
   .color-slide .text-above {
     display: none;
   }

@@ -5,7 +5,7 @@
   --theme-transition-duration: 0.2s;
   --website-content-max-width: 42rem;
   --website-content-padding: 4.5rem;
-  --website-side-padding: 4rem;
+  --website-padding: calc((100%-42rem)/2);
 
   font-size: calc(0.9375rem + 0.390625vw);
 }
@@ -41,7 +41,7 @@ html[data-theme="DARK"] {
   --primary-color: #D35AA5;
   --secondary-color: #b2267c;
   --background-color: #1c1d22;
-  --cta-background-color: #1a011342;
+  --cta-background-color: #141518;
   --details-background-color: var(--cta-background-color);
 
   --text-color: var(--color-gray-90);
@@ -60,20 +60,20 @@ html[data-theme="DARK"] {
     --color-gray-20: #393939;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #cfcfcf;
-
+  
     --primary-color: #D35AA5;
     --secondary-color: #b2267c;
     --background-color: #1c1d22;
-    --cta-background-color: #1a011342;
+    --cta-background-color: #141518;
     --details-background-color: var(--cta-background-color);
-
+  
     --text-color: var(--color-gray-90);
     --text-color-link: #c8c8d1;
     --text-color-link-visited: #868688;
-
+  
     --svg-hover-stroke-width: 2px;
     --link-underline-width: 1px;
-
+  
     --code-background-color: #272822;
     --code-font-weight: initial;
   }
@@ -140,6 +140,16 @@ body {
   transition: color var(--theme-transition-duration) ease, background var(--theme-transition-duration) ease;
 }
 
+header {
+  height: 8rem;
+  background: linear-gradient(177deg, var(--cta-background-color) 60%, transparent 60%);
+}
+
+footer {
+  height: 12rem;
+  background: linear-gradient(-3deg, var(--cta-background-color) 70%, transparent 70%);
+}
+
 body {
   padding: 0.25em var(--website-side-padding);
 }
@@ -163,6 +173,7 @@ details p {
 main {
   max-width: var(--website-content-max-width);
   margin: auto;
+  min-height: calc(100vh - 22rem);
 }
 
 main>* {
@@ -207,7 +218,6 @@ abbr {
   border-radius: 20px;
   padding-top: 3.3rem;
   padding-bottom: 4rem;
-  transition: background-color var(--theme-transition-duration);
 }
 
 /* This will ensure things are NOT removed from the AX tree.
@@ -267,23 +277,22 @@ li:not(:last-child) {
   display: none;
 }
 
-@media only screen and (max-width: 870px) {
+@media only screen and (max-width: 800px) {
+  #landing {
+    width: 90%;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: 600px) {
   :root {
-    --website-side-padding: 2rem;
     --website-content-padding: 3rem;
   }
 }
 
-@media only screen and (max-width: 700px) {
+@media only screen and (max-width: 500px) {
   :root {
-    --website-side-padding: 1rem;
-    --website-content-padding: 2rem;
-  }
-}
-
-@media only screen and (max-width: 450px) {
-  :root {
-    --website-content-padding: 1.5rem;
+    --website-content-padding: 3rem;
   }
 
   .responsive-display {
@@ -304,14 +313,26 @@ li:not(:last-child) {
   }
 }
 
-@media only screen and (max-width: 350px) {
-  :root {
-    --website-content-padding: 1rem;
+@media only screen and (max-width: 450px) {
+  #landing {
+    border-radius: 0;
+    width: 100%;
+    margin-top: 2rem;
+  }
+
+  main {
+    min-height: calc(100vh - 31rem);
+  }
+
+  header,
+  footer {
+    background: var(--cta-background-color);
+    height: unset;
   }
 }
 
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 350px) {
   :root {
-    --website-side-padding: 0rem;
+    --website-content-padding: 2rem;
   }
 }

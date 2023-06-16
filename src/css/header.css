@@ -1,7 +1,7 @@
 header {
     min-height: 5em;
     position: relative;
-    border-bottom: 1px solid var(--color-gray-20);
+    padding: 0 var(--website-padding);
 }
 
 .skip-link-wrapper {
@@ -34,10 +34,8 @@ header {
 }
 
 nav {
-    max-width: var(--website-content-max-width);
     padding: 0.5em var(--website-content-padding);
     margin: auto;
-    max-width: var(--website-content-max-width);
 }
 
 /* Nav */
