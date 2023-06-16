@@ -109,7 +109,7 @@ html[data-theme="DARK"] {
 
 ::selection {
   color: white;
-  background: var(--secondary-color);
+  background-color: #d11288;
 }
 
 html {
