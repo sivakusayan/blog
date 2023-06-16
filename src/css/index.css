@@ -107,9 +107,21 @@ html[data-theme="DARK"] {
   box-sizing: border-box;
 }
 
+/* TODO: Investigate why color variable isn't respected on Chrome in ::selection. */
 ::selection {
   color: white;
   background-color: #d11288;
+}
+html[data-theme="DARK"] ::selection{
+  background-color: #b2267c;
+}
+@media (prefers-color-scheme: dark) {
+  ::selection {
+    background-color: #b2267c;
+  }
+  html[data-theme="LIGHT"] ::selection{
+    background-color: #d11288;
+  }
 }
 
 html {
