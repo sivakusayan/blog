@@ -222,7 +222,9 @@ https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
   width: 1px;
 }
 
-h1,
+h1 {
+  margin-bottom: 2rem;
+}
 h2 {
   margin-bottom: 0.3rem;
 }
@@ -243,11 +245,11 @@ li:not(:last-child) {
 }
 
 .tidbits-container {
-  margin-top: 2rem;
+  margin-top: 1.5rem;
 }
 
 .tidbits-container li:not(:last-child) {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .tidbits-link-wrapper {
