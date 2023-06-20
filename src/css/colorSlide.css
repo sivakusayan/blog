@@ -1,27 +1,18 @@
-.color-slide-container {
-  position: relative;
-}
-
-.color-slide .text-above {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 1;
-}
-
 .color-slide {
+  position: relative;
   display: inline-block;
-  margin-bottom: 3rem;
 }
 
-.color-slide .text-above::before {
-  z-index: -1;
+.color-slide::before {
   content: "";
   position: absolute;
+  bottom: 0;
+  left: 0;
+
   background-color: var(--secondary-color);
   width: 1.25rem;
   height: 0px;
-  bottom: -1.25rem;
+  bottom: -2rem;
   animation: 0.2s grow 0.5s, 0.15s slide 1s;
   animation-fill-mode: forwards;
 }
@@ -38,21 +29,15 @@
   }
 }
 
-/** This is when the landing page header breaks onto two lines.
-    Increase the width to make it more dramatic 
-    (since the line would stop earlier without this). */
 @media only screen and (max-width: 450px) {
+  .color-slide::before {
+    bottom: -1.6rem;
+  }
+
   @keyframes slide {
     100% {
       width: 115%;
     }
-  }
-}
-
-/** Any smaller than this and the animation just looks weird. */
-@media only screen and (max-width: 230px) {
-  .color-slide .text-above {
-    display: none;
   }
 }
 
