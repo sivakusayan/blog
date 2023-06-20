@@ -7,7 +7,7 @@
   --website-content-padding: 4.5rem;
   --website-side-padding: 4rem;
 
-  font-size: calc(0.9375rem + 0.390625vw);
+  font-size: calc(0.9375rem + 0.3vw);
 }
 
 /* Theme colors */
@@ -156,10 +156,6 @@ details p {
   line-height: 1.4;
 }
 
-#landing p {
-  line-height: 1.45;
-}
-
 main {
   max-width: var(--website-content-max-width);
   margin: auto;
@@ -260,7 +256,7 @@ li:not(:last-child) {
 }
 
 #landing h1 {
-  font-size: clamp(2.5rem, 2rem + 1vw, 3.7rem)
+  font-size: clamp(2.5rem, 2rem + 1.2vw, 3.7rem)
 }
 
 .responsive-display {
