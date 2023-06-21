@@ -20,7 +20,7 @@ a[href]:visited:not(.ignore-visited-styling, .header-anchor):not(:hover) {
 
 a[href]:hover {
   color: var(--primary-color);
-  border-bottom: 0.3em solid var(--primary-color);
+  border-bottom: 0.3rem solid var(--primary-color);
 }
 
 a[href]:focus-visible {
