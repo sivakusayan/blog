@@ -60,20 +60,20 @@ html[data-theme="DARK"] {
     --color-gray-20: #393939;
     --color-gray-50: #C0C0C0;
     --color-gray-90: #cfcfcf;
-  
+
     --primary-color: #D35AA5;
     --secondary-color: #b2267c;
     --background-color: #1c1d22;
     --cta-background-color: #15161a;
     --details-background-color: var(--cta-background-color);
-  
+
     --text-color: var(--color-gray-90);
     --text-color-link: #c8c8d1;
     --text-color-link-visited: #868688;
-  
+
     --svg-hover-stroke-width: 2px;
     --link-underline-width: 1px;
-  
+
     --code-background-color: #272822;
     --code-font-weight: initial;
   }
@@ -112,14 +112,17 @@ html[data-theme="DARK"] {
   color: white;
   background-color: #d11288;
 }
-html[data-theme="DARK"] ::selection{
+
+html[data-theme="DARK"] ::selection {
   background-color: #b2267c;
 }
+
 @media (prefers-color-scheme: dark) {
   ::selection {
     background-color: #b2267c;
   }
-  html[data-theme="LIGHT"] ::selection{
+
+  html[data-theme="LIGHT"] ::selection {
     background-color: #d11288;
   }
 }
@@ -225,6 +228,7 @@ https://www.scottohara.me/blog/2017/04/14/inclusively-hidden.html
 h1 {
   margin-bottom: 1.5rem;
 }
+
 h2 {
   margin-bottom: 0.3rem;
 }
@@ -307,7 +311,7 @@ li:not(:last-child) {
 
 @media only screen and (max-width: 400px) {
   :root {
-    --website-content-padding: 1rem;
+    --website-content-padding: 2rem;
     --website-side-padding: 0rem;
   }
 
@@ -317,6 +321,12 @@ li:not(:last-child) {
 }
 
 @media only screen and (max-width: 300px) {
+  :root {
+    font-size: 90%;
+  }
+}
+
+@media only screen and (max-width: 265px) {
   :root {
     font-size: 80%;
   }

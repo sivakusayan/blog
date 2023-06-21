@@ -33,12 +33,6 @@
   .color-slide::before {
     bottom: -1.6rem;
   }
-
-  @keyframes slide {
-    100% {
-      width: 115%;
-    }
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
