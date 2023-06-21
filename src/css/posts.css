@@ -23,10 +23,6 @@
     margin-bottom: 0.5rem;
 }
 
-.tmpl-post p {
-    margin-bottom: 1rem;
-}
-
 details[open] p:last-child {
     margin-bottom: 0;
 }
