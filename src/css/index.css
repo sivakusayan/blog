@@ -29,7 +29,7 @@
   --svg-hover-stroke-width: 3px;
   --link-underline-width: 1.5px;
 
-  --code-background-color: #d8d6d6;
+  --code-background-color: #eaeaea;
   --code-font-weight: bold;
 }
 
@@ -96,7 +96,7 @@ html[data-theme="DARK"] {
     --svg-hover-stroke-width: 3px;
     --link-underline-width: 1.5px;
 
-    --code-background-color: #d8d6d6;
+    --code-background-color: #eaeaea;
     --code-font-weight: bold;
   }
 }
