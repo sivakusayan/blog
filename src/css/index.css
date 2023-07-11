@@ -8,6 +8,7 @@
     font-weight: 400;
     font-style: normal;
     line-height: 134%;
+    scroll-behavior: smooth;
 }
 
 em {
@@ -92,6 +93,12 @@ code {
 
 a {
     color: black;
+    transition: background-color 0.2s, outline 0.1s;
+}
+
+a:hover {
+    background-color: #76caff;
+    outline: 2px solid #0097F5;
 }
 
 header,
