@@ -1,0 +1,102 @@
+:root {
+    --spacing: 1rem;
+    --large-spacing: calc(var(--spacing) * 4);
+}
+
+* {
+    font-family: "source-sans-pro", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 134%;
+}
+
+em {
+    font-weight: 400;
+    font-style: italic;
+    font-family: "source-serif-pro", serif;
+}
+
+b {
+    font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+    line-height: 1.05;
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: var(--large-spacing);
+    margin-bottom: var(--spacing);
+}
+
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+    text-decoration: none;
+    color: inherit;
+    line-height: 1.1;
+}
+
+h2 span,
+h3 span,
+h4 span,
+h5 span,
+h6 span {
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+main,
+header,
+footer {
+    max-width: 60ch;
+    margin: auto;
+}
+
+p {
+    margin-bottom: var(--spacing);
+}
+
+.post-header {
+    margin-bottom: var(--large-spacing);
+}
+
+code {
+    font-family: monospace;
+    background-color: #f0f0f0;
+    padding: 0.1rem 0.2rem;
+    border-radius: 5px;
+}
+
+.header-anchor {
+    position: relative;
+}
+
+.anchor {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+}
+
+a {
+    color: black;
+}
+
+header,
+footer,
+details {
+    /* TEMPORARY: REMOVE LATER ONCE WE GET TYPOGRAPHY RIGHT */
+    display: none;
+}

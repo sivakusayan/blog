@@ -63,13 +63,12 @@ I'm seeing that browsers don't necessarily update the guess of whether a table i
 </details>
 </aside>
 
-## Heuristics
-### Determining table-ness via HTML
+## Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.
 
 <a href="https://codepen.io/sivakusayan/pen/LYgozwL">Codepen: Determining table-ness via the presence of HTML elements</a>
 
-### Determining table-ness via the number of rows
+## Determining table-ness via the number of rows
 All major browsers will attempt to count the number of rows that a table has, and if it has sufficiently many it will be declared a data table. Chrome, Edge, Firefox, and Safari all agree that a table with at least 20 rows is a data table.
 
 As soon as we make the table have 19 rows, however, every browser except Firefox considers the table a layout table.
@@ -86,21 +85,21 @@ As soon as we make the table have 19 rows, however, every browser except Firefox
 
 <a href="https://codepen.io/sivakusayan/pen/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
 
-### Determining table-ness via the CSS <code>background-color</code> of table rows
+## Determining table-ness via the CSS <code>background-color</code> of table rows
 The incorporation of CSS in this guessing algorithm is very interesting to me. 
 
 All four browsers seem to agree that a table with alternating <code>background-colors</code> on its rows is a data table, as long as the table has more than two rows. Firefox is the only browser that does not enforce a minimum of three rows when checking that the rows have alternating backgrounds.
 
 <a href="https://codepen.io/sivakusayan/pen/jOeoGoo">Codepen: Determining table-ness via the CSS background-color of table rows</a>
 
-### Determining table-ness via the CSS <code>background-color</code> of table cells
+## Determining table-ness via the CSS <code>background-color</code> of table cells
 Chrome, Edge, and Safari all check if any kind of <code>background-color</code> CSS property is defined on the table cell. If this is true for at least half of the cells in the table, then it becomes a data table. However, note that the <code>background-color</code> has to be explicitly defined on the <code>&lt;td&gt;</code> - defining the <code>background-color</code> on the <code>&lt;tr&gt;</code> won't work.
 
 Firefox does not seem to employ this heuristic at all.
 
 <a href="https://codepen.io/sivakusayan/pen/YzJbrmY">Codepen: Determining table-ness via the CSS background-color of table cells</a>
 
-### Determining table-ness via the CSS <code>border</code> of table cells
+## Determining table-ness via the CSS <code>border</code> of table cells
 All major browsers do checks on the border of table cells to help determine whether something is a data table or not.
 
  Chrome, Edge, and Safari check to see if *any* side of the table cell has a border. If this is true for at least half of the cells in the table, those browsers expose the table as a data table. 
