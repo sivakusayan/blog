@@ -61,11 +61,38 @@ h6 span {
     line-height: 1.1;
 }
 
+html,
+body {
+    scrollbar-gutter: both;
+}
+
 main,
-header,
-footer {
+nav,
+.footer-wrapper {
     max-width: 60ch;
     margin: auto;
+}
+
+nav,
+.footer-wrapper {
+    width: 60ch;
+}
+
+.footer-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: var(--medium-spacing);
+}
+
+header,
+footer {
+    background-color: black;
+    color: white;
+}
+
+header a,
+footer a {
+    color: white;
 }
 
 p {
@@ -108,8 +135,8 @@ a:hover {
 }
 
 a:focus {
-    outline: 4px solid #0097F5;
-    outline-offset: 1px;
+    outline: 5px solid #0097F5;
+    outline-offset: 0px;
 }
 
 details {
@@ -165,11 +192,6 @@ header {
     height: 5rem;
     position: relative;
     display: flex;
-}
-
-header a[href="#Skip"] {
-    position: absolute;
-    left: -20rem;
 }
 
 header ul {
@@ -228,7 +250,57 @@ header ul {
     }
 }
 
+.skip-link-wrapper {
+    position: absolute;
+    left: -10000px;
+    z-index: 2;
+    background-color: #000;
+    padding: 1rem;
+}
+
+.skip-link-wrapper:focus-within {
+    position: absolute;
+    left: 10%;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+header {
+    margin-bottom: var(--large-spacing);
+}
+
 footer {
-    /* TEMPORARY: REMOVE LATER ONCE WE GET TYPOGRAPHY RIGHT */
-    display: none;
+    margin-top: var(--large-spacing);
+}
+
+footer a,
+header a {
+    text-decoration: none;
+    padding: 0.25rem 0.5rem;
+}
+
+header ul {
+    margin-left: -0.5rem;
+}
+
+header a {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+}
+
+footer a:hover,
+header a:hover {
+    color: black;
+}
+
+.social-media,
+.theme-picker {
+    display: flex;
+    gap: var(--medium-spacing);
 }
