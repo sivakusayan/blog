@@ -14,7 +14,6 @@ To mitigate this issue when creating the accessibility tree, browsers try to gue
 
 I thought it would be interesting to look at this guessing algorithm in more detail. We will look at some minimal codepens of <code>&lt;tables&gt;</code> that start out as purely stylistic layout tables, and then tweak them *just barely enough* to make browsers think they are real data tables. 🙂
 
-<aside>
 <details>
 <summary>Definitions</summary>
 <dl>
@@ -28,6 +27,11 @@ I thought it would be interesting to look at this guessing algorithm in more det
 <dd>Any table that isn't a layout table.</dd>
 </dl>
 </details>
+
+## Notes on testing
+
+Only if you want to know the gritty technical details.
+
 <details>
     <summary>A note on how I tested</summary>
     As this article is only concerned with how browsers expose tables in the desktop accessibility APIs, here is how I get my results for each browser:
@@ -61,7 +65,6 @@ Finally, if you plan on modifying the HTML to experiment, you should use the Cod
 
 I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't always work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.
 </details>
-</aside>
 
 ## Determining table-ness via HTML
 All major browsers will attempt to search for certain table-specific semantic elements. If it finds any, it will abort the algorithm early and just declare the table to be a data table. Browsers seem to agree that tables with a <code>&lt;caption&gt;</code>, <code>&lt;thead&gt;</code>, or <code>&lt;tfoot&gt;</code> are all data tables.

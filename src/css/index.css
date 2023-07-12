@@ -106,13 +106,47 @@ a:hover {
 }
 
 a:focus {
-    outline: 5px solid #0097F5;
-    outline-offset: 2px;
+    outline: 4px solid #0097F5;
+    outline-offset: 1px;
+}
+
+details {
+    margin-bottom: var(--spacing);
+    border: 1.5px solid black;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.2s, outline 0.1s, outline-offset 0.1s, width 0.1s;
+    outline-offset: 12px;
+}
+
+details[open] summary {
+    margin-bottom: var(--spacing);
+}
+
+details:has(summary:hover) {
+    background-color: #9bd7fd;
+    border: 1.5px solid #0097F5;
+    cursor: pointer;
+}
+
+details summary {
+    outline: none;
+}
+
+details:has(summary:focus) {
+    outline: 4px solid #0097F5;
+    outline-offset: 1px;
+}
+
+dt {
+    font-weight: 700;
+}
+
+dd {
+    padding-left: var(--spacing);
 }
 
 header,
-footer,
-details {
+footer {
     /* TEMPORARY: REMOVE LATER ONCE WE GET TYPOGRAPHY RIGHT */
     display: none;
 }

@@ -4,11 +4,11 @@ templateClass: tmpl-post
 ---
 
 <div>
+<div class="post-content">
 <div class="post-header">
 <h1 id="Skip">{{ title }}</h1>
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
 </div>
-<div class="post-content">
 {{ content | safe }}
 </div>
 <a class="back-to-top ignore-visited-styling" href="#Skip">Go back to top &ShortUpArrow;</a>
