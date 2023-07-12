@@ -66,6 +66,11 @@ body {
     scrollbar-gutter: both;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 main,
 nav,
 .footer-wrapper {
@@ -299,8 +304,28 @@ header a:hover {
     color: black;
 }
 
-.social-media,
+.social-media {
+    display: flex;
+    gap: var(--spacing);
+    margin-left: -0.5rem;
+}
+
 .theme-picker {
     display: flex;
     gap: var(--medium-spacing);
+}
+
+footer {
+    padding: var(--medium-spacing);
+}
+
+footer a {
+    text-decoration: underline;
+}
+
+button {
+    background-color: transparent;
+    color: inherit;
+    border: 1.5px solid #fff;
+    padding: 0.5rem 1rem;
 }
