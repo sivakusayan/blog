@@ -1,5 +1,6 @@
 :root {
     --spacing: 1rem;
+    --medium-spacing: calc(var(--spacing) * 2);
     --large-spacing: calc(var(--spacing) * 4);
 }
 
@@ -111,11 +112,25 @@ a:focus {
 }
 
 details {
-    margin-bottom: var(--spacing);
+    margin: var(--medium-spacing) 0;
     border: 1.5px solid black;
     padding: 0.5rem 1rem;
-    transition: background-color 0.2s, outline 0.1s, outline-offset 0.1s, width 0.1s;
+    width: 45ch;
+    transition: background-color 0.2s, outline 0.1s, outline-offset 0.1s;
     outline-offset: 12px;
+    border-radius: 2px;
+}
+
+.details-grouper {
+    margin: var(--medium-spacing) 0;
+}
+
+.details-grouper details {
+    margin: var(--spacing) 0;
+}
+
+details[open] {
+    width: 60ch;
 }
 
 details[open] summary {
@@ -145,7 +160,24 @@ dd {
     padding-left: var(--spacing);
 }
 
-header,
+header {
+    height: 5rem;
+    position: relative;
+    display: flex;
+}
+
+header a[href="#Skip"] {
+    position: absolute;
+    left: -20rem;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing);
+    padding: 0;
+}
+
 footer {
     /* TEMPORARY: REMOVE LATER ONCE WE GET TYPOGRAPHY RIGHT */
     display: none;
