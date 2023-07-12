@@ -30,6 +30,7 @@ h5,
 h6 {
     font-weight: 700;
     line-height: 1.05;
+    outline: none;
 }
 
 h2,
@@ -176,6 +177,55 @@ header ul {
     list-style: none;
     gap: var(--spacing);
     padding: 0;
+}
+
+:target {
+    scroll-margin-top: 30px;
+    animation: 0.7s highlight;
+}
+
+
+@keyframes highlight {
+    0% {
+        outline: 8px solid #0097F5;
+        outline-offset: 20px;
+    }
+
+    70% {
+        outline-offset: 5px;
+        outline: 8px solid #0097F5;
+    }
+
+    100% {
+        outline: 8px solid transparent;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    :target {
+        outline-offset: 10px;
+        /* TODO: Currently the CSS reset disables all animations in reduced motion.
+        Maybe we should be a bit more granular here. */
+        animation: 0.6s highlight-reduced !important;
+    }
+
+    @keyframes highlight-reduced {
+        0% {
+            outline: 8px solid transparent;
+        }
+
+        20% {
+            outline: 8px solid #0097F5;
+        }
+
+        80% {
+            outline: 8px solid #0097F5;
+        }
+
+        100% {
+            outline: 8px solid transparent;
+        }
+    }
 }
 
 footer {
