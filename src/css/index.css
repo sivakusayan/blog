@@ -71,6 +71,10 @@ body {
     flex-direction: column;
 }
 
+main {
+    flex-grow: 1;
+}
+
 main,
 nav,
 .footer-wrapper {
@@ -106,6 +110,10 @@ p {
 
 .post-header {
     margin-bottom: var(--large-spacing);
+}
+
+main:not(.tmpl-post) h1 {
+    margin-bottom: var(--spacing);
 }
 
 code {
@@ -148,14 +156,19 @@ details {
     margin: var(--medium-spacing) 0;
     border: 1.5px solid black;
     padding: 0.5rem 1rem;
-    width: 45ch;
     transition: background-color 0.2s, outline 0.1s, outline-offset 0.1s;
     outline-offset: 12px;
     border-radius: 2px;
 }
 
+.post-tmpl details {
+    width: 45ch;
+}
+
 .details-grouper {
     margin: var(--medium-spacing) 0;
+    list-style: none;
+    padding: 0;
 }
 
 .details-grouper details {
@@ -328,4 +341,5 @@ button {
     color: inherit;
     border: 1.5px solid #fff;
     padding: 0.5rem 1rem;
+    border-radius: 2px;
 }
