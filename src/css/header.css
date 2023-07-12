@@ -1,0 +1,38 @@
+header {
+    height: 4rem;
+    position: relative;
+    display: flex;
+    margin-bottom: var(--large-spacing);
+
+    background-color: black;
+    color: white;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    gap: var(--spacing);
+    padding: 0;
+    margin-left: -0.5rem;
+}
+
+header a {
+    display: inline-block;
+    display: flex;
+    justify-content: center;
+    padding: 0.25rem 0.5rem;
+
+    color: white;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: black;
+}
+
+nav {
+    width: 60ch;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
