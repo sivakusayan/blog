@@ -8,6 +8,8 @@
     --text-color: #121212;
     --background-color: #f5f3f3;
 
+    --code-background-color: #e3e3e3;
+
     --header-text-color: #f5f3f3;
     --header-background-color: #171717;
 
@@ -22,8 +24,10 @@ html[data-theme="DARK"] {
     --text-color: #acaabd;
     --background-color: #0f0f10;
 
+    --code-background-color: #020202;
+
     --header-text-color: #acaabd;
-    --header-background-color: #09090a;
+    --header-background-color: #050505;
 
     --footer-text-color: #acaabd;
     --footer-background-color: #09090a;
@@ -36,6 +40,8 @@ html[data-theme="DARK"] {
     :root {
         --text-color: #9d9bad;
         --background-color: #0f0f10;
+
+        --code-background-color: #020202;
 
         --header-text-color: #acaabd;
         --header-background-color: #09090a;
@@ -50,6 +56,8 @@ html[data-theme="DARK"] {
     html[data-theme="LIGHT"] {
         --text-color: #121212;
         --background-color: #f5f3f3;
+
+        --code-background-color: #e3e3e3;
 
         --header-text-color: #f5f3f3;
         --header-background-color: #171717;
@@ -154,11 +162,16 @@ main:not(.tmpl-post) h1 {
     margin-bottom: var(--spacing);
 }
 
+pre,
 code {
     font-family: monospace;
-    background-color: #f0f0f0;
+    background-color: var(--code-background-color);
     padding: 0.1rem 0.2rem;
     border-radius: 5px;
+}
+
+pre {
+    padding: var(--spacing);
 }
 
 details {
