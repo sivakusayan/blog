@@ -1,9 +1,6 @@
 name: accessibility tests
 
-on: [push]
-
-env:
-    ELEVENTY_ENV: development
+on: [deployment_status]
 
 jobs:
   build:
