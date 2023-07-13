@@ -1,0 +1,16 @@
+@media (prefers-contrast: more) {
+    .theme-picker {
+        display: none;
+    }
+
+    a:hover {
+        outline-width: 4px;
+        outline-offset: 2px;
+    }
+
+    details:has(summary:hover) {
+        outline: 4px solid currentColor;
+        outline-offset: 6px;
+        transition: background-color 0.2s, outline 0.1s;
+    }
+}

@@ -90,3 +90,8 @@ a:focus {
     top: 50%;
     transform: translateY(-50%);
 }
+
+a.back-to-top {
+    display: inline-block;
+    margin: var(--medium-spacing) 0;
+}

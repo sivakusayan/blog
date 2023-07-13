@@ -28,12 +28,12 @@
 
 html[data-theme="DARK"] {
     --text-color: #969696;
-    --background-color: #0f0f10;
+    --background-color: #0c0c0e;
 
     --code-background-color: #020202;
 
     --header-text-color: #969696;
-    --header-background-color: #050505;
+    --header-background-color: #09090a;
 
     --footer-text-color: #969696;
     --footer-background-color: #09090a;
