@@ -43,7 +43,7 @@ html[data-theme="DARK"] {
 }
 
 html[data-theme="DARK"] ::selection {
-    background-color: #969696;
+    background-color: rgb(184, 184, 184);
     color: #0f0f10;
 }
 
@@ -65,7 +65,7 @@ html[data-theme="DARK"] ::selection {
     }
 
     ::selection {
-        background-color: #969696;
+        background-color: rgb(184, 184, 184);
         color: #0f0f10;
     }
 
