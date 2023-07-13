@@ -1,13 +1,3 @@
-.header-anchor {
-    position: relative;
-}
-
-.anchor {
-    position: absolute;
-    top: 0.25rem;
-    left: -1.5rem;
-}
-
 a[href] {
     color: var(--text-color);
     transition: background-color 0.2s;

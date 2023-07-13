@@ -23,6 +23,7 @@ footer a[href]:hover {
 
 .theme-picker {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--spacing);
 }
 
@@ -66,4 +67,11 @@ footer button[aria-pressed="true"] {
     color: var(--footer-background-color);
     border: 1.5px solid var(--footer-background-color);
     cursor: initial;
+}
+
+@media only screen and (max-width: 620px) {
+    .footer-wrapper {
+        width: auto;
+        margin: 0;
+    }
 }

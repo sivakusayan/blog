@@ -2,6 +2,8 @@
     --spacing: 1rem;
     --medium-spacing: calc(var(--spacing) * 2);
     --large-spacing: calc(var(--spacing) * 4);
+
+    font-size: clamp(100%, 90% + 0.5vi, 150%);
 }
 
 :root {
@@ -198,6 +200,7 @@ code {
 
 pre {
     padding: var(--spacing);
+    white-space: pre-wrap;
 }
 
 details {
@@ -284,6 +287,16 @@ ul.post-chain {
     font-weight: bold;
 }
 
+.header-anchor {
+    position: relative;
+}
+
+.anchor {
+    position: absolute;
+    top: 0.25rem;
+    left: -1.5rem;
+}
+
 .highlight {
     display: inline-block;
     position: relative;
@@ -300,7 +313,7 @@ ul.post-chain {
     z-index: -1;
     left: -1%;
     bottom: 0;
-    animation: 0.3s slide 0.5s;
+    animation: 0.3s background-slide 0.5s;
     animation-fill-mode: forwards;
     transition: background-color 0.2s;
 }
@@ -313,8 +326,56 @@ ul.post-chain {
     animation-delay: 2.5s;
 }
 
-@keyframes slide {
+@keyframes background-slide {
     100% {
         width: 102%;
+    }
+}
+
+@media only screen and (max-width: 620px) {
+    main {
+        max-width: unset;
+        margin: 0;
+        padding: 0 var(--medium-spacing);
+    }
+
+    .post-content details,
+    details[open] {
+        width: auto;
+    }
+
+    .anchor {
+        left: -1.2rem;
+    }
+
+    .highlight {
+        display: inline;
+        animation: 0.3s background-fade-in 0.5s;
+        transition: background-color 0.2s;
+        animation-fill-mode: forwards;
+    }
+
+    .highlight--delay {
+        animation-delay: 1.5s;
+    }
+
+    .highlight--delay-more {
+        animation-delay: 2.5s;
+    }
+
+    @keyframes background-fade-in {
+        100% {
+            background-color: var(--highlight-color);
+        }
+    }
+
+    .highlight::after {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 350px) {
+    ul {
+        padding-left: var(--spacing);
     }
 }
