@@ -30,15 +30,15 @@
 }
 
 html[data-theme="DARK"] {
-    --text-color: #969696;
+    --text-color: rgb(184, 184, 184);
     --background-color: #0c0c0e;
 
     --code-background-color: #020202;
 
-    --header-text-color: #969696;
+    --header-text-color: rgb(184, 184, 184);
     --header-background-color: #09090a;
 
-    --footer-text-color: #969696;
+    --footer-text-color: rgb(184, 184, 184);
     --footer-background-color: #09090a;
 
     --primary-color: #07659C;
@@ -47,21 +47,21 @@ html[data-theme="DARK"] {
 }
 
 html[data-theme="DARK"] ::selection {
-    background-color: rgb(184, 184, 184);
+    background-color: rgb(209, 209, 209);
     color: #0f0f10;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: #969696;
+        --text-color: rgb(184, 184, 184);
         --background-color: #0c0c0e;
 
         --code-background-color: #020202;
 
-        --header-text-color: #969696;
+        --header-text-color: rgb(184, 184, 184);
         --header-background-color: #09090a;
 
-        --footer-text-color: #969696;
+        --footer-text-color: rgb(184, 184, 184);
         --footer-background-color: #09090a;
 
         --primary-color: #07659C;
@@ -70,7 +70,7 @@ html[data-theme="DARK"] ::selection {
     }
 
     ::selection {
-        background-color: rgb(184, 184, 184);
+        background-color: rgb(209, 209, 209);
         color: #0f0f10;
     }
 
