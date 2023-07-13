@@ -233,6 +233,11 @@ hr {
     margin: var(--medium-spacing) 0;
 }
 
+::selection {
+    background-color: #134d6f;
+    color: white;
+}
+
 .postlist {
     list-style: none;
     padding: 0;
