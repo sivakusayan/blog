@@ -20,6 +20,13 @@
     --primary-background-color: #9bd7fd;
 }
 
+/* Need this hack as chrome doesn't support CSS variables in ::selection */
+
+::selection {
+    background-color: #121212;
+    color: #f5f3f3;
+}
+
 html[data-theme="DARK"] {
     --text-color: #acaabd;
     --background-color: #0f0f10;
@@ -34,6 +41,11 @@ html[data-theme="DARK"] {
 
     --primary-color: #07659C;
     --primary-background-color: #02304b;
+}
+
+html[data-theme="DARK"] ::selection {
+    background-color: #9d9bad;
+    color: #0f0f10;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +65,11 @@ html[data-theme="DARK"] {
         --primary-background-color: #02304b;
     }
 
+    ::selection {
+        background-color: #9d9bad;
+        color: #0f0f10;
+    }
+
     html[data-theme="LIGHT"] {
         --text-color: #121212;
         --background-color: #f5f3f3;
@@ -67,6 +84,11 @@ html[data-theme="DARK"] {
 
         --primary-color: #0097F5;
         --primary-background-color: #9bd7fd;
+    }
+
+    html[data-theme="LIGHT"] ::selection {
+        background-color: #121212;
+        color: #f5f3f3;
     }
 }
 
@@ -231,11 +253,6 @@ dd {
 
 hr {
     margin: var(--medium-spacing) 0;
-}
-
-::selection {
-    background-color: #134d6f;
-    color: white;
 }
 
 .postlist {
