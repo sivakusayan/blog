@@ -41,7 +41,7 @@ html[data-theme="DARK"] {
     --footer-text-color: rgb(184, 184, 184);
     --footer-background-color: #09090a;
 
-    --primary-color: #07659C;
+    --primary-color: #0872AF;
     --primary-background-color: #02304b;
     --highlight-color: rgb(22, 40, 67);
 }
@@ -64,7 +64,7 @@ html[data-theme="DARK"] ::selection {
         --footer-text-color: rgb(184, 184, 184);
         --footer-background-color: #09090a;
 
-        --primary-color: #07659C;
+        --primary-color: #0872AF;
         --primary-background-color: #02304b;
         --highlight-color: rgb(22, 40, 67);
     }
@@ -245,8 +245,8 @@ details summary {
 }
 
 details:has(summary:focus-visible) {
-    outline: 4px solid var(--primary-color);
-    outline-offset: 1px;
+    outline: 6px solid var(--primary-color);
+    outline-offset: 4px;
 }
 
 dt {
@@ -293,6 +293,7 @@ ul.post-chain {
 
 .anchor {
     position: absolute;
+    top: 0;
     left: -1.5rem;
 }
 
