@@ -7,6 +7,8 @@ tags:
 layout: layouts/post.njk
 ---
 
+WORK IN PROGRESS. Please come back in a couple of days :)
+
 Since I started doing contributions to the accessibility code in Chromium, I've learned a lot about just how complex accessibility can get, not only for web authors, but also for browsers and assistive technology. The most interesting things I have learned about is how CSS is involved in creating the accessibility tree (maybe that's a future blog post), as well as places where Chromium purposefully goes against the ARIA specifications. 
 I wanted to show some edge cases that you can directly verify yourself, using the <a href="https://developer.chrome.com/docs/devtools/accessibility/reference/#pane">accessibility inspector of a Chromium-based browser</a>. I'll also do my best to explain why that code is there, as much as I can from reading commit messages and bug reports, anyway.
 
