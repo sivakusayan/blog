@@ -49,6 +49,7 @@ currently minified. -->
     {{ footer() }}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/email-encryption.js" %}{% endjs %}
     <!-- Serve JS inline on prod for performance -->
     {%- if eleventy.env.runMode === "serve" %}
       <script src="{% getBundleFileUrl "js" %}"></script>

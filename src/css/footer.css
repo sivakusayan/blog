@@ -5,11 +5,11 @@ footer {
     color: var(--footer-text-color);
 }
 
-footer a {
+footer a[href] {
     color: var(--footer-text-color);
 }
 
-footer a:hover {
+footer a[href]:hover {
     color: var(--text-color);
 }
 
@@ -31,7 +31,7 @@ footer a:hover {
     margin-left: -0.5rem;
 }
 
-.social-media a {
+.social-media a[href] {
     display: inline-block;
     display: flex;
     justify-content: center;

@@ -3,7 +3,7 @@
         display: none;
     }
 
-    a:hover {
+    a[href]:hover {
         outline-width: 4px;
         outline-offset: 2px;
     }

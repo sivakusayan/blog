@@ -16,7 +16,7 @@ header ul {
     margin-left: -0.5rem;
 }
 
-header a {
+header a[href] {
     display: inline-block;
     display: flex;
     justify-content: center;
@@ -26,7 +26,7 @@ header a {
     text-decoration: none;
 }
 
-header a:hover {
+header a[href]:hover {
     color: var(--text-color);
 }
 

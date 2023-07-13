@@ -41,7 +41,7 @@ html[data-theme="DARK"] {
 
     --primary-color: #07659C;
     --primary-background-color: #02304b;
-    --highlight-color: #021637;
+    --highlight-color: rgb(22, 40, 67);
 }
 
 html[data-theme="DARK"] ::selection {
@@ -64,7 +64,7 @@ html[data-theme="DARK"] ::selection {
 
         --primary-color: #07659C;
         --primary-background-color: #02304b;
-        --highlight-color: #d5efff;
+        --highlight-color: rgb(22, 40, 67);
     }
 
     ::selection {
@@ -306,9 +306,12 @@ ul.post-chain {
 }
 
 .highlight--delay::after {
-    animation-delay: 2s;
+    animation-delay: 1.5s;
 }
 
+.highlight--delay-more::after {
+    animation-delay: 2.5s;
+}
 
 @keyframes slide {
     100% {
