@@ -21,22 +21,21 @@
 }
 
 /* Need this hack as chrome doesn't support CSS variables in ::selection */
-
 ::selection {
     background-color: #121212;
     color: #f5f3f3;
 }
 
 html[data-theme="DARK"] {
-    --text-color: #acaabd;
+    --text-color: #969696;
     --background-color: #0f0f10;
 
     --code-background-color: #020202;
 
-    --header-text-color: #acaabd;
+    --header-text-color: #969696;
     --header-background-color: #050505;
 
-    --footer-text-color: #acaabd;
+    --footer-text-color: #969696;
     --footer-background-color: #09090a;
 
     --primary-color: #07659C;
@@ -44,21 +43,21 @@ html[data-theme="DARK"] {
 }
 
 html[data-theme="DARK"] ::selection {
-    background-color: #9d9bad;
+    background-color: #969696;
     color: #0f0f10;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
-        --text-color: #9d9bad;
-        --background-color: #0f0f10;
+        --text-color: #969696;
+        --background-color: #0c0c0e;
 
         --code-background-color: #020202;
 
-        --header-text-color: #acaabd;
+        --header-text-color: #969696;
         --header-background-color: #09090a;
 
-        --footer-text-color: #acaabd;
+        --footer-text-color: #969696;
         --footer-background-color: #09090a;
 
         --primary-color: #07659C;
@@ -66,7 +65,7 @@ html[data-theme="DARK"] ::selection {
     }
 
     ::selection {
-        background-color: #9d9bad;
+        background-color: #969696;
         color: #0f0f10;
     }
 
@@ -96,7 +95,7 @@ html[data-theme="DARK"] ::selection {
     font-family: "source-sans-pro", sans-serif;
     font-weight: 400;
     font-style: normal;
-    line-height: 133%;
+    line-height: 135%;
     scroll-behavior: smooth;
 }
 
@@ -168,7 +167,7 @@ body {
 
 main {
     flex-grow: 1;
-    max-width: 60ch;
+    max-width: 62ch;
     margin: auto;
 }
 

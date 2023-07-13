@@ -21,6 +21,7 @@ currently minified. -->
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
     {%- css %}{% include "src/css/footer.css" %}{% endcss %}
     {%- css %}{% include "src/css/links.css" %}{% endcss %}
+    {%- css %}{% include "src/css/print-styles.css" %}{% endcss %}
     {%- if eleventy.env.runMode === "serve" %}
       <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
     {%- else  %}

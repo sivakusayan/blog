@@ -17,7 +17,7 @@ footer a:hover {
     display: flex;
     flex-direction: column;
     gap: var(--medium-spacing);
-    width: 60ch;
+    width: 62ch;
     margin: auto;
 }
 
@@ -65,4 +65,5 @@ footer button[aria-pressed="true"] {
     background-color: var(--footer-text-color);
     color: var(--footer-background-color);
     border: 1.5px solid var(--footer-background-color);
+    cursor: initial;
 }
