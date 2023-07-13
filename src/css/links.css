@@ -9,21 +9,21 @@
 }
 
 a {
-    color: black;
+    color: var(--text-color);
     transition: background-color 0.2s;
     outline-offset: 12px;
     transition: background-color 0.2s, outline 0.1s, outline-offset 0.1s;
 }
 
 a:hover {
-    background-color: #9bd7fd;
-    outline: 2px solid #0097F5;
+    background-color: var(--primary-background-color);
+    outline: 2px solid var(--primary-color);
     outline-offset: 0px;
     transition: background-color 0.2s, outline 0.1s;
 }
 
 a:focus {
-    outline: 5px solid #0097F5;
+    outline: 5px solid var(--primary-color);
     outline-offset: 0px;
 }
 
@@ -35,13 +35,13 @@ a:focus {
 
 @keyframes highlight {
     0% {
-        outline: 8px solid #0097F5;
+        outline: 8px solid var(--primary-color);
         outline-offset: 20px;
     }
 
     70% {
         outline-offset: 5px;
-        outline: 8px solid #0097F5;
+        outline: 8px solid var(--primary-color);
     }
 
     100% {
@@ -63,11 +63,11 @@ a:focus {
         }
 
         20% {
-            outline: 8px solid #0097F5;
+            outline: 8px solid var(--primary-color);
         }
 
         80% {
-            outline: 8px solid #0097F5;
+            outline: 8px solid var(--primary-color);
         }
 
         100% {
@@ -80,7 +80,7 @@ a:focus {
     position: absolute;
     left: -10000px;
     z-index: 2;
-    background-color: #000;
+    background-color: var(--header-background-color);
     padding: 1rem;
 }
 

@@ -1,16 +1,16 @@
 footer {
     padding: var(--medium-spacing);
     margin-top: var(--large-spacing);
-    background-color: black;
-    color: white;
+    background-color: var(--footer-background-color);
+    color: var(--footer-text-color);
 }
 
 footer a {
-    color: white;
+    color: var(--footer-text-color);
 }
 
 footer a:hover {
-    color: black;
+    color: var(--text-color);
 }
 
 .footer-wrapper {
@@ -41,7 +41,7 @@ footer a:hover {
 footer button {
     background-color: transparent;
     color: inherit;
-    border: 1.5px solid #fff;
+    border: 1.5px solid currentColor;
     padding: 0.5rem 1rem;
     border-radius: 2px;
 }

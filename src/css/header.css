@@ -4,8 +4,8 @@ header {
     display: flex;
     margin-bottom: var(--large-spacing);
 
-    background-color: black;
-    color: white;
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
 }
 
 header ul {
@@ -22,12 +22,12 @@ header a {
     justify-content: center;
     padding: 0.25rem 0.5rem;
 
-    color: white;
+    color: var(--header-text-color);
     text-decoration: none;
 }
 
 header a:hover {
-    color: black;
+    color: var(--text-color);
 }
 
 nav {
