@@ -9,7 +9,7 @@
     "serve": "npx @11ty/eleventy --serve",
     "start": "npx @11ty/eleventy --serve",
     "debug": "DEBUG=* npx @11ty/eleventy",
-    "pa11y-ci:sitemap": "pa11y-ci --debug --sitemap http://localhost:8080/sitemap.xml --sitemap-exclude \"/*.pdf\"",
+    "pa11y-ci:sitemap": "pa11y-ci --sitemap http://localhost:8080/sitemap.xml",
     "test:pa11y-ci": "npx start-server-and-test start 8080 pa11y-ci:sitemap"
   },
   "repository": {
