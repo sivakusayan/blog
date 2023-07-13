@@ -234,7 +234,7 @@ details[open] summary {
     margin-bottom: var(--spacing);
 }
 
-details:has(summary:hover) {
+details.hover {
     background-color: var(--primary-background-color);
     border: 1.5px solid var(--primary-color);
     cursor: pointer;
@@ -244,7 +244,7 @@ details summary {
     outline: none;
 }
 
-details:has(summary:focus-visible) {
+details.focus {
     outline: 6px solid var(--primary-color);
     outline-offset: 4px;
 }

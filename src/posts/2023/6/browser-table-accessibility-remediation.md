@@ -4,7 +4,6 @@ description: Looking at some minimal codepens that demonstrate how browsers dist
 date: 2023-06-06
 tags:
   - Accessibility
-  - Tables
 layout: layouts/post.njk
 ---
 
