@@ -7,6 +7,8 @@ tags:
 layout: layouts/post.njk
 ---
 
+WORK IN PROGRESS. Come back in a couple of days :)
+
 Something that has always been interesting to me are edge cases where Chromium intentionally ignores specific guidance in the ARIA specifications, whether it be for performance reasons or otherwise.
 
 I've crafted some minimal codepens that show these edge cases in effect - you can then verify Chromium's behavior yourself, using the <a href="https://developer.chrome.com/docs/devtools/accessibility/reference/#pane">accessibility inspector of a Chromium-based browser</a>. I'll also give my interpretation of why that code is there, from what I can gather from commit messages and discussions in bug reports.
