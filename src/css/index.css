@@ -31,7 +31,7 @@
 
 html[data-theme="DARK"] {
     --text-color: rgb(184, 184, 184);
-    --background-color: #0c0c0e;
+    --background-color: #0f0f11;
 
     --code-background-color: #020202;
 
@@ -54,7 +54,7 @@ html[data-theme="DARK"] ::selection {
 @media (prefers-color-scheme: dark) {
     :root {
         --text-color: rgb(184, 184, 184);
-        --background-color: #0c0c0e;
+        --background-color: #0f0f11;
 
         --code-background-color: #020202;
 
