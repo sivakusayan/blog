@@ -1,4 +1,6 @@
 :root {
+    --tiny-spacing: calc(var(--spacing) / 4);
+    --small-spacing: calc(var(--spacing) / 2);
     --spacing: 1rem;
     --medium-spacing: calc(var(--spacing) * 2);
     --large-spacing: calc(var(--spacing) * 4);
@@ -181,6 +183,10 @@ p {
     margin-bottom: var(--spacing);
 }
 
+li {
+    margin-top: var(--tiny-spacing);
+}
+
 .post-header {
     margin-bottom: var(--large-spacing);
 }
@@ -206,7 +212,7 @@ pre {
 details {
     margin: var(--medium-spacing) 0;
     border: 1.5px solid var(--text-color);
-    padding: 0.5rem 1rem;
+    padding: var(--small-spacing) var(--spacing);
     transition: background-color 0.2s, color 0.1s, outline 0.1s, outline-offset 0.1s;
     outline-offset: 12px;
     border-radius: 2px;
@@ -250,6 +256,7 @@ details.focus {
 }
 
 dt {
+    margin-top: var(--tiny-spacing);
     font-weight: 700;
 }
 
@@ -274,8 +281,9 @@ hr {
     margin-top: var(--medium-spacing);
 }
 
-.tidbits a {
-    margin-bottom: var(--spacing);
+.tidbits li a:first-of-type {
+    display: block;
+    margin-bottom: var(--tiny-spacing);
 }
 
 ul.post-chain {
