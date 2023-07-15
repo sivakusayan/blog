@@ -69,7 +69,7 @@ footer button[aria-pressed="true"] {
     cursor: initial;
 }
 
-@media only screen and (max-width: 620px) {
+@media only screen and (max-width: 660px) {
     .footer-wrapper {
         width: auto;
         margin: 0;

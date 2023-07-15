@@ -175,7 +175,7 @@ body {
 
 main {
     flex-grow: 1;
-    max-width: 62ch;
+    width: 62ch;
     margin: auto;
 }
 
@@ -379,6 +379,14 @@ ul.post-chain {
 
     .highlight::after {
         display: none;
+    }
+}
+
+@media only screen and (max-width: 660px) {
+    main {
+        width: auto;
+        margin: 0;
+        padding: 0 var(--medium-spacing);
     }
 }
 
