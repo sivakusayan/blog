@@ -32,7 +32,17 @@ const setTheme = (theme) => {
   currentToggledButton.setAttribute("aria-pressed", "true");
 };
 
-lightThemeButton.onclick = (e) => setTheme(Themes.LIGHT);
-darkThemeButton.onclick = (e) => setTheme(Themes.DARK);
-systemThemeButton.onclick = (e) => setTheme(Themes.SYSTEM);
+const onThemeButtonClick = (e, theme) => {
+  const { top } = e.currentTarget.getBoundingClientRect();
+  setTheme(theme);
+  const { top: newTop } = e.currentTarget.getBoundingClientRect();
+  window.scrollBy({
+    top: newTop - top,
+    behavior: "instant"
+  });
+};
+
+lightThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.LIGHT);
+darkThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.DARK);
+systemThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.SYSTEM);
 if ("theme" in localStorage) setTheme(localStorage.theme);

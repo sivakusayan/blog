@@ -7,7 +7,7 @@ a[href] {
 
 a[href]:hover {
     background-color: var(--primary-background-color);
-    outline: 2px solid var(--primary-color);
+    outline: var(--hover-outline-width) solid var(--primary-color);
     outline-offset: 0px;
     transition: background-color 0.2s, outline 0.1s;
 }
