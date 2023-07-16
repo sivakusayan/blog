@@ -7,6 +7,7 @@ const { headerLink } = require("./scripts/permalink.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
+const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 const postcss = require('postcss');
 const cssnano = require('cssnano');
@@ -20,6 +21,7 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
+  eleventyConfig.addPlugin(pluginRss);
   eleventyConfig.addPlugin(pluginBundler, {
     transforms: [
       async function (code) {
