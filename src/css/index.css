@@ -26,7 +26,7 @@
     --header-line-height: 1.1;
     --paragraph-line-height: 1.31;
     --spacing: 1rem;
-    --hover-outline-width: 2px;
+    --hover-outline-width: 3px;
 }
 
 /* Need this hack as chrome doesn't support CSS variables in ::selection */
@@ -47,7 +47,7 @@ html[data-theme="DARK"] {
     --footer-text-color: rgb(194, 194, 194);
     --footer-background-color: #09090a;
 
-    --primary-color: #0872AF;
+    --primary-color: #0982C8;
     --primary-background-color: #02304b;
     --highlight-color: rgb(22, 40, 67);
 
@@ -75,7 +75,7 @@ html[data-theme="DARK"] ::selection {
         --footer-text-color: rgb(194, 194, 194);
         --footer-background-color: #09090a;
     
-        --primary-color: #0872AF;
+        --primary-color: #0982C8;
         --primary-background-color: #02304b;
         --highlight-color: rgb(22, 40, 67);
     
@@ -109,7 +109,7 @@ html[data-theme="DARK"] ::selection {
         --header-line-height: 1.1;
         --paragraph-line-height: 1.31;
         --spacing: 1rem;
-        --hover-outline-width: 2px;
+        --hover-outline-width: 3px;
     }
 
     html[data-theme="LIGHT"] ::selection {
