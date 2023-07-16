@@ -52,7 +52,7 @@ html[data-theme="DARK"] {
     --highlight-color: rgb(22, 40, 67);
 
     --header-line-height: 1.15;
-    --paragraph-line-height: 1.45;
+    --paragraph-line-height: 1.4;
     --spacing: 1.1rem;
     --hover-outline-width: 3px;
 }
@@ -80,7 +80,7 @@ html[data-theme="DARK"] ::selection {
         --highlight-color: rgb(22, 40, 67);
     
         --header-line-height: 1.15;
-        --paragraph-line-height: 1.45;
+        --paragraph-line-height: 1.4;
         --spacing: 1.1rem;
         --hover-outline-width: 3px;
     }

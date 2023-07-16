@@ -32,6 +32,8 @@ const setTheme = (theme) => {
   currentToggledButton.setAttribute("aria-pressed", "true");
 };
 
+// Since we are currently adjusting line-height and margin based on the theme,
+// we need to adjust the scroll position after the theme is changed.
 const onThemeButtonClick = (e, theme) => {
   const { top } = e.currentTarget.getBoundingClientRect();
   setTheme(theme);
