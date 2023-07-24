@@ -4,7 +4,7 @@
     --medium-spacing: calc(var(--spacing) * 2);
     --large-spacing: calc(var(--spacing) * 4);
 
-    font-size: clamp(100%, 90% + 0.5vi, 150%);
+    font-size: clamp(100%, 90% + 0.5vi, 130%);
 }
 
 :root {
@@ -25,7 +25,7 @@
 
     --header-line-height: 1.1;
     --paragraph-line-height: 1.31;
-    --spacing: 1rem;
+    --spacing: 1.1rem;
     --hover-outline-width: 3px;
 }
 
@@ -52,8 +52,8 @@ html[data-theme="DARK"] {
     --highlight-color: rgb(22, 40, 67);
 
     --header-line-height: 1.15;
-    --paragraph-line-height: 1.4;
-    --spacing: 1.1rem;
+    --paragraph-line-height: 1.39;
+    --spacing: 1.2rem;
     --hover-outline-width: 3px;
 }
 
@@ -80,8 +80,8 @@ html[data-theme="DARK"] ::selection {
         --highlight-color: rgb(22, 40, 67);
     
         --header-line-height: 1.15;
-        --paragraph-line-height: 1.4;
-        --spacing: 1.1rem;
+        --paragraph-line-height: 1.39;
+        --spacing: 1.2rem;
         --hover-outline-width: 3px;
     }
 
@@ -108,7 +108,7 @@ html[data-theme="DARK"] ::selection {
 
         --header-line-height: 1.1;
         --paragraph-line-height: 1.31;
-        --spacing: 1rem;
+        --spacing: 1.1rem;
         --hover-outline-width: 3px;
     }
 
