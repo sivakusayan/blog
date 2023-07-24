@@ -30,14 +30,14 @@ header a[href]:hover {
     color: var(--text-color);
 }
 
-nav {
+header nav {
     width: 62ch;
     margin: auto;
     display: flex;
     align-items: center;
 }
 
-nav .active {
+header nav .active {
     border-bottom: 2px solid currentColor;
     margin-bottom: -2px;
     cursor: default;
@@ -45,7 +45,7 @@ nav .active {
 }
 
 @media only screen and (max-width: 660px) {
-    nav {
+    header nav {
         width: auto;
         margin: 0;
         padding: 0 var(--medium-spacing);
