@@ -363,14 +363,6 @@ ul.post-chain {
     transition: background-color 0.2s;
 }
 
-.highlight--delay::after {
-    animation-delay: 1.5s;
-}
-
-.highlight--delay-more::after {
-    animation-delay: 2.5s;
-}
-
 @keyframes background-slide {
     100% {
         width: 102%;
@@ -398,14 +390,6 @@ ul.post-chain {
         animation: 0.3s background-fade-in 0.5s;
         transition: background-color 0.2s;
         animation-fill-mode: forwards;
-    }
-
-    .highlight--delay {
-        animation-delay: 1.5s;
-    }
-
-    .highlight--delay-more {
-        animation-delay: 2.5s;
     }
 
     @keyframes background-fade-in {
