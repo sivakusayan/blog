@@ -343,6 +343,20 @@ ul.post-chain {
   left: -1.5rem;
 }
 
+.copy-notification-container {
+  font-size: 80%;
+  transition: margin 0.2s, padding 0.2s;
+}
+
+.copy-notification-container:not(:empty) {
+  background-color: var(--text-color);
+  color: var(--background-color);
+  margin-bottom: var(--spacing);
+  padding: var(--small-spacing);
+  border-radius: 2px;
+  display: inline-block;
+}
+
 .highlight {
   display: inline-block;
   position: relative;
