@@ -30,9 +30,18 @@
 }
 
 /* Need this hack as chrome doesn't support CSS variables in ::selection */
+/* Furthermore, we need to set selection color opacity to 0.99 for this bug in Safari:
+https://github.com/w3c/csswg-drafts/issues/6853
+*/
 ::selection {
-  background-color: #121212;
-  color: #f5f3f3;
+  background-color: rgb(18, 18, 18, 0.99);
+  color: rgb(245, 243, 243, 0.99);
+}
+
+header ::selection,
+footer ::selection {
+  background-color: rgb(245, 243, 243, 0.99);
+  color: rgb(18, 18, 18, 0.99);
 }
 
 html[data-theme="DARK"] {
@@ -58,8 +67,8 @@ html[data-theme="DARK"] {
 }
 
 html[data-theme="DARK"] ::selection {
-  background-color: rgb(215, 215, 215);
-  color: #0f0f10;
+  background-color: rgb(215, 215, 215, 0.99);
+  color: rgb(6, 6, 6, 0.99);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -86,8 +95,8 @@ html[data-theme="DARK"] ::selection {
   }
 
   ::selection {
-    background-color: rgb(215, 215, 215);
-    color: #0f0f10;
+    background-color: rgb(215, 215, 215, 0.99);
+    color: rgb(6, 6, 6, 0.99);
   }
 
   html[data-theme="LIGHT"] {
@@ -113,8 +122,14 @@ html[data-theme="DARK"] ::selection {
   }
 
   html[data-theme="LIGHT"] ::selection {
-    background-color: #121212;
-    color: #f5f3f3;
+    background-color: rgb(18, 18, 18, 0.99);
+    color: rgb(245, 243, 243, 0.99);
+  }
+
+  html[data-theme="LIGHT"] header ::selection,
+  html[data-theme="LIGHT"] footer ::selection {
+    background-color: rgb(245, 243, 243, 0.99);
+    color: rgb(18, 18, 18, 0.99);
   }
 }
 
