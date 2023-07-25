@@ -3,6 +3,7 @@ const headers = document
   .querySelectorAll("h2,h3,h4,h5,h6");
 console.log(headers);
 let lastActiveNotification = null;
+let lastActiveTimeout = null;
 
 headers.forEach((header) => {
   const liveRegion = document.createElement("div");
@@ -19,10 +20,11 @@ headers.forEach((header) => {
 
     if (lastActiveNotification) {
       lastActiveNotification.innerHTML = "";
+      clearTimeout(lastActiveTimeout);
     }
     liveRegion.innerHTML = "&#10003; Copied permalink to clipboard";
     lastActiveNotification = liveRegion;
-    setTimeout(() => {
+    lastActiveTimeout = setTimeout(() => {
       liveRegion.innerHTML = "";
     }, 5000);
   };
