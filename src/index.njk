@@ -10,13 +10,14 @@ eleventyNavigation:
     Sayan Sivakumaran
   </h1>
   <p>Hello! I'm a software developer with 3 years of experience doing full stack development in React, TypeScript, and C#.</p>
-  <p>In my free time, I'm also a contributor to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, the code that powers Google Chrome and Microsoft Edge. Most of my work has been in Blink, Chromium's rendering engine.</p>
+  <p>In my free time, I'm also a contributor to the <a href="https://www.chromium.org/chromium-projects/">Chromium project</a>, the code that powers Google Chrome and Microsoft Edge. Most of my work touches the accessibility code in Blink, Chromium's rendering engine.</p>
   <p>Feel free to check out <a href="https://chromium-review.googlesource.com/q/Sayan+Sivakumaran+status:%22NEW%22">what I'm currently working on</a>, and what <a href="https://chromium-review.googlesource.com/q/Sayan+Sivakumaran+status:%22MERGED%22">I have already done</a>. You can also check out <a href="/posts">my blog</a>, if you'd like. 🙂</p>
-  <p><span class="highlight">By the way, I'm looking for work.</span> If you're interested, <a id="contact">drop me a line</a> and we can see if we're a good fit.</p>
+  <p>
+    <span class="highlight">By the way, I'm looking for work.</span> If you're interested, <a id="contact">drop me a line</a> and we can see if we're a good fit.</p>
 </div>
 
 <div>
-<h2>Recent blog posts</h2>
-{% set postslist = collections.posts %}
-{% include "partials/postslist.njk" %}
+  <h2>Recent blog posts</h2>
+  {% set postslist = collections.posts %}
+  {% include "partials/postslist.njk" %}
 </div>
