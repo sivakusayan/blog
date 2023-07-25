@@ -1,0 +1,28 @@
+{% macro commentForm() %}
+    <h2>Leave a comment</h2>
+    <p>
+        You'll need to enter your email to leave a comment. I'll never spam you, promise.
+    </p>
+
+    <form name="comments-queue" netlify-honeypot="full-name" action="/thanks" netlify>
+        <p class="honey">
+            <input name="path" type="hidden" value="{{ page.url }}">
+            <label>Your full name: <input name="full-name"></label>
+        </p>
+        <p>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name">
+        </p>
+        <p>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email">
+        </p>
+        <p>
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment"></textarea>
+        </p>
+        <p>
+            <button type="submit" class="btn">Post your comment</button>
+        </p>
+    </form>
+{% endmacro %}

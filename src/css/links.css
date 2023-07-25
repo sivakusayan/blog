@@ -1,6 +1,5 @@
 a[href] {
     color: var(--text-color);
-    transition: background-color 0.2s;
     outline-offset: 12px;
     transition: color 0.2s, background-color 0.2s, outline 0.1s, outline-offset 0.1s;
 }
