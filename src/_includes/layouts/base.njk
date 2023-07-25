@@ -13,14 +13,13 @@ currently minified. -->
     <meta name="description" content="{{ description or metadata.description }}">
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
-    <link rel="preload" as="style" href="https://use.typekit.net/osn2dtq.css">
-    <link rel="stylesheet" href="https://use.typekit.net/osn2dtq.css">
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
     <link rel="manifest" href="/favicon/site.webmanifest">
 
     <!-- Serve CSS inline on prod for performance -->
+    {%- css %}{% include "src/css/typography.css" %}{% endcss %}
     {%- css %}{% include "src/css/reset.css" %}{% endcss %}
     {%- css %}{% include "src/css/index.css" %}{% endcss %}
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
