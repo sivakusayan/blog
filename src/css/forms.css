@@ -12,7 +12,7 @@ textarea {
     background-color: transparent;
     border: 1px solid var(--text-color);
     color: var(--text-color);
-    padding: var(--tiny-spacing);
+    padding: var(--small-spacing);
     outline: 5px solid transparent;
 
     outline-offset: 12px;

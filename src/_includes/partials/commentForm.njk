@@ -1,8 +1,9 @@
 {% macro commentForm() %}
     <h2>Leave a comment</h2>
     <p>
-        You'll need to enter your email to leave a comment. I'll never spam you, promise.
+        You'll need to enter your email to leave a comment. This serves as a deterrent against spam, and also enables me to pull in your <a href="https://en.gravatar.com">Gravatar</a> avatar if you have one.
     </p>
+    <p>Your email will not be displayed, and I'll never spam you - promise.</p>
 
     <form name="comments-queue" netlify-honeypot="full-name" action="/thanks" netlify>
         <p class="honey">
@@ -11,15 +12,15 @@
         </p>
         <p>
             <label for="name">Name</label>
-            <input type="text" name="name" id="name">
+            <input type="text" name="name" id="name" autocomplete="name" required>
         </p>
         <p>
             <label for="email">Email</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" autocomplete="email" required>
         </p>
         <p>
             <label for="comment">Comment</label>
-            <textarea name="comment" id="comment"></textarea>
+            <textarea name="comment" id="comment" required></textarea>
         </p>
         <p>
             <button type="submit" class="btn">Post your comment</button>
