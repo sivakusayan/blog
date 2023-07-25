@@ -190,6 +190,12 @@ h3 span {
   line-height: var(--header-line-height);
 }
 
+h1.huge {
+  font-size: 4rem;
+  line-height: 0.9;
+  letter-spacing: -3px;
+}
+
 html {
   background-color: var(--background-color);
   color: var(--text-color);
@@ -441,7 +447,19 @@ ul.post-chain {
   }
 }
 
+@media only screen and (max-width: 450px) {
+  h1.huge {
+    font-size: 3rem;
+    letter-spacing: -1px;
+  }
+}
+
 @media only screen and (max-width: 350px) {
+  h1.huge {
+    font-size: 2rem;
+    letter-spacing: unset;
+  }
+
   ul {
     padding-left: var(--spacing);
   }
