@@ -11,9 +11,10 @@ headers.forEach((header) => {
   liveRegion.className = "copy-notification-container";
 
   header.after(liveRegion);
+  const link = header.querySelector("a");
 
-  header.onclick = () => {
-    const url = header.querySelector("a").href;
+  link.onclick = () => {
+    const url = link.href;
     navigator.clipboard.writeText(url);
 
     if (lastActiveNotification) {
