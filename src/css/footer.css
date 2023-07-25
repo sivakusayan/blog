@@ -39,29 +39,6 @@ footer a[href]:hover {
     padding: 0.25rem 0.5rem;
 }
 
-footer button {
-    background-color: transparent;
-    outline-offset: 20px;
-    color: inherit;
-    border: 1.5px solid currentColor;
-    padding: 0.5rem 1rem;
-    border-radius: 2px;
-
-    transition: color 0.1s, background-color 0.1s, border-color 0.1s, outline 0.1s, outline-offset 0.1s;
-}
-
-footer button:hover {
-    border: 1.5px solid var(--primary-color);
-    background-color: var(--primary-background-color);
-    color: var(--text-color);
-    cursor: pointer;
-}
-
-footer button:focus {
-    outline: 5px solid var(--primary-color);
-    outline-offset: 7px;
-}
-
 footer button[aria-pressed="true"] {
     background-color: var(--footer-text-color);
     color: var(--footer-background-color);

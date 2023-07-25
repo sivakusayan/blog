@@ -5,3 +5,5 @@ yarn.lock
 .DS_STORE
 .editorconfig
 .env
+# Local Netlify folder
+.netlify
