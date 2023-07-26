@@ -194,6 +194,7 @@ h1.huge {
   font-size: 4rem;
   line-height: 0.9;
   letter-spacing: -3px;
+  margin-bottom: var(--medium-spacing);
 }
 
 html {
@@ -231,7 +232,7 @@ li {
   margin-bottom: var(--large-spacing);
 }
 
-main:not(.tmpl-post) h1 {
+main:not(.tmpl-post) h1:not(.huge) {
   margin-bottom: var(--spacing);
 }
 
