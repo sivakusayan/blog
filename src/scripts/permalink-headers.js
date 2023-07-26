@@ -1,7 +1,6 @@
 const headers = document
   .querySelector("main")
   .querySelectorAll("h2,h3,h4,h5,h6");
-console.log(headers);
 let lastActiveNotification = null;
 let lastActiveTimeout = null;
 
