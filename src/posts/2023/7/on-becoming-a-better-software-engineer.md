@@ -71,10 +71,10 @@ I'm still not sure how I didn't catch it while I was testing, given that:
 - I'm an extremely paranoid person and look at my patches with a lot of scrutiny out of fear of breaking something.
 - I updated a fair amount of integration tests, added new integration tests, and even improved the <a href="https://chromium.googlesource.com/chromium/src/+/HEAD/content/test/data/accessibility/readme.md">dump tree testing</a> code to make it more airtight when it comes to changes like this.
 
-Thankfully, this bug isn't breaking anything since:
+Thankfully, this bug shouldn't be breaking anything since:
 
 - The code I submitted is implementing a new feature of ARIA, so websites shouldn't be using it in production right now.
-- The bug existed before the <code>aria-errormessage</code> change
+- At most, it causes error messages to be read in the wrong order, which while confusing <em>probably</em> isn't a blocker.
 - I caught it in Chrome Canary.
 
 Oh well, I released a buggy implementation - I'll commit a fix for it and learn from this.
