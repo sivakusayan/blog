@@ -195,6 +195,11 @@ h1.huge {
   line-height: 0.9;
   letter-spacing: -3px;
   margin-bottom: var(--medium-spacing);
+  /* 
+  Yes, this is a magic number. With optical adjustments this isn't necessarily bad.
+  https://rafaltomal.com/optically-perfect/
+  */
+  margin-left: -4px;
 }
 
 html {
@@ -452,6 +457,7 @@ ul.post-chain {
   h1.huge {
     font-size: 3rem;
     letter-spacing: -1px;
+    margin-left: -2px;
   }
 }
 
