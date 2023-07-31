@@ -257,7 +257,8 @@ pre {
 }
 
 details {
-  margin: var(--medium-spacing) 0;
+    margin: var(--medium-spacing) 0;
+    transition: height 0.1s, width 0.1s;
 }
 
 details summary {
@@ -301,8 +302,9 @@ details[open] summary {
 }
 
 details[open] .details-content {
-  margin: var(--small-spacing) 0;
-  padding: var(--small-spacing) var(--spacing);
+    margin: var(--small-spacing) 0;
+    padding: var(--small-spacing) var(--spacing);
+    width: 60ch;
 }
 
 details[open] .details-content *:last-child {
@@ -424,10 +426,11 @@ video {
     padding: 0 var(--medium-spacing);
   }
 
-  .post-content details,
-  details[open] {
-    width: auto;
-  }
+    .post-content details,
+    details[open],
+    details[open] .details-content {
+        width: auto;
+    }
 
   .anchor {
     left: -1.2rem;
