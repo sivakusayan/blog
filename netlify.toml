@@ -2,6 +2,6 @@
   publish = "_site"
   command = "npm run build"
 [[headers]]
-  for = "/_site/fonts/*"
+  for = "/fonts/*"
     [headers.values]
     Cache-Control = "public, max-age=2592000"
