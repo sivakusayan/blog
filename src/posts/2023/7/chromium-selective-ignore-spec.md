@@ -5,6 +5,7 @@ date: 2023-07-12
 tags:
   - Accessibility
 layout: layouts/post.njk
+eleventyExcludeFromCollections: true
 ---
 
 WORK IN PROGRESS. Come back in a couple of days :)
