@@ -15,6 +15,7 @@ const uglifyJS = require("uglify-js");
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
+  eleventyConfig.addPassthroughCopy("src/fonts");
   eleventyConfig.addPassthroughCopy("src/favicon");
   eleventyConfig.addPassthroughCopy("src/posts/resources");
   eleventyConfig.addPassthroughCopy("src/scripts");

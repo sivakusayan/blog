@@ -4,6 +4,8 @@
   --medium-spacing: calc(var(--spacing) * 2);
   --large-spacing: calc(var(--spacing) * 4);
 
+  --max-content-width: 62ch;
+
   font-size: clamp(100%, 90% + 0.5vi, 130%);
 }
 
@@ -24,8 +26,8 @@
   --highlight-color: #d5efff;
 
   --header-line-height: 1.1;
-  --paragraph-line-height: 1.31;
-  --spacing: 1.1rem;
+  --paragraph-line-height: 1.34;
+  --spacing: 1.12rem;
   --hover-outline-width: 3px;
 }
 
@@ -116,8 +118,8 @@ html[data-theme="DARK"] ::selection {
     --highlight-color: #d5efff;
 
     --header-line-height: 1.1;
-    --paragraph-line-height: 1.31;
-    --spacing: 1.1rem;
+    --paragraph-line-height: 1.34;
+    --spacing: 1.12rem;
     --hover-outline-width: 3px;
   }
 
@@ -221,7 +223,7 @@ body {
 
 main {
   flex-grow: 1;
-  width: 62ch;
+  width: var(--max-content-width);
   margin: auto;
 }
 

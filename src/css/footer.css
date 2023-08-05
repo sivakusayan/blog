@@ -17,7 +17,7 @@ footer a[href]:hover {
     display: flex;
     flex-direction: column;
     gap: var(--medium-spacing);
-    width: 62ch;
+    width: var(--max-content-width);
     margin: auto;
 }
 
