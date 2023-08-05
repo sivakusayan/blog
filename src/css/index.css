@@ -258,7 +258,6 @@ pre {
 
 details {
     margin: var(--medium-spacing) 0;
-    transition: height 0.1s, width 0.1s;
 }
 
 details summary {
