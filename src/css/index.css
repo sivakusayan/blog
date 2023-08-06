@@ -4,7 +4,9 @@
   --medium-spacing: calc(var(--spacing) * 2);
   --large-spacing: calc(var(--spacing) * 4);
 
-  --max-content-width: 62ch;
+  /* We unfortunately cannot use ch units to define the width here, as
+   that causes flash of unstyled fonts with web fonts. Just hardcode it for now.*/
+  --max-content-width: 30.8rem;
 
   font-size: clamp(100%, 90% + 0.5vi, 130%);
 }
