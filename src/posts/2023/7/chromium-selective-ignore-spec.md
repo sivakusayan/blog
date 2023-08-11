@@ -22,9 +22,11 @@ This post is more a tour on interesting pieces of Chromium code, rather than any
 Therefore, I am not testing with any assistive technology, and am just checking what Chromium tells me through the accessibility inspector. That being said, the accessibility inspector still more or less shows what is exposed through the accessibility APIs (although it certainly doesn't show everything that is being exposed).
 
 Finally, the ARIA specification I am referring to is the latest draft of the ARIA 1.3 specification, last drafted on July 5th, 2023.
+
 </details>
 
 ## <code>aria-owns</code> is not valid on all elements
+
 The <a href="https://w3c.github.io/aria/#aria-owns"><code>aria-owns</code> entry in the ARIA specification</a> mentions that aria-owns has a "Used in roles" value of "All elements of the base markup".
 This might be immediately obvious. For example, does it make sense for an input element to have children? What about a checkbox?
 
@@ -33,6 +35,7 @@ This might be immediately obvious. For example, does it make sense for an input 
 <a href="https://github.com/chromium/chromium/blob/02e65feb53029473f796c1bc2bbbf214ea627688/third_party/blink/renderer/modules/accessibility/ax_relation_cache.cc#L151"><b>Chromium source code: </b><code>aria-owns</code> filtering</a>
 
 ## <code>role="row"</code> does not always compute name from content
+
 The <a href="https://w3c.github.io/aria/#row"><code>row</code> entry in the ARIA specification</a> mentions that elements with a role of <code>row</code> (implicit or otherwise) supports name from contents.
 In other words, user agents should use the row's children to try and compute an accessible name for the row.
 For performance reasons, rows do not always compute the name from their children. Instead, this is done conditionally.
@@ -44,6 +47,7 @@ This behavior is the cause behind this bug. The way to fix this is to probably a
 <a href="https://github.com/chromium/chromium/blob/02e65feb53029473f796c1bc2bbbf214ea627688/third_party/blink/renderer/modules/accessibility/ax_object.cc#L6933"><b>Chromium source code: </b>conditional name from contents</a>
 
 ## <code>role="button"</code> does not always have presentational children
+
 The <a href="https://w3c.github.io/aria/#button"><code>button</code> entry in the ARIA specification</a> mentions that buttons have presentational children.
 To be honest, I'm not quite sure why this is needed. I think the discrepancy is interesting regardless.
 Note that this is only true for Chromium on desktop. When Chromium is run for Android, buttons will still have presentational children.
