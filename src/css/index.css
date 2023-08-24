@@ -139,14 +139,11 @@ html[data-theme="DARK"] ::selection {
 
 * {
   font-family: "source-sans-pro", sans-serif;
-  font-weight: 400;
   font-style: normal;
   line-height: var(--paragraph-line-height);
-  scroll-behavior: smooth;
 }
 
 em {
-  font-weight: 400;
   font-style: italic;
   font-family: "source-serif-pro", serif;
 }
@@ -262,8 +259,12 @@ pre {
   white-space: pre-wrap;
 }
 
+pre code {
+  padding: 0;
+}
+
 details {
-    margin: var(--medium-spacing) 0;
+  margin: var(--medium-spacing) 0;
 }
 
 details summary {
@@ -391,6 +392,30 @@ ul.post-chain {
   display: inline-block;
 }
 
+aside {
+  margin: var(--medium-spacing) 0;
+  padding: var(--small-spacing) var(--spacing);
+  border: 1.5px solid var(--text-color);
+  border-radius: 2px;
+}
+
+aside *:last-child {
+  margin-bottom: 0;
+}
+
+aside a {
+  word-wrap:break-word;
+}
+
+blockquote {
+  padding-left: var(--spacing);
+  border-left: 10px solid var(--text-color);
+}
+
+blockquote p {
+  font-style: italic;
+}
+
 video {
   width: 100%;
   border-radius: 2px;
@@ -484,4 +509,77 @@ video {
   ul {
     padding-left: var(--spacing);
   }
+}
+
+.tree {
+  margin: var(--medium-spacing) 0;
+}
+
+.tree,
+.tree ul {
+  list-style: none;
+  padding-left: 0px;
+  padding-top: 0px;
+  position: relative;
+}
+
+.tree ul {
+  margin-left: var(--large-spacing);
+}
+
+.tree ul::before {
+  position: absolute;
+  bottom: 0;
+  left: 0px;
+  content: " ";
+  height: calc(100% + 4px);
+  width: 1px;
+  border-left: 1.5px solid var(--text-color);
+}
+
+.tree ul li {
+  padding-top: var(--small-spacing);
+}
+
+.tree span {
+  border: 1.5px solid var(--text-color);
+  padding: 5px;
+  width: 7rem;
+  display: inline-block;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.ax-node {
+  margin: var(--spacing) 0;
+  border: 1.5px solid var(--text-color);
+  border-radius: 2px;
+}
+
+.ax-node p {
+  border-bottom: 1.5px solid var(--text-color);
+  padding: var(--small-spacing) var(--spacing);
+  margin-bottom: 0;
+}
+
+.ax-node dl {
+  padding: var(--small-spacing) var(--spacing);
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0px;
+  margin: var(--spacing) 0;
+}
+
+th,
+td {
+  padding: var(--small-spacing);
+  border: 1.5px solid var(--text-color);
+}
+
+caption {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: var(--small-spacing);
 }
