@@ -8,7 +8,7 @@ layout: layouts/post.njk
 ---
 
 <aside>
-This blog post duplicates my talk "What exactly is the accessibility API?" at <a href="https://www.devfestwi.com/">Devfest Wisconsin</a>. I found it difficult to export decent HTML from Google Slides. On the plus side, I can now include heavier technical content than I would otherwise include in a presentation.
+This blog post duplicates my talk "What exactly is the accessibility API?" at <a href="https://www.devfestwi.com/">Devfest Wisconsin</a>, except with technical detail and comments that I opted to leave out of the presentation. Here are <a href="https://docs.google.com/presentation/d/1D0OptHHrdh4meLcprjnFMERFrN_wc12t7Y9A-GNmW3A/edit#slide=id.p">the slides</a> if you really want them, though.
 </aside>
 
 I notice that a lot of content introducing the accessibility API ([Application Programming Interface](https://en.wikipedia.org/wiki/API)) only talk about how it might be used by screen readers. I'm guessing this is one of the reasons that people don't ever consider voice control or other assistive technologies when doing accessibility testing, and why people add questionable labels to certain controls. 
