@@ -11,7 +11,7 @@ layout: layouts/post.njk
 This blog post duplicates my talk "What exactly is the accessibility API?" at <a href="https://www.devfestwi.com/">Devfest Wisconsin</a>, except with technical detail and comments that I opted to leave out of the presentation. Here are <a href="https://docs.google.com/presentation/d/1D0OptHHrdh4meLcprjnFMERFrN_wc12t7Y9A-GNmW3A/edit#slide=id.p">the slides</a> if you really want them, though.
 </aside>
 
-I notice that a lot of content introducing the accessibility API ([Application Programming Interface](https://en.wikipedia.org/wiki/API)) only talk about how it might be used by screen readers. I'm guessing this is one of the reasons that people don't ever consider voice control or other assistive technologies when doing accessibility testing, and why people add questionable labels to certain controls. 
+I notice that a lot of content introducing the accessibility API ([Application Programming Interface](https://en.wikipedia.org/wiki/API)) only talk about how it might be used by screen readers. I'm guessing this is one of the reasons that people don't ever consider voice control or other assistive technologies when doing accessibility testing, and why people add questionable labels to certain controls.
 
 I wrote this blog post to try and give an introduction to the accessibility API that doesn't only consider screen readers, and introduces what kinds of things a browser considers when generating an accessibility tree for the accessibility API. I hope I can share what I learned over the past year of doing open source work and digging into native accessibility code.
 
@@ -30,26 +30,28 @@ All the content in this blog post will assume the basics of HTML and CSS. I will
 
 While any browser source code I link to will be biased to Chromium, any browser behavior I mention below should be true for the following major browsers, unless explicitly mentioned otherwise:
 
-* Chromium (Version 116)
-* Firefox (Version 116)
-* Safari (Version 16.6)
+- Chromium (Version 116)
+- Firefox (Version 116)
+- Safari (Version 16.6)
 
 Finally, all links to source code, whether it be to browsers or assistive technology or otherwise, will be locked to a specific revision — their latest revision as of the time of this writing. I do this so future readers won't experience the phenomena where I'm pointing to a line of code and that specific line of code doesn't do what I point out anymore.
 
 ## What is assistive technology?
+
 Before introducing the concept of an accessibility API, it's important to think about what kind of technology we're trying to support.
 
 Assistive technology is any piece of technology that disabled people use to improve their quality of life. This can include things like:
 
-* Wheelchairs
-* Refreshable braille displays
-* Magnification software
-* Screen readers
-* Voice recognition software
+- Wheelchairs
+- Refreshable braille displays
+- Magnification software
+- Screen readers
+- Voice recognition software
 
 For the purpose of this post, let's focus on the last two bullet points in more detail.
 
 ### What is a screen reader?
+
 Wikipedia gives a decent summary:
 
 <blockquote>
@@ -58,18 +60,18 @@ Wikipedia gives a decent summary:
 <p>
 - <a href="https://en.wikipedia.org/wiki/Screen_reader">Wikipedia's Screen Reader Article</a>
 
-There are different popular screen readers depending on the platform you are on. 
+There are different popular screen readers depending on the platform you are on.
 
-* JAWS and NVDA on Windows
-* VoiceOver on Mac and iOS
-* Orca on Linux
-* Talkback on Android
-* ChromeVox on ChromeOS
+- JAWS and NVDA on Windows
+- VoiceOver on Mac and iOS
+- Orca on Linux
+- Talkback on Android
+- ChromeVox on ChromeOS
 
 Regardless of platform, however, screen readers are able to do things like:
 
-* Announce what control is currently focused
-* Announce any relevant state information of the control (Is it checked? Is it expanded?)
+- Announce what control is currently focused
+- Announce any relevant state information of the control (Is it checked? Is it expanded?)
 
 along with any other visually important information that a screen reader user should know.
 
@@ -82,6 +84,7 @@ Screen readers are highly customizable. For example, screen reader users can con
 [Demo of NVDA by Deque Systems](https://youtu.be/y0m7VEHoXMI?t=360)
 
 ### What is voice recognition software?
+
 Voice recognition software is a form of assistive technology that allows a user to interact with their machine through voice commands. For example, if there is a link called "See my projects", such as the dummy link below:
 
 <a href="javascript:void(0);">See my projects</a>
@@ -90,41 +93,46 @@ a voice recognition user should be able to say something like "Click see my proj
 
 Some examples of voice recognition software:
 
-* Windows Speech Recognition and Dragon Speech Recognition on Windows
-* Voice Control on Mac and iOS
-* Voice Access on Android
+- Windows Speech Recognition and Dragon Speech Recognition on Windows
+- Voice Control on Mac and iOS
+- Voice Access on Android
 
 <a href="https://www.youtube.com/watch?v=7y85YDMRpTU&ab_channel=NuanceCommunications%2CInc.">Demo of Dragon by Nuance Communications</a>
 
 ### What information does assistive technology need to gather?
+
 Suppose that we are developers for screen readers or voice recognition software. What kind of information would we need from any application that wants to support us?
 
 Screen readers would need a way to do the following for any application:
-* Programmatically access all user interface (UI) elements.
-* Query for the name of a UI element: if focused, what should I announce?
-* Query for what kind of UI element something is: Is it a button? Is it a link?
-* Query for any state of those UI elements: Is it checked? Is it pressed?
-* Programmatically ask the application to activate an element that might not be currently focused: for instance, to programmatically activate a control under a <a href="https://support.freedomscientific.com/teachers/lessons/4.2.3_VirtualPCCursor.htm">virtual cursor</a>.
+
+- Programmatically access all user interface (UI) elements.
+- Query for the name of a UI element: if focused, what should I announce?
+- Query for what kind of UI element something is: Is it a button? Is it a link?
+- Query for any state of those UI elements: Is it checked? Is it pressed?
+- Programmatically ask the application to activate an element that might not be currently focused: for instance, to programmatically activate a control under a <a href="https://support.freedomscientific.com/teachers/lessons/4.2.3_VirtualPCCursor.htm">virtual cursor</a>.
 
 Voice recognition software would need a way to do the following for any application:
-* Programmatically access all interactive UI elements of an application.
-* Query for the name of a UI element: is my user trying to activate this element?
-* Programmatically ask the application to activate an element for us: for instance, if the user commands us to activate a button that isn't currently focused.
-* Programmatically insert text somewhere in the application if the user starts dictating.
+
+- Programmatically access all interactive UI elements of an application.
+- Query for the name of a UI element: is my user trying to activate this element?
+- Programmatically ask the application to activate an element for us: for instance, if the user commands us to activate a button that isn't currently focused.
+- Programmatically insert text somewhere in the application if the user starts dictating.
 
 These are very similar asks. We are asking for an API that lets us programmatically read and interact with an application, and that is precisely what an accessibility API is.
 
 ## What is the accessibility API?
+
 As mentioned above, an accessibility API allows for a consumer to do two main things:
 
-* Programmatically determine what is in the UI
-* Programmatically interact with the UI
+- Programmatically determine what is in the UI
+- Programmatically interact with the UI
 
 In the accessibility API, the UI of an application is exposed as something called the **accessibility tree**, with each node in the tree being some individual unit in the UI. Depending on the UI element a node represents, a consumer can query for the state of a node, or ask to programmatically take some kind of action on a node.
 
-Depending on the operating system, the accessibility API can have different implementation details, but the general idea remains the same. The average web developer does not have to concern themselves with this. 
+Depending on the operating system, the accessibility API can have different implementation details, but the general idea remains the same. The average web developer does not have to concern themselves with this.
 
 ### What does an accessibility tree look like?
+
 An accessibility tree is a normal tree data structure that you might explore in your computer science class. For example, in the context of the browser, suppose we have some HTML like the following:
 
 ```
@@ -178,17 +186,17 @@ From the above example, let's zoom in to the image node specifically. What kind 
 </dl>
 </div>
 
-* **Name**: The node will need an accessible name if the image is not decorative. This can let screen readers know what to read when encountering this image.
-* **Role**: The node will need to have some kind of attribute marking what type of UI element it is. This lets assistive technologies know what kinds of actions they can take on this node, as well as what kind of information they can query on it. In this case, the node should be an image node.
+- **Name**: The node will need an accessible name if the image is not decorative. This can let screen readers know what to read when encountering this image.
+- **Role**: The node will need to have some kind of attribute marking what type of UI element it is. This lets assistive technologies know what kinds of actions they can take on this node, as well as what kind of information they can query on it. In this case, the node should be an image node.
 
 If we instead take something stateful, like a checkbox:
 
 ```
 <label for="check">Stay logged in</label>
-<input 
-  type="checkbox" 
+<input
+  type="checkbox"
   id="check"
-  <!-- Any other relevant attributes... --> 
+  <!-- Any other relevant attributes... -->
 />
 ```
 
@@ -206,21 +214,22 @@ The accessibility node for the checkbox might look something like this:
 </dl>
 </div>
 
-* **Name**: Once again, the name lets the screen reader know what to announce when the checkbox is focused, and lets voice recognition software know what to click when the user says this checkbox's name.
-* **Role**: Because of the role, assistive technology knows that it can query for the "checked" state of this node. It also knows that it can ask the browser to programmatically click the checkbox.
-* **State**: Allows assistive technology to query whether this checkbox is checked or not. For example, screen readers might use this to decide what to announce.
+- **Name**: Once again, the name lets the screen reader know what to announce when the checkbox is focused, and lets voice recognition software know what to click when the user says this checkbox's name.
+- **Role**: Because of the role, assistive technology knows that it can query for the "checked" state of this node. It also knows that it can ask the browser to programmatically click the checkbox.
+- **State**: Allows assistive technology to query whether this checkbox is checked or not. For example, screen readers might use this to decide what to announce.
 
-This is the common trio of [name, role, value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html) which can be important to make sure your website is accessible. 
+This is the common trio of [name, role, value](https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html) which can be important to make sure your website is accessible.
 
-As far as web developers are concerned, these are the main parts of the accessibility tree that you need to worry about. However, there is a lot of other information calculated in the accessibility tree that you might not be aware of. For example, if we just restrict our attention to the [UIAutomation](https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) accessibility API:
+As far as web developers are concerned, the name, role, value, and state of a node are the main parts of the accessibility tree that you need to worry about. However, there is a lot of other information calculated in the accessibility tree that you might not be aware of. For example, if we just restrict our attention to the [UIAutomation](https://learn.microsoft.com/en-us/dotnet/framework/ui-automation/ui-automation-overview) accessibility API:
 
-* [**Bounding boxes**](https://learn.microsoft.com/en-us/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement-get_currentboundingrectangle): Where is the element located on the screen?
-* [**Locale**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.automation.automationelement.cultureproperty?view=windowsdesktop-7.0): What language should I be interpreting this object with?
-* [**FrameworkId**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.automation.automationelement.frameworkidproperty?view=windowsdesktop-7.0): What is the source of this accessibility tree? Is this an accessibility tree coming from Chrome? Is this an accessibility tree coming from Microsoft PowerPoint?
+- [**Bounding boxes**](https://learn.microsoft.com/en-us/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomationelement-get_currentboundingrectangle): Where is the element located on the screen?
+- [**Locale**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.automation.automationelement.cultureproperty?view=windowsdesktop-7.0): What language should I be interpreting this object with?
+- [**FrameworkId**](https://learn.microsoft.com/en-us/dotnet/api/system.windows.automation.automationelement.frameworkidproperty?view=windowsdesktop-7.0): What is the source of this accessibility tree? Is this an accessibility tree coming from Chrome? Is this an accessibility tree coming from Microsoft PowerPoint?
 
 Moving our attention to another accessibility API, [IAccessible2](https://accessibility.linuxfoundation.org/a11yspecs/ia2/docs/html/index.html), gives us more interesting information to look at, with both examples being custom properties that don't seem to formally be part of the IAccessible2 spec:
-* [**LayoutTable**](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_base.cc#L1462): For the purpose of semantics, [is this a real or fake table](/posts/2023/6/browser-table-accessibility-remediation/)?
-* [**CSS Display**](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_base.cc#L1250): What is the CSS display for this node?
+
+- [**LayoutTable**](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_base.cc#L1462): For the purpose of semantics, [is this a real or fake table](/posts/2023/6/browser-table-accessibility-remediation/)?
+- [**CSS Display**](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_base.cc#L1250): What is the CSS display for this node?
 
 There is a lot of other information that I am leaving out. While this information isn't the most important to know (although it is good practice to specify locale with [the `lang` attribute](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang)), it can be useful to know that the accessibility tree can't be generated just by scanning the DOM — we need information from CSS as well.
 
@@ -253,7 +262,7 @@ You have two choices here, depending on the amount of detail that you need.
 The first choice is to use the browser's built-in accessibility tree viewer. You don't see the exact information that is given to assistive technology, as the information needs to be expressed in terms of the platform accessibility APIs, but it's extremely rare that you need that level of detail.
 
 - [Chromium Accessibility Inspector](https://developer.chrome.com/docs/devtools/accessibility/reference/#pane)
-- [Firefox Accessibility Inspector](https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/) 
+- [Firefox Accessibility Inspector](https://firefox-source-docs.mozilla.org/devtools-user/accessibility_inspector/)
 - [Safari Web Inspector](https://support.apple.com/guide/safari-developer/view-node-properties-for-a-dom-node-dev160f70435/11.0/mac/10.13)
 
 <details>
@@ -267,10 +276,10 @@ The first choice is to use the browser's built-in accessibility tree viewer. You
 
 The second choice is to use an external tool that can display the native accessibility tree to you. You have different tools depending on your platform.
 
-* [Dump Tree Utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md)
-* [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/windows/overview/) (UIAutomation only)
-* [Accessibility Inspector on OS X](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html) 
-* [Accerciser](https://help.gnome.org/users/accerciser/stable/introduction.html.en)
+- [Dump Tree Utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md)
+- [Accessibility Insights for Windows](https://accessibilityinsights.io/docs/windows/overview/) (UIAutomation only)
+- [Accessibility Inspector on OS X](https://developer.apple.com/library/archive/documentation/Accessibility/Conceptual/AccessibilityMacOSX/OSXAXTestingApps.html)
+- [Accerciser](https://help.gnome.org/users/accerciser/stable/introduction.html.en)
 
 These tools are a good way to play around with the native accessibility APIs if you want to take the time. I think it's very rare these tools are useful for web development, though.
 
@@ -278,8 +287,8 @@ These tools are a good way to play around with the native accessibility APIs if 
 
 Remember that an accessibility API allows you to do two things:
 
-* It allows you to programmatically read off the UI of an application by exposing an accessibility tree.
-* It allows you to programmatically interact with the UI of an application through nodes on the accessibility tree.
+- It allows you to programmatically read off the UI of an application by exposing an accessibility tree.
+- It allows you to programmatically interact with the UI of an application through nodes on the accessibility tree.
 
 As previously discussed, this allows screen readers to know what to read out when interacting with a page, and allows voice recognition software to know how to respond to specific voice commands from the user. However, there are lots of other assistive and non-assistive technologies that use the accessibility API.
 
@@ -288,14 +297,15 @@ As previously discussed, this allows screen readers to know what to read out whe
 For the following links below, you'll want to copy the link address and paste it into your navigation toolbar rather than trying to activate the link. It seems that Chromium browsers won't let you link directly to the <a href="about://histograms">about://histograms</a> page, and you'll instead get an empty page.
 </p>
 <p>
-Furthermore, if you use assistive technology, I highly recommend you don't navigate directly to the <a href="about://histograms">about://histograms</a> page, and instead navigate directly to the specific histograms I talk about below, listed here for convenience:
+Furthermore, depending on how powerful your CPU is, I highly recommend you don't navigate directly to the <a href="about://histograms">about://histograms</a> page, and instead navigate to the specific histograms I talk about below, listed here for convenience:
 
 <ul>
-<li><a href="chrome://histograms/#Accessibility.Performance.HandleAXEvents">chrome://histograms/#Accessibility.Performance.HandleAXEvents</a></li>
-<li><a href="chrome://histograms/#Accessibility.WinAPIs">chrome://histograms/#Accessibility.WinAPIs</a></li>
+<li><a href="about://histograms/#Accessibility.Performance.HandleAXEvents">about://histograms/#Accessibility.Performance.HandleAXEvents</a></li>
+<li><a href="about://histograms/#Accessibility.WinAPIs">about://histograms/#Accessibility.WinAPIs</a></li>
 </ul>
 
- The performance on the general <a href="about://histograms">about://histograms</a> page is terrible, even on my computer which has a relatively expensive CPU.
+The performance on the general <a href="about://histograms">about://histograms</a> page is terrible when I'm using anything that queries the accessibility tree, even on my computer which has a relatively expensive CPU (Ryzen 5950x).
+
 </p>
 </aside>
 
@@ -303,11 +313,11 @@ To find out what applications use the accessibility API, we can use the [about:/
 
 As a a decent hueristic, if the [histogram for HandleAXEvents](chrome://histograms/#Accessibility.Performance.HandleAXEvents) has more than one data sample, we know that accessibility must have been turned on for some duration while the Chromium browser was running. In other words, some application has been making calls to the accessibility API. You can use this heuristic on any platform Chromium runs on.
 
- We can do better on the Windows platform, though. On Windows, Chromium has a [WinAPIs histogram](chrome://histograms/#Accessibility.WinAPIs) that lets us know how many times specific Windows accessibility APIs were called. The values of the histogram correspond with [this collection of enums](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_win.h#L44). So not only do we know if an application is using the accessibility API or not, but we also know precisely what kind of information it is asking for. While not all accessibility API calls are logged, this should still give us some interesting information!
+We can do better on the Windows platform, though. On Windows, Chromium has a [WinAPIs histogram](chrome://histograms/#Accessibility.WinAPIs) that lets us know how many times specific Windows accessibility APIs were called. The values of the histogram correspond with [this collection of enums](https://github.com/chromium/chromium/blob/dbeac1c32d632c85e62f5ccfefa76151996e65f3/ui/accessibility/platform/ax_platform_node_win.h#L44). So not only do we know if an application is using the accessibility API or not, but we also know precisely what kind of information it is asking for. While not all accessibility API calls are logged, this should still give us some interesting information!
 
 ### Onscreen Keyboard
 
-I was very surprised to see that the [onscreen keyboard](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/os-features/on-screen-keyboard) was making accessibility API calls to Chromium. I launched the onscreen keyboard and typed some random gibberish into google *(the "fdtgdgejcd/cgj" string to be precise)* and got the following results.
+I was very surprised to see that the [onscreen keyboard](https://learn.microsoft.com/en-us/windows/iot/iot-enterprise/os-features/on-screen-keyboard) was making accessibility API calls to Chromium. I launched the onscreen keyboard and typed some random gibberish into google _(the "fdtgdgejcd/cgj" string to be precise)_ and got the following results.
 
 <ul>
 <li><strong>UMA_API_GET_ACC_FOCUS:</strong> 6 hits</li>
@@ -409,14 +419,16 @@ While there are lots of things to keep in mind when generating the accessibility
 
 Although I'm simplifying a bit, there are three main ways a name can be generated for a node:
 
-* Name from content
-* Name from labelling element
-* Name from author
+- Name from content
+- Name from labelling element
+- Name from author
 
 **Name from content** is a strategy where the name of a node is derived from its text content. For example, suppose we have the following markup:
+
 ```
 <a href="/projects">See my projects</a>
 ```
+
 For the link's accessibility node, browsers are smart enough to make the node's name be the same as the node's text content. This gives screen readers the appropriate name to read, and also allows voice recognition software to click on this link if the user requested it.
 
 <div class="ax-node">
@@ -430,9 +442,11 @@ For the link's accessibility node, browsers are smart enough to make the node's 
 </div>
 
 Browsers adopt a similar strategy for something like a button:
+
 ```
 <button type="button">Dark theme</button>
 ```
+
 which would lead to generating an accessibility node that looks something like:
 
 <div class="ax-node">
@@ -566,8 +580,8 @@ which will generate an accessibility node that looks something like this:
 **Name from author** is the third strategy browsers can use to generate a name. In this case, the browser relies on the web developer to manually supply an accessible name using the `aria-label` or `aria-labelledby` attributes. A name from author **always** overrides other naming strategies. For example, if we had some HTML as follows:
 
 ```
-<a 
-  aria-label="Not a chance!" 
+<a
+  aria-label="Not a chance!"
   href="/projects"
 >See my projects</a>
 ```
@@ -618,15 +632,19 @@ Interestingly, Chromium does some additional work to <a href="https://github.com
 The role of an accessibility node is generally simple to calculate if it has a corresponding HTMLElement. We can first use the role given to us by the ARIA role attribute if it exists. Otherwise, we can just look at the HTML tagname.
 
 For example, consider the following HTML:
+
 ```
 <button>This is some text</button>
 ```
+
 The `button` element when translated would just have the button role. Assistive technology know that it can interact with this control as a button, and query for state relevant for buttons.
 
 However, if we added a `role` attribute to it:
+
 ```
 <button role="link">This is some text</button>
 ```
+
 Then the `<button>` element would be translated into having the `link` role.
 Note that you should generally not do this - if you really need a `link`, just use the `<a>` element.
 
@@ -634,9 +652,8 @@ There are some amounts of complexity to consider though. For example, [not all A
 
 Second, browsers don't always respect the semantics coming from an HTMLElement, although this is restricted to `tables` and `lists` as far as I'm aware:
 
-* All major browsers implement interesting heuristics to [determine if a table should be exposed as a table](/posts/2023/6/browser-table-accessibility-remediation/). This is done to compensate for bad HTML where the `<table>` element is used as a styling tool rather than to communicate table semantics.
-* Safari specifically [attempts to do something similar for lists](https://twitter.com/cookiecrook/status/1337226933822603270). Other browsers don't seem to implement similar heuristics.
-
+- All major browsers implement interesting heuristics to [determine if a table should be exposed as a table](/posts/2023/6/browser-table-accessibility-remediation/). This is done to compensate for bad HTML where the `<table>` element is used as a styling tool rather than to communicate table semantics.
+- Safari specifically [attempts to do something similar for lists](https://twitter.com/cookiecrook/status/1337226933822603270). Other browsers don't seem to implement similar heuristics.
 
 ## Wrapup
 

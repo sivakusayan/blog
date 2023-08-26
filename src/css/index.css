@@ -308,9 +308,9 @@ details[open] summary {
 }
 
 details[open] .details-content {
-    margin: var(--small-spacing) 0;
-    padding: var(--small-spacing) var(--spacing);
-    width: 60ch;
+  margin: var(--small-spacing) 0;
+  padding: var(--small-spacing) var(--spacing);
+  width: 60ch;
 }
 
 details[open] .details-content *:last-child {
@@ -404,7 +404,7 @@ aside *:last-child {
 }
 
 aside a {
-  word-wrap:break-word;
+  word-wrap: break-word;
 }
 
 blockquote {
@@ -456,11 +456,11 @@ video {
     padding: 0 var(--medium-spacing);
   }
 
-    .post-content details,
-    details[open],
-    details[open] .details-content {
-        width: auto;
-    }
+  .post-content details,
+  details[open],
+  details[open] .details-content {
+    width: auto;
+  }
 
   .anchor {
     left: -1.2rem;
@@ -497,6 +497,19 @@ video {
     font-size: 3rem;
     letter-spacing: -1px;
     margin-left: -2px;
+  }
+
+  main {
+    padding: 0 var(--spacing);
+  }
+
+  .anchor {
+    position: relative;
+    left: unset;
+    top: unset;
+
+    display: inline-block;
+    margin-left: var(--small-spacing);
   }
 }
 
