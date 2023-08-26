@@ -617,7 +617,7 @@ Even though the ARIA spec says that elements with the <code>row</code> role must
 <summary>Musings on CSS contributions to name</summary>
 <div class="details-content">
 <p>
-Did you know that CSS pseudoelements can also contribute to the accessible name of an element? I suggest that you try the <a href="http://localhost:8080/posts/2023/8/what-exactly-is-the-accessibility-api/#what-technologies-use-the-accessibility-api">CSS pseudoname contribution codepen</a> and use the accessibility inspector of your choice to see for yourself. <a href="https://www.w3.org/TR/accname-1.2/#step2F.ii">This behavior is spec'd out</a>, so you should see this behavior in all major browsers.
+Did you know that CSS pseudoelements can also contribute to the accessible name of an element? I suggest that you try the <a href="https://codepen.io/sivakusayan/pen/KKbprEj">CSS pseudoname contribution codepen</a> and use the accessibility inspector of your choice to see for yourself. <a href="https://www.w3.org/TR/accname-1.2/#step2F.ii">This behavior is spec'd out</a>, so you should see this behavior in all major browsers.
 </p>
 
 <p>
