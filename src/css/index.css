@@ -386,20 +386,6 @@ ul.post-chain > * {
   left: -1.5rem;
 }
 
-.copy-notification-container {
-  font-size: 80%;
-  transition: margin 0.2s, padding 0.2s;
-}
-
-.copy-notification-container:not(:empty) {
-  background-color: var(--text-color);
-  color: var(--background-color);
-  margin-bottom: var(--spacing);
-  padding: var(--small-spacing);
-  border-radius: 2px;
-  display: inline-block;
-}
-
 aside {
   margin: var(--medium-spacing) 0;
   padding: var(--small-spacing) var(--spacing);
@@ -424,39 +410,6 @@ blockquote p {
   font-style: italic;
 }
 
-video {
-  width: 100%;
-  border-radius: 2px;
-  border: 2px solid var(--text-color);
-}
-
-.highlight {
-  display: inline-block;
-  position: relative;
-}
-
-.highlight::after {
-  content: "";
-  display: block;
-  height: 100%;
-  width: 0%;
-  background-color: var(--highlight-color);
-  position: absolute;
-  bottom: 0;
-  z-index: -1;
-  left: -1%;
-  bottom: 0;
-  animation: 0.3s background-slide 0.5s;
-  animation-fill-mode: forwards;
-  transition: background-color 0.2s;
-}
-
-@keyframes background-slide {
-  100% {
-    width: 102%;
-  }
-}
-
 @media only screen and (max-width: 620px) {
   main {
     max-width: unset;
@@ -472,23 +425,6 @@ video {
 
   .anchor {
     left: -1.2rem;
-  }
-
-  .highlight {
-    display: inline;
-    animation: 0.3s background-fade-in 0.5s;
-    transition: background-color 0.2s;
-    animation-fill-mode: forwards;
-  }
-
-  @keyframes background-fade-in {
-    100% {
-      background-color: var(--highlight-color);
-    }
-  }
-
-  .highlight::after {
-    display: none;
   }
 }
 
