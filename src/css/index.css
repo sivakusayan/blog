@@ -362,9 +362,17 @@ hr {
 ul.post-chain {
   list-style: none;
   padding: 0;
+
+  display: flex;
+  justify-content: space-between;
+  gap: var(--medium-spacing);
 }
 
-.post-chain li {
+ul.post-chain > * {
+  flex: 1;
+}
+
+.post-chain span {
   font-weight: bold;
 }
 
@@ -521,6 +529,12 @@ video {
 
   ul {
     padding-left: var(--spacing);
+  }
+
+  
+  ul.post-chain {
+    flex-direction: column;
+    gap: var(--spacing);
   }
 }
 

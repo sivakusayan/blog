@@ -21,12 +21,12 @@ templateClass: tmpl-post
     {%- if nextPost or previousPost %}
       <hr>
       <ul class="post-chain">
-        {%- if nextPost %}
-          <li>Next: <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
+        {%- if previousPost %}
+          <li><span>Previous: </span><a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
           </li>
         {% endif %}
-        {%- if previousPost %}
-          <li>Previous: <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
+        {%- if nextPost %}
+          <li><span>Next: </span><a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
           </li>
         {% endif %}
       </ul>
