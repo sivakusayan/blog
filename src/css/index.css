@@ -210,6 +210,7 @@ html {
   color: var(--text-color);
 
   transition: background-color 0.2s, color 0.1s;
+  scroll-behavior: smooth;
 }
 
 html,
