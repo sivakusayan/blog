@@ -287,8 +287,8 @@ These tools are a good way to play around with the native accessibility APIs if 
 
 Remember that an accessibility API allows you to do two things:
 
-- It allows you to programmatically read off the UI of an application by exposing an accessibility tree.
-- It allows you to programmatically interact with the UI of an application through nodes on the accessibility tree.
+- It allows you to programmatically read off the UI of an application through an exposed accessibility tree.
+- It allows you to programmatically interact with the UI of an application through nodes on the exposed accessibility tree.
 
 As previously discussed, this allows screen readers to know what to read out when interacting with a page, and allows voice recognition software to know how to respond to specific voice commands from the user. However, there are lots of other assistive and non-assistive technologies that use the accessibility API.
 
