@@ -577,7 +577,7 @@ which will generate an accessibility node that looks something like this:
 </dl>
 </div>
 
-**Name from author** is the third strategy browsers can use to generate a name. In this case, the browser relies on the web developer to manually supply an accessible name using the `aria-label` or `aria-labelledby` attributes. A name from author **always** overrides other naming strategies. For example, if we had some HTML as follows:
+**Name from author** is the third strategy browsers can use to generate a name. In this case, the browser relies on the web developer to manually supply an accessible name using the `aria-label` or `aria-labelledby` attributes. A name from author **always** overrides other naming strategies - assuming that the role [supports name from author](https://w3c.github.io/aria/#namefromauthor), anyway. For example, if we had some HTML as follows:
 
 ```
 <a
@@ -659,3 +659,8 @@ Second, browsers don't always respect the semantics coming from an HTMLElement, 
 
 If you take nothing else, the accessibility API is an API that lets you programmatically read off and interact with an application.
 When generating the accessibility API, the browser has to consider both HTML and CSS to generate the accessibility tree.
+
+
+## Edit History
+
+* 9/17/2023: Clarified that <code>aria-label</code> only overrides the name on roles that support name from author. Per the spec, it should not do anything otherwise.
