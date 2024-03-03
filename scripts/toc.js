@@ -31,7 +31,7 @@ module.exports = (content) => {
     const headingList = buildHeadings($headings, $);
 
     // Build the table of contents
-    $('table-of-contents:first').replaceWith("<nav id='toc' class='toc'></nav>");
+    $('table-of-contents').replaceWith("<details><summary>Table of Contents</summary><nav id='toc' class='toc'></nav></details>");
     $('#toc').append("<ol></ol>");
     const root = $('#toc > ol');
     for (const heading of headingList) {

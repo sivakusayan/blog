@@ -5,6 +5,7 @@ const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const { headerLink } = require("./scripts/permalink.js");
 const toc = require("./scripts/toc.js");
+const details = require("./scripts/details.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -83,6 +84,7 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addFilter("filterTagList", filterTagList);
 
   eleventyConfig.addFilter("toc", toc);
+  eleventyConfig.addFilter("details", details);
 
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function (collection) {

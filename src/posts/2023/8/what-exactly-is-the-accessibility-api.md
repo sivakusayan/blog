@@ -15,12 +15,7 @@ I notice that a lot of content introducing the accessibility API ([Application P
 
 I wrote this blog post to try and give an introduction to the accessibility API that doesn't only consider screen readers, and introduces what kinds of things a browser considers when generating an accessibility tree for the accessibility API. I hope I can share what I learned over the past year of doing open source work and digging into native accessibility code.
 
-<details>
-<summary>Table of Contents</summary>
-<div class="details-content">
-<table-of-contents />
-</div>
-</details>
+<table-of-contents></table-of-contents>
 
 ## Foreword
 
@@ -55,8 +50,8 @@ Wikipedia gives a decent summary:
 <blockquote>
 <p>A screen reader is a form of assistive technology (AT) that renders text and image content as speech or braille output. Screen readers are essential to people who are blind, and are useful to people who are visually impaired, illiterate, or have a learning disability.</p>
 </blockquote>
-<p>
-- <a href="https://en.wikipedia.org/wiki/Screen_reader">Wikipedia's Screen Reader Article</a>
+
+\- [Wikipedia's Screen Reader Article](https://en.wikipedia.org/wiki/Screen_reader)
 
 There are different popular screen readers depending on the platform you are on.
 
@@ -233,7 +228,6 @@ There is a lot of other information that I am leaving out. While this informatio
 
 <details>
 <summary>Regarding CSS Display in an accessibility node</summary>
-<div class="details-content">
 <p>
 Finding this property surprised me. I double checked the source of this data in Chromium, and it does appear to be the <a href="https://github.com/chromium/chromium/blob/6d6ca9492f5c5183bbb1abdabaa4ecf2ece99a2d/third_party/blink/renderer/modules/accessibility/ax_object.cc#L1827">computed CSS style for the display property</a>.
 </p>
@@ -250,7 +244,6 @@ What is this ever used for? No idea. I naively searched for it in the NVDA and O
 <li><a href="https://github.com/nvaccess/nvda/blob/186a8d70717234cc48d012e390e43be7b762574b/source/NVDAObjects/IAccessible/ia2TextMozilla.py#L561">NVDA CSS display usage</a></li>
 <li><a href="https://gitlab.gnome.org/GNOME/orca/-/blob/eaa47a3e1683ed95d8d9c7fb4dcd8bc4254d8cd6/src/orca/scripts/web/script_utilities.py#L535">Orca CSS display usage</a></li>
 </ul>
-</div>
 </details>
 
 ### How can I view the accessibility tree?
@@ -265,11 +258,9 @@ The first choice is to use the browser's built-in accessibility tree viewer. You
 
 <details>
 <summary>Regarding Chromium's accessibility tree inspector</summary>
-<div class="details-content">
 <p>The accessibility tree you see in the Chromium developer tools is what is internally known as the Blink tree. For all intents and purposes, this is a peek into the exact data that is being translated into the platform APIs - this isn't some special intermediate representation that the code makes just for the developer tools, in other words. </p>
 
 <p>This logic is handled in <a href="https://github.com/chromium/chromium/blob/main/third_party/blink/renderer/modules/accessibility/inspector_accessibility_agent.cc"><code>InspectorAccessibilityAgent</code></a>.</p>
-</div>
 </details>
 
 The second choice is to use an external tool that can display the native accessibility tree to you. You have different tools depending on your platform.
@@ -396,11 +387,9 @@ In this workflow, I launched [MDN's textarea article](https://developer.mozilla.
 
 <details>
 <summary>On Grammarly's accessibility API usage</summary>
-<div class="details-content">
 <p>These results really surprised me - I didn't expect Grammarly to make such heavy use of these accessibility APIs. I even did this workflow 3 times to make sure I wasn't missing anything, and confirmed that before I launched Grammarly that the WinAPIs histogram had zero entries.
 </p>
 <p>I wonder how many redundancies are here, although it's hard for me to say without knowing the reasons behind all of these API calls.</p>
-</div>
 </details>
 
 ### Mobile Password Managers
@@ -601,7 +590,6 @@ Note that using ARIA in this case is extremely bad, as browsers already have a g
 <div class="details-grouper">
 <details>
 <summary>Musings on name from content</summary>
-<div class="details-content">
 <P>
 Even though the ARIA spec says that elements with the <code>row</code> role must compute their name from content, <a href="https://github.com/chromium/chromium/blob/540343ddd9868d6a3b82ab7514a6d842e91120f2/third_party/blink/renderer/modules/accessibility/ax_object.cc#L7234">Chromium only does this conditionally</a> for performance purposes.
 </P>
@@ -609,11 +597,9 @@ Even though the ARIA spec says that elements with the <code>row</code> role must
 <P>
 <a href="https://codepen.io/sivakusayan/pen/XWobyEJ">This codepen for conditional row name computations</a> allows you to play around with this behavior. I have only tested this in Chromium, but I haven't tested this behavior in other browsers to see if they also try to make similar optimizations.
 </P>
-</div>
 </details>
 <details>
 <summary>Musings on CSS contributions to name</summary>
-<div class="details-content">
 <p>
 Did you know that CSS pseudoelements can also contribute to the accessible name of an element? I suggest that you try the <a href="https://codepen.io/sivakusayan/pen/KKbprEj">CSS pseudoname contribution codepen</a> and use the accessibility inspector of your choice to see for yourself. <a href="https://www.w3.org/TR/accname-1.2/#step2F.ii">This behavior is spec'd out</a>, so you should see this behavior in all major browsers.
 </p>
@@ -621,7 +607,6 @@ Did you know that CSS pseudoelements can also contribute to the accessible name 
 <p>
 Interestingly, Chromium does some additional work to <a href="https://github.com/chromium/chromium/blob/ac2ea7ef1724b3004bfe884f3d8c709450218f87/third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc#L1194">not expose CSS pseudocontent coming from the micro clearfix hack</a> in the accessibility tree. I don't have the time to make a codepen to test this, along with seeing what other browsers do at this time. I'll probably make an edit when I do later, though. 🙂
 </p>
-</div>
 </details>
 </div>
 

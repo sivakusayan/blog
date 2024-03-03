@@ -15,7 +15,6 @@ I thought it would be interesting to look at this guessing algorithm in more det
 
 <details>
 <summary>Definitions</summary>
-<div class="details-content">
 <dl>
 <dt id="accessibility-tree">Accessibility tree</dt>
 <dd>A tree data structure that represents a graphical user interface, commonly consumed by assistive technology (although they are not the only consumers).</dd>
@@ -26,7 +25,6 @@ I thought it would be interesting to look at this guessing algorithm in more det
 <dt id="data-table">Data table</dt>
 <dd>Any table that isn't a layout table.</dd>
 </dl>
-</div>
 </details>
 
 ## Notes on testing
@@ -36,7 +34,6 @@ Only if you want to know the gritty technical details.
 <div class="details-grouper">
 <details>
     <summary>A note on how I tested</summary>
-    <div class="details-content">
     As this article is only concerned with how browsers expose tables in the desktop accessibility APIs, here is how I get my results for each browser:
 
 - On Windows, I will look for the <code>layout-guess</code> attribute on the <code>&lt;table's&gt;</code> IAccessible2 node using the [dump tree utility](https://chromium.googlesource.com/chromium/src/+/master/tools/accessibility/inspect/README.md). If a node has this attribute set to true, it's a layout table, otherwise it's a data table. 
@@ -52,11 +49,9 @@ At the time of this writing, I am testing with versions:
 - Safari Version 16.4 (18615.1.26.11.23)
 
 Finally, for simplicity's sake, I will not list browser + platform combinations as each individual browser's results don't seem to change with the desktop platform. I will just list the results of each browser, and you can assume those results are true for Windows, Mac, and Linux.
-</div>
 </details>
 <details>
 <summary>A note if you want to test</summary>
-<div class="details-content">
 If you don't want to verify these results in the same way I did, here are some shortcuts you can use, which aren't as rigorous, but can give you a basic way of verifying what I'm saying:
 
 - On Chrome and Edge, you can use the [Accessibility Inspector](https://developer.chrome.com/docs/devtools/accessibility/reference/#pane) in the developer tools. Layout tables will be explicitly called out as layout tables here.
@@ -69,7 +64,6 @@ If you don't want to verify these results in the same way I did, here are some s
 Finally, if you plan on modifying the HTML to experiment, you should use the CodePen editor instead of modifying the HTML directly through the developer tools.
 
 I'm seeing that browsers don't necessarily update the guess of whether a table is a layout table or a data table if the table is modified after being rendered, so edits through the developer tools won't always work. Edits in the codepen work as they refresh the embedded <code>&lt;iframe&gt;</code>.
-</div>
 </details>
 </div>
 
@@ -85,14 +79,12 @@ As soon as we make the table have 19 rows, however, every browser except Firefox
 
 <details>
     <summary>Thoughts on Firefox behavior</summary>
-    <div class="details-content">
     <p>
     I was a little bit confused at first on why Firefox thought the extremely minimal table with 19 rows was a data table. Especially since Firefox seems to do a similar row count check that other browsers use, from reading the code. 
     </p>
     <p>
     My immediate guess as to why (without examining with a debugger) is that Firefox seems to assume every table is a data table until proven otherwise, while other browsers assume that a table is a layout table until proven otherwise. Again, this is just speculation from reading the code, and I would need to use a debugger to verify my hypothesis.
     </p>
-    </div>
 </details>
 
 <a href="https://codepen.io/sivakusayan/pen/KKGLXjj">Codepen: Determining table-ness via the number of rows</a>
@@ -129,9 +121,7 @@ Note how you can opt out of this entire guessing logic by just manually setting 
 
 <details>
 <summary>If you can't access Chromium code search</summary>
-<div class="details-content">
 I've been told by some users that the Chromium code search isn't accessible 🙁. While not ideal, I hope this <a href="/posts/resources/chromiumTableLayoutGuess.txt">raw text version of the code</a> can be a temporary workaround.
-</div>
 </details>
 
 As for the other browsers, I'm not exactly sure where the logic is since I haven't debugged those browsers and am not as familiar with their codebases, but I can give a fairly likely guess from reading the code:
