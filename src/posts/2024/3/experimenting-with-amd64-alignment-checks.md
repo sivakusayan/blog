@@ -24,6 +24,8 @@ something wrong in my tests).
 In any case, I wanted to try enabling this check for myself just to see what
 would happen.
 
+<table-of-contents></table-of-contents>
+
 ## The Code
 
 This code is more or less copy-pasted from the code in _Modern C_ and Ygdrasil's
