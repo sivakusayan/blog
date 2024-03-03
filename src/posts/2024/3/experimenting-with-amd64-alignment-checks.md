@@ -100,7 +100,7 @@ int main(void) {
 ```
 
 Here is the backtrace from running the above program in `gdb` if you're curious. It seems that we
-crash at [this line of code](https://codebrowser.dev/glibc/glibc/stdio-common/vfprintf-internal.c.html#1241).
+crash at [this line of code](https://sourceware.org/git/?p=glibc.git;a=blob;f=stdio-common/vfprintf-internal.c;h=771beca9bf71f4c817800fb44c45c19ec1e3a9d3;hb=HEAD#l635).
 
 ```
 Program received signal SIGBUS, Bus error.
