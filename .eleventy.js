@@ -4,6 +4,7 @@ const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const { headerLink } = require("./scripts/permalink.js");
+const toc = require("./scripts/toc.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -12,7 +13,6 @@ const pluginBundler = require("@11ty/eleventy-plugin-bundle");
 const postcss = require('postcss');
 const cssnano = require('cssnano');
 const uglifyJS = require("uglify-js");
-const pluginTOC = require('eleventy-plugin-toc');
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/css");
@@ -24,7 +24,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight);
   eleventyConfig.addPlugin(pluginNavigation);
   eleventyConfig.addPlugin(pluginRss);
-  eleventyConfig.addPlugin(pluginTOC);
   eleventyConfig.addPlugin(pluginBundler, {
     transforms: [
       async function (code) {
@@ -82,6 +81,8 @@ module.exports = function (eleventyConfig) {
   }
 
   eleventyConfig.addFilter("filterTagList", filterTagList);
+
+  eleventyConfig.addFilter("toc", toc);
 
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function (collection) {
