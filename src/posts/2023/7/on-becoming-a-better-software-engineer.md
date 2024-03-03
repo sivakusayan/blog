@@ -3,7 +3,7 @@ title: On anxiety and becoming a better software engineer
 description: My thoughts on imposter syndrome, developer culture, and where I want to be in the future.
 date: 2023-07-24
 tags:
-  - Reflection
+  - Career
 layout: layouts/post.njk
 ---
 
