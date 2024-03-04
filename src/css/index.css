@@ -448,6 +448,14 @@ blockquote p {
     padding: 0 var(--spacing);
   }
 
+  /** Make code extend to the edges of the page,
+  since the page padding matches the padding of
+  the main element. */
+  pre {
+    margin-left: calc(-1 * var(--spacing));
+    margin-right: calc(-1 * var(--spacing));
+  }
+
   .anchor {
     position: relative;
     left: unset;
