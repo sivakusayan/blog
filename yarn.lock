@@ -657,7 +657,6 @@ __metadata:
     cheerio: "npm:1.0.0-rc.12"
     cssnano: "npm:6.0.1"
     dotenv: "npm:16.3.1"
-    luxon: "npm:3.4.4"
     markdown-it: "npm:13.0.1"
     markdown-it-anchor: "npm:8.6.4"
     pa11y-ci: "npm:3.1.0"
@@ -2404,7 +2403,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"luxon@npm:3.4.4, luxon@npm:^3.3.0":
+"luxon@npm:^3.3.0":
   version: 3.4.4
   resolution: "luxon@npm:3.4.4"
   checksum: 10c0/02e26a0b039c11fd5b75e1d734c8f0332c95510f6a514a9a0991023e43fb233884da02d7f966823ffb230632a733fc86d4a4b1e63c3fbe00058b8ee0f8c728af

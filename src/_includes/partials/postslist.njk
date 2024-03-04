@@ -8,7 +8,7 @@
         {% endif %}
       </a>
       <div>
-        <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+        <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | shortReadableDate }}</time>
       </div>
     </li>
   {% endfor %}

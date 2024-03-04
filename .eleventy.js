@@ -47,15 +47,17 @@ module.exports = function (eleventyConfig) {
     ]
   });
 
+  eleventyConfig.addFilter("shortReadableDate", (dateObj) => {
+    return dateObj.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
+  });
+
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat(
-      "dd LLL yyyy"
-    );
+    return dateObj.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
-    return DateTime.fromJSDate(dateObj, { zone: "utc" }).toFormat("yyyy-LL-dd");
+    return dateObj.toISOString();
   });
 
   // Get the first `n` elements of a collection.
