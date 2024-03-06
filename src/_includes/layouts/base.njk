@@ -21,7 +21,6 @@ currently minified. -->
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-sans-bold.woff2">
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-source-serif-italic.woff2">
 
-    <!-- Serve CSS inline on prod for performance -->
     {%- css %}{% include "src/css/third_party/typography.css" %}{% endcss %}
     {%- css %}{% include "src/css/third_party/reset.css" %}{% endcss %}
     {%- css %}{% include "src/css/third_party/prism.css" %}{% endcss %}
@@ -31,13 +30,7 @@ currently minified. -->
     {%- css %}{% include "src/css/links.css" %}{% endcss %}
     {%- css %}{% include "src/css/print-styles.css" %}{% endcss %}
     {%- css %}{% include "src/css/high-contrast.css" %}{% endcss %}
-    {%- if eleventy.env.runMode === "serve" %}
-      <link rel="stylesheet" href="{% getBundleFileUrl "css" %}">
-    {%- else  %}
-      <style>
-        {% getBundle "css" %}
-      </style>
-    {%- endif %}
+    <link rel="preload stylesheet" href="{% getBundleFileUrl "css" %}">
 
     <!-- Needed to prevent FOUS -->
     <script>
@@ -58,7 +51,7 @@ currently minified. -->
     {% js %}{% include "src/scripts/accessibility.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
-    <!-- Serve JS inline on prod for performance -->
+    <!-- Serve JS inline on prod for performance, since we have so little JS it's not worth the HTTP + caching overhead -->
     {%- if eleventy.env.runMode === "serve" %}
       <script src="{% getBundleFileUrl "js" %}"></script>
     {%- else  %}
