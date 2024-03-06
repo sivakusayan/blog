@@ -262,12 +262,13 @@ code {
 
 details {
   margin: var(--medium-spacing) 0;
+  transition: border-color 0.2s, width 0.1s;
 }
 
 details summary {
   border: 1.5px solid var(--text-color);
   padding: var(--small-spacing) var(--spacing);
-  transition: background-color 0.2s, color 0.1s, outline 0.1s,
+  transition: background-color 0.2s, border-color 0.2s, color 0.1s, outline 0.1s,
     outline-offset 0.1s;
   outline-offset: 24px;
   border-radius: 2px;
@@ -318,6 +319,14 @@ summary:hover {
   background-color: var(--primary-background-color);
   border: 1.5px solid var(--primary-color);
   cursor: pointer;
+}
+
+details summary:hover {
+  border-bottom-color: var(--primary-color)
+}
+
+details:has(summary:hover) {
+  border-color: var(--primary-color);
 }
 
 pre {
