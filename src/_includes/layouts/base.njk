@@ -30,7 +30,7 @@ currently minified. -->
     {%- css %}{% include "src/css/links.css" %}{% endcss %}
     {%- css %}{% include "src/css/print-styles.css" %}{% endcss %}
     {%- css %}{% include "src/css/high-contrast.css" %}{% endcss %}
-    <link rel="preload stylesheet" href="{% getBundleFileUrl "css" %}">
+    <link rel="preload stylesheet" as="style" href="{% getBundleFileUrl "css" %}">
 
     <!-- Needed to prevent FOUS -->
     <script>
