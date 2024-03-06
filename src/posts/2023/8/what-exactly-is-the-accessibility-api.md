@@ -128,7 +128,7 @@ Depending on the operating system, the accessibility API can have different impl
 
 An accessibility tree is a normal tree data structure that you might explore in your computer science class. For example, in the context of the browser, suppose we have some HTML like the following:
 
-```
+```html
 <header> ... </header>
 <main>
   <h1>Hello World</h1>
@@ -184,7 +184,7 @@ From the above example, let's zoom in to the image node specifically. What kind 
 
 If we instead take something stateful, like a checkbox:
 
-```
+```html
 <label for="check">Stay logged in</label>
 <input
   type="checkbox"
@@ -412,7 +412,7 @@ Although I'm simplifying a bit, there are three main ways a name can be generate
 
 **Name from content** is a strategy where the name of a node is derived from its text content. For example, suppose we have the following markup:
 
-```
+```html
 <a href="/projects">See my projects</a>
 ```
 
@@ -430,7 +430,7 @@ For the link's accessibility node, browsers are smart enough to make the node's 
 
 Browsers adopt a similar strategy for something like a button:
 
-```
+```html
 <button type="button">Dark theme</button>
 ```
 
@@ -448,7 +448,7 @@ which would lead to generating an accessibility node that looks something like:
 
 However, note that this strategy can't be implemented in a sensible way for all `HTMLElements`. For example, could we generate a good name from content for even a simple table like the one below?
 
-```
+```html
 <table>
   <tr>
     <th>Countries</th>
@@ -496,7 +496,7 @@ However, note that this strategy can't be implemented in a sensible way for all 
 
 For example, going back to the table example from above, we can add a `<caption>` element to source the name from.
 
-```
+```html
 <table>
   <caption>Some title</caption>
   ...
@@ -541,7 +541,7 @@ The table can then have an accessibility node that looks something like this:
 
 An even more natural example is the pairing of an `<input>` and `<label>` element.
 
-```
+```html
 <label for="input">
   Some label
 </label>
@@ -566,7 +566,7 @@ which will generate an accessibility node that looks something like this:
 
 **Name from author** is the third strategy browsers can use to generate a name. In this case, the browser relies on the web developer to manually supply an accessible name using the `aria-label` or `aria-labelledby` attributes. A name from author **always** overrides other naming strategies - assuming that the role [supports name from author](https://w3c.github.io/aria/#namefromauthor), anyway. For example, if we had some HTML as follows:
 
-```
+```html
 <a
   aria-label="Not a chance!"
   href="/projects"
@@ -616,7 +616,7 @@ The role of an accessibility node is generally simple to calculate if it has a c
 
 For example, consider the following HTML:
 
-```
+```html
 <button>This is some text</button>
 ```
 
@@ -624,7 +624,7 @@ The `button` element when translated would just have the button role. Assistive 
 
 However, if we added a `role` attribute to it:
 
-```
+```html
 <button role="link">This is some text</button>
 ```
 
