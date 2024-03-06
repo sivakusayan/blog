@@ -24,6 +24,7 @@ currently minified. -->
     <!-- Serve CSS inline on prod for performance -->
     {%- css %}{% include "src/css/third_party/typography.css" %}{% endcss %}
     {%- css %}{% include "src/css/third_party/reset.css" %}{% endcss %}
+    {%- css %}{% include "src/css/third_party/prism.css" %}{% endcss %}
     {%- css %}{% include "src/css/index.css" %}{% endcss %}
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
     {%- css %}{% include "src/css/footer.css" %}{% endcss %}
@@ -54,6 +55,7 @@ currently minified. -->
     </main>
 
     {{ footer() }}
+    {% js %}{% include "src/scripts/accessibility.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
     <!-- Serve JS inline on prod for performance -->

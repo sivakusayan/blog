@@ -1,6 +1,5 @@
 const fs = require("fs");
 
-const { DateTime } = require("luxon");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const { headerLink } = require("./scripts/permalink.js");

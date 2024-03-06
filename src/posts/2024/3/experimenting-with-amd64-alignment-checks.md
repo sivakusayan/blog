@@ -31,7 +31,7 @@ would happen.
 This code is more or less copy-pasted from the code in _Modern C_ and Ygdrasil's
 blog post.
 
-```
+```c
 #include <stdio.h> 
 
 union DoubleInspect {
@@ -47,8 +47,8 @@ int main(void) {
     union DoubleInspect inspect = { .val = {1,2} };
     printf("base address:\t%p\n", &inspect.buf);
 
-    // Let's do explicit flushes since we don't know if crashing will automatically
-    // flush the buffers or not.
+    // Let's do explicit flushes since we don't know if crashing
+    // will automatically flush the buffers or not.
     for (size_t offset = sizeof(double); offset; offset /= 2) {
         printf("offset:\t%zu\n", offset);
         fflush(stdout);
@@ -68,7 +68,7 @@ int main(void) {
 
 The most important parts of the code above are the inline assembly instructions. 
 
-```
+```c
 __asm__("pushf\n"
         "orl $0x40000, (%rsp)\n"
         "popf");
@@ -88,7 +88,7 @@ misaligned data will never crash.
 
 This even happens when running an extremely minimal `hello.c` file:
 
-```
+```c
 #include <stdio.h>
 
 int main(void) {
@@ -104,7 +104,7 @@ int main(void) {
 Here is the backtrace from running the above program in `gdb` if you're curious. It seems that we
 crash at [this line of code](https://sourceware.org/git/?p=glibc.git;a=blob;f=stdio-common/vfprintf-internal.c;h=771beca9bf71f4c817800fb44c45c19ec1e3a9d3;hb=HEAD#l635).
 
-```
+```text
 Program received signal SIGBUS, Bus error.
 0x00007ffff7e37078 in __printf_buffer (buf=buf@entry=0x7fffffffd8b0, format=format@entry=0x7ffff7fc0004 "Hi", ap=ap@entry=0x7fffffffd9a8, mode_flags=mode_flags@entry=0) at vfprintf-internal.c:638
 638	  __va_copy (ap_save, ap);
@@ -123,7 +123,7 @@ and use `printf` in your program (at least on my machine).
 
 If we remove all printing functions from our first code example instead:
 
-```
+```c
 union DoubleInspect {
     double val[2];
     unsigned char buf[sizeof(double)*2];
@@ -148,7 +148,7 @@ int main(void) {
 And we then compile with debug symbols, we do crash when `misaligned_pointer` is dereferenced, as
 expected.
 
-```
+```text
 (gdb) r
 Starting program: /home/sayan/Development/experiments/c/alignment/a.out
 [Thread debugging using libthread_db enabled]
