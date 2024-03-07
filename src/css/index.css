@@ -564,3 +564,9 @@ caption {
 .tags {
   font-size: 80%;
 }
+
+/** If script is disabled, we can't use javascript to make scrollable areas focusable.
+For those users, we'll just wrap the code instead. */
+.script-disabled code {
+  text-wrap: wrap;
+}

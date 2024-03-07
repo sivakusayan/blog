@@ -5,7 +5,7 @@
 <!-- If you want the source code, you should go to 
 https://github.com/sivakusayan/blog, since the CSS and JavaScript are
 currently minified. -->
-<html lang="{{ metadata.language }}">
+<html class="script-disabled" lang="{{ metadata.language }}">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,7 +48,7 @@ currently minified. -->
     </main>
 
     {{ footer() }}
-    {% js %}{% include "src/scripts/accessibility.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
     <!-- Serve JS inline on prod for performance, since we have so little JS it's not worth the HTTP + caching overhead -->
