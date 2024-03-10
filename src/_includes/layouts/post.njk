@@ -8,17 +8,17 @@ templateClass: tmpl-post
     <div class="post-header">
       <h1 id="Skip">{{ title }}</h1>
       <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
-      <div class="tags">
-        Tagged:
-        {%- for tag in tags | filterTagList %}
-	      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-	      <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}
-	      {%- endfor %}
-      </div>
     </div>
     {{ content | safe | toc | details}}
   </div>
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
+  <div>
+    <h2>Tagged</h2>
+    {%- for tag in tags | filterTagList %}
+      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+      <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>{%- if not loop.last %}, {% endif %}
+      {%- endfor %}
+  </div>
 </div>
 
 <div>
