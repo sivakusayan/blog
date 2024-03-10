@@ -209,7 +209,7 @@ h1.huge {
   line-height: 0.9;
   letter-spacing: -3px;
   margin-bottom: var(--medium-spacing);
-  /* 
+  /*
   Yes, this is a magic number. With optical adjustments this isn't necessarily bad.
   https://rafaltomal.com/optically-perfect/
   */
@@ -324,18 +324,19 @@ summary:hover {
 }
 
 details summary:hover {
-  border-bottom-color: var(--primary-color)
+  border-bottom-color: var(--primary-color);
 }
 
 details:has(summary:hover) {
   border-color: var(--primary-color);
 }
 
-pre {
-  transition: background-color 0.2s, color 0.1s, outline 0.1s, outline-offset 0.1s;
+pre[class*="language-"] {
+  transition: background-color 0.2s, color 0.1s, outline 0.1s,
+    outline-offset 0.1s;
   outline-offset: 30px;
-  margin-top: var(--semi-medium-spacing) !important;
-  margin-bottom: var(--semi-medium-spacing) !important;
+  margin-top: var(--semi-medium-spacing);
+  margin-bottom: var(--semi-medium-spacing);
 }
 
 pre:focus-visible,
@@ -466,9 +467,9 @@ blockquote p {
   /** Make code extend to the edges of the page,
   since the page padding matches the padding of
   the main element. */
-  pre {
-    margin-left: calc(-1 * var(--spacing)) !important;
-    margin-right: calc(-1 * var(--spacing)) !important;
+  pre[class*="language-"] {
+    margin-left: calc(-1 * var(--spacing));
+    margin-right: calc(-1 * var(--spacing));
     border-radius: 0;
   }
 }
@@ -483,7 +484,6 @@ blockquote p {
     padding-left: var(--spacing);
   }
 
-  
   ul.post-chain {
     flex-direction: column;
     gap: var(--spacing);
