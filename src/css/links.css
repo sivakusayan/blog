@@ -83,5 +83,5 @@ a[href]:focus {
 
 a[href].back-to-top {
   display: inline-block;
-  margin: var(--medium-spacing) 0;
+  margin-top: var(--medium-spacing);
 }

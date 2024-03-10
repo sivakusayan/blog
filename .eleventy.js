@@ -5,13 +5,14 @@ const markdownItAnchor = require("markdown-it-anchor");
 const { headerLink } = require("./scripts/permalink.js");
 const toc = require("./scripts/toc.js");
 const details = require("./scripts/details.js");
+const isValidTag = require("./scripts/tags.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
 const pluginRss = require("@11ty/eleventy-plugin-rss");
 const pluginBundler = require("@11ty/eleventy-plugin-bundle");
-const postcss = require('postcss');
-const cssnano = require('cssnano');
+const postcss = require("postcss");
+const cssnano = require("cssnano");
 const uglifyJS = require("uglify-js");
 
 module.exports = function (eleventyConfig) {
@@ -27,13 +28,14 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginBundler, {
     transforms: [
       async function (code) {
-        if (this.type === 'css') {
-          let result = await postcss([
-            cssnano
-          ]).process(code, { from: this.page.inputPath, to: null });
+        if (this.type === "css") {
+          let result = await postcss([cssnano]).process(code, {
+            from: this.page.inputPath,
+            to: null,
+          });
           return result.css;
         }
-        if (this.type === 'js') {
+        if (this.type === "js") {
           let minified = uglifyJS.minify(code);
           if (minified.error) {
             console.log("UglifyJS error: ", minified.error);
@@ -42,16 +44,24 @@ module.exports = function (eleventyConfig) {
           return minified.code;
         }
         return code;
-      }
-    ]
+      },
+    ],
   });
 
   eleventyConfig.addFilter("shortReadableDate", (dateObj) => {
-    return dateObj.toLocaleDateString(undefined, { month: 'short', day: '2-digit', year: 'numeric' });
+    return dateObj.toLocaleDateString(undefined, {
+      month: "short",
+      day: "2-digit",
+      year: "numeric",
+    });
   });
 
   eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return dateObj.toLocaleDateString(undefined, { month: 'long', day: 'numeric', year: 'numeric' });
+    return dateObj.toLocaleDateString(undefined, {
+      month: "long",
+      day: "numeric",
+      year: "numeric",
+    });
   });
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
@@ -91,7 +101,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection("tagList", function (collection) {
     let tagSet = new Set();
     collection.getAll().forEach((item) => {
-      (item.data.tags || []).forEach((tag) => tagSet.add(tag));
+      (item.data.tags || []).forEach((tag) => {
+        if (!isValidTag(tag)) throw Error("Post has invalid tag: " + tag);
+        tagSet.add(tag);
+      });
     });
 
     return filterTagList([...tagSet]);
@@ -103,7 +116,7 @@ module.exports = function (eleventyConfig) {
     linkify: true,
   }).use(markdownItAnchor, {
     permalink: headerLink({
-      safariReaderFix: true
+      safariReaderFix: true,
     }),
     level: [1, 2, 3, 4],
     slugify: eleventyConfig.getFilter("slugify"),

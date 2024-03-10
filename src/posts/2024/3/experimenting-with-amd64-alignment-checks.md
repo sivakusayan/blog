@@ -1,16 +1,16 @@
 ---
-title: Experimenting with AMD64 Alignment Checks 
-description: Turning on the alignment check flag for my Ryzen 5950x just to see what happens. 
+title: Experimenting with AMD64 Alignment Checks
+description: Turning on the alignment check flag for my Ryzen 5950x just to see what happens.
 date: 2024-03-03
 tags:
-  - Systems 
+  - Systems
 layout: layouts/post.njk
 ---
 
 While going through the [_Modern
 C_](https://gustedt.gitlabpages.inria.fr/modern-c/) book, the author mentioned a
 very cool blog post by Ygdrasil that showed [how to enable alignment checks for
-Intel x86 processors](https://orchistro.tistory.com/206). 
+Intel x86 processors](https://orchistro.tistory.com/206).
 
 I've heard in some casual conversations that data alignment is largely not
 relevant for Intel and AMD processors anymore, although I don't have the
@@ -32,7 +32,7 @@ This code is more or less copy-pasted from the code in _Modern C_ and Ygdrasil's
 blog post.
 
 ```c
-#include <stdio.h> 
+#include <stdio.h>
 
 union DoubleInspect {
     double val[2];
@@ -61,12 +61,12 @@ int main(void) {
         printf("\n");
         fflush(stdout);
     }
-    
-    return 0; 
+
+    return 0;
 }
 ```
 
-The most important parts of the code above are the inline assembly instructions. 
+The most important parts of the code above are the inline assembly instructions.
 
 ```c
 __asm__("pushf\n"
@@ -84,7 +84,7 @@ all we're doing is setting bit 18 of the RFLAGs register.
 
 Strangely, when running the above program, `glibc` seems to immediately crash with this check
 enabled. I assume the library does some special things on x86-64 processors, and so assumes that
-misaligned data will never crash. 
+misaligned data will never crash.
 
 This even happens when running an extremely minimal `hello.c` file:
 
@@ -117,9 +117,9 @@ Program received signal SIGBUS, Bus error.
 ```
 
 We get a similar crash if we replace the call to `printf` with a call to `puts`.
-Is this a problem? I'm not too sure if this is a crash the library maintainers need to care about. 
-But it does make enabling the alignment check useless if you link against `glibc` 
-and use `printf` in your program (at least on my machine). 
+Is this a problem? I'm not too sure if this is a crash the library maintainers need to care about.
+But it does make enabling the alignment check useless if you link against `glibc`
+and use `printf` in your program (at least on my machine).
 
 If we remove all printing functions from our first code example instead:
 
