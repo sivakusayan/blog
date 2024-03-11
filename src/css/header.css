@@ -1,53 +1,53 @@
 header {
-  height: 4rem;
-  position: relative;
-  display: flex;
-  margin-bottom: var(--large-spacing);
+	height: 4rem;
+	position: relative;
+	display: flex;
+	margin-bottom: var(--large-spacing);
 
-  background-color: var(--header-background-color);
-  color: var(--header-text-color);
+	background-color: var(--header-background-color);
+	color: var(--header-text-color);
 }
 
 header ul {
-  display: flex;
-  list-style: none;
-  gap: var(--spacing);
-  padding: 0;
-  margin-left: -0.5rem;
+	display: flex;
+	list-style: none;
+	gap: var(--spacing);
+	padding: 0;
+	margin-left: -0.5rem;
 }
 
 header a[href] {
-  display: inline-block;
-  display: flex;
-  justify-content: center;
-  padding: 0.25rem 0.5rem;
+	display: inline-block;
+	display: flex;
+	justify-content: center;
+	padding: 0.25rem 0.5rem;
 
-  color: var(--header-text-color);
-  text-decoration: none;
+	color: var(--header-text-color);
+	text-decoration: none;
 }
 
 header a[href]:hover {
-  color: var(--text-color);
+	color: var(--text-color);
 }
 
 header nav {
-  width: var(--max-content-width);
-  margin: auto;
-  display: flex;
-  align-items: center;
+	width: var(--max-content-width);
+	margin: auto;
+	display: flex;
+	align-items: center;
 }
 
 header nav .active {
-  border-bottom: 2px solid currentColor;
-  margin-bottom: -2px;
-  cursor: default;
-  pointer-events: none;
+	border-bottom: 2px solid currentColor;
+	margin-bottom: -2px;
+	cursor: default;
+	pointer-events: none;
 }
 
 @media only screen and (max-width: 660px) {
-  header nav {
-    width: auto;
-    margin: 0;
-    padding: 0 var(--medium-spacing);
-  }
+	header nav {
+		width: auto;
+		margin: 0;
+		padding: 0 var(--medium-spacing);
+	}
 }

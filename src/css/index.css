@@ -1,39 +1,39 @@
 :root {
-  --tiny-spacing: calc(var(--spacing) / 8);
-  --small-spacing: calc(var(--spacing) / 2);
-  --semi-medium-spacing: calc(var(--spacing) * 1.5);
-  --medium-spacing: calc(var(--spacing) * 2);
-  --large-spacing: calc(var(--spacing) * 4);
+	--tiny-spacing: calc(var(--spacing) / 8);
+	--small-spacing: calc(var(--spacing) / 2);
+	--semi-medium-spacing: calc(var(--spacing) * 1.5);
+	--medium-spacing: calc(var(--spacing) * 2);
+	--large-spacing: calc(var(--spacing) * 4);
 
-  /* We unfortunately cannot use ch units to define the width here, as
+	/* We unfortunately cannot use ch units to define the width here, as
    that causes flash of unstyled fonts with web fonts. Just hardcode it for now.*/
-  --max-content-width: 30.8rem;
+	--max-content-width: 30.8rem;
 
-  font-size: clamp(100%, 90% + 0.5vi, 130%);
+	font-size: clamp(100%, 90% + 0.5vi, 130%);
 }
 
 :root {
-  color-scheme: light;
+	color-scheme: light;
 
-  --text-color: #121212;
-  --background-color: #f5f3f3;
+	--text-color: #121212;
+	--background-color: #f5f3f3;
 
-  --code-background-color: #e3e3e3;
+	--code-background-color: #e3e3e3;
 
-  --header-text-color: #f5f3f3;
-  --header-background-color: #171717;
+	--header-text-color: #f5f3f3;
+	--header-background-color: #171717;
 
-  --footer-text-color: #f5f3f3;
-  --footer-background-color: #171717;
+	--footer-text-color: #f5f3f3;
+	--footer-background-color: #171717;
 
-  --primary-color: #0097f5;
-  --primary-background-color: #9bd7fd;
-  --highlight-color: #d5efff;
+	--primary-color: #0097f5;
+	--primary-background-color: #9bd7fd;
+	--highlight-color: #d5efff;
 
-  --header-line-height: 1.1;
-  --paragraph-line-height: 1.34;
-  --spacing: 1.12rem;
-  --hover-outline-width: 3px;
+	--header-line-height: 1.1;
+	--paragraph-line-height: 1.34;
+	--spacing: 1.12rem;
+	--hover-outline-width: 3px;
 }
 
 /* Need this hack as chrome doesn't support CSS variables in ::selection */
@@ -41,530 +41,541 @@
 https://github.com/w3c/csswg-drafts/issues/6853
 */
 ::selection {
-  background-color: rgb(18, 18, 18, 0.99);
-  color: rgb(245, 243, 243, 0.99);
+	background-color: rgb(18, 18, 18, 0.99);
+	color: rgb(245, 243, 243, 0.99);
 }
 
 header ::selection,
 footer ::selection,
 pre ::selection {
-  background-color: rgb(245, 243, 243, 0.99);
-  color: rgb(18, 18, 18, 0.99);
+	background-color: rgb(245, 243, 243, 0.99);
+	color: rgb(18, 18, 18, 0.99);
 }
 
-html[data-theme="DARK"] {
-  color-scheme: dark;
+html[data-theme='DARK'] {
+	color-scheme: dark;
 
-  --text-color: rgb(194, 194, 194);
-  --background-color: #0f0f11;
+	--text-color: rgb(194, 194, 194);
+	--background-color: #0f0f11;
 
-  --code-background-color: #020202;
+	--code-background-color: #020202;
 
-  --header-text-color: rgb(194, 194, 194);
-  --header-background-color: #09090a;
+	--header-text-color: rgb(194, 194, 194);
+	--header-background-color: #09090a;
 
-  --footer-text-color: rgb(194, 194, 194);
-  --footer-background-color: #09090a;
+	--footer-text-color: rgb(194, 194, 194);
+	--footer-background-color: #09090a;
 
-  --primary-color: #0982c8;
-  --primary-background-color: #02304b;
-  --highlight-color: rgb(22, 40, 67);
+	--primary-color: #0982c8;
+	--primary-background-color: #02304b;
+	--highlight-color: rgb(22, 40, 67);
 
-  --header-line-height: 1.15;
-  --paragraph-line-height: 1.38;
-  --spacing: 1.2rem;
-  --hover-outline-width: 3px;
+	--header-line-height: 1.15;
+	--paragraph-line-height: 1.38;
+	--spacing: 1.2rem;
+	--hover-outline-width: 3px;
 }
 
-html[data-theme="DARK"] ::selection {
-  background-color: rgb(215, 215, 215, 0.99);
-  color: rgb(6, 6, 6, 0.99);
+html[data-theme='DARK'] ::selection {
+	background-color: rgb(215, 215, 215, 0.99);
+	color: rgb(6, 6, 6, 0.99);
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
+	:root {
+		color-scheme: dark;
 
-    --text-color: rgb(194, 194, 194);
-    --background-color: #0f0f11;
+		--text-color: rgb(194, 194, 194);
+		--background-color: #0f0f11;
 
-    --code-background-color: #020202;
+		--code-background-color: #020202;
 
-    --header-text-color: rgb(194, 194, 194);
-    --header-background-color: #09090a;
+		--header-text-color: rgb(194, 194, 194);
+		--header-background-color: #09090a;
 
-    --footer-text-color: rgb(194, 194, 194);
-    --footer-background-color: #09090a;
+		--footer-text-color: rgb(194, 194, 194);
+		--footer-background-color: #09090a;
 
-    --primary-color: #0982c8;
-    --primary-background-color: #02304b;
-    --highlight-color: rgb(22, 40, 67);
+		--primary-color: #0982c8;
+		--primary-background-color: #02304b;
+		--highlight-color: rgb(22, 40, 67);
 
-    --header-line-height: 1.15;
-    --paragraph-line-height: 1.38;
-    --spacing: 1.2rem;
-    --hover-outline-width: 3px;
-  }
+		--header-line-height: 1.15;
+		--paragraph-line-height: 1.38;
+		--spacing: 1.2rem;
+		--hover-outline-width: 3px;
+	}
 
-  ::selection {
-    background-color: rgb(215, 215, 215, 0.99);
-    color: rgb(6, 6, 6, 0.99);
-  }
+	::selection {
+		background-color: rgb(215, 215, 215, 0.99);
+		color: rgb(6, 6, 6, 0.99);
+	}
 
-  html[data-theme="LIGHT"] {
-    color-scheme: light;
+	html[data-theme='LIGHT'] {
+		color-scheme: light;
 
-    --text-color: #121212;
-    --background-color: #f5f3f3;
+		--text-color: #121212;
+		--background-color: #f5f3f3;
 
-    --code-background-color: #e3e3e3;
+		--code-background-color: #e3e3e3;
 
-    --header-text-color: #f5f3f3;
-    --header-background-color: #171717;
+		--header-text-color: #f5f3f3;
+		--header-background-color: #171717;
 
-    --footer-text-color: #f5f3f3;
-    --footer-background-color: #171717;
+		--footer-text-color: #f5f3f3;
+		--footer-background-color: #171717;
 
-    --primary-color: #0097f5;
-    --primary-background-color: #9bd7fd;
-    --highlight-color: #d5efff;
+		--primary-color: #0097f5;
+		--primary-background-color: #9bd7fd;
+		--highlight-color: #d5efff;
 
-    --header-line-height: 1.1;
-    --paragraph-line-height: 1.34;
-    --spacing: 1.12rem;
-    --hover-outline-width: 3px;
-  }
+		--header-line-height: 1.1;
+		--paragraph-line-height: 1.34;
+		--spacing: 1.12rem;
+		--hover-outline-width: 3px;
+	}
 
-  html[data-theme="LIGHT"] ::selection {
-    background-color: rgb(18, 18, 18, 0.99);
-    color: rgb(245, 243, 243, 0.99);
-  }
+	html[data-theme='LIGHT'] ::selection {
+		background-color: rgb(18, 18, 18, 0.99);
+		color: rgb(245, 243, 243, 0.99);
+	}
 
-  html[data-theme="LIGHT"] header ::selection,
-  html[data-theme="LIGHT"] footer ::selection,
-  html[data-theme="LIGHT"] pre ::selection {
-    background-color: rgb(245, 243, 243, 0.99);
-    color: rgb(18, 18, 18, 0.99);
-  }
+	html[data-theme='LIGHT'] header ::selection,
+	html[data-theme='LIGHT'] footer ::selection,
+	html[data-theme='LIGHT'] pre ::selection {
+		background-color: rgb(245, 243, 243, 0.99);
+		color: rgb(18, 18, 18, 0.99);
+	}
 }
 
 html {
-  font-family: "source-sans-pro", sans-serif;
-  font-style: normal;
-  line-height: var(--paragraph-line-height);
+	font-family: 'source-sans-pro', sans-serif;
+	font-style: normal;
+	line-height: var(--paragraph-line-height);
 }
 
 em {
-  font-style: italic;
-  font-family: "source-serif-pro", serif;
+	font-style: italic;
+	font-family: 'source-serif-pro', serif;
 }
 
 b {
-  font-weight: 700;
+	font-weight: 700;
 }
 
 h1,
 h2,
 h3 {
-  font-weight: 700;
-  line-height: 1.05;
-  outline: none;
+	font-weight: 700;
+	line-height: 1.05;
+	outline: none;
 }
 
 h2,
 h3 {
-  margin-top: var(--large-spacing);
-  margin-bottom: var(--spacing);
+	margin-top: var(--large-spacing);
+	margin-bottom: var(--spacing);
 }
 
 h2 a,
 h3 a {
-  text-decoration: none;
-  color: inherit;
-  line-height: var(--header-line-height);
+	text-decoration: none;
+	color: inherit;
+	line-height: var(--header-line-height);
 }
 
 h1 {
-  font-size: 1.7rem;
-  letter-spacing: -0.5px;
+	font-size: 1.7rem;
+	letter-spacing: -0.5px;
 }
 
 h2 {
-  font-size: 1.3rem;
-  letter-spacing: -0.25px;
+	font-size: 1.3rem;
+	letter-spacing: -0.25px;
 }
 
 h3 {
-  font-size: 1.1rem;
+	font-size: 1.1rem;
 }
 
 h2 span,
 h3 span {
-  font-weight: 700;
-  line-height: var(--header-line-height);
+	font-weight: 700;
+	line-height: var(--header-line-height);
 }
 
 h1.huge {
-  font-size: 4rem;
-  line-height: 0.9;
-  letter-spacing: -3px;
-  margin-bottom: var(--medium-spacing);
-  /*
+	font-size: 4rem;
+	line-height: 0.9;
+	letter-spacing: -3px;
+	margin-bottom: var(--medium-spacing);
+	/*
   Yes, this is a magic number. With optical adjustments this isn't necessarily bad.
   https://rafaltomal.com/optically-perfect/
   */
-  margin-left: -3px;
+	margin-left: -3px;
 }
 
 html {
-  background-color: var(--background-color);
-  color: var(--text-color);
+	background-color: var(--background-color);
+	color: var(--text-color);
 
-  transition: background-color 0.2s, color 0.1s;
-  scroll-behavior: smooth;
+	transition:
+		background-color 0.2s,
+		color 0.1s;
+	scroll-behavior: smooth;
 }
 
 html,
 body {
-  scrollbar-gutter: both;
+	scrollbar-gutter: both;
 }
 
 body {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 main {
-  flex-grow: 1;
-  width: var(--max-content-width);
-  margin: auto;
+	flex-grow: 1;
+	width: var(--max-content-width);
+	margin: auto;
 }
 
 p {
-  margin-bottom: var(--spacing);
+	margin-bottom: var(--spacing);
 }
 
 li {
-  margin-top: var(--tiny-spacing);
+	margin-top: var(--tiny-spacing);
 }
 
 .post-header {
-  margin-bottom: var(--large-spacing);
+	margin-bottom: var(--large-spacing);
 }
 
 main:not(.tmpl-post) h1:not(.huge) {
-  margin-bottom: var(--spacing);
+	margin-bottom: var(--spacing);
 }
 
 pre,
 code {
-  border-radius: 5px;
-  font-size: 83%;
+	border-radius: 5px;
+	font-size: 83%;
 }
 
 details {
-  margin: var(--medium-spacing) 0;
-  transition: border-color 0.2s, width 0.1s;
+	margin: var(--medium-spacing) 0;
+	transition:
+		border-color 0.2s,
+		width 0.1s;
 }
 
 details summary {
-  border: 1.5px solid var(--text-color);
-  padding: var(--small-spacing) var(--spacing);
-  transition: background-color 0.2s, border-color 0.2s, color 0.1s, outline 0.1s,
-    outline-offset 0.1s;
-  outline-offset: 24px;
-  border-radius: 2px;
+	border: 1.5px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 24px;
+	border-radius: 2px;
 }
 
 details[open] {
-  border: 1.5px solid var(--text-color);
+	border: 1.5px solid var(--text-color);
 }
 
 details[open] summary {
-  border: none;
-  border-bottom: 1.5px solid var(--text-color);
+	border: none;
+	border-bottom: 1.5px solid var(--text-color);
 }
 
 .post-content details {
-  width: 45ch;
+	width: 45ch;
 }
 
 .details-grouper {
-  margin: var(--medium-spacing) 0;
-  list-style: none;
-  padding: 0;
+	margin: var(--medium-spacing) 0;
+	list-style: none;
+	padding: 0;
 }
 
 .details-grouper details {
-  margin: var(--spacing) 0;
+	margin: var(--spacing) 0;
 }
 
 details[open] {
-  width: 60ch;
+	width: 60ch;
 }
 
 details[open] summary {
-  border-bottom: 1.5px solid var(--text-color);
+	border-bottom: 1.5px solid var(--text-color);
 }
 
 details[open] .details-content {
-  margin: var(--small-spacing) 0;
-  padding: var(--small-spacing) var(--spacing);
-  width: 60ch;
+	margin: var(--small-spacing) 0;
+	padding: var(--small-spacing) var(--spacing);
+	width: 60ch;
 }
 
 details[open] .details-content *:last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 summary:hover {
-  background-color: var(--primary-background-color);
-  border: 1.5px solid var(--primary-color);
-  cursor: pointer;
+	background-color: var(--primary-background-color);
+	border: 1.5px solid var(--primary-color);
+	cursor: pointer;
 }
 
 details summary:hover {
-  border-bottom-color: var(--primary-color);
+	border-bottom-color: var(--primary-color);
 }
 
 details:has(summary:hover) {
-  border-color: var(--primary-color);
+	border-color: var(--primary-color);
 }
 
-pre[class*="language-"] {
-  transition: background-color 0.2s, color 0.1s, outline 0.1s,
-    outline-offset 0.1s;
-  outline-offset: 30px;
-  margin-top: var(--semi-medium-spacing);
-  margin-bottom: var(--semi-medium-spacing);
+pre[class*='language-'] {
+	transition:
+		background-color 0.2s,
+		color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 30px;
+	margin-top: var(--semi-medium-spacing);
+	margin-bottom: var(--semi-medium-spacing);
 }
 
 pre:focus-visible,
 summary:focus-visible {
-  outline: 5px solid var(--primary-color);
-  outline-offset: 5px;
+	outline: 5px solid var(--primary-color);
+	outline-offset: 5px;
 }
 
 dt {
-  margin-top: var(--tiny-spacing);
-  font-weight: 700;
+	margin-top: var(--tiny-spacing);
+	font-weight: 700;
 }
 
 dd {
-  padding-left: var(--spacing);
+	padding-left: var(--spacing);
 }
 
 hr {
-  margin: var(--medium-spacing) 0;
+	margin: var(--medium-spacing) 0;
 }
 
 .postlist {
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 }
 
 .postlist li {
-  margin-bottom: var(--spacing);
+	margin-bottom: var(--spacing);
 }
 
 ul.post-chain {
-  list-style: none;
-  padding: 0;
+	list-style: none;
+	padding: 0;
 
-  display: flex;
-  justify-content: space-between;
-  gap: var(--medium-spacing);
+	display: flex;
+	justify-content: space-between;
+	gap: var(--medium-spacing);
 }
 
 ul.post-chain > * {
-  flex: 1;
+	flex: 1;
 }
 
 .post-chain span {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .header-anchor {
-  position: relative;
+	position: relative;
 }
 
 .anchor {
-  position: absolute;
-  top: 0.24rem;
-  left: -1.5rem;
+	position: absolute;
+	top: 0.24rem;
+	left: -1.5rem;
 }
 
 aside {
-  margin: var(--medium-spacing) 0;
-  padding: var(--small-spacing) var(--spacing);
-  border: 1.5px solid var(--text-color);
-  border-radius: 2px;
+	margin: var(--medium-spacing) 0;
+	padding: var(--small-spacing) var(--spacing);
+	border: 1.5px solid var(--text-color);
+	border-radius: 2px;
 }
 
 aside *:last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 aside a {
-  word-wrap: break-word;
+	word-wrap: break-word;
 }
 
 blockquote {
-  padding-left: var(--spacing);
-  border-left: 10px solid var(--text-color);
+	padding-left: var(--spacing);
+	border-left: 10px solid var(--text-color);
 }
 
 blockquote p {
-  font-style: italic;
+	font-style: italic;
 }
 
 @media only screen and (max-width: 620px) {
-  main {
-    max-width: unset;
-    margin: 0;
-    padding: 0 var(--medium-spacing);
-  }
+	main {
+		max-width: unset;
+		margin: 0;
+		padding: 0 var(--medium-spacing);
+	}
 
-  .post-content details,
-  details[open],
-  details[open] .details-content {
-    width: auto;
-  }
+	.post-content details,
+	details[open],
+	details[open] .details-content {
+		width: auto;
+	}
 
-  .anchor {
-    left: -1.2rem;
-  }
+	.anchor {
+		left: -1.2rem;
+	}
 }
 
 @media only screen and (max-width: 660px) {
-  main {
-    width: auto;
-    margin: 0;
-    padding: 0 var(--medium-spacing);
-  }
+	main {
+		width: auto;
+		margin: 0;
+		padding: 0 var(--medium-spacing);
+	}
 }
 
 @media only screen and (max-width: 450px) {
-  h1.huge {
-    font-size: 3rem;
-    letter-spacing: -1px;
-    margin-left: -2px;
-  }
+	h1.huge {
+		font-size: 3rem;
+		letter-spacing: -1px;
+		margin-left: -2px;
+	}
 
-  main {
-    padding: 0 var(--spacing);
-  }
+	main {
+		padding: 0 var(--spacing);
+	}
 
-  .anchor {
-    position: relative;
-    left: unset;
-    top: unset;
+	.anchor {
+		position: relative;
+		left: unset;
+		top: unset;
 
-    display: inline-block;
-    margin-left: var(--small-spacing);
-  }
+		display: inline-block;
+		margin-left: var(--small-spacing);
+	}
 
-  /** Make code extend to the edges of the page,
+	/** Make code extend to the edges of the page,
   since the page padding matches the padding of
   the main element. */
-  pre[class*="language-"] {
-    margin-left: calc(-1 * var(--spacing));
-    margin-right: calc(-1 * var(--spacing));
-    border-radius: 0;
-  }
+	pre[class*='language-'] {
+		margin-left: calc(-1 * var(--spacing));
+		margin-right: calc(-1 * var(--spacing));
+		border-radius: 0;
+	}
 }
 
 @media only screen and (max-width: 350px) {
-  h1.huge {
-    font-size: 2rem;
-    letter-spacing: unset;
-  }
+	h1.huge {
+		font-size: 2rem;
+		letter-spacing: unset;
+	}
 
-  ul {
-    padding-left: var(--spacing);
-  }
+	ul {
+		padding-left: var(--spacing);
+	}
 
-  ul.post-chain {
-    flex-direction: column;
-    gap: var(--spacing);
-  }
+	ul.post-chain {
+		flex-direction: column;
+		gap: var(--spacing);
+	}
 }
 
 .tree {
-  margin: var(--medium-spacing) 0;
+	margin: var(--medium-spacing) 0;
 }
 
 .tree,
 .tree ul {
-  list-style: none;
-  padding-left: 0px;
-  padding-top: 0px;
-  position: relative;
+	list-style: none;
+	padding-left: 0px;
+	padding-top: 0px;
+	position: relative;
 }
 
 .tree ul {
-  margin-left: var(--large-spacing);
+	margin-left: var(--large-spacing);
 }
 
 .tree ul::before {
-  position: absolute;
-  bottom: 0;
-  left: 0px;
-  content: " ";
-  height: calc(100% + (var(--tiny-spacing)));
-  width: 1px;
-  border-left: 1.5px solid var(--text-color);
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	content: ' ';
+	height: calc(100% + (var(--tiny-spacing)));
+	width: 1px;
+	border-left: 1.5px solid var(--text-color);
 }
 
 .tree ul li {
-  padding-top: var(--small-spacing);
+	padding-top: var(--small-spacing);
 }
 
 .tree span {
-  border: 1.5px solid var(--text-color);
-  padding: 5px;
-  width: 7rem;
-  display: inline-block;
-  text-align: center;
-  border-radius: 2px;
+	border: 1.5px solid var(--text-color);
+	padding: 5px;
+	width: 7rem;
+	display: inline-block;
+	text-align: center;
+	border-radius: 2px;
 }
 
 .ax-node {
-  margin: var(--spacing) 0;
-  border: 1.5px solid var(--text-color);
-  border-radius: 2px;
+	margin: var(--spacing) 0;
+	border: 1.5px solid var(--text-color);
+	border-radius: 2px;
 }
 
 .ax-node p {
-  border-bottom: 1.5px solid var(--text-color);
-  padding: var(--small-spacing) var(--spacing);
-  margin-bottom: 0;
+	border-bottom: 1.5px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
+	margin-bottom: 0;
 }
 
 .ax-node dl {
-  padding: var(--small-spacing) var(--spacing);
+	padding: var(--small-spacing) var(--spacing);
 }
 
 table {
-  border-collapse: collapse;
-  border-spacing: 0px;
-  margin: var(--spacing) 0;
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin: var(--spacing) 0;
 }
 
 th,
 td {
-  padding: var(--small-spacing);
-  border: 1.5px solid var(--text-color);
+	padding: var(--small-spacing);
+	border: 1.5px solid var(--text-color);
 }
 
 caption {
-  text-align: left;
-  font-weight: bold;
-  margin-bottom: var(--small-spacing);
+	text-align: left;
+	font-weight: bold;
+	margin-bottom: var(--small-spacing);
 }
 
 /** If script is disabled, we can't use javascript to make scrollable areas focusable.
 For those users, we'll just wrap the code instead. */
 .script-disabled code {
-  text-wrap: wrap;
+	text-wrap: wrap;
 }

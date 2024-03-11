@@ -129,18 +129,19 @@ Depending on the operating system, the accessibility API can have different impl
 An accessibility tree is a normal tree data structure that you might explore in your computer science class. For example, in the context of the browser, suppose we have some HTML like the following:
 
 ```html
-<header> ... </header>
+<header>...</header>
 <main>
-  <h1>Hello World</h1>
-  <img src="..." alt="...">
-  <p>
-    This is a paragraph.
-    <span>
-      This is more text.
-    </span>
-  </p>
+	<h1>Hello World</h1>
+	<img
+		src="..."
+		alt="..."
+	/>
+	<p>
+		This is a paragraph.
+		<span> This is more text. </span>
+	</p>
 </main>
-<footer> ... </footer>
+<footer>...</footer>
 ```
 
 The browser might generate an accessibility tree similar to the following for this HTML:
@@ -450,24 +451,24 @@ However, note that this strategy can't be implemented in a sensible way for all 
 
 ```html
 <table>
-  <tr>
-    <th>Countries</th>
-    <th>Capitals</th>
-    <th>Population</th>
-    <th>Language</th>
-  </tr>
-  <tr>
-    <td>USA</td>
-    <td>Washington, D.C.</td>
-    <td>309 million</td>
-    <td>English</td>
-  </tr>
-  <tr>
-    <td>Sweden</td>
-    <td>Stockholm</td>
-    <td>9 million</td>
-    <td>Swedish</td>
-  </tr>
+	<tr>
+		<th>Countries</th>
+		<th>Capitals</th>
+		<th>Population</th>
+		<th>Language</th>
+	</tr>
+	<tr>
+		<td>USA</td>
+		<td>Washington, D.C.</td>
+		<td>309 million</td>
+		<td>English</td>
+	</tr>
+	<tr>
+		<td>Sweden</td>
+		<td>Stockholm</td>
+		<td>9 million</td>
+		<td>Swedish</td>
+	</tr>
 </table>
 ```
 
@@ -498,10 +499,12 @@ For example, going back to the table example from above, we can add a `<caption>
 
 ```html
 <table>
-  <caption>Some title</caption>
-  ...
-  <!-- Same table content as before -->
-  ...
+	<caption>
+		Some title
+	</caption>
+	...
+	<!-- Same table content as before -->
+	...
 </table>
 ```
 
@@ -568,9 +571,10 @@ which will generate an accessibility node that looks something like this:
 
 ```html
 <a
-  aria-label="Not a chance!"
-  href="/projects"
->See my projects</a>
+	aria-label="Not a chance!"
+	href="/projects"
+	>See my projects</a
+>
 ```
 
 the accessibility node that is generated would have the name "Not a chance!":
@@ -643,7 +647,6 @@ Second, browsers don't always respect the semantics coming from an HTMLElement, 
 If you take nothing else, the accessibility API is an API that lets you programmatically read off and interact with an application.
 When generating the accessibility API, the browser has to consider both HTML and CSS to generate the accessibility tree.
 
-
 ## Edit History
 
-* 9/17/2023: Clarified that <code>aria-label</code> only overrides the name on roles that support name from author. Per the spec, it should not do anything otherwise.
+- 9/17/2023: Clarified that <code>aria-label</code> only overrides the name on roles that support name from author. Per the spec, it should not do anything otherwise.

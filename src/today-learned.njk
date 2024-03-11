@@ -1,0 +1,12 @@
+---
+title: Today I Learned - Sayan Sivakumaran
+layout: layouts/base.njk
+permalink: /til/
+eleventyNavigation:
+  key: Today I Learned
+  order: 3
+---
+
+<h1 id="Skip">Today I Learned</h1>
+{% set postslist = collections.posts | getTodayLearnedPosts %}
+{% include "partials/postslist.njk" %}
