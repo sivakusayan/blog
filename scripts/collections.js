@@ -48,6 +48,8 @@ const getTags = (collection, postFilter) => {
 }
 
 module.exports = {
+    // Get the list of tags used by posts that aren't Today I Learned posts.
     tagList: (collection) => getTags(collection, (post) => !post.data.isTodayLearned),
+     // Get the list of tags used by posts that are Today I Learned posts.
     todayLearnedTagList: (collection) => getTags(collection, (post) => post.data.isTodayLearned)
 }

@@ -6,6 +6,7 @@ const { headerLink } = require("./scripts/permalink.js");
 const toc = require("./scripts/toc.js");
 const details = require("./scripts/details.js");
 const { tagList, todayLearnedTagList } = require("./scripts/collections.js");
+const { filterTagList, shortReadableDate, readableDate } = require("./scripts/filters.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -48,51 +49,14 @@ module.exports = function (eleventyConfig) {
     ],
   });
 
-  eleventyConfig.addFilter("shortReadableDate", (dateObj) => {
-    return dateObj.toLocaleDateString(undefined, {
-      month: "short",
-      day: "2-digit",
-      year: "numeric",
-    });
-  });
-
-  eleventyConfig.addFilter("readableDate", (dateObj) => {
-    return dateObj.toLocaleDateString(undefined, {
-      month: "long",
-      day: "numeric",
-      year: "numeric",
-    });
-  });
+  eleventyConfig.addFilter("filterTagList", filterTagList);
+  eleventyConfig.addFilter("shortReadableDate", shortReadableDate);
+  eleventyConfig.addFilter("readableDate", readableDate);
 
   // https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
   eleventyConfig.addFilter("htmlDateString", (dateObj) => {
     return dateObj.toISOString();
   });
-
-  // Get the first `n` elements of a collection.
-  eleventyConfig.addFilter("head", (array, n) => {
-    if (!Array.isArray(array) || array.length === 0) {
-      return [];
-    }
-    if (n < 0) {
-      return array.slice(n);
-    }
-
-    return array.slice(0, n);
-  });
-
-  // Return the smallest number argument
-  eleventyConfig.addFilter("min", (...numbers) => {
-    return Math.min.apply(null, numbers);
-  });
-
-  function filterTagList(tags) {
-    return (tags || []).filter(
-      (tag) => ["all", "nav", "post", "posts"].indexOf(tag) === -1
-    );
-  }
-
-  eleventyConfig.addFilter("filterTagList", filterTagList);
 
   eleventyConfig.addFilter("toc", toc);
   eleventyConfig.addFilter("details", details);
@@ -103,7 +67,6 @@ module.exports = function (eleventyConfig) {
     return posts.filter((post) => post.data.isTodayLearned);
   });
 
-  // Array of all tags used by posts that aren't Today-I-Learned
   eleventyConfig.addCollection("tagList", tagList);
   eleventyConfig.addCollection("todayLearnedTagList", todayLearnedTagList);
 

@@ -1,7 +1,5 @@
 /**
  * Automatically wraps the content of a details element in a div with a class so we can do certain CSS magic.
- * 
- * I really don't think this code is even needed, but I'm too lazy to adjust my CSS....
  */
 
 const cheerio = require('cheerio');
