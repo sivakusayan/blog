@@ -6,7 +6,11 @@ templateClass: tmpl-post
 <div>
   <div class="post-content">
     <div class="post-header">
-      <h1 id="Skip">{{ title }}</h1>
+      {%- if collections.posts | isTodayLearnedPost(page) %}
+        <h1 id="Skip">Today I Learned: {{ title }}</h1>
+      {%- else %}
+        <h1 id="Skip">{{ title }}</h1>
+      {% endif %}
       <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
     </div>
     {{ content | safe | withTableOfContents | withDetails}}
