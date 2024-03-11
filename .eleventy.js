@@ -21,6 +21,11 @@ const {
 	withDetails,
 	getRegularPosts,
 	getTodayLearnedPosts,
+	isTodayLearnedPost,
+	getPreviousTodayLearnedPost,
+	getNextTodayLearnedPost,
+	getPreviousRegularPost,
+	getNextRegularPost,
 } = require('./scripts/filters.js');
 
 module.exports = function (eleventyConfig) {
@@ -64,9 +69,14 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('withDetails', withDetails);
 	eleventyConfig.addFilter('getRegularPosts', getRegularPosts);
 	eleventyConfig.addFilter('getTodayLearnedPosts', getTodayLearnedPosts);
-	eleventyConfig.addFilter('getTest', (page) => {
-		console.log(page.data);
-	});
+	eleventyConfig.addFilter('isTodayLearnedPost', isTodayLearnedPost);
+	eleventyConfig.addFilter(
+		'getPreviousTodayLearnedPost',
+		getPreviousTodayLearnedPost,
+	);
+	eleventyConfig.addFilter('getNextTodayLearnedPost', getNextTodayLearnedPost);
+	eleventyConfig.addFilter('getPreviousRegularPost', getPreviousRegularPost);
+	eleventyConfig.addFilter('getNextRegularPost', getNextRegularPost);
 
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);

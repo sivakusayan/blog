@@ -24,8 +24,13 @@ templateClass: tmpl-post
 
 <div>
   {%- if collections.posts %}
-    {%- set nextPost = collections.posts | getTest(page) %}
-    {%- set previousPost = collections.posts | getPreviousCollectionItem(page) %}
+    {%- if collections.posts | isTodayLearnedPost(page) %}
+      {%- set nextPost = collections.posts | getNextTodayLearnedPost(page) %}
+      {%- set previousPost = collections.posts | getPreviousTodayLearnedPost(page) %}
+    {%- else %}
+      {%- set nextPost = collections.posts | getNextRegularPost(page) %}
+      {%- set previousPost = collections.posts | getPreviousRegularPost(page) %}
+    {%- endif %}
     {%- if nextPost or previousPost %}
       <hr>
       <ul class="post-chain">
