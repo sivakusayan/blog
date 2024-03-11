@@ -5,7 +5,7 @@ const markdownItAnchor = require("markdown-it-anchor");
 const { headerLink } = require("./scripts/permalink.js");
 const toc = require("./scripts/toc.js");
 const details = require("./scripts/details.js");
-const isValidTag = require("./scripts/tags.js");
+const { tagList, todayLearnedTagList } = require("./scripts/collections.js");
 
 const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const pluginNavigation = require("@11ty/eleventy-navigation");
@@ -104,32 +104,8 @@ module.exports = function (eleventyConfig) {
   });
 
   // Array of all tags used by posts that aren't Today-I-Learned
-  eleventyConfig.addCollection("tagList", function (collection) {
-    let tagSet = new Set();
-    collection.getAll().forEach((item) => {
-      if (item.data.isTodayLearned) return;
-      (item.data.tags || []).forEach((tag) => {
-        if (!isValidTag(tag)) throw Error("Post has invalid tag: " + tag);
-        tagSet.add(tag);
-      });
-    });
-
-    return filterTagList([...tagSet]);
-  });
-
-  // Array of all tags used by Today-I-Learned posts
-  eleventyConfig.addCollection("tilTagList", function (collection) {
-    let tagSet = new Set();
-    collection.getAll().forEach((item) => {
-      if (!item.data.isTodayLearned) return;
-      (item.data.tags || []).forEach((tag) => {
-        if (!isValidTag(tag)) throw Error("Post has invalid tag: " + tag);
-        tagSet.add(tag);
-      });
-    });
-
-    return filterTagList([...tagSet]);
-  });
+  eleventyConfig.addCollection("tagList", tagList);
+  eleventyConfig.addCollection("todayLearnedTagList", todayLearnedTagList);
 
   eleventyConfig.addFilter("getTest", (page) => {
     console.log(page.data);
