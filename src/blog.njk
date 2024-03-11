@@ -8,5 +8,5 @@ eleventyNavigation:
 ---
 
 <h1 id="Skip">Latest posts</h1>
-{% set postslist = collections.posts %}
+{% set postslist = collections.posts | getRegularPosts %}
 {% include "partials/postslist.njk" %}

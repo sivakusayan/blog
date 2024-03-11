@@ -2,6 +2,7 @@
 title: Experimenting with AMD64 Alignment Checks
 description: Turning on the alignment check flag for my Ryzen 5950x just to see what happens.
 date: 2024-03-03
+isTodayLearned: true
 tags:
   - Systems
 layout: layouts/post.njk

@@ -96,11 +96,18 @@ module.exports = function (eleventyConfig) {
 
   eleventyConfig.addFilter("toc", toc);
   eleventyConfig.addFilter("details", details);
+  eleventyConfig.addFilter("getRegularPosts", (posts) => {
+    return posts.filter((post) => !post.data.isTodayLearned);
+  });
+  eleventyConfig.addFilter("getTodayLearnedPosts", (posts) => {
+    return posts.filter((post) => post.data.isTodayLearned);
+  });
 
-  // Create an array of all tags
+  // Array of all tags used by posts that aren't Today-I-Learned
   eleventyConfig.addCollection("tagList", function (collection) {
     let tagSet = new Set();
     collection.getAll().forEach((item) => {
+      if (item.data.isTodayLearned) return;
       (item.data.tags || []).forEach((tag) => {
         if (!isValidTag(tag)) throw Error("Post has invalid tag: " + tag);
         tagSet.add(tag);
@@ -108,6 +115,24 @@ module.exports = function (eleventyConfig) {
     });
 
     return filterTagList([...tagSet]);
+  });
+
+  // Array of all tags used by Today-I-Learned posts
+  eleventyConfig.addCollection("tilTagList", function (collection) {
+    let tagSet = new Set();
+    collection.getAll().forEach((item) => {
+      if (!item.data.isTodayLearned) return;
+      (item.data.tags || []).forEach((tag) => {
+        if (!isValidTag(tag)) throw Error("Post has invalid tag: " + tag);
+        tagSet.add(tag);
+      });
+    });
+
+    return filterTagList([...tagSet]);
+  });
+
+  eleventyConfig.addFilter("getTest", (page) => {
+    console.log(page.data);
   });
 
   // Customize Markdown library and settings:
