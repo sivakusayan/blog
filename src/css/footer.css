@@ -1,81 +1,86 @@
 footer {
-    padding: var(--medium-spacing);
-    margin-top: var(--large-spacing);
-    background-color: var(--footer-background-color);
-    color: var(--footer-text-color);
+	padding: var(--medium-spacing);
+	margin-top: var(--large-spacing);
+	background-color: var(--footer-background-color);
+	color: var(--footer-text-color);
 }
 
 footer a[href] {
-    color: var(--footer-text-color);
+	color: var(--footer-text-color);
 }
 
 footer a[href]:hover {
-    color: var(--text-color);
+	color: var(--text-color);
 }
 
 .footer-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--medium-spacing);
-    width: var(--max-content-width);
-    margin: auto;
+	display: flex;
+	flex-direction: column;
+	gap: var(--medium-spacing);
+	width: var(--max-content-width);
+	margin: auto;
 }
 
 .theme-picker {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing);
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--spacing);
 }
 
 .social-media {
-    display: flex;
-    margin-left: -0.5rem;
+	display: flex;
+	margin-left: -0.5rem;
 }
 
 .social-media a[href] {
-    display: inline-block;
-    display: flex;
-    justify-content: center;
-    padding: 0.25rem 0.5rem;
+	display: inline-block;
+	display: flex;
+	justify-content: center;
+	padding: 0.25rem 0.5rem;
 }
 
 footer button {
-    background-color: transparent;
-    outline-offset: 20px;
-    color: inherit;
-    border: 1.5px solid currentColor;
-    padding: 0.5rem 1rem;
-    border-radius: 2px;
+	background-color: transparent;
+	outline-offset: 20px;
+	color: inherit;
+	border: 1.5px solid currentColor;
+	padding: 0.5rem 1rem;
+	border-radius: 2px;
 
-    transition: color 0.1s, background-color 0.1s, border-color 0.1s, outline 0.1s, outline-offset 0.1s;
+	transition:
+		color 0.1s,
+		background-color 0.1s,
+		border-color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
 }
 
 footer button:hover {
-    border: 1.5px solid var(--primary-color);
-    background-color: var(--primary-background-color);
-    color: var(--text-color);
-    cursor: pointer;
+	border: 1.5px solid var(--primary-color);
+	background-color: var(--primary-background-color);
+	color: var(--text-color);
+	cursor: pointer;
 }
 
 footer button:focus {
-    outline: 5px solid var(--primary-color);
-    outline-offset: 7px;
+	outline: 5px solid var(--primary-color);
+	outline-offset: 7px;
 }
 
-footer button[aria-pressed="true"] {
-    background-color: var(--footer-text-color);
-    color: var(--footer-background-color);
-    border: 1.5px solid var(--footer-background-color);
-    cursor: initial;
+footer button[aria-pressed='true'] {
+	background-color: var(--footer-text-color);
+	color: var(--footer-background-color);
+	border: 1.5px solid var(--footer-background-color);
+	cursor: initial;
 }
 
 footer nav {
-    margin-top: calc(-1 *var(--medium-spacing));
+	margin-top: calc(-1 * var(--medium-spacing));
 }
 
 @media only screen and (max-width: 660px) {
-    .footer-wrapper {
-        width: auto;
-        margin: 0;
-    }
+	.footer-wrapper {
+		width: auto;
+		margin: 0;
+	}
 }

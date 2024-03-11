@@ -1,21 +1,21 @@
 {
-  "title": "Sayan Sivakumaran - Software Engineer",
-  "url": "https://sayansivakumaran.com/",
-  "language": "en",
-  "description": "I write about web development, open source, and accessibility.",
-  "feed": {
-    "subtitle": "I write about web development, open source, and accessibility",
-    "filename": "feed.xml",
-    "path": "/feed/feed.xml",
-    "id": "https://sayansivakumaran.com/"
-  },
-  "jsonfeed": {
-    "path": "/feed/feed.json",
-    "url": "https://sayansivakumaran.com/feed/feed.json"
-  },
-  "author": {
-    "name": "Sayan Sivakumaran",
-    "email": "sivakusayan@gmail.com",
-    "url": "https://sayansivakumaran.com/about-me/"
-  }
+	"title": "Sayan Sivakumaran - Software Engineer",
+	"url": "https://sayansivakumaran.com/",
+	"language": "en",
+	"description": "I write about web development, open source, and accessibility.",
+	"feed": {
+		"subtitle": "I write about web development, open source, and accessibility",
+		"filename": "feed.xml",
+		"path": "/feed/feed.xml",
+		"id": "https://sayansivakumaran.com/"
+	},
+	"jsonfeed": {
+		"path": "/feed/feed.json",
+		"url": "https://sayansivakumaran.com/feed/feed.json"
+	},
+	"author": {
+		"name": "Sayan Sivakumaran",
+		"email": "sivakusayan@gmail.com",
+		"url": "https://sayansivakumaran.com/about-me/"
+	}
 }
