@@ -18,11 +18,11 @@ for (tag of ELEVENTY_RESERVED_TAGS) {
 }
 Object.freeze(VALID_TAG_MAP);
 
-const isValidTag = tag => VALID_TAG_MAP.has(tag);
+const isValidTag = (tag) => VALID_TAG_MAP.has(tag);
 
-const filterTagList = tags => {
+const filterTagList = (tags) => {
 	return (tags || []).filter(
-		tag => ['all', 'nav', 'post', 'posts'].indexOf(tag) === -1,
+		(tag) => ['all', 'nav', 'post', 'posts'].indexOf(tag) === -1,
 	);
 };
 
@@ -36,9 +36,9 @@ const filterTagList = tags => {
  */
 const getTags = (collection, postFilter) => {
 	let tagSet = new Set();
-	collection.getAll().forEach(item => {
+	collection.getAll().forEach((item) => {
 		if (postFilter && !postFilter(item)) return;
-		(item.data.tags || []).forEach(tag => {
+		(item.data.tags || []).forEach((tag) => {
 			if (!isValidTag(tag)) throw Error('Post has invalid tag: ' + tag);
 			tagSet.add(tag);
 		});
@@ -49,8 +49,9 @@ const getTags = (collection, postFilter) => {
 
 module.exports = {
 	// Get the list of tags used by posts that aren't Today I Learned posts.
-	tagList: collection => getTags(collection, post => !post.data.isTodayLearned),
+	tagList: (collection) =>
+		getTags(collection, (post) => !post.data.isTodayLearned),
 	// Get the list of tags used by posts that are Today I Learned posts.
-	todayLearnedTagList: collection =>
-		getTags(collection, post => post.data.isTodayLearned),
+	todayLearnedTagList: (collection) =>
+		getTags(collection, (post) => post.data.isTodayLearned),
 };

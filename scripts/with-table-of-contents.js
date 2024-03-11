@@ -1,12 +1,12 @@
 /**
- * Eleventy plugin that will take any <table-of-contents> tag in a markdown post and replace it with a
+ * Eleventy filter that will take any <table-of-contents> tag in a markdown post and replace it with a
  * table of contents. All of the headings are required to have an ID so we can link to it.
  *
  * This code is terrible and weird. Sorry :)
  */
 const cheerio = require('cheerio');
 
-const getLevel = heading => {
+const getLevel = (heading) => {
 	return parseInt(heading.name[1]);
 };
 
@@ -25,7 +25,7 @@ const buildHeadings = ($headings, $) => {
 	return headingList;
 };
 
-module.exports = content => {
+module.exports = (content) => {
 	const $ = cheerio.load(content.val, null, false);
 	const $headings = $('h2, h3');
 	const headingList = buildHeadings($headings, $);

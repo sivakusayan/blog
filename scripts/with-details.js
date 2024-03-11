@@ -1,10 +1,13 @@
 /**
- * Automatically wraps the content of a details element in a div with a class so we can do certain CSS magic.
+ * Automatically wraps the content of a details element in a div with a class
+ * so we can do CSS magic.
+ *
+ * TODO: Do we even need this?
  */
 
 const cheerio = require('cheerio');
 
-module.exports = content => {
+module.exports = (content) => {
 	const $ = cheerio.load(content.val, null, false);
 	const $details = $('details');
 

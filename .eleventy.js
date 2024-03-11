@@ -1,17 +1,5 @@
 const fs = require('fs');
 
-const markdownIt = require('markdown-it');
-const markdownItAnchor = require('markdown-it-anchor');
-const { headerLink } = require('./scripts/permalink.js');
-const toc = require('./scripts/toc.js');
-const details = require('./scripts/details.js');
-const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
-const {
-	filterTagList,
-	shortReadableDate,
-	readableDate,
-} = require('./scripts/filters.js');
-
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
@@ -19,6 +7,21 @@ const pluginBundler = require('@11ty/eleventy-plugin-bundle');
 const postcss = require('postcss');
 const cssnano = require('cssnano');
 const uglifyJS = require('uglify-js');
+const markdownIt = require('markdown-it');
+const markdownItAnchor = require('markdown-it-anchor');
+
+const { headerLink } = require('./scripts/permalink.js');
+const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
+const {
+	filterTagList,
+	shortReadableDate,
+	readableDate,
+	htmlDateString,
+	withTableOfContents,
+	withDetails,
+	getRegularPosts,
+	getTodayLearnedPosts,
+} = require('./scripts/filters.js');
 
 module.exports = function (eleventyConfig) {
 	eleventyConfig.addPassthroughCopy('src/css');
@@ -56,27 +59,17 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('filterTagList', filterTagList);
 	eleventyConfig.addFilter('shortReadableDate', shortReadableDate);
 	eleventyConfig.addFilter('readableDate', readableDate);
-
-	// https://html.spec.whatwg.org/multipage/common-microsyntaxes.html#valid-date-string
-	eleventyConfig.addFilter('htmlDateString', dateObj => {
-		return dateObj.toISOString();
-	});
-
-	eleventyConfig.addFilter('toc', toc);
-	eleventyConfig.addFilter('details', details);
-	eleventyConfig.addFilter('getRegularPosts', posts => {
-		return posts.filter(post => !post.data.isTodayLearned);
-	});
-	eleventyConfig.addFilter('getTodayLearnedPosts', posts => {
-		return posts.filter(post => post.data.isTodayLearned);
+	eleventyConfig.addFilter('htmlDateString', htmlDateString);
+	eleventyConfig.addFilter('withTableOfContents', withTableOfContents);
+	eleventyConfig.addFilter('withDetails', withDetails);
+	eleventyConfig.addFilter('getRegularPosts', getRegularPosts);
+	eleventyConfig.addFilter('getTodayLearnedPosts', getTodayLearnedPosts);
+	eleventyConfig.addFilter('getTest', (page) => {
+		console.log(page.data);
 	});
 
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
-
-	eleventyConfig.addFilter('getTest', page => {
-		console.log(page.data);
-	});
 
 	// Customize Markdown library and settings:
 	let markdownLibrary = markdownIt({
