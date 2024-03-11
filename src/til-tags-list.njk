@@ -1,0 +1,12 @@
+---
+permalink: til/tags/
+layout: layouts/base.njk
+---
+<h1 id="Skip">TIL post tags</h1>
+
+<ul>
+{% for tag in collections.todayLearnedTagList %}
+  {% set tagUrl %}/til/tags/{{ tag | slugify }}/{% endset %}
+  <li><a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a></li>
+{% endfor %}
+</ul>
