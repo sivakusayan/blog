@@ -8,7 +8,7 @@
  * @version 1.0
  */
 
-code,
+pre[class*='language-'] code,
 pre[class*='language-'] {
 	color: #ebdbb2; /* fg1 / fg */
 	font-family: Consolas, Monaco, 'Andale Mono', monospace;
@@ -31,16 +31,16 @@ pre[class*='language-'] {
 
 pre[class*='language-']::-moz-selection,
 pre[class*='language-'] ::-moz-selection,
-code::-moz-selection,
-code::-moz-selection {
+pre[class*='language-'] code::-moz-selection,
+pre[class*='language-'] code::-moz-selection {
 	color: #fbf1c7; /* fg0 */
 	background: #7c6f64; /* bg4 */
 }
 
 pre[class*='language-']::selection,
 pre[class*='language-'] ::selection,
-code::selection,
-code::selection {
+pre[class*='language-'] code::selection,
+pre[class*='language-'] code::selection {
 	color: #fbf1c7; /* fg0 */
 	background: #7c6f64; /* bg4 */
 }
@@ -52,7 +52,6 @@ pre[class*='language-'] {
 	overflow: auto;
 }
 
-:not(pre) > code,
 pre[class*='language-'] {
 	background: #1d2021; /* bg0_h */
 }
