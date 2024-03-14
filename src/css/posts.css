@@ -108,10 +108,15 @@ caption {
     text-decoration: none;
     background-color: var(--header-background-color);
     color: var(--header-text-color);
+    outline-offset: 16px;
 }
 
 .tags a[href]:hover {
     color: var(--text-color);
+}
+
+.tags a[href]:focus {
+    outline-offset: 2px;
 }
 
 html[data-theme="DARK"] .tags a[href] {
