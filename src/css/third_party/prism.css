@@ -155,3 +155,7 @@ pre.language-llvm span.token.variable {
 pre.language-llvm span.token.type {
 	color: #b8bb26;
 }
+
+a code {
+    text-decoration: underline;
+}
