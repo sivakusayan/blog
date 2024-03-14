@@ -55,7 +55,7 @@ two pointers share the same address at the end of `main`, and we return 1.
 ## Looking at the LLVM IR
 
 If you aren't already aware, [LLVM IR](https://llvm.org/docs/LangRef.html) is a very convenient way to represent assembly in an
-architecture independent way. Here is an annotated output of compiling the above file with 
+architecture independent way. Here is an annotated output of compiling the above file with
 optimization level 0:
 
 ```llvm
@@ -102,23 +102,40 @@ define dso_local i32 @main() #0 {
 }
 ```
 
-If you take the time to read the code, you'll notice that `%5` holds a pointer to a `struct foo`. 
+If you take the time to read the code, you'll notice that `%5` holds a pointer to a `struct foo`.
 In other words, that register holds the memory allocated for our compound literal.
 
-The body of the for loop is represented by `label 9`, where we repeatedly update the integer in `%5`. 
+The body of the for loop is represented by `label 9`, where we repeatedly update the integer in `%5`.
 We are not seeing multiple `alloca` calls to initialize a new compound literal in the loop, which
 tracks with what the C23 standard says should happen.
 
 Interestingly, it turns out that compiling the same code with `-O2` instead of `-O0` is enough for `clang` to give this extremely
-simplified output! 
+simplified output!
+
 ```llvm
 ; Function Attrs: nofree norecurse nosync nounwind readnone uwtable
 define dso_local i32 @main() local_unnamed_addr #0 {
   ret i32 1
 }
 ```
-This is probably expected, but I still think it's cool that the compiler is 
+
+This is probably expected, but I still think it's cool that the compiler is
 smart enough to take all of the code above and simplify it to this small little chunk 🙂
+
+<details>
+<summary>Don't know how to read LLVM IR?</summary>
+<p>
+That's okay - I don't know much about it either.
+</p>
+<p>
+I used <a href="https://www.youtube.com/watch?v=m8G_S5LwlTo&t=1785s">this conference talk</a> to get the basics down,
+at least enough to somewhat understand the emitted code above. I personally found it to be a very gentle introduction.
+</p>
+<p>
+Afterwards, searching for instructions that I didn't know about and taking some time to read about it
+in the <a href="https://llvm.org/docs/ProgrammersManual.html">LLVM Programmer's Manual</a> was very helpful to me.
+</p>
+</details>
 
 ## Why was this behavior chosen?
 
