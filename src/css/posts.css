@@ -1,0 +1,269 @@
+aside {
+	margin: var(--medium-spacing) 0;
+	padding: var(--small-spacing) var(--spacing);
+	border: 1.5px solid var(--text-color);
+	border-radius: 2px;
+}
+
+aside *:last-child {
+	margin-bottom: 0;
+}
+
+aside a {
+	word-wrap: break-word;
+}
+
+blockquote {
+	padding-left: var(--spacing);
+	border-left: 10px solid var(--text-color);
+}
+
+blockquote p {
+	font-style: italic;
+}
+
+.tree {
+	margin: var(--medium-spacing) 0; }
+
+.tree,
+.tree ul {
+	list-style: none;
+	padding-left: 0px;
+	padding-top: 0px;
+	position: relative;
+}
+
+.tree ul {
+	margin-left: var(--large-spacing);
+}
+
+.tree ul::before {
+	position: absolute;
+	bottom: 0;
+	left: 0px;
+	content: ' ';
+	height: calc(100% + (var(--tiny-spacing)));
+	width: 1px;
+	border-left: 1.5px solid var(--text-color);
+}
+
+.tree ul li {
+	padding-top: var(--small-spacing);
+}
+
+.tree span {
+	border: 1.5px solid var(--text-color);
+	padding: 5px;
+	width: 7rem;
+	display: inline-block;
+	text-align: center;
+	border-radius: 2px;
+}
+
+.ax-node {
+	margin: var(--spacing) 0;
+	border: 1.5px solid var(--text-color);
+	border-radius: 2px;
+}
+
+.ax-node p {
+	border-bottom: 1.5px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
+	margin-bottom: 0;
+}
+
+.ax-node dl {
+	padding: var(--small-spacing) var(--spacing);
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0px;
+	margin: var(--spacing) 0;
+}
+
+th,
+td {
+	padding: var(--small-spacing);
+	border: 1.5px solid var(--text-color);
+}
+
+caption {
+	text-align: left;
+	font-weight: bold;
+	margin-bottom: var(--small-spacing);
+}
+.tags {
+    font-size: 90%;
+    list-style: none;
+    display: flex;
+    gap: var(--tiny-spacing);
+    padding-left: 0;
+}
+
+.tags a[href] {
+    padding: 0 var(--small-spacing);
+    border-radius: 20px;
+    
+    text-decoration: none;
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+}
+
+.tags a[href]:hover {
+    color: var(--text-color);
+}
+
+html[data-theme="DARK"] .tags a[href] {
+    border: 1.5px solid currentColor;
+}
+html[data-theme="DARK"] .tags a[href]:hover {
+    border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tags a[href] {
+        border: 1.5px solid currentColor;
+    }
+    .tags a[href]:hover {
+        border-color: transparent;
+    }
+    html[data-theme="LIGHT"] .tags a[href] {
+        border: none;
+    }
+}
+
+ul.post-chain {
+	list-style: none;
+	padding: 0;
+
+	display: flex;
+	justify-content: space-between;
+	gap: var(--medium-spacing);
+}
+
+ul.post-chain > * {
+	flex: 1;
+}
+
+.post-chain span {
+	font-weight: bold;
+}
+
+details {
+	margin: var(--medium-spacing) 0;
+	transition:
+		border-color 0.2s,
+		width 0.1s;
+}
+
+details summary {
+	border: 1.5px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
+	transition:
+		background-color 0.2s,
+		border-color 0.2s,
+		color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 24px;
+	border-radius: 2px;
+}
+
+details[open] {
+	border: 1.5px solid var(--text-color);
+}
+
+details[open] summary {
+	border: none;
+	border-bottom: 1.5px solid var(--text-color);
+}
+
+.post-content details {
+	width: 45ch;
+}
+
+.details-grouper {
+	margin: var(--medium-spacing) 0;
+	list-style: none;
+	padding: 0;
+}
+
+.details-grouper details {
+	margin: var(--spacing) 0;
+}
+
+details[open] {
+	width: 60ch;
+}
+
+details[open] summary {
+	border-bottom: 1.5px solid var(--text-color);
+}
+
+details[open] .details-content {
+	margin: var(--small-spacing) 0;
+	padding: var(--small-spacing) var(--spacing);
+	width: 60ch;
+}
+
+details[open] .details-content *:last-child {
+	margin-bottom: 0;
+}
+
+summary:hover {
+	background-color: var(--primary-background-color);
+	border: 1.5px solid var(--primary-color);
+	cursor: pointer;
+}
+
+details summary:hover {
+	border-bottom-color: var(--primary-color);
+}
+
+details:has(summary:hover) {
+	border-color: var(--primary-color);
+}
+
+pre[class*='language-'] {
+	transition:
+		background-color 0.2s,
+		color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 30px;
+	margin-top: var(--semi-medium-spacing);
+	margin-bottom: var(--semi-medium-spacing);
+}
+
+pre:focus-visible,
+summary:focus-visible {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 5px;
+}
+
+dt {
+	margin-top: var(--tiny-spacing);
+	font-weight: 700;
+}
+
+dd {
+	padding-left: var(--spacing);
+}
+
+hr {
+	margin: var(--medium-spacing) 0;
+}
+
+.postlist {
+	list-style: none;
+	padding: 0;
+}
+
+.postlist li {
+	margin-bottom: var(--spacing);
+}
+
+.post-header {
+	margin-bottom: var(--large-spacing);
+}
