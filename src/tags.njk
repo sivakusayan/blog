@@ -8,16 +8,15 @@ pagination:
     - post
     - posts
     - tagList
-    - todayLearnedTagList
   addAllPagesToCollections: true
 layout: layouts/base.njk
 eleventyComputed:
-  title: Blog posts tagged “{{ tag }}”
-permalink: /posts/tags/{{ tag | slugify }}/
+  title: Posts tagged “{{ tag }}”
+permalink: /tags/{{ tag | slugify }}/
 ---
-<h1 id="Skip">Blog posts tagged “{{ tag }}”</h1>
+<h1 id="Skip">Posts tagged “{{ tag }}”</h1>
 
-{% set postslist = collections[tag] | getRegularPosts %}
+{% set postslist = collections[tag] %}
 {% include "partials/postslist.njk" %}
 
-<p>See <a href="{{ '/posts/tags/' | url }}">all blog post tags</a>.</p>
+<p>See <a href="{{ '/tags/' | url }}">all tags</a>.</p>

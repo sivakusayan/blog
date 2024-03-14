@@ -7,7 +7,7 @@ templateClass: tmpl-post
   <div class="post-content">
     <div class="post-header">
       {%- if collections.posts | isTodayLearnedPost(page) %}
-        <h1 id="Skip">Today I Learned: {{ title }}</h1>
+        <h1 id="Skip">TIL: {{ title }}</h1>
       {%- else %}
         <h1 id="Skip">{{ title }}</h1>
       {% endif %}
@@ -19,11 +19,7 @@ templateClass: tmpl-post
   <div>
     <h2>Tagged</h2>
     {%- for tag in tags | filterTagList %}
-      {%- if collections.posts | isTodayLearnedPost(page) %}
-        {%- set tagUrl %}/til/tags/{{ tag | slugify }}/{% endset %}
-      {%- else %}
-        {%- set tagUrl %}/posts/tags/{{ tag | slugify }}/{% endset %}
-      {% endif %}
+      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
       <a href="{{ tagUrl }}" class="post-tag">{{ tag }}</a>
       {%- if not loop.last %}, {% endif %}
     {%- endfor %}
