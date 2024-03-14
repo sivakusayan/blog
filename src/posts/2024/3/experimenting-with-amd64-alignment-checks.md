@@ -4,12 +4,13 @@ description: Turning on the alignment check flag for my Ryzen 5950x just to see 
 date: 2024-03-03
 isTodayLearned: true
 tags:
+  - C
   - Systems
 layout: layouts/post.njk
 ---
 
-While going through the [_Modern
-C_](https://gustedt.gitlabpages.inria.fr/modern-c/) book, the author mentioned a
+While going through the <cite>[Modern
+C](https://gustedt.gitlabpages.inria.fr/modern-c/)</cite> book, the author mentioned a
 very cool blog post by Ygdrasil that showed [how to enable alignment checks for
 Intel x86 processors](https://orchistro.tistory.com/206).
 
@@ -29,7 +30,7 @@ would happen.
 
 ## The Code
 
-This code is more or less copy-pasted from the code in _Modern C_ and Ygdrasil's
+This code is more or less copy-pasted from the code in <cite>Modern C</cite> and Ygdrasil's
 blog post.
 
 ```c

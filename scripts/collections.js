@@ -3,7 +3,7 @@
  * Having an enforced list of tags allows us to do analysis on our posts
  * later if we wish.
  */
-const VALID_TAGS = ['Accessibility', 'Career', 'Systems'];
+const VALID_TAGS = ['Accessibility', 'Career', 'C', 'Systems'];
 Object.freeze(VALID_TAGS);
 // These are tags used by eleventy. We'll always consider them valid.
 const ELEVENTY_RESERVED_TAGS = ['all', 'nav', 'post', 'posts'];

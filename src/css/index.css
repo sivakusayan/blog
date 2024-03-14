@@ -154,7 +154,8 @@ html {
 	line-height: var(--paragraph-line-height);
 }
 
-em {
+em,
+cite {
 	font-style: italic;
 	font-family: 'source-serif-pro', serif;
 }

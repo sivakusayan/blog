@@ -146,3 +146,12 @@ pre {
 	overflow-x: scroll;
 	color-scheme: dark;
 }
+
+/* TODO: LLVM colors could be a bit better. */
+pre.language-llvm span.token.variable {
+	color: #ebdbb2;
+}
+
+pre.language-llvm span.token.type {
+	color: #b8bb26;
+}
