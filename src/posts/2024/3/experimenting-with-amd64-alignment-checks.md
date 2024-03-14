@@ -4,7 +4,7 @@ description: Turning on the alignment check flag for my Ryzen 5950x just to see 
 date: 2024-03-03
 isTodayLearned: true
 tags:
-  - C
+  - C Programming
   - Systems
 layout: layouts/post.njk
 ---

@@ -4,7 +4,7 @@ description: Attempting to go through the C Working Group documents to find out 
 date: 2024-03-13
 isTodayLearned: true
 tags:
-  - C
+  - C Programming
 layout: layouts/post.njk
 ---
 

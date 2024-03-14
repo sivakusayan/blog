@@ -580,3 +580,43 @@ For those users, we'll just wrap the code instead. */
 .script-disabled code {
 	text-wrap: wrap;
 }
+
+.tags {
+    font-size: 90%;
+    list-style: none;
+    display: flex;
+    gap: var(--tiny-spacing);
+    padding-left: 0;
+}
+
+.tags a[href] {
+    padding: 0 var(--small-spacing);
+    border-radius: 20px;
+    
+    text-decoration: none;
+    background-color: var(--header-background-color);
+    color: var(--header-text-color);
+}
+
+.tags a[href]:hover {
+    color: var(--text-color);
+}
+
+html[data-theme="DARK"] .tags a[href] {
+    border: 1.5px solid currentColor;
+}
+html[data-theme="DARK"] .tags a[href]:hover {
+    border-color: transparent;
+}
+
+@media (prefers-color-scheme: dark) {
+    .tags a[href] {
+        border: 1.5px solid currentColor;
+    }
+    .tags a[href]:hover {
+        border-color: transparent;
+    }
+    html[data-theme="LIGHT"] .tags a[href] {
+        border: none;
+    }
+}
