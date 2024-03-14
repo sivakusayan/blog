@@ -47,11 +47,7 @@
 		"start-server-and-test": "2.0.0"
 	},
 	"resolutions": {
-		"//": [
-			"Fix for bug in prism's llvm highlighter",
-			"where functions aren't given the 'function' token classname."
-		],
-		"@11ty/eleventy-plugin-syntaxhighlight/prismjs": "git+ssh://git@github.com:sivakusayan/prism.git"
+		"@11ty/eleventy-plugin-syntaxhighlight/prismjs": "git+https://github.com:sivakusayan/prism.git"
 	},
 	"packageManager": "yarn@4.1.0"
 }

@@ -3584,9 +3584,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prismjs@git+ssh://git@github.com:sivakusayan/prism.git":
+"prismjs@git+https://github.com:sivakusayan/prism.git":
   version: 1.29.0
-  resolution: "prismjs@git+ssh://git@github.com:sivakusayan/prism.git#commit=d76df7d30f7776419aa2259b7484f68d552d2384"
+  resolution: "prismjs@https://github.com:sivakusayan/prism.git#commit=d76df7d30f7776419aa2259b7484f68d552d2384"
   checksum: 10c0/26ac5292a6c26f59d71a475c84ba2041811717b8c2a8ba9f65a2f3510352220d1568782273124106924ddc082e04b075fa970f4279d11234acce12a043652e84
   languageName: node
   linkType: hard
