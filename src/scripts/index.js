@@ -38,11 +38,14 @@ const initCanvasBubbles = () => {
 			height = canvas.parentElement.offsetHeight*1.6;
 			canvas.width = width;
 			canvas.height = height;
+			// If our volume is too small, having more circles
+			// looks jank
+			const numCircles = width*height < 70000 ? 20 : 30;
 			maxRadius = 50;
 			var refresh = () => {
 				ctx.clearRect(0, 0, width, height);
 				const darkMode = isDarkMode();
-				for (i = 0; i < 30; i++) {
+				for (i = 0; i < numCircles; i++) {
 					var radius = Math.floor(Math.random() * maxRadius);
 					if (radius < maxRadius/3) radius = maxRadius;
 					var x = Math.floor(Math.random() * width);
