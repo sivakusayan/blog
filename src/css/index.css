@@ -328,15 +328,6 @@ code {
 		display: inline-block;
 		margin-left: var(--small-spacing);
 	}
-
-	/** Make code extend to the edges of the page,
-  since the page padding matches the padding of
-  the main element. */
-	pre[class*='language-'] {
-		margin-left: calc(-1 * var(--spacing));
-		margin-right: calc(-1 * var(--spacing));
-		border-radius: 0;
-	}
 }
 
 @media only screen and (max-width: 350px) {
