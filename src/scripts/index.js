@@ -34,15 +34,15 @@ const initCanvasBubbles = () => {
 	if (canvas) {
 		var ctx = canvas.getContext('2d');
 		if (ctx) {
-			width = canvas.parentElement.offsetWidth*1.2;
-			height = canvas.parentElement.offsetHeight*1.6;
-			canvas.width = width;
-			canvas.height = height;
-			// If our volume is too small, having more circles
-			// looks jank
-			const numCircles = width*height < 70000 ? 20 : 30;
-			maxRadius = 50;
 			var refresh = () => {
+				width = canvas.parentElement.offsetWidth*1.2;
+				height = canvas.parentElement.offsetHeight*1.6;
+				canvas.width = width;
+				canvas.height = height;
+				// If our volume is too small, having more circles
+				// looks jank
+				const numCircles = width*height < 70000 ? 20 : 30;
+				maxRadius = 50;
 				ctx.clearRect(0, 0, width, height);
 				const darkMode = isDarkMode();
 				for (i = 0; i < numCircles; i++) {
@@ -76,7 +76,17 @@ const initCanvasBubbles = () => {
 				}
 			};
 			refresh();
+			// We'll need to redraw the bubbles when the theme changes so
+			// the colors don't clash with the new theme.
 			document.documentElement.addEventListener("theme-changed", refresh);
+
+			// We'll also need to redraw when the window is resized to resize
+			// the canvas.
+			var timeoutId;
+			window.onresize = function(){
+  				clearTimeout(timeoutId);
+  				timeoutId = setTimeout(refresh, 100);
+			};
 		}
 	}
 }
