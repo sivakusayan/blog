@@ -190,3 +190,7 @@ pre[class*='language-'] {
 		margin-right: calc(-1 * var(--spacing));
 	}
 }
+
+pre[class*='language-'] {
+	font-size: 90%;
+ }
