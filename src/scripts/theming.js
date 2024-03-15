@@ -10,7 +10,11 @@ const Themes = Object.freeze({
 });
 
 const setTheme = theme => {
-	document.documentElement.setAttribute('data-theme', theme);
+	const root = document.documentElement;
+	if (root.getAttribute('data-theme') === theme) return;
+
+	root.dispatchEvent(new Event('theme-changed'));
+	root.setAttribute('data-theme', theme);
 	localStorage.theme = theme;
 
 	if (currentToggledButton) {
@@ -30,7 +34,6 @@ const setTheme = theme => {
 			break;
 	}
 	currentToggledButton.setAttribute('aria-pressed', 'true');
-	document.documentElement.dispatchEvent(new Event("theme-changed"));
 };
 
 // Since we are currently adjusting line-height and margin based on the theme,
