@@ -59,7 +59,7 @@ html[data-theme='DARK'] {
 	--footer-text-color: #c7c7c4;
 	--footer-background-color: #09090a;
 
-	--primary-color: #0982c8;
+	--primary-color: #1a77ad;
 	--primary-background-color: #02304b;
 	--highlight-color: rgb(22, 40, 67);
 
@@ -87,7 +87,7 @@ html[data-theme='DARK'] ::selection {
 		--footer-text-color: #c7c7c4;
 		--footer-background-color: #09090a;
 
-		--primary-color: #0982c8;
+		--primary-color: #1a77ad;
 		--primary-background-color: #02304b;
 		--highlight-color: rgb(22, 40, 67);
 
