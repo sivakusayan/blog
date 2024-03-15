@@ -16,35 +16,65 @@ for (const code of codeElements) {
 	}
 }
 
-var canvas = document.getElementById('canvas');
-if (canvas) {
-	var ctx = canvas.getContext('2d');
-    width = canvas.parentElement.offsetWidth;
-    height = canvas.parentElement.offsetHeight;
-    canvas.width = width + 200;
-    canvas.height = height + 200;
-    maxRadius = 50;
-	var refresh = function () {
-		ctx.clearRect(0, 0, width, height);
-		for (i = 0; i < 20; i++) {
-            var radius = Math.floor(Math.random() * maxRadius);
-			if (radius < maxRadius/3) radius = maxRadius;
-			var x = Math.floor(Math.random() * width);
-            if (x < radius) x = radius;
-            if ((width - x) < radius) x-= radius;
-			var y = Math.floor(Math.random() * height);
-            if (y < radius) y = radius;
-			
-			var r = Math.floor(Math.random() * 100);
-			var g = Math.floor(Math.random() * 150);
-			var b = Math.floor(Math.random() * 255);
-
-			ctx.beginPath();
-			ctx.arc(x, y, radius, Math.PI * 2, 0, false);
-			ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + 255 + ',0.1)';
-			ctx.fill();
-			ctx.closePath();
-		}
-	};
-	refresh();
+const isDarkMode = () => {
+	const root = document.documentElement;
+	if (root.getAttribute("data-theme") === Themes.DARK) {
+		return true;
+	}
+	if (root.getAttribute("data-theme") === Themes.SYSTEM
+		&& window.matchMedia
+		&& window.matchMedia('(prefers-color-scheme: dark)').matches) {
+		return true;
+	}
+	return false;
 }
+
+const initCanvasBubbles = () => {
+	var canvas = document.getElementById('canvas');
+	if (canvas) {
+		var ctx = canvas.getContext('2d');
+		if (ctx) {
+			width = canvas.parentElement.offsetWidth*1.2;
+			height = canvas.parentElement.offsetHeight*1.6;
+			canvas.width = width;
+			canvas.height = height;
+			maxRadius = 50;
+			var refresh = () => {
+				ctx.clearRect(0, 0, width, height);
+				const darkMode = isDarkMode();
+				for (i = 0; i < 30; i++) {
+					var radius = Math.floor(Math.random() * maxRadius);
+					if (radius < maxRadius/3) radius = maxRadius;
+					var x = Math.floor(Math.random() * width);
+					if (x < maxRadius) x = maxRadius;
+					if ((width - x) < maxRadius) x-= maxRadius;
+					var y = Math.floor(Math.random() * height);
+					if (y < maxRadius) y = maxRadius;
+					if ((height - y) < maxRadius) y-= maxRadius;
+
+					if(darkMode) {
+						var r = Math.floor(Math.random() * 0);
+						var g = 100 + Math.floor(Math.random() * 100);
+						var b = 200;
+						var opacity = .05;
+					}
+					else {
+						var r = Math.floor(Math.random() * 100);
+						var g = Math.floor(Math.random() * 150);
+						var b = 255;
+						var opacity = .05;
+					}
+
+					ctx.beginPath();
+					ctx.arc(x, y, radius, Math.PI * 2, 0, false);
+					ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',' + opacity + ')';
+					ctx.fill();
+					ctx.closePath();
+				}
+			};
+			refresh();
+			document.documentElement.addEventListener("theme-changed", refresh);
+		}
+	}
+}
+initCanvasBubbles();

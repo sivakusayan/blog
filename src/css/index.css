@@ -356,11 +356,11 @@ For those users, we'll just wrap the code instead. */
     background-color: var(--inline-code-background-color);
 }
 
-#landing {
+#heading-dots {
     position: relative;
 }
 
-#landing canvas {
+#heading-dots canvas {
     position: absolute;
     z-index: -1;
     top: 50%;

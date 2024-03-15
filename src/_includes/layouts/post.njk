@@ -5,7 +5,8 @@ templateClass: tmpl-post
 
 <div>
   <div class="post-content">
-    <div class="post-header">
+    <div id="heading-dots" class="post-header">
+      <canvas id="canvas"></canvas>
       {%- if collections.posts | isTodayLearnedPost(page) %}
         <h1 id="Skip">TIL: {{ title }}</h1>
       {%- else %}
@@ -18,10 +19,10 @@ templateClass: tmpl-post
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
   <h2>Tagged</h2>
   <div class="tags">
-  {%- for tag in tags | filterTagList %}
-    {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-    <a href="{{ tagUrl }}">{{ tag }}</a>
-  {%- endfor %}
+    {%- for tag in tags | filterTagList %}
+      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
+      <a href="{{ tagUrl }}">{{ tag }}</a>
+    {%- endfor %}
   </div>
 </div>
 

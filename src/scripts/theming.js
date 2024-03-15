@@ -30,6 +30,7 @@ const setTheme = theme => {
 			break;
 	}
 	currentToggledButton.setAttribute('aria-pressed', 'true');
+	document.documentElement.dispatchEvent(new Event("theme-changed"));
 };
 
 // Since we are currently adjusting line-height and margin based on the theme,
