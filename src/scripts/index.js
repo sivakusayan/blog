@@ -54,9 +54,9 @@ const initCanvasBubbles = () => {
 
 					if(darkMode) {
 						var r = Math.floor(Math.random() * 0);
-						var g = 100 + Math.floor(Math.random() * 100);
+						var g = 120 + Math.floor(Math.random() * 100);
 						var b = 200;
-						var opacity = .05;
+						var opacity = .06;
 					}
 					else {
 						var r = Math.floor(Math.random() * 100);

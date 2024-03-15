@@ -54,7 +54,7 @@ html[data-theme='DARK'] {
 	color-scheme: dark;
 
 	--text-color: #c7c7c4;
-	--background-color: #0f0f11;
+	--background-color: #010112;
 
 	--footer-text-color: #c7c7c4;
 	--footer-background-color: #09090a;
@@ -82,7 +82,7 @@ html[data-theme='DARK'] ::selection {
 		color-scheme: dark;
 
 		--text-color: #c7c7c4;
-		--background-color: #0f0f11;
+		--background-color: #010112;
 
 		--footer-text-color: #c7c7c4;
 		--footer-background-color: #09090a;
