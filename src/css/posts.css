@@ -230,6 +230,15 @@ details:has(summary:hover) {
 	border-color: var(--primary-color);
 }
 
+@media only screen and (max-width: 620px) {
+	.post-content details,
+	details[open],
+	details[open] .details-content {
+		width: auto;
+	}
+}
+
+
 pre[class*='language-'] {
 	transition:
 		background-color 0.2s,
