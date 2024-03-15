@@ -21,7 +21,7 @@
 	--footer-text-color: #f5f3f3;
 	--footer-background-color: #171717;
 
-	--primary-color: #0097f5;
+	--primary-color: #0074BD;
 	--primary-background-color: #b3defa;
 	--highlight-color: #d5efff;
 
@@ -114,7 +114,7 @@ html[data-theme='DARK'] ::selection {
 		--footer-text-color: #f5f3f3;
 		--footer-background-color: #171717;
 
-		--primary-color: #0097f5;
+		--primary-color: #0074BD;
 		--primary-background-color: #b3defa;
 		--highlight-color: #d5efff;
 
