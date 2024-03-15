@@ -18,8 +18,6 @@
 	--text-color: #121212;
 	--background-color: #ebfffb;
 
-	--code-background-color: #e3e3e3;
-
 	--header-text-color: #f5f3f3;
 	--header-background-color: #171717;
 
@@ -30,7 +28,7 @@
 	--primary-background-color: #9bd7fd;
 	--highlight-color: #d5efff;
 
-    --inline-code-background-color: #e3e3e3;
+    --inline-code-background-color: #caf3ff;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.34;
@@ -60,8 +58,6 @@ html[data-theme='DARK'] {
 
 	--text-color: rgb(194, 194, 194);
 	--background-color: #0f0f11;
-
-	--code-background-color: #020202;
 
 	--header-text-color: rgb(194, 194, 194);
 	--header-background-color: #09090a;
@@ -94,8 +90,6 @@ html[data-theme='DARK'] ::selection {
 		--text-color: rgb(194, 194, 194);
 		--background-color: #0f0f11;
 
-		--code-background-color: #020202;
-
 		--header-text-color: rgb(194, 194, 194);
 		--header-background-color: #09090a;
 
@@ -126,8 +120,6 @@ html[data-theme='DARK'] ::selection {
 		--text-color: #121212;
 		--background-color: #ebfffb;
 
-		--code-background-color: #e3e3e3;
-
 		--header-text-color: #f5f3f3;
 		--header-background-color: #171717;
 
@@ -138,7 +130,7 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: #9bd7fd;
 		--highlight-color: #d5efff;
 
-        --inline-code-background-color: #e3e3e3;
+        --inline-code-background-color: #caf3ff;
 
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.34;
