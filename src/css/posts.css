@@ -251,7 +251,7 @@ pre[class*='language-'] {
 }
 
 pre:focus-visible,
-summary:focus-visible {
+summary:focus {
 	outline: 5px solid var(--primary-color);
 	outline-offset: 5px;
 }
