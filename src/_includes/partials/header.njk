@@ -11,7 +11,11 @@
                     class="{% if entry.url == pageUrl %}active{% endif %}"
                     {% if entry.url == pageUrl %} aria-current="true"{% endif %}
                     >
-                        <a href="{{ entry.url | url }}">{{ entry.title }}</a>
+                        <a 
+                         {% if entry.url == pageUrl %}
+                         tabindex="-1"
+                         {% endif %}
+                         href="{{ entry.url | url }}">{{ entry.title }}</a>
                     </li>
                 {%- endfor %}
             </ul>

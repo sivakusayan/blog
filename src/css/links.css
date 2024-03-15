@@ -76,7 +76,6 @@ a[href]:focus {
 	position: absolute;
 	left: -10000px;
 	z-index: 2;
-	background-color: var(--header-background-color);
 	padding: 1rem;
 }
 

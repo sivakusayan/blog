@@ -3,9 +3,6 @@ header {
 	position: relative;
 	display: flex;
 	margin-bottom: var(--large-spacing);
-
-	background-color: var(--header-background-color);
-	color: var(--header-text-color);
 }
 
 header ul {
@@ -21,13 +18,6 @@ header a[href] {
 	display: flex;
 	justify-content: center;
 	padding: 0.25rem 0.5rem;
-
-	color: var(--header-text-color);
-	text-decoration: none;
-}
-
-header a[href]:hover {
-	color: var(--text-color);
 }
 
 header nav {
@@ -38,10 +28,14 @@ header nav {
 }
 
 header nav .active {
-	border-bottom: 2px solid currentColor;
-	margin-bottom: -2px;
+	outline: var(--active-outline-width) solid currentColor;
+    outline-offset: 0px;
 	cursor: default;
 	pointer-events: none;
+}
+
+header nav .active a[href] {
+    text-decoration: none;
 }
 
 @media only screen and (max-width: 660px) {
