@@ -28,20 +28,11 @@ header nav {
 }
 
 header nav .active {
-	outline: var(--active-outline-width) solid currentColor;
-    outline-offset: 0px;
 	cursor: default;
 	pointer-events: none;
+    font-weight: bold;
 }
 
 header nav .active a[href] {
     text-decoration: none;
-}
-
-@media only screen and (max-width: 660px) {
-	header nav {
-		width: auto;
-		margin: 0;
-		padding: 0 var(--medium-spacing);
-	}
 }

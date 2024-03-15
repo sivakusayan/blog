@@ -307,6 +307,11 @@ code {
 		margin: 0;
 		padding: 0 var(--medium-spacing);
 	}
+    header nav {
+		width: auto;
+		margin: 0;
+		padding: 0 var(--medium-spacing);
+	}
 }
 
 @media only screen and (max-width: 450px) {
@@ -319,6 +324,9 @@ code {
 	main {
 		padding: 0 var(--spacing);
 	}
+    header nav {
+        padding: 0 var(--spacing);
+    }
 
 	.anchor {
 		position: relative;
