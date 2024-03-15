@@ -35,7 +35,10 @@ const initCanvasBubbles = () => {
 		var ctx = canvas.getContext('2d');
 		if (ctx) {
 			var refresh = () => {
-				width = canvas.parentElement.offsetWidth*1.2;
+				width = Math.min(
+					document.documentElement.offsetWidth,
+					canvas.parentElement.offsetWidth*1.2
+				);
 				height = canvas.parentElement.offsetHeight*1.6;
 				canvas.width = width;
 				canvas.height = height;
