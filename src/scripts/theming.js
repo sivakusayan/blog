@@ -54,6 +54,21 @@ const onThemeButtonClick = (e, theme) => {
 	});
 };
 
+const isDarkMode = () => {
+	const root = document.documentElement;
+	if (root.getAttribute('data-theme') === Themes.DARK) {
+		return true;
+	}
+	if (
+		root.getAttribute('data-theme') === Themes.SYSTEM &&
+		window.matchMedia &&
+		window.matchMedia('(prefers-color-scheme: dark)').matches
+	) {
+		return true;
+	}
+	return false;
+};
+
 lightThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.LIGHT);
 darkThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.DARK);
 systemThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.SYSTEM);
