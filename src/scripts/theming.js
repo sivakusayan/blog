@@ -9,13 +9,20 @@ const Themes = Object.freeze({
 	SYSTEM: 'SYSTEM',
 });
 
-const setTheme = theme => {
+const setTheme = (theme) => {
 	const root = document.documentElement;
 	if (root.getAttribute('data-theme') === theme) return;
 
 	root.setAttribute('data-theme', theme);
 	localStorage.theme = theme;
+	updatePressedThemeButton(theme);
 
+	root.dispatchEvent(new Event('theme-changed'));
+};
+
+// Update our list of theme buttons so that the correct one
+// has the 'pressed' state.
+const updatePressedThemeButton = (theme) => {
 	if (currentToggledButton) {
 		currentToggledButton.setAttribute('aria-pressed', 'false');
 	}
@@ -33,7 +40,6 @@ const setTheme = theme => {
 			break;
 	}
 	currentToggledButton.setAttribute('aria-pressed', 'true');
-	root.dispatchEvent(new Event('theme-changed'));
 };
 
 // Since we are currently adjusting line-height and margin based on the theme,
@@ -48,7 +54,10 @@ const onThemeButtonClick = (e, theme) => {
 	});
 };
 
-lightThemeButton.onclick = e => onThemeButtonClick(e, Themes.LIGHT);
-darkThemeButton.onclick = e => onThemeButtonClick(e, Themes.DARK);
-systemThemeButton.onclick = e => onThemeButtonClick(e, Themes.SYSTEM);
-if ('theme' in localStorage) setTheme(localStorage.theme);
+lightThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.LIGHT);
+darkThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.DARK);
+systemThemeButton.onclick = (e) => onThemeButtonClick(e, Themes.SYSTEM);
+
+// We don't need to restore the theme here when the page loads.
+// We load it at the end of the <head> tag to prevent FOUS.
+if ('theme' in localStorage) updatePressedThemeButton(localStorage.theme);
