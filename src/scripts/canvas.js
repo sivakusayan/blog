@@ -10,7 +10,6 @@ const onWindowDoneResizing = (callback) => {
 	// to appearing and dissappearing scrollbars.
 	let fire = () => {
 		if (window.outerWidth !== previousWidth) {
-			console.log('hi');
 			previousWidth = window.outerWidth;
 			callback();
 		}
