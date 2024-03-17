@@ -22,6 +22,10 @@ sup.footnote,
 	margin-bottom: 0;
 }
 
+#LinkContainer h2 {
+	margin-top: 0;
+}
+
 @media print {
 	:root {
 		--website-side-padding: 0rem;
@@ -77,5 +81,13 @@ sup.footnote,
 
 	.linklist main a[href]::after {
 		content: '';
+	}
+
+	pre {
+		border: 1px solid black;
+	}
+
+	.tags a {
+		border: 1px solid black;
 	}
 }
