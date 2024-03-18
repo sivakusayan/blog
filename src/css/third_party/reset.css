@@ -34,7 +34,6 @@ ol[role='list'] {
 body {
 	min-height: 100vh;
 	text-rendering: optimizeSpeed;
-	line-height: 1.4;
 }
 
 /* A elements that don't have a class get default styles */

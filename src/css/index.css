@@ -28,7 +28,7 @@
     --inline-code-background-color: #caf3ff;
 
 	--header-line-height: 1.1;
-	--paragraph-line-height: 1.34;
+	--paragraph-line-height: 1.38;
 	--spacing: 1.12rem;
 	--hover-outline-width: 3px;
     --active-outline-width: 2px;
@@ -66,7 +66,7 @@ html[data-theme='DARK'] {
     --inline-code-background-color: #212327;
 
 	--header-line-height: 1.15;
-	--paragraph-line-height: 1.38;
+	--paragraph-line-height: 1.4;
 	--spacing: 1.2rem;
 	--hover-outline-width: 3px;
     --active-outline-width: 1.5px;
@@ -94,7 +94,7 @@ html[data-theme='DARK'] ::selection {
         --inline-code-background-color: #212327;
 
 		--header-line-height: 1.15;
-		--paragraph-line-height: 1.38;
+		--paragraph-line-height: 1.4;
 		--spacing: 1.2rem;
 		--hover-outline-width: 3px;
         --active-outline-width: 1.5px;
@@ -121,7 +121,7 @@ html[data-theme='DARK'] ::selection {
         --inline-code-background-color: #caf3ff;
 
 		--header-line-height: 1.1;
-		--paragraph-line-height: 1.34;
+		--paragraph-line-height: 1.38;
 		--spacing: 1.12rem;
 		--hover-outline-width: 3px;
         --active-outline-width: 2px;
