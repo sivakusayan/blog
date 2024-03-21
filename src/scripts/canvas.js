@@ -98,13 +98,12 @@ const initCanvasBubbles = () => {
 		const refresh = () => {
 			const { width, height } = resizeCanvasToParent();
 			ctx.clearRect(0, 0, width, height);
-			// If our volume is too small, having more circles
+			// If our volume is too small, having large circles
 			// looks jank
 			const volume = width * height;
-			const numCircles = volume < 70000 ? 20 : 30;
 			maxRadius = volume < 70000 ? 40 : 50;
 			const darkMode = isDarkMode();
-			for (i = 0; i < numCircles; i++) {
+			for (i = 0; i < 20; i++) {
 				const { x, y, radius } = generateCircleCoordinates(
 					width,
 					height,
