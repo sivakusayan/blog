@@ -139,23 +139,6 @@ html[data-theme="DARK"] .tags a[href]:hover {
     }
 }
 
-ul.post-chain {
-	list-style: none;
-	padding: 0;
-
-	display: flex;
-	justify-content: space-between;
-	gap: var(--medium-spacing);
-}
-
-ul.post-chain > * {
-	flex: 1;
-}
-
-.post-chain span {
-	font-weight: bold;
-}
-
 details {
 	margin: var(--medium-spacing) 0;
 	transition:

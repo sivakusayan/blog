@@ -35,22 +35,18 @@ templateClass: tmpl-post
       {%- set nextPost = collections.posts | getNextRegularPost(page) %}
       {%- set previousPost = collections.posts | getPreviousRegularPost(page) %}
     {%- endif %}
-    {%- if nextPost or previousPost %}
       <hr>
-      <ul class="post-chain">
-        {%- if previousPost %}
-          <li>
-            <span>Previous: </span>
-            <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
-          </li>
-        {% endif %}
         {%- if nextPost %}
-          <li>
-            <span>Next: </span>
+        <p>
+            <span><b>Next: </b></span>
             <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
-          </li>
+        </p>
         {% endif %}
-      </ul>
-    {%- endif %}
-  {%- endif %}
+        {%- if previousPost %}
+        <p>
+            <span><b>Previous: </b></span>
+            <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
+        </p>
+        {% endif %}
+ {%- endif %}
 </div>
