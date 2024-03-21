@@ -44,7 +44,7 @@ const getTags = (collection, postFilter) => {
 		});
 	});
 
-	return filterTagList([...tagSet]);
+	return filterTagList([...tagSet]).sort();
 };
 
 module.exports = {

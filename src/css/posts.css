@@ -97,8 +97,9 @@ caption {
     font-size: 90%;
     list-style: none;
     display: flex;
-    gap: var(--tiny-spacing);
+    gap: var(--small-spacing);
     padding-left: 0;
+    flex-wrap: wrap;
 }
 
 .tags a[href] {
