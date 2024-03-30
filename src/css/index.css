@@ -16,7 +16,7 @@
 	color-scheme: light;
 
 	--text-color: #121212;
-	--background-color: #ebfffb;
+	--background-color: #f4faf9;
 
 	--footer-text-color: #f5f3f3;
 	--footer-background-color: #171717;
@@ -109,7 +109,7 @@ html[data-theme='DARK'] ::selection {
 		color-scheme: light;
 
 		--text-color: #121212;
-		--background-color: #ebfffb;
+		--background-color: #f4faf9;
 
 		--footer-text-color: #f5f3f3;
 		--footer-background-color: #171717;
