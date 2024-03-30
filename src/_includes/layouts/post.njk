@@ -5,8 +5,7 @@ templateClass: tmpl-post
 
 <div>
   <div class="post-content">
-    <div id="heading-dots" class="post-header">
-      <canvas aria-hidden="true" id="canvas"></canvas>
+    <div class="post-header">
       {%- if collections.posts | isTodayLearnedPost(page) %}
         <h1 id="Skip">TIL: {{ title }}</h1>
       {%- else %}
