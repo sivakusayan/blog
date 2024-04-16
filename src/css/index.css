@@ -69,7 +69,7 @@ html[data-theme='DARK'] {
 	--code-border-color: #3e3e3e;
 
 	--header-line-height: 1.15;
-	--paragraph-line-height: 1.38;
+	--paragraph-line-height: 1.4;
 	--spacing: 1.2rem;
 	--hover-outline-width: 3px;
     --active-outline-width: 1.5px;
@@ -99,7 +99,7 @@ html[data-theme='DARK'] ::selection {
 		--code-border-color: #3e3e3e;
 
 		--header-line-height: 1.15;
-		--paragraph-line-height: 1.38;
+		--paragraph-line-height: 1.4;
 		--spacing: 1.2rem;
 		--hover-outline-width: 3px;
         --active-outline-width: 1.5px;
