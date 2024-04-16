@@ -26,6 +26,7 @@
 	--highlight-color: #d5efff;
 
     --inline-code-background-color: #caf3ff;
+	--code-background-color: #011627;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.32;
@@ -54,7 +55,7 @@ html[data-theme='DARK'] {
 	color-scheme: dark;
 
 	--text-color: #c7c7c4;
-	--background-color: #010112;
+	--background-color: #0f0f18;
 
 	--footer-text-color: #c7c7c4;
 	--footer-background-color: #09090a;
@@ -64,6 +65,8 @@ html[data-theme='DARK'] {
 	--highlight-color: rgb(22, 40, 67);
 
     --inline-code-background-color: #212327;
+	--code-background-color: #0a0a0a;
+	--code-border-color: #3e3e3e;
 
 	--header-line-height: 1.15;
 	--paragraph-line-height: 1.38;
@@ -82,7 +85,7 @@ html[data-theme='DARK'] ::selection {
 		color-scheme: dark;
 
 		--text-color: #c7c7c4;
-		--background-color: #010112;
+		--background-color: #0f0f18;
 
 		--footer-text-color: #c7c7c4;
 		--footer-background-color: #09090a;
@@ -92,6 +95,8 @@ html[data-theme='DARK'] ::selection {
 		--highlight-color: rgb(22, 40, 67);
 
         --inline-code-background-color: #212327;
+		--code-background-color: #0a0a0a;
+		--code-border-color: #3e3e3e;
 
 		--header-line-height: 1.15;
 		--paragraph-line-height: 1.38;
@@ -119,6 +124,7 @@ html[data-theme='DARK'] ::selection {
 		--highlight-color: #d5efff;
 
         --inline-code-background-color: #caf3ff;
+		--code-background-color: #011627;
 
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.32;
