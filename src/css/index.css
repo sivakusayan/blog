@@ -350,15 +350,3 @@ For those users, we'll just wrap the code instead. */
 	padding: var(--tiny-spacing);
     background-color: var(--inline-code-background-color);
 }
-
-#heading-dots {
-    position: relative;
-}
-
-#heading-dots canvas {
-    position: absolute;
-    z-index: -1;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
