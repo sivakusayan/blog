@@ -177,6 +177,7 @@ h3 {
 }
 
 h2 a,
+h2 a code,
 h3 a {
 	text-decoration: none;
 	color: inherit;
