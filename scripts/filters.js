@@ -47,7 +47,8 @@ const getNextPost = (posts, page, filter) => {
 };
 
 module.exports = {
-	limit: (arr, limit) => arr.slice(0, limit),
+	limit: (arr, limit) =>
+		arr.length < limit ? arr : arr.slice(arr.length - limit, arr.length),
 	// Given a list of tags, filter out all tags that were added by the eleventy system itself.
 	// In essense, this function gives us only the "useful" tags we care about, eg. the tags
 	// we defined in our frontmatter.
