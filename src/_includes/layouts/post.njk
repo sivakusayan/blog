@@ -13,7 +13,7 @@ templateClass: tmpl-post
       {% endif %}
       <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
     </div>
-    {{ content | safe | withTableOfContents | withDetails}}
+    {{ content | safe | withTableOfContents | withDetails | withCodeBlockCompressor}}
   </div>
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
   <h2>Tagged</h2>

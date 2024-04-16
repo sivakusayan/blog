@@ -27,6 +27,7 @@ const {
 	getNextTodayLearnedPost,
 	getPreviousRegularPost,
 	getNextRegularPost,
+	withCodeBlockCompressor,
 } = require('./scripts/filters.js');
 
 module.exports = function (eleventyConfig) {
@@ -68,6 +69,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('readableDate', readableDate);
 	eleventyConfig.addFilter('htmlDateString', htmlDateString);
 	eleventyConfig.addFilter('withTableOfContents', withTableOfContents);
+	eleventyConfig.addFilter('withCodeBlockCompressor', withCodeBlockCompressor);
 	eleventyConfig.addFilter('withDetails', withDetails);
 	eleventyConfig.addFilter('getRegularPosts', getRegularPosts);
 	eleventyConfig.addFilter('getTodayLearnedPosts', getTodayLearnedPosts);

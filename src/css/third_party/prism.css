@@ -178,6 +178,17 @@ pre[class*='language-'] {
 	}
 }
 
+/** There are code blocks which are too big for inline
+code, but too small to be stretched out. We'll have
+script conditionally apply this class depending on 
+the code size*/
+@media only screen and (min-width: 661px) {
+	pre[class*='language-'].compress {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
 @media only screen and (max-width: 660px) {
 	pre[class*='language-'] {
 		border-radius: 0;

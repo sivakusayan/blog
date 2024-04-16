@@ -1,4 +1,5 @@
 const withTableOfContents = require('./with-table-of-contents.js');
+const withCodeBlockCompressor = require('./with-code-block-compressor.js');
 const withDetails = require('./with-details.js');
 
 /**
@@ -70,6 +71,7 @@ module.exports = {
 	},
 	htmlDateString: (dateObj) => dateObj.toISOString(),
 	withTableOfContents: withTableOfContents,
+	withCodeBlockCompressor: withCodeBlockCompressor,
 	withDetails: withDetails,
 	// We want to show "regular" posts in a separate section from our "today-i-learned" posts.
 	getRegularPosts: (posts) => posts.filter((post) => !post.data.isTodayLearned),
