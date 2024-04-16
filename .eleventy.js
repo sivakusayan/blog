@@ -13,6 +13,7 @@ const markdownItAnchor = require('markdown-it-anchor');
 const { headerLink } = require('./scripts/permalink.js');
 const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
 const {
+	limit,
 	filterTagList,
 	shortReadableDate,
 	readableDate,
@@ -61,6 +62,7 @@ module.exports = function (eleventyConfig) {
 		],
 	});
 
+	eleventyConfig.addFilter('limit', limit);
 	eleventyConfig.addFilter('filterTagList', filterTagList);
 	eleventyConfig.addFilter('shortReadableDate', shortReadableDate);
 	eleventyConfig.addFilter('readableDate', readableDate);

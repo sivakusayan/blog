@@ -19,12 +19,12 @@ eleventyNavigation:
 
 <div>
   <h2>Recent blog posts</h2>
-  {% set postslist = collections.posts | getRegularPosts %}
+  {% set postslist = collections.posts | getRegularPosts | limit(3) %}
   {% include "partials/postslist.njk" %}
 </div>
 
 <div>
   <h2>Recent TILs (Today I Learned)</h2>
-  {% set postslist = collections.posts | getTodayLearnedPosts %}
+  {% set postslist = collections.posts | getTodayLearnedPosts | limit(3) %}
   {% include "partials/postslist.njk" %}
 </div>
