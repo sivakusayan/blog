@@ -44,7 +44,6 @@ https://github.com/w3c/csswg-drafts/issues/6853
 	color: rgb(245, 243, 243, 0.99);
 }
 
-header ::selection,
 footer ::selection,
 pre ::selection {
 	background-color: rgb(245, 243, 243, 0.99);
@@ -138,7 +137,6 @@ html[data-theme='DARK'] ::selection {
 		color: rgb(245, 243, 243, 0.99);
 	}
 
-	html[data-theme='LIGHT'] header ::selection,
 	html[data-theme='LIGHT'] footer ::selection,
 	html[data-theme='LIGHT'] pre ::selection {
 		background-color: rgb(245, 243, 243, 0.99);
