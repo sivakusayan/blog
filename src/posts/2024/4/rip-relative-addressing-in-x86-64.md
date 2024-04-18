@@ -1,10 +1,10 @@
 ---
-title: RIP relative addressing in x86-64 
+title: RIP relative addressing in x86-64
 description: Learning about RIP relative addressing in x86-64.
 date: 2024-04-18
 isTodayLearned: true
 tags:
-  - Systems 
+  - Systems
 layout: layouts/post.njk
 ---
 
@@ -14,7 +14,7 @@ wanted to see these concepts in action for myself, so I decided to compile a ver
 program and debug its assembly:
 
 ```c
-#include<stdio.h>
+#include <stdio.h>
 
 int main(void) {
     printf("Hello World");
@@ -49,7 +49,7 @@ RIP of the next instruction.
 </p>
 </blockquote>
 
-Something that is very important is that the displacement is added to the address of the *next*
+Something that is very important is that the displacement is added to the address of the _next_
 instruction, not the current one. In other words, we look at the address obtained from adding 0x1036 and 0x2fe2, giving us 0x4018.
 The value at that address should either point to the `printf` symbol, or point to the
 invokation of the dynamic linker to load the needed shared object (and only then call `printf`).
