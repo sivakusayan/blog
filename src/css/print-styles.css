@@ -83,8 +83,12 @@ sup.footnote,
 		content: '';
 	}
 
-	pre {
+	pre[class*=language-] {
 		border: 1px solid black;
+	}
+
+	pre[class*=language-] code {
+		text-wrap: wrap;
 	}
 
 	.tags a {
