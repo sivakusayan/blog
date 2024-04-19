@@ -2,6 +2,7 @@ aside {
 	margin: var(--medium-spacing) 0;
 	padding: var(--small-spacing) var(--spacing);
 	border: 1.5px solid var(--text-color);
+	border-top: 7px solid;
 	border-radius: 2px;
 }
 
@@ -148,24 +149,28 @@ details {
 
 details summary {
 	border: 1.5px solid var(--text-color);
+	border-top: 7px solid;
 	padding: var(--small-spacing) var(--spacing);
 	transition:
 		background-color 0.2s,
 		border-color 0.2s,
 		color 0.1s,
 		outline 0.1s,
-		outline-offset 0.1s;
-	outline-offset: 24px;
+		outline-offset 0.1s,
+		padding 0.1s;
+	outline-offset: 32px;
 	border-radius: 2px;
 }
 
 details[open] {
 	border: 1.5px solid var(--text-color);
+	border-top: 0px;
 }
 
 details[open] summary {
-	border: none;
-	border-bottom: 1.5px solid var(--text-color);
+	border-right: none;
+	border-left: none;
+	padding: var(--spacing);
 }
 
 .post-content details {
@@ -186,10 +191,6 @@ details[open] {
 	width: 60ch;
 }
 
-details[open] summary {
-	border-bottom: 1.5px solid var(--text-color);
-}
-
 details[open] .details-content {
 	margin: var(--small-spacing) 0;
 	padding: var(--small-spacing) var(--spacing);
@@ -202,16 +203,7 @@ details[open] .details-content *:last-child {
 
 summary:hover {
 	background-color: var(--primary-background-color);
-	border: 1.5px solid var(--primary-color);
 	cursor: pointer;
-}
-
-details summary:hover {
-	border-bottom-color: var(--primary-color);
-}
-
-details:has(summary:hover) {
-	border-color: var(--primary-color);
 }
 
 @media only screen and (max-width: 620px) {
