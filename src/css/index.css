@@ -25,7 +25,7 @@
 	--primary-background-color: #b3defa;
 	--highlight-color: #d5efff;
 
-    --inline-code-background-color: #d4f5ff;
+    --inline-code-background-color: #dbf4fc;
 	--code-background-color: #011627;
 
 	--header-line-height: 1.1;
@@ -122,7 +122,7 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: #b3defa;
 		--highlight-color: #d5efff;
 
-        --inline-code-background-color: #d4f5ff;
+        --inline-code-background-color: #dbf4fc;
 		--code-background-color: #011627;
 
 		--header-line-height: 1.1;
