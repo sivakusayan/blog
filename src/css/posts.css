@@ -1,6 +1,6 @@
 aside {
 	margin: var(--medium-spacing) 0;
-	padding: var(--small-spacing) var(--spacing);
+	padding: var(--spacing);
 	border: 1.5px solid var(--text-color);
 	border-top: 7px solid;
 	border-radius: 2px;
@@ -150,14 +150,13 @@ details {
 details summary {
 	border: 1.5px solid var(--text-color);
 	border-top: 7px solid;
-	padding: var(--small-spacing) var(--spacing);
+	padding: var(--spacing);
 	transition:
 		background-color 0.2s,
 		border-color 0.2s,
 		color 0.1s,
 		outline 0.1s,
-		outline-offset 0.1s,
-		padding 0.1s;
+		outline-offset 0.1s;
 	outline-offset: 32px;
 	border-radius: 2px;
 }
@@ -170,7 +169,6 @@ details[open] {
 details[open] summary {
 	border-right: none;
 	border-left: none;
-	padding: var(--spacing);
 }
 
 .post-content details {
