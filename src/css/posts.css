@@ -200,7 +200,7 @@ details[open] .details-content *:last-child {
 }
 
 summary:hover {
-	background-color: var(--primary-background-color);
+	background-color: var(--primary-background-active-color);
 	cursor: pointer;
 }
 

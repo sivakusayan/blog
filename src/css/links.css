@@ -10,7 +10,7 @@ a[href] {
 }
 
 a[href]:hover {
-	background-color: var(--primary-background-color);
+	background-color: var(--primary-background-active-color);
 	outline: var(--hover-outline-width) solid var(--primary-color);
 	outline-offset: 0px;
 	transition:
