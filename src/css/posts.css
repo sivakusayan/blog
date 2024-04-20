@@ -249,9 +249,9 @@ hr {
 }
 
 .postlist li {
-	margin-bottom: var(--spacing);
+	margin-bottom: var(--small-spacing);
 }
 
 .post-header {
-	margin-bottom: var(--large-spacing);
+	margin-bottom: var(--largeish-spacing);
 }
