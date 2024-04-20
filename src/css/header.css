@@ -8,7 +8,7 @@ header {
 header ul {
 	display: flex;
 	list-style: none;
-	gap: var(--small-spacing);
+	gap: var(--tiny-spacing);
 	padding: 0;
 	margin-left: -0.5rem;
 }
@@ -17,7 +17,7 @@ header a[href] {
 	display: inline-block;
 	display: flex;
 	justify-content: center;
-	padding: 0.6rem;
+	padding: 0.5rem;
 }
 
 header nav {
