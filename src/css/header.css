@@ -2,7 +2,7 @@ header {
 	height: 4rem;
 	position: relative;
 	display: flex;
-	margin-bottom: var(--medium-spacing);
+	margin-bottom: var(--large-spacing);
 }
 
 header ul {
