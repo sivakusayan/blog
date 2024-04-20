@@ -239,7 +239,7 @@ li {
 }
 
 main:not(.tmpl-post) h1 {
-	margin-bottom: var(--spacing);
+	margin-bottom: var(--medium-spacing);
 }
 
 pre,
