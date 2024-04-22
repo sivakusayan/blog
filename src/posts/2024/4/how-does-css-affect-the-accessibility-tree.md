@@ -35,27 +35,43 @@ This behavior is explicitly called out under the [Excluding Elements from the Ac
 
 <aside>Notice how the ARIA specification calls out that applying CSS <code>visibility: hidden</code> to a node should also hide it from the accessibility tree. I encourage you to test that behavior yourself.</aside>
 
-<aside>There is discussion about an element's display property affecting how whitespace is or isn't added when computing something's accessible name.</aside>
-
 ### Pseudo-elements
 
-Pseudo content mainly contribute to the accessible name. Depending on the browser implementation, they may create nodes in the accessibility tree, too.
+Suppose that some HTML element has a pseudo-element with the CSS `content` property. Should that
+text be accounted for when calculating an element's accessible name? This case is explicitly called
+out in the <a href="https://w3c.github.io/accname/#comp_name_from_content">name from
+content traversal step</a> of the accessible name computation algorithm. 
 
 - [Pen: CSS Pseudo-element](https://codepen.io/sivakusayan/pen/rNbQXwX)
 - [Pen: CSS Pseudo-element (Debug)](https://cdpn.io/pen/debug/rNbQXwX)
 - To Test: Inspect the accessibility tree through your browser.
 
-<aside>Did you know that you can give your pseudo content alternative text? There is an open issue in the accname spec to consider this when computing an element's accessible name.</aside>
+<aside>
+<p>Did you know that you can add <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content?">alternative text to the CSS content of pseudo-elements</a>?</p>
+<p>
+This currently is not accounted for in the accessible name computation algorithm (at least, not in
+the specification). <a href="https://github.com/w3c/accname/issues/204">Issue w3c/accname/204</a> discusses
+accounting for this in the spec.
+</p>
+</aside>
 
 ### Layout Table Guessing
 
-There is another article that talks about this in much more depth.
+There are lots of websites that unfortunately use the <code>table</code> HTML element for layout.
+If browsers exposed all of these as real tables in the accessibility tree, navigation for screen
+reader users could potentially be extremely tedious.
+
+To solve this problem, all three major browsers have various heuristics to determine whether an HTML
+<code>table</code> is a "real" table that should be exposed as a table in the accessibility tree, or
+whether its table semantics should be ignored. For example, the CSS border color and background color of table cells are used in this heuristic!
 
 - [Pen: Layout Table Border Color](https://codepen.io/sivakusayan/pen/wvYbrVR)
 - [Pen: Layout Table Border Color (Debug)](https://cdpn.io/pen/debug/wvYbrVR)
 - [Pen: Layout Table Background Color](https://codepen.io/sivakusayan/pen/YzJbrmY)
 - [Pen: Layout Table Background Color (Debug)](https://cdpn.io/pen/debug/YzJbrmY)
 - To Test: Use the screen reader of your choice, and attempt to find a table.
+
+[Another article that I wrote](https://sayansivakumaran.com/posts/2023/6/browser-table-accessibility-remediation/) talks about this in more depth if you're curious.
 
 ### Bounding Box Calculations
 
@@ -80,6 +96,15 @@ This is cheating, but a requirement!
 ### Font style attributes
 
 ### Display property on AccName calculations
+
+<a href="https://github.com/w3c/accname/issues/225">Issue w3c/accname/#225</a> brings up discussion on whether the
+<code>display</code> attribute should affect how whitespace is or isn't added during the <a href="https://w3c.github.io/accname/#comp_name_from_content">name from
+content traversal step</a> of the accessible name computation algorithm. This behavior is <a
+href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already implemented in Chromium</a> if you want to test it out.
+
+- [Pen: CSS Display AccName](https://codepen.io/sivakusayan/pen/jORXxOZ)
+- [Pen: CSS Display AccName (Debug)](https://cdpn.io/pen/debug/jORXxOZ)
+- To Test: Inspect the accessibility tree through your browser.
 
 ## Webkit
 
