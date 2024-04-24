@@ -85,15 +85,79 @@ This is cheating, but a requirement!
 
 ## Chromium
 
+### Display Style
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object.cc;l=1814?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Display Contents Style
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/dom/element.cc;l=7477;drc=98cde8514f5173135ba3d52b140553c7b26b4497;bpv=1)
+
 ### Clearfix Hack
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Pseudo-element live region events
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=2279?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### First-letter pseudo element styling
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1241?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1241?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
 
 ### Range slider writing modes
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_slider.cc;l=47?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Extremely small canvas elements
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1023?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Positioned elements inclusion
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1097?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
 
 ### Log for user-select: none
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2752?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Data table hidden inclusion?
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1552?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Pseudo content conditional image role?
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1552?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Is offscreen?
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2553?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
 
 ### List style
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object.cc;l=2106;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3127?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text alternative list marker conditional
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1040?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text Direction
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3400?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Test Position
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3449?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text Align
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3535?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text Indent
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3559?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Inline Textbox inclusion
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=410?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
 
 ### Font style attributes
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3491?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3709?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3740?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3752?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Background Color
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3686?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text Color?
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3697?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
+### Text Security
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=4179?q=%22Style()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
 
 ### Display property on AccName calculations
 
@@ -106,10 +170,75 @@ href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already
 - [Pen: CSS Display AccName (Debug)](https://cdpn.io/pen/debug/jORXxOZ)
 - To Test: Inspect the accessibility tree through your browser.
 
+### Can ignore space
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=313;bpv=1;bpt=1?q=%22GetLayoutObject()%22&ss=chromium%2Fchromium%2Fsrc:third_party%2Fblink%2Frenderer%2Fmodules%2Faccessibility%2F)
+
 ## Webkit
 
 ### List style
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityList.cpp#L167)
+
+### Range Slider style
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilitySlider.cpp#L65)
+
+### Font Attributes
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/ios/AccessibilityObjectIOS.mm#L217)
+
+### Opacity
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AXObjectCache.cpp#L442)
+
+### Link styles
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityObject.cpp#L1903)
+
+### Searching by Element Type
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityRenderObject.cpp#L2602)
+
+### Apple Pay Button
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityRenderObject.cpp#L2622)
+
+### Display property on AccName calculations
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityNodeObject.cpp#L2291)
+
+### AT-SPI Text Direction
+[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/atspi/AccessibilityObjectTextAtspi.cpp#L270)
 
 ## Gecko
 
+Note that I will ignore anything involving `ISimpleDOMNode`, especially as that hasn't been used in
+a long time from what I can tell. In practice, this means ignoring all `sdnAccessible*` files.
+
+### Control flow of focus on hidden elements
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/FocusManager.cpp#423)
+
+### Font Attributes
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/TextAttrs.cpp)
+
+### Something something text
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/TextLeafRange.cpp)
+
+### Must be generic accessible
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/nsAccessibilityService.cpp#163)
+
+### Something something accessible creation
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/nsAccessibilityService.cpp#599)
+
+### Display property on AccName calculations
+[Code](https://searchfox.org/mozilla-central/source/accessible/base/nsTextEquivUtils.cpp#152)
+
+### Something something AX tree traversal
+[Code](https://searchfox.org/mozilla-central/source/accessible/generic/LocalAccessible.cpp#581)
+
+### Exposing margin attributes
+[Code](https://searchfox.org/mozilla-central/source/accessible/generic/LocalAccessible.cpp#1246)
+
+### Something something char bounding boxes
+[Code](https://searchfox.org/mozilla-central/source/accessible/generic/LocalAccessible.cpp#3703)
+
 ### Opacity
+[Code](https://searchfox.org/mozilla-central/source/accessible/generic/LocalAccessible.cpp#4258)
+
+### Bounds calculation
+[Code](https://searchfox.org/mozilla-central/source/accessible/html/HTMLListAccessible.cpp#50)
+
+### Background and Foreground 
+[Code](https://searchfox.org/mozilla-central/source/accessible/windows/ia2/ia2AccessibleComponent.cpp#103)
