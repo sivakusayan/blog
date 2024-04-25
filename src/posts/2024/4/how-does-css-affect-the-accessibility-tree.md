@@ -21,6 +21,25 @@ I hope it will still be interesting to look at!
 
 <table-of-contents></table-of-contents>
 
+## How to read this post
+
+This post is comprised of several different examples of how CSS can affect the accessibility tree.
+Each example will have the following:
+
+- For behavior that is not standardized, I will link to the relevant browser source code that causes
+    the observed behavior. The linked code is current as of the day of writing.
+- I will link a codepen that demonstrates the behavior so you can try it out in your own browser. I
+    link both the debug version if you want to inspect the accessibility tree without all the
+    codepen cruft, as well as the regular version if you want to edit/play with the code.
+- I will call out instructions for how you can test the example. The instructions will generally
+    be of two forms:
+    - Inspect the browser's accessibility tree
+    - Inspect the platform specific accessibility tree (for platform specific behavior)
+
+Finally, I want to emphasize that we will only focus on how CSS affects the accessibility tree, not
+how different assistive technologies interact with each example (as that would make this post
+unbearably complex and long).
+
 ## All Browsers
 
 ### Display Properties
@@ -83,7 +102,7 @@ This is cheating, but a requirement!
   - Use assistive technology that will display a bounding box for you
   - Use an accessibility API inspector to programatically read the size. Notice how all of the input fields have the same HTML, but the differing CSS will affect the calculated bounding box.
 
-## Chromium
+## Chromium (Chrome, Edge, etc.)
 
 ### Display Style
 
@@ -188,7 +207,7 @@ href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=313;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
 
-## Webkit
+## Webkit (Safari)
 
 ### List style
 
@@ -226,7 +245,7 @@ href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/atspi/AccessibilityObjectTextAtspi.cpp#L270)
 
-## Gecko
+## Gecko (Firefox)
 
 Note that I will ignore anything involving `ISimpleDOMNode`, especially as that hasn't been used in
 a long time from what I can tell. In practice, this means ignoring all `sdnAccessible*` files.
