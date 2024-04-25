@@ -51,7 +51,7 @@ This behavior is explicitly called out under the [Excluding Elements from the Ac
 
 - [Pen: CSS Display](https://codepen.io/sivakusayan/pen/abxQajZ)
 - [Pen: CSS Display (Debug)](https://cdpn.io/pen/debug/abxQajZ)
-- To Test: Inspect the accessibility tree through your browser.
+- **To Test:** Inspect the accessibility tree through your browser.
 
 <aside>Notice how the ARIA specification calls out that applying CSS <code>visibility: hidden</code> to a node should also hide it from the accessibility tree. I encourage you to test that behavior yourself.</aside>
 
@@ -64,7 +64,7 @@ content traversal step</a> of the accessible name computation algorithm.
 
 - [Pen: CSS Pseudo-element](https://codepen.io/sivakusayan/pen/rNbQXwX)
 - [Pen: CSS Pseudo-element (Debug)](https://cdpn.io/pen/debug/rNbQXwX)
-- To Test: Inspect the accessibility tree through your browser.
+- **To Test:** Inspect the accessibility tree through your browser.
 
 <aside>
 <p>Did you know that you can add <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/content?">alternative text to the CSS content of pseudo-elements</a>?</p>
@@ -89,7 +89,7 @@ whether its table semantics should be ignored. For example, the CSS border color
 - [Pen: Layout Table Border Color (Debug)](https://cdpn.io/pen/debug/wvYbrVR)
 - [Pen: Layout Table Background Color](https://codepen.io/sivakusayan/pen/YzJbrmY)
 - [Pen: Layout Table Background Color (Debug)](https://cdpn.io/pen/debug/YzJbrmY)
-- To Test: Use the screen reader of your choice, and attempt to find a table.
+- **To Test:** Use the screen reader of your choice, and attempt to find a table.
 
 [Another article that I wrote](/posts/2023/6/browser-table-accessibility-remediation/) talks about this in more depth if you're curious.
 
@@ -99,7 +99,7 @@ This is cheating, but a requirement!
 
 - [Pen: Bounding Box](https://codepen.io/sivakusayan/pen/zYXyGRz)
 - [Pen: Bounding Box (Debug)](https://cdpn.io/pen/debug/zYXyGRz)
-- To Test:
+- **To Test:**
   - Use assistive technology that will display a bounding box for you
   - Use an accessibility API inspector to programatically read the size. Notice how all of the input fields have the same HTML, but the differing CSS will affect the calculated bounding box.
 
@@ -113,13 +113,41 @@ This is cheating, but a requirement!
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/dom/element.cc;l=7477;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
 
-### Clearfix Hack
+### Ignoring Text from the Clearfix Hack 
 
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
+[Ignoring Text from the Clearfix Hack - Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
+
+The clearfix hack was apparently some kind of CSS trick to make it easier to create web layouts
+before flexbox and grid support were implemented in browsers. Regardless of what it is, it seems to
+be common enough on the web to cause really annoying interactions for screen reader users, judging from the commit
+message:
+
+<blockquote>
+<p>
+Commit e85e514 : aleventhal@chromium.org @ 2021-09-23 10:42 AM
+
+Omit extra blank line announcements from micro clearfix hacks
+
+The "Micro Clearfix Hack" is an old CSS hack used to contain floats
+without using additional HTML elements. However, this currently results
+in extra "blank" announcements on many pages, in some screen readers.
+</p>
+</blockquote>
+
+Because of this, it seems Chromium controls whether whitespace pseudo-elements emit
+accessibility nodes by looking at its CSS `display` property. In particular, if the pseudo-element
+has an `inline` display, Chromium will generate a whitespace text node for it in the accessibility
+tree. Otherwise, the browser will ignore it.
+
+- [Pen: Clearfix Hack](https://codepen.io/sivakusayan/pen/dyLaXNQ)
+- [Pen: Clearfix Hack (Debug)](https://cdpn.io/pen/debug/dyLaXNQ)
+- **To Test:** Inspect the accessibility tree, and notice that the whitespace pseudo-elements without the `display:
+    table` property have their whitespace in the accessibility tree, while the whitespace
+    pseudo-elements with `display: table` are ignored.
 
 ### Pseudo-element live region events
 
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=2279;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_pCarty/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=2279;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
 
 ### Range slider writing modes
 
