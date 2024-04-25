@@ -1,7 +1,7 @@
 ---
 title: How does CSS affect the accessibility tree?
 description: HTML isn't the only thing that can affect the output of the accessibility tree. CSS can change the accessibility tree too - some ways are in the specifications themselves, while others are implementation dependent.
-date: 2024-04-20
+date: 2024-04-26
 tags:
   - Accessibility
 layout: layouts/post.njk
@@ -28,17 +28,18 @@ Each example will have the following:
 
 - For behavior that is not standardized, I will link to the relevant browser source code that causes
     the observed behavior. The linked code is current as of the day of writing.
-- I will link a codepen that demonstrates the behavior so you can try it out in your own browser. I
-    link both the debug version if you want to inspect the accessibility tree without all the
-    codepen cruft, as well as the regular version if you want to edit/play with the code.
-- I will call out instructions for how you can test the example. The instructions will generally
+- I will link a CodePen that demonstrates the behavior so you can try it out in your own browser. I
+    link both: 
+    - the debug version if you want to inspect the accessibility tree without the
+    complexity of the CodePen wrapper
+    - the regular version if you want to edit/play with the code.
+- I will call out how you can actually go about testing the CodePen above. The instructions will generally
     be of two forms:
-    - Inspect the browser's accessibility tree
-    - Inspect the platform specific accessibility tree (for platform specific behavior)
+    - [Inspect the browser's accessibility tree](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-accessibility-tree-through-the-developer-tools)
+    - [Inspect the platform specific accessibility tree (for platform specific behavior)](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-platform-accessibility-tree)
 
-Finally, I want to emphasize that we will only focus on how CSS affects the accessibility tree, not
-how different assistive technologies interact with each example (as that would make this post
-unbearably complex and long).
+Finally, I want to emphasize that we will only focus on how CSS affects the generated accessibility tree, not
+how different assistive technologies interact with each example (as that would make this post unbearably complex and long).
 
 ## All Browsers
 
@@ -90,7 +91,7 @@ whether its table semantics should be ignored. For example, the CSS border color
 - [Pen: Layout Table Background Color (Debug)](https://cdpn.io/pen/debug/YzJbrmY)
 - To Test: Use the screen reader of your choice, and attempt to find a table.
 
-[Another article that I wrote](https://sayansivakumaran.com/posts/2023/6/browser-table-accessibility-remediation/) talks about this in more depth if you're curious.
+[Another article that I wrote](/posts/2023/6/browser-table-accessibility-remediation/) talks about this in more depth if you're curious.
 
 ### Bounding Box Calculations
 
@@ -178,7 +179,7 @@ This is cheating, but a requirement!
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3480;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3705;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3736;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-[Code](<https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3752;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
+[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3752;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
 ### Background Color
 
@@ -297,3 +298,6 @@ a long time from what I can tell. In practice, this means ignoring all `sdnAcces
 ### Background and Foreground
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/windows/ia2/ia2AccessibleComponent.cpp#78)
+
+## Wrapup
+
