@@ -55,7 +55,7 @@ This behavior is explicitly called out under the [Excluding Elements from the Ac
 
 <aside>Notice how the ARIA specification calls out that applying CSS <code>visibility: hidden</code> to a node should also hide it from the accessibility tree. I encourage you to test that behavior yourself.</aside>
 
-### Conditional Whitespace from Display Properties
+### Conditional Whitespace in Accessible Name from Display Properties
 
 - [Conditional Whitespace from Display - Chromium Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=4704;drc=fa67bc861debe561f482e5023096ced07cf33f45)
 - [Conditional Whitespace from Display - Webkit Source Code](https://github.com/WebKit/WebKit/blob/9f05a02fc85a42c92ade9dcb132d636872e54826/Source/WebCore/accessibility/AccessibilityNodeObject.cpp#L2268)
@@ -69,7 +69,7 @@ be part of the standard!
 - [Pen: CSS Display AccName (Debug)](https://cdpn.io/pen/debug/jORXxOZ)
 - To Test: Inspect the accessibility tree through your browser.
 
-### Pseudo-elements
+### Pseudo-element contribution to Accessible Name
 
 Suppose that some HTML element has a pseudo-element with the CSS `content` property. Should that
 text be accounted for when calculating an element's accessible name? This case is explicitly called
@@ -168,9 +168,13 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_pCarty/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=2279;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
 
-### Range slider writing modes
+### Input Slider Orientation
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_slider.cc;l=47;drc=2d719a4d43ab57c769159477b5a6643bd6a51cda)
+
+- [Pen: Slider Input Orientation](https://codepen.io/sivakusayan/pen/GRLeXVW)
+- [Pen: Slider Input Orientation (Debug)](https://cdpn.io/pen/debug/GRLeXVW)
+- **To Test:** Inspect the platform accessibility tree. You can also use Orca or Voiceover.
 
 ### Positioned elements inclusion
 
@@ -257,9 +261,13 @@ href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityList.cpp#L167)
 
-### Range Slider style
+### Input Slider Orientation
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilitySlider.cpp#L65)
+
+- [Pen: Slider Input Orientation](https://codepen.io/sivakusayan/pen/GRLeXVW)
+- [Pen: Slider Input Orientation (Debug)](https://cdpn.io/pen/debug/GRLeXVW)
+- **To Test:** Inspect the platform accessibility tree. You can also use Orca or Voiceover.
 
 ### Font Attributes
 
