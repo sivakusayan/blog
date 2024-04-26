@@ -113,9 +113,9 @@ This is cheating, but a requirement!
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/dom/element.cc;l=7477;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
 
-### Ignoring Text from the Clearfix Hack 
+### Ignoring text from the clearfix hack 
 
-[Ignoring Text from the Clearfix Hack - Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
+[Ignoring text from the clearfix hack - Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
 
 The clearfix hack was apparently some kind of CSS trick to make it easier to create web layouts
 before flexbox and grid support were implemented in browsers. Regardless of what it is, it seems to
@@ -152,10 +152,6 @@ tree. Otherwise, the browser will ignore it.
 ### Range slider writing modes
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_slider.cc;l=47;drc=2d719a4d43ab57c769159477b5a6643bd6a51cda)
-
-### Extremely small canvas elements
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1023;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
 ### Positioned elements inclusion
 
