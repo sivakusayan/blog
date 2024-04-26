@@ -27,16 +27,16 @@ This post is comprised of several different examples of how CSS can affect the a
 Each example will have the following:
 
 - For behavior that is not standardized, I will link to the relevant browser source code that causes
-    the observed behavior. The linked code is current as of the day of writing.
+  the observed behavior. The linked code is current as of the day of writing.
 - I will link a CodePen that demonstrates the behavior so you can try it out in your own browser. I
-    link both: 
-    - the debug version if you want to inspect the accessibility tree without the
+  link both:
+  - the debug version if you want to inspect the accessibility tree without the
     complexity of the CodePen wrapper
-    - the regular version if you want to edit/play with the code.
+  - the regular version if you want to edit/play with the code.
 - I will call out how you can actually go about testing the CodePen above. The instructions will generally
-    be of two forms:
-    - [Inspect the browser's accessibility tree](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-accessibility-tree-through-the-developer-tools)
-    - [Inspect the platform specific accessibility tree (for platform specific behavior)](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-platform-accessibility-tree)
+  be of two forms:
+  - [Inspect the browser's accessibility tree](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-accessibility-tree-through-the-developer-tools)
+  - [Inspect the platform specific accessibility tree (for platform specific behavior)](/posts/2024/4/how-to-inspect-the-accessibility-tree/#inspecting-the-platform-accessibility-tree)
 
 Finally, I want to emphasize that we will only focus on how CSS affects the generated accessibility tree, not
 how different assistive technologies interact with each example (as that would make this post unbearably complex and long).
@@ -54,6 +54,20 @@ This behavior is explicitly called out under the [Excluding Elements from the Ac
 - **To Test:** Inspect the accessibility tree through your browser.
 
 <aside>Notice how the ARIA specification calls out that applying CSS <code>visibility: hidden</code> to a node should also hide it from the accessibility tree. I encourage you to test that behavior yourself.</aside>
+
+### Conditional Whitespace from Display Properties
+
+- [Conditional Whitespace from Display - Chromium Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=4704;drc=fa67bc861debe561f482e5023096ced07cf33f45)
+- [Conditional Whitespace from Display - Webkit Source Code](https://github.com/WebKit/WebKit/blob/9f05a02fc85a42c92ade9dcb132d636872e54826/Source/WebCore/accessibility/AccessibilityNodeObject.cpp#L2268)
+- [Conditional Whitespace from Display - Gecko Source Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/nsTextEquivUtils.cpp#152)
+
+The CSS display property doesn't just control whether a node is included in the accessibility tree or not - all three browser implementations use it to control whether whitespace is added around a child element when computing the accessible name of a node.
+<a href="https://github.com/w3c/accname/issues/225">Issue w3c/accname/#225</a> brings this topic up - maybe this will eventually
+be part of the standard!
+
+- [Pen: CSS Display AccName](https://codepen.io/sivakusayan/pen/jORXxOZ)
+- [Pen: CSS Display AccName (Debug)](https://cdpn.io/pen/debug/jORXxOZ)
+- To Test: Inspect the accessibility tree through your browser.
 
 ### Pseudo-elements
 
@@ -113,7 +127,7 @@ This is cheating, but a requirement!
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/core/dom/element.cc;l=7477;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
 
-### Ignoring text from the clearfix hack 
+### Ignoring text from the clearfix hack
 
 [Ignoring text from the clearfix hack - Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=1217;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
 
@@ -131,6 +145,7 @@ Omit extra blank line announcements from micro clearfix hacks
 The "Micro Clearfix Hack" is an old CSS hack used to contain floats
 without using additional HTML elements. However, this currently results
 in extra "blank" announcements on many pages, in some screen readers.
+
 </p>
 </blockquote>
 
@@ -142,8 +157,8 @@ tree. Otherwise, the browser will ignore it.
 - [Pen: Clearfix Hack](https://codepen.io/sivakusayan/pen/dyLaXNQ)
 - [Pen: Clearfix Hack (Debug)](https://cdpn.io/pen/debug/dyLaXNQ)
 - **To Test:** Inspect the accessibility tree, and notice that the whitespace pseudo-elements without the `display:
-    table` property have their whitespace in the accessibility tree, while the whitespace
-    pseudo-elements with `display: table` are ignored.
+table` property have their whitespace in the accessibility tree, while the whitespace
+  pseudo-elements with `display: table` are ignored.
 
 ### Pseudo-element live region events
 
@@ -262,10 +277,6 @@ href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityRenderObject.cpp#L2622)
 
-### Display property on AccName calculations
-
-[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityNodeObject.cpp#L2291)
-
 ### AT-SPI Text Direction
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/atspi/AccessibilityObjectTextAtspi.cpp#L270)
@@ -324,4 +335,3 @@ a long time from what I can tell. In practice, this means ignoring all `sdnAcces
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/windows/ia2/ia2AccessibleComponent.cpp#78)
 
 ## Wrapup
-
