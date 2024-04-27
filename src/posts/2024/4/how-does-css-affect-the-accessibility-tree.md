@@ -217,10 +217,6 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3559;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
-### Inline Textbox inclusion
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=410;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
 ### Font style attributes
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3480;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
