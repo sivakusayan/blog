@@ -236,10 +236,6 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3693;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
-### Can ignore space
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=313;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
-
 ## Webkit (Safari)
 
 ### List style
