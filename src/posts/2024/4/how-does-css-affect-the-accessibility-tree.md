@@ -184,6 +184,8 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2752;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
+[Reason](https://source.chromium.org/chromium/chromium/src/+/main:ui/accessibility/platform/ax_platform_node_base.cc;l=2379;drc=1e688463e91aa65cd47d54b7c2a8c4516b912646)
+
 ### Is line breaking object
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2448;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
@@ -196,6 +198,8 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object.cc;l=2106;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3127;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
+
+[Only used for UIA](https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-style-identifiers)
 
 ### Text alternative list marker conditional
 
