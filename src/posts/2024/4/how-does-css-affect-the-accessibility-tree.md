@@ -240,17 +240,6 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=4174;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
-### Display property on AccName calculations
-
-<a href="https://github.com/w3c/accname/issues/225">Issue w3c/accname/#225</a> brings up discussion on whether the
-<code>display</code> attribute should affect how whitespace is or isn't added during the <a href="https://w3c.github.io/accname/#comp_name_from_content">name from
-content traversal step</a> of the accessible name computation algorithm. This behavior is <a
-href="https://chromium-review.googlesource.com/c/chromium/src/+/4921470">already implemented in Chromium</a> if you want to test it out.
-
-- [Pen: CSS Display AccName](https://codepen.io/sivakusayan/pen/jORXxOZ)
-- [Pen: CSS Display AccName (Debug)](https://cdpn.io/pen/debug/jORXxOZ)
-- To Test: Inspect the accessibility tree through your browser.
-
 ### Can ignore space
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object_cache_impl.cc;l=313;drc=ef77a2d141758db43ceb4d87723e9451cb1519e0)
