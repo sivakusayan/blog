@@ -266,10 +266,6 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityRenderObject.cpp#L2622)
 
-### AT-SPI Text Direction
-
-[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/atspi/AccessibilityObjectTextAtspi.cpp#L270)
-
 ### SVG Element Paths
 
 [Code](https://github.com/WebKit/WebKit/commit/d5c784045b1e331c81844799d7a07379c3710dcf)
