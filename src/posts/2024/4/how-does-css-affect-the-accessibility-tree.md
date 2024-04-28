@@ -112,6 +112,9 @@ whether its table semantics should be ignored. For example, the CSS border color
 
 This is cheating, but a requirement!
 
+- [Hit Tests](https://learn.microsoft.com/en-us/windows/win32/api/oleacc/nf-oleacc-accessibleobjectfrompoint)
+- [Hit Tests UIA](https://learn.microsoft.com/en-us/windows/win32/api/uiautomationclient/nf-uiautomationclient-iuiautomation-elementfrompoint)
+
 - [Pen: Bounding Box](https://codepen.io/sivakusayan/pen/zYXyGRz)
 - [Pen: Bounding Box (Debug)](https://cdpn.io/pen/debug/zYXyGRz)
 - **To Test:**
@@ -271,34 +274,11 @@ table` property have their whitespace in the accessibility tree, while the white
 [Code](https://github.com/WebKit/WebKit/commit/d5c784045b1e331c81844799d7a07379c3710dcf)
 
 [Reason](https://github.com/WebKit/WebKit/commit/d5c784045b1e331c81844799d7a07379c3710dcf)
+
 ## Gecko (Firefox)
 
 Note that I will ignore anything involving `ISimpleDOMNode`, especially as that hasn't been used in
 a long time from what I can tell. In practice, this means ignoring all `sdnAccessible*` files.
-
-### Control flow of focus on hidden elements
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/FocusManager.cpp#423)
-
-### Something something text
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/TextLeafRange.cpp)
-
-### Must be generic accessible
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/nsAccessibilityService.cpp#149)
-
-### Something something accessible creation
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/nsAccessibilityService.cpp#591)
-
-### Display property on AccName calculations
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/nsTextEquivUtils.cpp#152)
-
-### Something something AX tree traversal
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/generic/LocalAccessible.cpp#579)
 
 ### Something something char bounding boxes
 
