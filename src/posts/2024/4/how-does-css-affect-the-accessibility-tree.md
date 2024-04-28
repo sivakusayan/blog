@@ -117,6 +117,36 @@ This is cheating, but a requirement!
   - Use assistive technology that will display a bounding box for you
   - Use an accessibility API inspector to programatically read the size. Notice how all of the input fields have the same HTML, but the differing CSS will affect the calculated bounding box.
 
+### Text and Font Attribues
+
+- [Text and Font Attributes - Chromium Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3480;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
+- [Text and Font Attributes - WebKit Source Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/ios/AccessibilityObjectIOS.mm#L212)
+- [Text and Font Attributes - Gecko Source Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/TextAttrs.cpp)
+
+It seems like all three browsers offer ways to expose font level attributes. 
+
+Why was this needed? If we do some searching, we can find a Firefox bug report that was filed
+presumably around the time this was first introduced in the accessibility APIs: [[meta] Text formatting not exposed to screen readers, inaccessible](https://bugzilla.mozilla.org/show_bug.cgi?id=340809). 
+There is one comment by [Joanmarie Diggs](https://www.igalia.com/team/jdiggs) that describes why this was needed:
+
+<blockquote>
+<p>
+I think there are two reasons/cases for caring about text attributes:
+
+1. You want/need to know exactly how a given bit of text is formatted because you care about its appearance. (duh! :-) )
+
+2. You want to quickly scan over a document to get an overview of its structure and/or locate important sections -- and one way to do that is to find the text whose formatting does not match the surrounding text. For example if the text in the entire document is bold, italic, and pink, those attributes are not interesting/meaningful/significant.  On the other hand, if the entire document has more conventional formatting, the appearance of the aforementioned attributes is indeed interesting/meaningful/significant.
+</p>
+</blockquote>
+
+I wonder if the second point is as relevant if we can use HTML5 semantics - since this bug report
+was brought up in 2008, maybe we didn't have as powerful semantics back then? In any case, we can
+still configure a screen reader like Orca [to read text attributes](https://help.gnome.org/users/orca/stable/howto_text_attributes.html.en#:~:text=When%20you%20press%20Orca%20Modifier,as%20you%20navigate%20a%20document.) as desired. 
+
+- [Pen: Text and Font Attributes](https://codepen.io/sivakusayan/pen/vYMMxvN)
+- [Pen: Text and Font Attributes (Debug)](https://cdpn.io/pen/debug/vYMMxvN)
+- **To Test:** TODO
+
 ## Chromium (Chrome, Edge, etc.)
 
 ### Display Style
@@ -205,37 +235,6 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1040;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
-### Text Direction
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3400;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Text Position
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3449;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Text Align
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3535;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Text Indent
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3559;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Font style attributes
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3480;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3705;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3736;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3752;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Background Color
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3673;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Text Color?
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3693;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
 ## Webkit (Safari)
 
 ### List style
@@ -249,10 +248,6 @@ table` property have their whitespace in the accessibility tree, while the white
 - [Pen: Slider Input Orientation](https://codepen.io/sivakusayan/pen/GRLeXVW)
 - [Pen: Slider Input Orientation (Debug)](https://cdpn.io/pen/debug/GRLeXVW)
 - **To Test:** Inspect the platform accessibility tree. You can also use Orca or Voiceover.
-
-### Font Attributes
-
-[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/ios/AccessibilityObjectIOS.mm#L217)
 
 ### Opacity
 
@@ -283,10 +278,6 @@ a long time from what I can tell. In practice, this means ignoring all `sdnAcces
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/FocusManager.cpp#423)
 
-### Font Attributes
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/TextAttrs.cpp)
-
 ### Something something text
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/TextLeafRange.cpp)
@@ -307,10 +298,6 @@ a long time from what I can tell. In practice, this means ignoring all `sdnAcces
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/generic/LocalAccessible.cpp#579)
 
-### Exposing margin attributes
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/generic/LocalAccessible.cpp#1243)
-
 ### Something something char bounding boxes
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/generic/LocalAccessible.cpp#3703)
@@ -322,9 +309,5 @@ a long time from what I can tell. In practice, this means ignoring all `sdnAcces
 ### Bounds calculation
 
 [Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/html/HTMLListAccessible.cpp#50)
-
-### Background and Foreground
-
-[Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/windows/ia2/ia2AccessibleComponent.cpp#78)
 
 ## Wrapup
