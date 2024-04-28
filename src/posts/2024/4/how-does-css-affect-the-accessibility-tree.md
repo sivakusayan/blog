@@ -10,7 +10,8 @@ layout: layouts/post.njk
 Anecdotally, it seems to be a common misconception that HTML is the only thing that affects the
 [accessibility tree](https://developer.mozilla.org/en-US/docs/Glossary/Accessibility_tree).
 If you've been doing accessibility for a while, you probably know that the CSS `display` property is
-one counterexample of that. However, there are lots of other examples of CSS affecting the
+one counterexample of that. There are CSS attributes such as `speak-as` that are explicit in how they
+affect screen readers. However, there are lots of other examples of CSS affecting the
 accessibility tree, with most of them not being explicitly defined in any specification I'm aware of
 under the ARIA suite.
 
@@ -120,7 +121,7 @@ This is cheating, but a requirement!
 ### Text and Font Attribues
 
 - [Text and Font Attributes - Chromium Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=3480;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-- [Text and Font Attributes - WebKit Source Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/ios/AccessibilityObjectIOS.mm#L212)
+- [Text and Font Attributes - WebKit Source Code](https://github.com/WebKit/WebKit/blob/764534676c1acf239a45d9018755b8bcefa0f950/Source/WebCore/accessibility/AccessibilityRenderObject.cpp#L2578)
 - [Text and Font Attributes - Gecko Source Code](https://searchfox.org/mozilla-central/rev/6121b33709dd80979a6806ff59096a561e348ae8/accessible/base/TextAttrs.cpp)
 
 It seems like all three browsers offer ways to expose font level attributes. 
@@ -269,6 +270,11 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/atspi/AccessibilityObjectTextAtspi.cpp#L270)
 
+### SVG Element Paths
+
+[Code](https://github.com/WebKit/WebKit/commit/d5c784045b1e331c81844799d7a07379c3710dcf)
+
+[Reason](https://github.com/WebKit/WebKit/commit/d5c784045b1e331c81844799d7a07379c3710dcf)
 ## Gecko (Firefox)
 
 Note that I will ignore anything involving `ISimpleDOMNode`, especially as that hasn't been used in
