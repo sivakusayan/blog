@@ -210,14 +210,6 @@ table` property have their whitespace in the accessibility tree, while the white
 - [Pen: Slider Input Orientation (Debug)](https://cdpn.io/pen/debug/GRLeXVW)
 - **To Test:** Inspect the platform accessibility tree. You can also use Orca or Voiceover.
 
-### Positioned elements inclusion
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1097;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
-### Is offscreen?
-
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2553;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
-
 ### List style
 
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_object.cc;l=2106;drc=98cde8514f5173135ba3d52b140553c7b26b4497)
@@ -225,9 +217,13 @@ table` property have their whitespace in the accessibility tree, while the white
 
 [Only used for UIA](https://learn.microsoft.com/en-us/windows/win32/winauto/uiauto-style-identifiers)
 
-### Text alternative list marker conditional
+### Ignoring Summary Marker Pseudo-elements 
 
-[Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1040;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
+[Ignoring Summary Markers - Source Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=1040;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
+
+- [Pen: Ignoring Summary Markers](https://codepen.io/sivakusayan/pen/zYXXzgp)
+- [Pen: Ignoring Summary Markers (Debug)](https://cdpn.io/pen/debug/zYXXzgp)
+- **To Test:** Inspect the browser accessibility tree.
 
 ## Webkit (Safari)
 
@@ -246,10 +242,6 @@ table` property have their whitespace in the accessibility tree, while the white
 ### Opacity
 
 [Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AXObjectCache.cpp#L442)
-
-### Link styles
-
-[Code](https://github.com/WebKit/WebKit/blob/8b7b1a1b94a005149bbc517244ae80bbc87029b9/Source/WebCore/accessibility/AccessibilityObject.cpp#L1903)
 
 ### Searching by Element Type
 
@@ -296,8 +288,5 @@ for.
 [Code](https://source.chromium.org/chromium/chromium/src/+/main:third_party/blink/renderer/modules/accessibility/ax_node_object.cc;l=2752;drc=65359e080b28913bf209b4cd8ae24d351b4d9107)
 
 [Reason](https://source.chromium.org/chromium/chromium/src/+/main:ui/accessibility/platform/ax_platform_node_base.cc;l=2379;drc=1e688463e91aa65cd47d54b7c2a8c4516b912646)
-
-
-### Chromium/Gecko Inclusion of Transformed Nodes
 
 ### Webkit SVG Paths
