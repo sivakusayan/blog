@@ -167,42 +167,26 @@ a code {
 }
 
 pre[class*='language-'] {
-	margin-left: calc(-1 * var(--large-spacing));
-	margin-right: calc(-1 * var(--large-spacing));
 	border-radius: 10px;
 }
 
-@media only screen and (max-width: 750px) {
-	pre[class*='language-'] {
-		margin-left: calc(-1 * var(--medium-spacing));
-		margin-right: calc(-1 * var(--medium-spacing));
-	}
-}
-
-/** There are code blocks which are too big for inline
-code, but too small to be stretched out. We'll have
-script conditionally apply this class depending on 
-the code size*/
-@media only screen and (min-width: 661px) {
-	pre[class*='language-'].compress {
-		margin-left: 0;
-		margin-right: 0;
-	}
+pre[class*='language-'] {
+	font-size: 90%;
 }
 
 @media only screen and (max-width: 660px) {
 	pre[class*='language-'] {
 		border-radius: 0;
+		margin-left: calc(-1 * var(--medium-spacing));
+		margin-right: calc(-1 * var(--medium-spacing));
 	}
 }
 
 @media only screen and (max-width: 450px) {
 	pre[class*='language-'] {
+		border-radius: 0;
 		margin-left: calc(-1 * var(--spacing));
 		margin-right: calc(-1 * var(--spacing));
 	}
 }
 
-pre[class*='language-'] {
-	font-size: 90%;
- }
