@@ -249,7 +249,7 @@ hr {
 }
 
 .postlist li {
-	margin-bottom: var(--small-spacing);
+	margin-bottom: var(--medium-spacing);
 }
 
 .post-header {

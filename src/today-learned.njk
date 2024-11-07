@@ -8,5 +8,9 @@ eleventyNavigation:
 ---
 
 <h1 id="Skip">Today I Learned</h1>
+<p class="postlist-preamble">Here is where I write about things that I learned about recently, that I think most people
+probably already know. Inspired by similar initiatives done by <a
+href="https://github.com/jbranchaud/til">Josh Branchaud</a> and <a
+href="https://til.simonwillison.net/">Simon Willison</a>!</p>
 {% set postslist = collections.posts | getTodayLearnedPosts %}
 {% include "partials/postslist.njk" %}

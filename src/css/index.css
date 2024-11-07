@@ -183,6 +183,21 @@ h3 a {
 	line-height: var(--header-line-height);
 }
 
+li.postlist-item h2 {
+    margin-top: var(--spacing);
+    margin-bottom: var(--small-spacing);
+    font-weight: 500;
+}
+li.postlist-item p {
+    margin-bottom: var(--small-spacing);
+}
+li.postlist-item h2 a {
+    text-decoration: underline;
+}
+p.postlist-preamble {
+    margin-bottom: var(--largeish-spacing);
+}
+
 h1 {
 	font-size: 2.5rem;
 	letter-spacing: -0.6px;
@@ -255,14 +270,6 @@ code {
 	position: absolute;
 	top: 0.24rem;
 	left: -1.5rem;
-}
-
-#intro {
-	padding: var(--medium-spacing);
-    margin-left: calc(-1*var(--medium-spacing));
-    margin-right: calc(-1*var(--medium-spacing));
-    background-color: var(--primary-background-color);
-    border-radius: 10px;
 }
 
 @media only screen and (max-width: 620px) {

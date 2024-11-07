@@ -1,6 +1,6 @@
 ---
 title: What exactly is the accessibility API?
-description: Sharing what I learned about the accessibility API and how it's consumed by both assistive and non-assistive technology.
+description: The accessibility API a browser exposes can be seen as a black box for web developers. Let's learn precisely what it is.
 date: 2023-08-24
 tags:
   - Accessibility
