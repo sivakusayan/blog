@@ -255,3 +255,8 @@ hr {
 .post-header {
 	margin-bottom: var(--medium-spacing);
 }
+
+img {
+    border: 2px solid var(--text-color);
+    border-radius: 10px;
+}

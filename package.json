@@ -37,6 +37,7 @@
 		"global": "^4.4.0",
 		"markdown-it": "14.1.0",
 		"markdown-it-anchor": "9.0.1",
+		"markdown-it-attrs": "^4.2.0",
 		"postcss": "8.4.39",
 		"prettier": "^3.3.3",
 		"uglify-js": "3.18.0"

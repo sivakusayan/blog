@@ -662,6 +662,7 @@ __metadata:
     global: "npm:^4.4.0"
     markdown-it: "npm:14.1.0"
     markdown-it-anchor: "npm:9.0.1"
+    markdown-it-attrs: "npm:^4.2.0"
     pa11y-ci: "npm:3.1.0"
     postcss: "npm:8.4.39"
     prettier: "npm:^3.3.3"
@@ -2516,6 +2517,15 @@ __metadata:
     "@types/markdown-it": "*"
     markdown-it: "*"
   checksum: 10c0/8ebae5e591ff62f981a843b2eda9237f0610bbe0aea8fc5f7bf4a8a8699f429aa004b39df0f241ec0422a14ef1ec700aeefa5402f25263d89201017c56fb874d
+  languageName: node
+  linkType: hard
+
+"markdown-it-attrs@npm:^4.2.0":
+  version: 4.2.0
+  resolution: "markdown-it-attrs@npm:4.2.0"
+  peerDependencies:
+    markdown-it: ">= 9.0.0"
+  checksum: 10c0/56c1aad326f0adb3b740c1e38e3ade30b300d18a379edd3b27d1e27455185d9c3041efb5faef787e709868306d24c2b8c28cc17a41d83e17eea1273ad68c822f
   languageName: node
   linkType: hard
 

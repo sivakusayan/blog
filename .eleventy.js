@@ -9,6 +9,7 @@ const cssnano = require('cssnano');
 const uglifyJS = require('uglify-js');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
+const markdownItAttrs = require('markdown-it-attrs');
 
 const { headerLink } = require('./scripts/permalink.js');
 const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
@@ -89,7 +90,7 @@ module.exports = function (eleventyConfig) {
 	let markdownLibrary = markdownIt({
 		html: true,
 		linkify: true,
-	}).use(markdownItAnchor, {
+	}).use(markdownItAttrs).use(markdownItAnchor, {
 		permalink: headerLink({
 			safariReaderFix: true,
 		}),
