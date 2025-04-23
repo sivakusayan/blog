@@ -31,6 +31,7 @@
 		"@11ty/eleventy-navigation": "0.3.5",
 		"@11ty/eleventy-plugin-bundle": "1.0.5",
 		"@11ty/eleventy-plugin-syntaxhighlight": "4.2.0",
+		"@staticman/netlify-functions": "^1.7.1",
 		"cheerio": "1.0.0-rc.12",
 		"cssnano": "7.0.4",
 		"dotenv": "16.4.5",

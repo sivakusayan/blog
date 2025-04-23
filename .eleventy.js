@@ -83,20 +83,60 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('getPreviousRegularPost', getPreviousRegularPost);
 	eleventyConfig.addFilter('getNextRegularPost', getNextRegularPost);
 
+	eleventyConfig.addFilter('dateOnly', function (dateVal, locale = 'en-us') {
+		var theDate = new Date(dateVal);
+		const options = {
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		};
+		return theDate.toLocaleDateString(locale, options);
+	});
+
+	eleventyConfig.addFilter('timeOnly', function (dateVal, locale = 'en-us') {
+		var theDate = new Date(dateVal);
+		const options = {
+			hour: '2-digit',
+			minute: '2-digit',
+		};
+
+		return theDate.toLocaleTimeString('en-US', options);
+	});
+
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
+
+	// Add comments to the data property of a post.
+	eleventyConfig.addCollection('postsWithComments', function (collection) {
+		const postsWithComments = new Set();
+
+		collection.getFilteredByTag('posts').forEach(function (item) {
+			if (!item.data.comments[item.fileSlug]) return;
+			const postSpecificComments = Object.values(
+				item.data.comments[item.fileSlug],
+			);
+
+			item.data.staticmanEntries = postSpecificComments.map((comment) => ({
+				...comment,
+				date: comment.date && new Date(comment.date),
+			}));
+		});
+		return [...postsWithComments];
+	});
 
 	// Customize Markdown library and settings:
 	let markdownLibrary = markdownIt({
 		html: true,
 		linkify: true,
-	}).use(markdownItAttrs).use(markdownItAnchor, {
-		permalink: headerLink({
-			safariReaderFix: true,
-		}),
-		level: [1, 2, 3, 4],
-		slugify: eleventyConfig.getFilter('slugify'),
-	});
+	})
+		.use(markdownItAttrs)
+		.use(markdownItAnchor, {
+			permalink: headerLink({
+				safariReaderFix: true,
+			}),
+			level: [1, 2, 3, 4],
+			slugify: eleventyConfig.getFilter('slugify'),
+		});
 	eleventyConfig.setLibrary('md', markdownLibrary);
 
 	// Override Browsersync defaults (used only with --serve)

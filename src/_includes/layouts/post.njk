@@ -49,3 +49,21 @@ templateClass: tmpl-post
         {% endif %}
  {%- endif %}
 </div>
+
+<hr>
+
+<div>
+<h2>Comments</h2>
+ 
+ {%- if (staticmanEntries | length) > 0 %}
+   {%- for entry in staticmanEntries | reverse %}
+     <blockquote>{{ entry.message }} <small>({{ entry.name }}{%- if entry.date %}, {{ entry.date |
+     dateOnly }}, {{ entry.date | timeOnly }}{%- endif %})</small></blockquote>
+   {%- endfor %}
+ {%- else %}
+ <p>No comments just yet!</p>
+ {%- endif %}
+ 
+ <h3>Add a comment</h3>
+{% include "partials/addComment.njk" %}
+</div>
