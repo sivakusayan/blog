@@ -23,6 +23,7 @@ exports.handler = (event, context, callback) => {
 				filename: 'entry{@timestamp}',
 				format: 'json',
 				generatedFields: {
+                    id: '{fields.name}-{@timestamp}'
 					date: {
 						type: 'date',
 					},

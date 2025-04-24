@@ -260,3 +260,44 @@ img {
     border: 2px solid var(--text-color);
     border-radius: 10px;
 }
+
+/*=======================================
+ * Comments
+ *======================================*/
+
+ul.comments {
+    padding-left: 0;
+    list-style: none;
+}
+
+ul.comments blockquote {
+    border: 1.5px solid var(--text-color);
+    border-radius: 5px;
+    padding: var(--spacing);
+}
+
+ul.comments blockquote p {
+    font-style: normal;
+}
+
+ul.comments li:not(:first-child) {
+    margin-top: var(--spacing);
+}
+
+ul.comments .comment-header {
+    margin-bottom: var(--spacing);
+    display: flex;
+    justify-content: flex-start;
+    gap: var(--small-spacing);
+    flex-wrap: wrap;
+}
+
+ul.comments p:last-child {
+   margin-bottom: 0; 
+}
+
+ul.comments cite {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: bold;
+}

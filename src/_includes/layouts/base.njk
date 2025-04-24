@@ -61,7 +61,6 @@ currently minified. -->
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
-    <!-- Serve JS inline on prod for performance, since we have so little JS it's not worth the HTTP + caching overhead -->
     {%- if eleventy.env.runMode === "serve" %}
       <script src="{% getBundleFileUrl "js" %}"></script>
     {%- else  %}

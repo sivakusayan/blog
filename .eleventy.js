@@ -87,7 +87,7 @@ module.exports = function (eleventyConfig) {
 		var theDate = new Date(dateVal);
 		const options = {
 			year: 'numeric',
-			month: 'long',
+			month: 'numeric',
 			day: 'numeric',
 		};
 		return theDate.toLocaleDateString(locale, options);
@@ -115,6 +115,8 @@ module.exports = function (eleventyConfig) {
 			const postSpecificComments = Object.values(
 				item.data.comments[item.fileSlug],
 			);
+
+            console.log(postSpecificComments);
 
 			item.data.staticmanEntries = postSpecificComments.map((comment) => ({
 				...comment,

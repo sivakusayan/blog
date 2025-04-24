@@ -25,41 +25,29 @@ templateClass: tmpl-post
   </div>
 </div>
 
-<div>
-  {%- if collections.posts %}
-    {%- if collections.posts | isTodayLearnedPost(page) %}
-      {%- set nextPost = collections.posts | getNextTodayLearnedPost(page) %}
-      {%- set previousPost = collections.posts | getPreviousTodayLearnedPost(page) %}
-    {%- else %}
-      {%- set nextPost = collections.posts | getNextRegularPost(page) %}
-      {%- set previousPost = collections.posts | getPreviousRegularPost(page) %}
-    {%- endif %}
-      <hr>
-        {%- if nextPost %}
-        <p>
-            <span><b>Next: </b></span>
-            <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
-        </p>
-        {% endif %}
-        {%- if previousPost %}
-        <p>
-            <span><b>Previous: </b></span>
-            <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
-        </p>
-        {% endif %}
- {%- endif %}
-</div>
-
 <hr>
 
 <div>
 <h2>Comments</h2>
  
  {%- if (staticmanEntries | length) > 0 %}
+   <ul class="comments">
    {%- for entry in staticmanEntries | reverse %}
-     <blockquote>{{ entry.message }} <small>({{ entry.name }}{%- if entry.date %}, {{ entry.date |
-     dateOnly }}, {{ entry.date | timeOnly }}{%- endif %})</small></blockquote>
+    <li>
+     <blockquote id="{{ entry.id }}">
+       <div class="comment-header">
+         <cite>{{ entry.name }}</cite>
+         •
+         <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
+         <a class="comment-anchor" href="#{{ entry.id }}">Permalink</a>
+       </div>
+       <p>
+       {{ entry.message }} 
+       </p>
+     </blockquote>
    {%- endfor %}
+    </li>
+   </ul>
  {%- else %}
  <p>No comments just yet!</p>
  {%- endif %}

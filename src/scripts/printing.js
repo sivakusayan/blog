@@ -8,7 +8,7 @@ function getLinks() {
 	try {
 		// Get all the links
 		const links = document.querySelectorAll(
-			'main a[href]:not(.header-anchor,.back-to-top)',
+			'main a[href]:not(.header-anchor,.comment-anchor,.back-to-top)',
 		);
 
 		// Create emtpy arrays for later population.
