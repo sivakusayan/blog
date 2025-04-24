@@ -116,8 +116,6 @@ module.exports = function (eleventyConfig) {
 				item.data.comments[item.fileSlug],
 			);
 
-            console.log(postSpecificComments);
-
 			item.data.staticmanEntries = postSpecificComments.map((comment) => ({
 				...comment,
 				date: comment.date && new Date(comment.date),
