@@ -271,9 +271,8 @@ ul.comments {
 }
 
 ul.comments blockquote {
-    border: 1.5px solid var(--text-color);
-    border-radius: 5px;
-    padding: var(--spacing);
+    border-left: 2px solid var(--text-color);
+    padding: var(--small-spacing) var(--spacing) ;
 }
 
 ul.comments blockquote p {
@@ -281,7 +280,7 @@ ul.comments blockquote p {
 }
 
 ul.comments li:not(:first-child) {
-    margin-top: var(--spacing);
+    margin-top: var(--semi-medium-spacing);
 }
 
 ul.comments .comment-header {
@@ -300,4 +299,26 @@ ul.comments cite {
     font-family: inherit;
     font-style: normal;
     font-weight: bold;
+}
+
+form.comment-form input,
+form.comment-form textarea {
+   border-radius: 2px;
+   border: 1.5px solid var(--text-color); 
+   padding: var(--small-spacing);
+   display: block;
+   margin-bottom: var(--spacing);
+   box-shadow: inset 0 0 3px var(--text-color);
+}
+
+form.comment-form textarea {
+    height: 10rem;
+}
+
+form.comment-form textarea {
+    width: 100%;
+}
+
+form.comment-form button {
+    margin-top: var(--small-spacing);
 }

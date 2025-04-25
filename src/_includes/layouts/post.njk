@@ -16,13 +16,6 @@ templateClass: tmpl-post
     {{ content | safe | withTableOfContents | withDetails | withCodeBlockCompressor}}
   </div>
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
-  <h2>Tagged</h2>
-  <div class="tags">
-    {%- for tag in tags | filterTagList %}
-      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-      <a href="{{ tagUrl }}">{{ tag }}</a>
-    {%- endfor %}
-  </div>
 </div>
 
 <hr>

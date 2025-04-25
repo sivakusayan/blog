@@ -1,21 +1,17 @@
-<form method="post" action="/.netlify/functions/staticman">
-   <p>
+<form class="comment-form" method="post" action="/.netlify/functions/staticman">
+   <p>All markdown, except for markdown headings, are accepted.</p>
+
      <label for="name">Name</label>
      <br>
-     <input id="name" type="text" name="fields[name]" placeholder="John Doe">
-   </p>
+     <input required="true" id="name" type="text" name="fields[name]" placeholder="John Doe">
  
-   <p>
      <label for="message">Comment</label>
      <br>
-     <textarea id="message" name="fields[message]" placeholder="Here's the thing..."></textarea>
-   </p>
+     <textarea required="true" id="message" name="fields[message]" placeholder="Here's the thing..."></textarea>
  
    <input type="hidden" name="fields[post]" value="{{ page.fileSlug }}">
    <input type="hidden" name="options[redirect]" value="/commentsuccess">
    <input type="hidden" name="options[redirectError]" value="/commenterror">
  
-   <p>
      <button type="submit">Submit</button>
-   </p>
  </form>
