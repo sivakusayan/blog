@@ -310,7 +310,7 @@ textarea {
 	display: block;
 	margin-bottom: var(--spacing);
 
-	outline-offset: 25px;
+	outline-offset: 15px;
 	transition:
 		color 0.1s,
 		background-color 0.1s,
