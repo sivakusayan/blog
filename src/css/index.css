@@ -21,18 +21,20 @@
 	--footer-text-color: #f5f3f3;
 	--footer-background-color: #171717;
 
-	--primary-color: #0074BD;
+	--primary-color: #0074bd;
 	--primary-background-color: #e4f6fe;
 	--primary-background-active-color: #b3defa;
 
-    --inline-code-background-color: var(--primary-background-color);
+	--inline-code-background-color: var(--primary-background-color);
 	--code-background-color: #011627;
+
+	--comment-background-color: #e7e7e7;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.32;
 	--spacing: 1rem;
 	--hover-outline-width: 3px;
-    --active-outline-width: 2px;
+	--active-outline-width: 2px;
 }
 
 /* Need this hack as chrome doesn't support CSS variables in ::selection */
@@ -63,15 +65,17 @@ html[data-theme='DARK'] {
 	--primary-background-color: var(--footer-background-color);
 	--primary-background-active-color: #02304b;
 
-    --inline-code-background-color: #212327;
+	--inline-code-background-color: #212327;
 	--code-background-color: #0a0a0a;
 	--code-border-color: #3e3e3e;
+
+	--comment-background-color: #1f1e28;
 
 	--header-line-height: 1.15;
 	--paragraph-line-height: 1.4;
 	--spacing: 1.2rem;
 	--hover-outline-width: 3px;
-    --active-outline-width: 1.5px;
+	--active-outline-width: 1.5px;
 }
 
 html[data-theme='DARK'] ::selection {
@@ -93,15 +97,17 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: var(--footer-background-color);
 		--primary-background-active-color: #02304b;
 
-        --inline-code-background-color: #212327;
+		--inline-code-background-color: #212327;
 		--code-background-color: #0a0a0a;
 		--code-border-color: #3e3e3e;
+
+		--comment-background-color: #1f1e28;
 
 		--header-line-height: 1.15;
 		--paragraph-line-height: 1.4;
 		--spacing: 1.2rem;
 		--hover-outline-width: 3px;
-        --active-outline-width: 1.5px;
+		--active-outline-width: 1.5px;
 	}
 
 	::selection {
@@ -118,18 +124,20 @@ html[data-theme='DARK'] ::selection {
 		--footer-text-color: #f5f3f3;
 		--footer-background-color: #171717;
 
-		--primary-color: #0074BD;
+		--primary-color: #0074bd;
 		--primary-background-color: #e4f6fe;
 		--primary-background-active-color: #b3defa;
 
 		--inline-code-background-color: var(--primary-background-color);
 		--code-background-color: #011627;
 
+		--comment-background-color: #e7e7e7;
+
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.32;
 		--spacing: 1rem;
 		--hover-outline-width: 3px;
-        --active-outline-width: 2px;
+		--active-outline-width: 2px;
 	}
 
 	html[data-theme='LIGHT'] ::selection {
@@ -184,24 +192,24 @@ h3 a {
 }
 
 li.postlist-item h2 {
-    margin-top: var(--spacing);
-    margin-bottom: var(--small-spacing);
-    font-weight: 500;
+	margin-top: var(--spacing);
+	margin-bottom: var(--small-spacing);
+	font-weight: 500;
 }
 li.postlist-item p {
-    margin-bottom: var(--tiny-spacing);
-    margin-left: var(--small-spacing);
+	margin-bottom: var(--tiny-spacing);
+	margin-left: var(--small-spacing);
 }
 li.postlist-item h2 a {
-    text-decoration: underline;
+	text-decoration: underline;
 }
 li.postlist-item time {
-    margin-left: var(--small-spacing);
-    font-size: 90%;
-    font-style: italic;
+	margin-left: var(--small-spacing);
+	font-size: 90%;
+	font-style: italic;
 }
 p.postlist-preamble {
-    margin-bottom: var(--largeish-spacing);
+	margin-bottom: var(--largeish-spacing);
 }
 
 h1 {
@@ -286,6 +294,12 @@ button:focus {
 	outline-offset: 7px;
 }
 
+input:focus,
+textarea:focus {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 7px;
+}
+
 button[aria-pressed='true'] {
 	background-color: var(--footer-text-color);
 	color: var(--footer-background-color);
@@ -332,15 +346,15 @@ code {
 }
 
 @media only screen and (max-width: 850px) {
-    :root {
-	    font-size: 100%;
-    }
+	:root {
+		font-size: 100%;
+	}
 	main {
 		width: auto;
 		margin: 0;
 		padding: 0 var(--medium-spacing);
 	}
-    header nav {
+	header nav {
 		width: auto;
 		margin: 0;
 		padding: 0 var(--medium-spacing);
@@ -351,9 +365,9 @@ code {
 	main {
 		padding: 0 var(--spacing);
 	}
-    header nav {
-        padding: 0 var(--spacing);
-    }
+	header nav {
+		padding: 0 var(--spacing);
+	}
 
 	.anchor {
 		position: relative;
@@ -384,5 +398,5 @@ For those users, we'll just wrap the code instead. */
 
 :not(pre) > code {
 	padding: var(--tiny-spacing);
-    background-color: var(--inline-code-background-color);
+	background-color: var(--inline-code-background-color);
 }

@@ -24,7 +24,8 @@ blockquote p {
 }
 
 .tree {
-	margin: var(--medium-spacing) 0; }
+	margin: var(--medium-spacing) 0;
+}
 
 .tree,
 .tree ul {
@@ -95,49 +96,49 @@ caption {
 	margin-bottom: var(--small-spacing);
 }
 .tags {
-    font-size: 90%;
-    list-style: none;
-    display: flex;
-    gap: var(--small-spacing);
-    padding-left: 0;
-    flex-wrap: wrap;
+	font-size: 90%;
+	list-style: none;
+	display: flex;
+	gap: var(--small-spacing);
+	padding-left: 0;
+	flex-wrap: wrap;
 }
 
 .tags a[href] {
-    padding: 0 var(--small-spacing);
-    border-radius: 20px;
+	padding: 0 var(--small-spacing);
+	border-radius: 20px;
 
-    text-decoration: none;
-    background-color: var(--footer-background-color);
-    color: var(--footer-text-color);
-    outline-offset: 16px;
+	text-decoration: none;
+	background-color: var(--footer-background-color);
+	color: var(--footer-text-color);
+	outline-offset: 16px;
 }
 
 .tags a[href]:hover {
-    color: var(--text-color);
+	color: var(--text-color);
 }
 
 .tags a[href]:focus {
-    outline-offset: 2px;
+	outline-offset: 2px;
 }
 
-html[data-theme="DARK"] .tags a[href] {
-    border: 1.5px solid currentColor;
+html[data-theme='DARK'] .tags a[href] {
+	border: 1.5px solid currentColor;
 }
-html[data-theme="DARK"] .tags a[href]:hover {
-    border-color: transparent;
+html[data-theme='DARK'] .tags a[href]:hover {
+	border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-    .tags a[href] {
-        border: 1.5px solid currentColor;
-    }
-    .tags a[href]:hover {
-        border-color: transparent;
-    }
-    html[data-theme="LIGHT"] .tags a[href] {
-        border: none;
-    }
+	.tags a[href] {
+		border: 1.5px solid currentColor;
+	}
+	.tags a[href]:hover {
+		border-color: transparent;
+	}
+	html[data-theme='LIGHT'] .tags a[href] {
+		border: none;
+	}
 }
 
 details {
@@ -212,7 +213,6 @@ summary:hover {
 	}
 }
 
-
 pre[class*='language-'] {
 	transition:
 		background-color 0.2s,
@@ -240,7 +240,7 @@ dd {
 }
 
 hr {
-	margin: var(--medium-spacing) 0;
+	margin: var(--largeish-spacing) 0;
 }
 
 .postlist {
@@ -257,8 +257,8 @@ hr {
 }
 
 img {
-    border: 2px solid var(--text-color);
-    border-radius: 10px;
+	border: 2px solid var(--text-color);
+	border-radius: 10px;
 }
 
 /*=======================================
@@ -266,59 +266,73 @@ img {
  *======================================*/
 
 ul.comments {
-    padding-left: 0;
-    list-style: none;
+	padding-left: 0;
+	list-style: none;
 }
 
 ul.comments blockquote {
-    border-left: 2px solid var(--text-color);
-    padding: var(--small-spacing) var(--spacing) ;
+    background-color: var(--comment-background-color);
+	border-left: 3px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
 }
 
 ul.comments blockquote p {
-    font-style: normal;
+	font-style: normal;
 }
 
 ul.comments li:not(:first-child) {
-    margin-top: var(--semi-medium-spacing);
+	margin-top: var(--semi-medium-spacing);
 }
 
 ul.comments .comment-header {
-    margin-bottom: var(--spacing);
-    display: flex;
-    justify-content: flex-start;
-    gap: var(--small-spacing);
-    flex-wrap: wrap;
+	margin-bottom: var(--spacing);
+	display: flex;
+	justify-content: flex-start;
+	gap: var(--small-spacing);
+	flex-wrap: wrap;
 }
 
 ul.comments p:last-child {
-   margin-bottom: 0; 
+	margin-bottom: 0;
 }
 
 ul.comments cite {
-    font-family: inherit;
-    font-style: normal;
-    font-weight: bold;
+	font-family: inherit;
+	font-style: normal;
+	font-weight: bold;
 }
 
-form.comment-form input,
-form.comment-form textarea {
-   border-radius: 2px;
-   border: 1.5px solid var(--text-color); 
-   padding: var(--small-spacing);
-   display: block;
-   margin-bottom: var(--spacing);
-   box-shadow: inset 0 0 3px var(--text-color);
+input,
+textarea {
+	border-radius: 2px;
+	border: 1.5px solid var(--text-color);
+	padding: var(--small-spacing);
+	display: block;
+	margin-bottom: var(--spacing);
+
+	outline-offset: 25px;
+	transition:
+		color 0.1s,
+		background-color 0.1s,
+		border-color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+}
+
+input:focus,
+textarea:focus {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 4px;
 }
 
 form.comment-form textarea {
-    height: 10rem;
+	height: 10rem;
 }
 
 form.comment-form textarea {
-    width: 100%;
+	width: 100%;
 }
 
 form.comment-form button {
-    margin-top: var(--small-spacing);
+	margin-top: var(--small-spacing);
 }
