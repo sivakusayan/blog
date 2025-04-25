@@ -37,6 +37,10 @@ templateClass: tmpl-post
        <p>
        {{ entry.message }} 
        </p>
+         <details class="reply-container">
+            <summary>Add Reply</summary>
+            {% include "partials/addComment.njk" %}
+         </details>
      </blockquote>
    {%- endfor %}
     </li>

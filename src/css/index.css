@@ -335,8 +335,8 @@ code {
 	}
 
 	.post-content details,
-	details[open],
-	details[open] .details-content {
+	.post-content details[open],
+	.post-content details[open] .details-content {
 		width: auto;
 	}
 
