@@ -58,8 +58,13 @@ for (const previewButton of markdownPreviewButtons) {
 			previewButton.innerHTML = oldButtonText;
 			previewButton.removeAttribute('aria-disabled');
 
+            // Todo: Do we want to support syntax highlighting?
 			const md = window
-				.markdownit('zero', { linkify: true })
+				.markdownit('zero', {
+					linkify: true,
+					highlight: (str) =>
+						`<pre class='language-text'><code>${md.utils.escapeHtml(str)}</code></pre>`,
+				})
 				.enable(allowedMarkdown);
 			document.getElementById(`preview-content-root:${id}`).innerHTML =
 				md.render(content);
@@ -79,19 +84,19 @@ for (const previewButton of markdownPreviewButtons) {
 	// The markdown preview buttons happen to contain the ID we need to reference everything
 	// in the commenting form, so let's just abuse that. Could this be written better? Probably.
 	const id = previewButton.getAttribute('data-dialog').split(':')[1];
-    const commentTextArea = document.getElementById(`message:${id}`);
-    const form = document.getElementById(`form:${id}`);
-    const key = window.location.pathname + id;
+	const commentTextArea = document.getElementById(`message:${id}`);
+	const form = document.getElementById(`form:${id}`);
+	const key = window.location.pathname + id;
 
-    const preExistingContent = localStorage.getItem(key);
-    if (preExistingContent) {
-        commentTextArea.value = preExistingContent;
-    }
+	const preExistingContent = localStorage.getItem(key);
+	if (preExistingContent) {
+		commentTextArea.value = preExistingContent;
+	}
 
-    commentTextArea.oninput = (e) => {
-        localStorage.setItem(key, commentTextArea.value);
-    }
-    form.onsubmit = (e) => {
-        localStorage.removeItem(key);
-    }
+	commentTextArea.oninput = (e) => {
+		localStorage.setItem(key, commentTextArea.value);
+	};
+	form.onsubmit = (e) => {
+		localStorage.removeItem(key);
+	};
 }

@@ -14,6 +14,7 @@ const allowedMarkdown = [
 	'table',
 	'blockquote',
 	'code',
+    'fence',
 ];
 
 const isNode = () => {
