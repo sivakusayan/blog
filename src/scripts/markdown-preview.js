@@ -21,22 +21,34 @@ const buttonsControllingDialogs = document.querySelectorAll(
 	'button[data-dialog]',
 );
 for (const openButton of buttonsControllingDialogs) {
-	const dialog = document.getElementById(openButton.getAttribute('data-dialog'));
+	const dialog = document.getElementById(
+		openButton.getAttribute('data-dialog'),
+	);
 	const closeButton = document.getElementById(
 		openButton.getAttribute('data-close'),
 	);
 
 	openButton.addEventListener('click', () => {
+        if (openButton.getAttribute('aria-disabled')) {
+            return;
+        }
+
 		const id = openButton.getAttribute('data-dialog').split(':')[1];
 		const content = document.getElementById(`message:${id}`).value;
 
-        const oldButtonText = openButton.innerHTML;
-        openButton.innerHTML = "Loading <code>markdown-it</code> library...";
+		const oldButtonText = openButton.innerHTML;
+		openButton.innerHTML = 'Loading <code>markdown-it</code> library...';
+		openButton.setAttribute('aria-disabled', 'true');
 
 		withMarkdownItScript(() => {
-            openButton.innerHTML = oldButtonText;
-			const md = window.markdownit('zero', { linkify: true }).enable(allowedMarkdown);
-            document.getElementById(`preview-content-root:${id}`).innerHTML = md.render(content);
+			openButton.innerHTML = oldButtonText;
+			openButton.removeAttribute('aria-disabled');
+
+			const md = window
+				.markdownit('zero', { linkify: true })
+				.enable(allowedMarkdown);
+			document.getElementById(`preview-content-root:${id}`).innerHTML =
+				md.render(content);
 			dialog.showModal();
 		});
 	});
