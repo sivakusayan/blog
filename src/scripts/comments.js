@@ -69,6 +69,9 @@ for (const previewButton of markdownPreviewButtons) {
 			document.getElementById(`preview-content-root:${id}`).innerHTML =
 				md.render(content);
 			dialog.showModal();
+
+            const dialogHeading = dialog.querySelector('h1');
+            dialogHeading.focus();
 		});
 	});
 	closeButton.addEventListener('click', () => {

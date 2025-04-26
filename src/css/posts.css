@@ -402,6 +402,14 @@ dialog {
 dialog h1 {
     font-size: 1.5rem;
     margin-bottom: var(--spacing);
+    border-radius: 1px;
+    outline-offset: 15px;
+    transition: outline .15s, outline-offset .15s;
+}
+
+dialog h1:focus {
+	outline: 5px solid var(--primary-color);
+    outline-offset: 5px;
 }
 
 dialog::backdrop {
