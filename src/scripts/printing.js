@@ -81,7 +81,8 @@ addEventListener('beforeprint', (event) => {
 	document.body.querySelectorAll('details').forEach((detail) => {
         // We obviously don't want comment forms to be expanded,
         // that will simply waste paper.
-        if (detail.classList.includes('reply-container')) {
+        if (detail.classList.contains('reply-container')) {
+            console.log(detail.classList);
             return false;
         }
 		detail.setAttribute('open', true);
