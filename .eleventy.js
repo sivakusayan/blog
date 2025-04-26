@@ -11,6 +11,7 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require('markdown-it-attrs');
 
+const { processComments } = require('./scripts/process-comments.js')
 const { headerLink } = require('./scripts/permalink.js');
 const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
 const {
@@ -106,22 +107,9 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
 
-	// Add comments to the data property of a post.
 	eleventyConfig.addCollection('postsWithComments', function (collection) {
-		const postsWithComments = new Set();
-
-		collection.getFilteredByTag('posts').forEach(function (item) {
-			if (!item.data.comments[item.fileSlug]) return;
-			const postSpecificComments = Object.values(
-				item.data.comments[item.fileSlug],
-			);
-
-			item.data.staticmanEntries = postSpecificComments.map((comment) => ({
-				...comment,
-				date: comment.date && new Date(comment.date),
-			}));
-		});
-		return [...postsWithComments];
+        processComments(collection);
+        return [];
 	});
 
 	// Customize Markdown library and settings:

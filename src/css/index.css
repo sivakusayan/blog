@@ -25,10 +25,10 @@
 	--primary-background-color: #e4f6fe;
 	--primary-background-active-color: #b3defa;
 
-	--inline-code-background-color: #dcf8e0;
+	--inline-code-background-color: #e1ffe5;
 	--code-background-color: #011627;
 
-	--comment-background-color: #dcf8e0;
+	--comment-background-color: transparent;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.32;
@@ -128,10 +128,10 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: #e4f6fe;
 		--primary-background-active-color: #b3defa;
 
-		--inline-code-background-color: #dcf8e0;
+		--inline-code-background-color: #e1ffe5;
 		--code-background-color: #011627;
 
-		--comment-background-color: #dcf8e0;
+		--comment-background-color: transparent;
 
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.32;

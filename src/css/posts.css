@@ -271,12 +271,18 @@ ul.comments {
 }
 
 ul.comments blockquote {
-    background-color: var(--comment-background-color);
-	border-left: 3px solid var(--text-color);
-	padding: var(--small-spacing) var(--spacing);
+    border-left-width: 0px;
+    padding-left: 0px;
 }
 
-ul.comments blockquote p {
+ul.comments .comment {
+    background-color: var(--comment-background-color);
+	border: 1px solid var(--text-color);
+	padding: var(--small-spacing) var(--spacing);
+    border-radius: 5px;
+}
+
+ul.comments .comment p {
 	font-style: normal;
 }
 
@@ -300,6 +306,50 @@ ul.comments cite {
 	font-family: inherit;
 	font-style: normal;
 	font-weight: bold;
+}
+
+ul.comments ul.subcomments {
+    list-style: none;
+    margin-left: var(--semi-medium-spacing);
+}
+
+ul.comments ul.subcomments li {
+	margin-top: var(--spacing);
+}
+
+ul.comments button[type="submit"] {
+    background-color: var(--background-color);
+}
+
+ul.comments details {
+	width: 7rem;
+}
+
+ul.comments details[open] {
+	width: auto;
+}
+
+ul.comments summary {
+	transition:
+        background-color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 10px;
+    padding: var(--small-spacing);
+}
+
+ul.comments summary:focus {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 0px;
+}
+
+ul.comments summary:hover {
+	background-color: var(--primary-background-active-color);
+	cursor: pointer;
+}
+
+ul.comments form {
+    padding: var(--spacing);
 }
 
 input,

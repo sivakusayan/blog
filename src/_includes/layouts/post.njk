@@ -3,6 +3,8 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
+{% from "partials/comment.njk" import comment %}
+
 <div>
   <div class="post-content">
     <div class="post-header">
@@ -26,24 +28,8 @@ templateClass: tmpl-post
  {%- if (staticmanEntries | length) > 0 %}
    <ul class="comments">
    {%- for entry in staticmanEntries | reverse %}
-    <li>
-     <blockquote id="{{ entry.id }}">
-       <div class="comment-header">
-         <cite>{{ entry.name }}</cite>
-         •
-         <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
-         <a class="comment-anchor" href="#{{ entry.id }}">Permalink</a>
-       </div>
-       <p>
-       {{ entry.message }} 
-       </p>
-         <details class="reply-container">
-            <summary>Add Reply</summary>
-            {% include "partials/addComment.njk" %}
-         </details>
-     </blockquote>
+    <li>{{ comment(entry) }}</li>
    {%- endfor %}
-    </li>
    </ul>
  {%- else %}
  <p>No comments just yet!</p>
