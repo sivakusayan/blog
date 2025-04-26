@@ -9,11 +9,11 @@
          <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
          <a class="comment-anchor" href="#{{ entry._id }}">Permalink</a>
        </div>
-       <p>
-         {{ entry.message }} 
-       </p>
+       <div>
+         {{ entry.message | safe}} 
+       </div>
 
-   {%- if (entry.children | length) > 0 %}
+   {%- if not entry.parent %}
          <details class="reply-container">
             <summary>Add Reply</summary>
             {{ addComment(entry._id, fileSlug) }}
