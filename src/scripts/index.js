@@ -16,20 +16,41 @@ for (const code of codeElements) {
 	}
 }
 
+const messages = [
+	'Loading markdown parser .',
+	'Loading markdown parser . .',
+	'Loading markdown parser . . .',
+	'Loading markdown parser . . . .',
+];
+
 const buttonsControllingDialogs = document.querySelectorAll(
 	'button[data-dialog]',
 );
 for (const button of buttonsControllingDialogs) {
 	const dialog = document.getElementById(button.getAttribute('data-dialog'));
-    const closeButton = document.getElementById(button.getAttribute('data-close'));
+	const closeButton = document.getElementById(
+		button.getAttribute('data-close'),
+	);
+	let intervalId;
 	button.addEventListener('click', () => {
-        const id = button.getAttribute('data-dialog').split('-')[1];
-        const content = document.getElementById(`message-${id}`).value;
+		const id = button.getAttribute('data-dialog').split('-')[1];
+		const content = document.getElementById(`message-${id}`).value;
 
-        document.getElementById(`preview-content-root-${id}`).innerHTML = content;
 		dialog.showModal();
+		let i = 0;
+		intervalId = setInterval(() => {
+			document.getElementById(`preview-content-root-${id}`).innerHTML =
+				messages[i];
+			i += 1;
+			i = i % messages.length;
+		}, 200);
+		setTimeout(() => {
+			clearInterval(intervalId);
+			document.getElementById(`preview-content-root-${id}`).innerHTML = content;
+		}, 8000);
 	});
 	closeButton.addEventListener('click', () => {
+		clearInterval(intervalId);
 		dialog.close();
 	});
 }

@@ -270,19 +270,19 @@ ul.comments {
 	list-style: none;
 }
 
-ul.comments blockquote {
+.comments blockquote {
     border-left-width: 0px;
     padding-left: 0px;
 }
 
-ul.comments .comment {
+.comment {
     background-color: var(--comment-background-color);
 	border: var(--comment-border-width) solid var(--text-color);
 	padding: var(--spacing);
     border-radius: 5px;
 }
 
-ul.comments .comment p {
+.comments p {
 	font-style: normal;
 }
 
@@ -298,35 +298,35 @@ ul.comments .comment-header {
 	flex-wrap: wrap;
 }
 
-ul.comments p:last-child {
+.comments p:last-child {
 	margin-bottom: 0;
 }
 
-ul.comments cite {
+.comments cite {
 	font-family: inherit;
 	font-style: normal;
 	font-weight: bold;
 }
 
-ul.comments ul.subcomments {
+.comments ul.subcomments {
     list-style: none;
     margin-left: var(--semi-medium-spacing);
 }
 
-ul.comments ul.subcomments li {
+.comments ul.subcomments li {
 	margin-top: var(--spacing);
 }
 
-ul.comments details {
+.comments details {
     margin-top: var(--spacing);
 	width: 6rem;
 }
 
-ul.comments details[open] {
+.comments details[open] {
 	width: auto;
 }
 
-ul.comments summary {
+.comments summary {
 	transition:
         background-color 0.1s,
 		outline 0.1s,
@@ -338,17 +338,17 @@ ul.comments summary {
     font-size: 90%;
 }
 
-ul.comments summary:focus {
+.comments summary:focus {
 	outline: 5px solid var(--primary-color);
 	outline-offset: 5px;
 }
 
-ul.comments summary:hover {
+.comments summary:hover {
 	background-color: var(--primary-background-active-color);
 	cursor: pointer;
 }
 
-ul.comments form {
+.comments form {
     padding: var(--spacing);
 }
 
@@ -384,5 +384,22 @@ form.comment-form textarea {
 }
 
 form.comment-form button {
-	margin-top: var(--small-spacing);
+	margin-top: var(--spacing);
+}
+
+dialog {
+    width: var(--max-content-width);
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    background-color: var(--comment-background-color);
+    color: var(--text-color);
+}
+
+dialog h1 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing);
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
 }

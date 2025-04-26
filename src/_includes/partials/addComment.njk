@@ -20,7 +20,10 @@
    <button type="submit">Submit</button>
 
 <dialog id="preview-{{ parent }}">
-  <div id="preview-content-root-{{ parent }}"></div>
+  <h1>Comment Preview</h1>
+  <div class="comments" id="preview-content-root-{{ parent }}">
+    Loading markdown parser...
+  </div>
   <button type="button" id="close-preview-{{ parent }}"autofocus>Close</button>
 </dialog>
 <button type="button" data-dialog="preview-{{ parent }}" data-close="close-preview-{{ parent }}"class="hide-script-disabled">Preview Comment</button>

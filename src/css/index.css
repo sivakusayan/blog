@@ -28,8 +28,8 @@
 	--inline-code-background-color: #e1ffe5;
 	--code-background-color: #011627;
 
-	--comment-background-color: transparent;
-    --comment-border-width: 2px;
+	--comment-background-color: var(--background-color);
+	--comment-border-width: 2px;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.32;
@@ -71,7 +71,7 @@ html[data-theme='DARK'] {
 	--code-border-color: #3e3e3e;
 
 	--comment-background-color: #1f1e28;
-    --comment-border-width: 1px;
+	--comment-border-width: 1px;
 
 	--header-line-height: 1.15;
 	--paragraph-line-height: 1.4;
@@ -104,7 +104,7 @@ html[data-theme='DARK'] ::selection {
 		--code-border-color: #3e3e3e;
 
 		--comment-background-color: #1f1e28;
-        --comment-border-width: 1px;
+		--comment-border-width: 1px;
 
 		--header-line-height: 1.15;
 		--paragraph-line-height: 1.4;
@@ -134,8 +134,8 @@ html[data-theme='DARK'] ::selection {
 		--inline-code-background-color: #e1ffe5;
 		--code-background-color: #011627;
 
-		--comment-background-color: transparent;
-        --comment-border-width: 2px;
+		--comment-background-color: var(--background-color);
+		--comment-border-width: 2px;
 
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.32;
@@ -401,7 +401,7 @@ For those users, we'll just wrap the code instead. */
 }
 
 .script-disabled .hide-script-disabled {
-    display: none;
+	display: none;
 }
 
 :not(pre) > code {
