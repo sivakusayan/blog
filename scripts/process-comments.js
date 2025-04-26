@@ -11,7 +11,7 @@ processComments = (collection) => {
 		let comments = Object.values(item.data.comments[item.fileSlug]);
 		comments = comments.map((comment) => ({
 			...comment,
-			date: new Date(comment.date),
+			date: new Date(comment.date * 1000),
 		}));
 
         // Okay, here is the reconciliation process. All we do

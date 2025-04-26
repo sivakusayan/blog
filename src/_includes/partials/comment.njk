@@ -1,11 +1,13 @@
-{% macro comment(entry) %}
-<blockquote id="{{ entry.id }}">
+{% from "partials/addComment.njk" import addComment %}
+
+{% macro comment(entry, fileSlug) %}
+<blockquote id="{{ entry._id }}">
    <div class="comment">
        <div class="comment-header">
          <cite>{{ entry.name }}</cite>
          •
          <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
-         <a class="comment-anchor" href="#{{ entry.id }}">Permalink</a>
+         <a class="comment-anchor" href="#{{ entry._id }}">Permalink</a>
        </div>
        <p>
          {{ entry.message }} 
@@ -14,7 +16,7 @@
    {%- if (entry.children | length) > 0 %}
          <details class="reply-container">
             <summary>Add Reply</summary>
-            {% include "partials/addComment.njk" %}
+            {{ addComment(entry._id, fileSlug) }}
          </details>
    {%- endif %}
    </div>

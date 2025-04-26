@@ -1,3 +1,4 @@
+{% macro addComment(parent, fileSlug) %}
 <form class="comment-form" method="post" action="http://localhost:8080/v2/entry/sivakusayan/blog/main/comments">
    <p>All markdown, except for markdown headings, are accepted.</p>
 
@@ -9,9 +10,12 @@
      <br>
      <textarea required="true" id="message" name="fields[message]" placeholder="Here's the thing..."></textarea>
  
-   <input type="hidden" name="fields[post]" value="{{ page.fileSlug }}">
+   
+   {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
+   <input type="hidden" name="fields[post]" value="{{ fileSlug }}">
    <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
    <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
  
      <button type="submit">Submit</button>
  </form>
+{% endmacro %}

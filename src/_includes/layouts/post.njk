@@ -4,6 +4,7 @@ templateClass: tmpl-post
 ---
 
 {% from "partials/comment.njk" import comment %}
+{% from "partials/addComment.njk" import addComment %}
 
 <div>
   <div class="post-content">
@@ -28,13 +29,13 @@ templateClass: tmpl-post
  {%- if (staticmanEntries | length) > 0 %}
    <ul class="comments">
    {%- for entry in staticmanEntries | reverse %}
-    <li>{{ comment(entry) }}</li>
+    <li>{{ comment(entry, page.fileSlug) }}</li>
    {%- endfor %}
    </ul>
  {%- else %}
  <p>No comments just yet!</p>
  {%- endif %}
  
- <h3>Add a comment</h3>
-{% include "partials/addComment.njk" %}
+<h3>Add a comment</h3>
+{{ addComment("", page.fileSlug) }}
 </div>

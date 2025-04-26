@@ -277,7 +277,7 @@ ul.comments blockquote {
 
 ul.comments .comment {
     background-color: var(--comment-background-color);
-	border: 1px solid var(--text-color);
+	border: var(--comment-border-width) solid var(--text-color);
 	padding: var(--small-spacing) var(--spacing);
     border-radius: 5px;
 }
