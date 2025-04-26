@@ -1,22 +1,5 @@
 const markdownIt = require('markdown-it');
-
-const allowedMarkdown = [
-	'normalize',
-	'block',
-	'inline',
-	'linkify',
-	'autolink',
-	'link',
-	'backticks',
-	'emphasis',
-	'paragraph',
-	'text',
-	'newline',
-    'list',
-	'table',
-    'blockquote',
-    'code',
-];
+const { allowedMarkdown } = require('../constants.js');
 
 /**
  * For each post, constructs a tree hierarchy of comments from

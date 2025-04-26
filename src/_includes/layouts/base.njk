@@ -58,9 +58,11 @@ currently minified. -->
     </main>
 
     {{ footer() }}
+    {% js %}{% include "constants.js" %}{% endjs %}
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/markdown-preview.js" %}{% endjs %}
     {%- if eleventy.env.runMode === "serve" %}
       <script src="{% getBundleFileUrl "js" %}"></script>
     {%- else  %}

@@ -387,6 +387,10 @@ form.comment-form button {
 	margin-top: var(--spacing);
 }
 
+form ul {
+    margin-bottom: var(--spacing);
+}
+
 dialog {
     width: var(--max-content-width);
     border-radius: 5px;

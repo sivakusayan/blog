@@ -29,7 +29,7 @@
 	--code-background-color: #011627;
 
 	--comment-background-color: var(--background-color);
-	--comment-border-width: 2px;
+	--comment-border-width: 3px;
 
 	--header-line-height: 1.1;
 	--paragraph-line-height: 1.32;
@@ -135,7 +135,7 @@ html[data-theme='DARK'] ::selection {
 		--code-background-color: #011627;
 
 		--comment-background-color: var(--background-color);
-		--comment-border-width: 2px;
+		--comment-border-width: 3px;
 
 		--header-line-height: 1.1;
 		--paragraph-line-height: 1.32;

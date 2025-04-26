@@ -1,15 +1,22 @@
 {% macro addComment(parent, fileSlug) %}
 <form class="comment-form" method="post" action="http://localhost:8080/v2/entry/sivakusayan/blog/main/comments">
    <p>Most markdown, such as tables, lists, and blockquotes, are allowed. Markdown like headings are
-   not. If you have JavaScript enabled, you can preview your comment to see what is or isn't allowed!</p>
+   not. If you have JavaScript enabled:
+   </p>
 
-     <label for="name-{{ parent }}">Name</label>
+   <ul>
+     <li>You can preview your markdown to see what the comment will look like when rendered.</li>
+     <li>Drafted comments are saved off in local storage, so you can leave and finish your thoughts
+     later.</li>
+   </ul>
+
+     <label for="name:{{ parent }}">Name</label>
      <br>
-     <input required="true" id="name-{{ parent }}" type="text" name="fields[name]" placeholder="John Doe">
+     <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe">
  
-     <label for="message-{{ parent }}">Comment</label>
+     <label for="message:{{ parent }}">Comment</label>
      <br>
-     <textarea required="true" id="message-{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
+     <textarea required="true" id="message:{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
  
    
    {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
@@ -17,15 +24,17 @@
    <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
    <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
  
+ <p class="hide-script-disable">Note that previewing your comment will load the
+ <a href="https://github.com/markdown-it/markdown-it"><code>markdown-it</code> library</a> if your
+ browser doesn't already have it cached.</p> 
    <button type="submit">Submit</button>
 
-<dialog id="preview-{{ parent }}">
+<dialog id="preview:{{ parent }}">
   <h1>Comment Preview</h1>
-  <div class="comments" id="preview-content-root-{{ parent }}">
-    Loading markdown parser...
+  <div class="comments" id="preview-content-root:{{ parent }}">
   </div>
-  <button type="button" id="close-preview-{{ parent }}"autofocus>Close</button>
+  <button type="button" id="close-preview:{{ parent }}"autofocus>Close</button>
 </dialog>
-<button type="button" data-dialog="preview-{{ parent }}" data-close="close-preview-{{ parent }}"class="hide-script-disabled">Preview Comment</button>
+<button type="button" data-dialog="preview:{{ parent }}" data-close="close-preview:{{ parent }}" class="hide-script-disabled">Preview Comment</button>
  </form>
 {% endmacro %}
