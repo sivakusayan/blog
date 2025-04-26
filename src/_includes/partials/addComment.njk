@@ -1,6 +1,7 @@
 {% macro addComment(parent, fileSlug) %}
 <form class="comment-form" method="post" action="http://localhost:8080/v2/entry/sivakusayan/blog/main/comments">
-   <p>All markdown, except for markdown headings, are accepted.</p>
+   <p>Most markdown, such as tables, lists, and blockquotes, are allowed. Markdown like headings are
+   not. If you have JavaScript enabled, you can preview your comment to see what is or isn't allowed!</p>
 
      <label for="name-{{ parent }}">Name</label>
      <br>
@@ -16,6 +17,12 @@
    <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
    <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
  
-     <button type="submit">Submit</button>
+   <button type="submit">Submit</button>
+
+<dialog id="preview-{{ parent }}">
+  <div id="preview-content-root-{{ parent }}"></div>
+  <button type="button" id="close-preview-{{ parent }}"autofocus>Close</button>
+</dialog>
+<button type="button" data-dialog="preview-{{ parent }}" data-close="close-preview-{{ parent }}"class="hide-script-disabled">Preview Comment</button>
  </form>
 {% endmacro %}

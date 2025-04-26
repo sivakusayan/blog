@@ -15,3 +15,21 @@ for (const code of codeElements) {
 		code.setAttribute('role', 'region');
 	}
 }
+
+const buttonsControllingDialogs = document.querySelectorAll(
+	'button[data-dialog]',
+);
+for (const button of buttonsControllingDialogs) {
+	const dialog = document.getElementById(button.getAttribute('data-dialog'));
+    const closeButton = document.getElementById(button.getAttribute('data-close'));
+	button.addEventListener('click', () => {
+        const id = button.getAttribute('data-dialog').split('-')[1];
+        const content = document.getElementById(`message-${id}`).value;
+
+        document.getElementById(`preview-content-root-${id}`).innerHTML = content;
+		dialog.showModal();
+	});
+	closeButton.addEventListener('click', () => {
+		dialog.close();
+	});
+}

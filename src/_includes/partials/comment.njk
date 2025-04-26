@@ -1,6 +1,6 @@
 {% from "partials/addComment.njk" import addComment %}
 
-{% macro comment(entry, fileSlug) %}
+{% macro comment(entry, fileSlug, noReply) %}
 <blockquote id="{{ entry._id }}">
    <div class="comment">
        <div class="comment-header">
@@ -14,10 +14,12 @@
        </div>
 
    {%- if not entry.parent %}
+   {%- if not noReply %}
          <details class="reply-container">
             <summary>Add Reply</summary>
             {{ addComment(entry._id, fileSlug) }}
          </details>
+   {%- endif %}
    {%- endif %}
    </div>
    {%- if (entry.children | length) > 0 %}

@@ -400,6 +400,10 @@ For those users, we'll just wrap the code instead. */
 	text-wrap: wrap;
 }
 
+.script-disabled .hide-script-disabled {
+    display: none;
+}
+
 :not(pre) > code {
 	padding: var(--tiny-spacing);
 	background-color: var(--inline-code-background-color);
