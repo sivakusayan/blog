@@ -275,7 +275,7 @@ ul.comments {
     padding-left: 0px;
 }
 
-.comment {
+.blog-comment {
     background-color: var(--comment-background-color);
 	border: var(--comment-border-width) solid var(--text-color);
 	padding: var(--spacing);
