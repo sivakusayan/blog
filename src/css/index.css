@@ -25,7 +25,7 @@
 	--primary-background-color: #e4f6fe;
 	--primary-background-active-color: #b3defa;
 
-	--inline-code-background-color: #e1ffe5;
+	--inline-code-background-color: #ffe1fb;
 	--code-background-color: #011627;
 
 	--comment-background-color: var(--background-color);
@@ -131,7 +131,7 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: #e4f6fe;
 		--primary-background-active-color: #b3defa;
 
-		--inline-code-background-color: #e1ffe5;
+		--inline-code-background-color: #ffe1fb;
 		--code-background-color: #011627;
 
 		--comment-background-color: var(--background-color);

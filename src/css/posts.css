@@ -254,14 +254,13 @@ hr {
 
     display: flex;
     flex-direction: column;
-}
 
-.postlist li:hover {
+    border-left: 3px solid var(--text-color);
+    padding-left: var(--spacing);
 }
 
 .postlist li a[href] {
-    font-size: 120%;
-    font-weight: bold;
+    font-size: 130%;
 }
 
 .postlist li a[href]::after {
