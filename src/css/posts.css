@@ -2,7 +2,7 @@ aside {
 	margin: var(--medium-spacing) 0;
 	padding: var(--spacing);
 	border: 1.5px solid var(--text-color);
-	border-top: 7px solid;
+	border-top: 5px solid;
 	border-radius: 2px;
 }
 
@@ -150,7 +150,7 @@ html[data-theme='DARK'] .tags a[href]:hover {
 
 .post-content details summary {
 	border: 1.5px solid var(--text-color);
-	border-top: 7px solid;
+	border-top: 5px solid;
 	padding: var(--spacing);
 	transition:
 		background-color 0.2s,
@@ -249,7 +249,29 @@ hr {
 }
 
 .postlist li {
+    position: relative;
 	margin-bottom: var(--medium-spacing);
+
+    display: flex;
+    flex-direction: column;
+}
+
+.postlist li:hover {
+}
+
+.postlist li a[href] {
+    font-size: 120%;
+    font-weight: bold;
+}
+
+.postlist li a[href]::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .post-header {
@@ -258,7 +280,7 @@ hr {
 
 img {
 	border: 2px solid var(--text-color);
-	border-radius: 10px;
+	border-radius: 5px;
 }
 
 /*=======================================
