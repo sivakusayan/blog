@@ -1,33 +1,36 @@
 {% macro addComment(parent, fileSlug) %}
 <form id="form:{{ parent }}"class="comment-form" method="post"
 action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments">
-   <p>Most markdown, such as tables, lists, and blockquotes, are allowed. Markdown such as headings
-   or images are not. If you have JavaScript enabled:
-   </p>
-
    <ul>
-     <li>You can preview your markdown to see what the comment will look like when rendered.</li>
-     <li>Drafted comments are saved off in local storage, so you can leave and finish your thoughts
-     later.</li>
+     <li>Most markdown, such as tables, links, and code formatting, are allowed.</li>
+     <li>You can optionally enter an email to be notified of replies. You can always unsubscribe.</li>
+     <li>
+        If you have JavaScript enabled:
+       <ul>
+         <li>You can preview your markdown to see what the comment will look like when rendered.</li>
+         <li>Drafted comments are saved off in local storage, so you can leave and finish your thoughts
+         later.</li>
+       </ul>
+     </li>
    </ul>
 
-     <label for="name:{{ parent }}">Name</label>
+     <label for="name:{{ parent }}">Name<span aria-hidden="true">*</span></label>
      <br>
-     <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe">
+     <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe"/>
+
+   <label for="email:{{ parent }}">Email</label>
+   <input id="email:{{ parent }}" name="fields[email]" placeholder="john.doe@gmail.com">
  
-     <label for="message:{{ parent }}">Comment</label>
+     <label for="message:{{ parent }}">Comment<span aria-hidden="true">*</span></label>
      <br>
      <textarea required="true" id="message:{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
- 
    
    {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
+   <input type="hidden" name="options[subscribe]" value="email">
    <input type="hidden" name="fields[post]" value="{{ fileSlug }}">
    <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
    <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
  
- <p class="hide-script-disabled">Note that previewing your comment will load the
- <a data-printing="ignore" href="https://github.com/markdown-it/markdown-it"><code>markdown-it</code> library</a> if your
- browser doesn't already have it cached.</p> 
    <button type="submit">Submit</button>
 
 <dialog id="preview:{{ parent }}">
