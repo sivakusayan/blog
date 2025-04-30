@@ -9,4 +9,3 @@
   from = "https://email.mail.sayansivakumaran.com/*"
   to = "https://mailgun.org"
   status = 301 
-  force = true
