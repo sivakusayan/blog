@@ -8,4 +8,4 @@
 [[redirects]]
   from = "https://email.mail.sayansivakumaran.com/*"
   to = "https://mailgun.org/:splat"
-  status = 301 
+  status = 200 
