@@ -6,7 +6,7 @@
     [headers.values]
     Cache-Control = "public, max-age=31536000"
 [[redirects]]
-  from = "https://email.mail.sayansivakumaran.com"
+  from = "https://email.mail.sayansivakumaran.com/*"
   to = "https://mailgun.org"
   status = 200
   force = true
