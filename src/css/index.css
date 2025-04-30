@@ -27,7 +27,7 @@
 	--inline-code-background-color: #e1e5ff;
 	--code-background-color: #011627;
 
-	--comment-background-color: #f4f4f6;
+	--comment-background-color: #f6f6ff;
 	--comment-border-width: 2px;
 
 	--header-line-height: 1.1;
@@ -133,7 +133,7 @@ html[data-theme='DARK'] ::selection {
 		--inline-code-background-color: #e1e5ff;
 		--code-background-color: #011627;
 
-		--comment-background-color: #f4f4f6;
+		--comment-background-color: #f6f6ff;
 		--comment-border-width: 2px;
 
 		--header-line-height: 1.1;
