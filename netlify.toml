@@ -8,5 +8,5 @@
 [[redirects]]
   from = "https://email.mail.sayansivakumaran.com/*"
   to = "https://mailgun.org"
-  status = 200
+  status = 301 
   force = true
