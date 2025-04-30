@@ -7,6 +7,6 @@
     Cache-Control = "public, max-age=31536000"
 [[redirects]]
   from = "https://mailproxy.sayansivakumaran.com/*"
-  to = "mailgun.org"
+  to = "https://mailgun.org"
   status = 200
   force = true
