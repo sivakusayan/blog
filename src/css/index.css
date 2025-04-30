@@ -9,7 +9,6 @@
 	/* We unfortunately cannot use ch units to define the width here, as
    that causes flash of unstyled fonts with web fonts. Just hardcode it for now.*/
 	--max-content-width: 40rem;
-	font-size: 110%;
 }
 
 :root {
@@ -25,10 +24,10 @@
 	--primary-background-color: #e4f6fe;
 	--primary-background-active-color: #b3defa;
 
-	--inline-code-background-color: #ffe1fb;
+	--inline-code-background-color: #e1e5ff;
 	--code-background-color: #011627;
 
-	--comment-background-color: var(--background-color);
+	--comment-background-color: #f4f4f6;
 	--comment-border-width: 2px;
 
 	--header-line-height: 1.1;
@@ -57,7 +56,7 @@ html[data-theme='DARK'] {
 	color-scheme: dark;
 
 	--text-color: #c7c7c4;
-	--background-color: #0f0f18;
+	--background-color: #141415;
 
 	--footer-text-color: #c7c7c4;
 	--footer-background-color: #09090a;
@@ -66,11 +65,11 @@ html[data-theme='DARK'] {
 	--primary-background-color: var(--footer-background-color);
 	--primary-background-active-color: #02304b;
 
-	--inline-code-background-color: #212327;
+	--inline-code-background-color: #0a0a0a;
 	--code-background-color: #0a0a0a;
 	--code-border-color: #3e3e3e;
 
-	--comment-background-color: #1f1e28;
+	--comment-background-color: #161616;
 	--comment-border-width: 1px;
 
 	--header-line-height: 1.15;
@@ -90,7 +89,7 @@ html[data-theme='DARK'] ::selection {
 		color-scheme: dark;
 
 		--text-color: #c7c7c4;
-		--background-color: #0f0f18;
+		--background-color: #141415;
 
 		--footer-text-color: #c7c7c4;
 		--footer-background-color: #09090a;
@@ -99,11 +98,11 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: var(--footer-background-color);
 		--primary-background-active-color: #02304b;
 
-		--inline-code-background-color: #212327;
+		--inline-code-background-color: #0a0a0a;
 		--code-background-color: #0a0a0a;
 		--code-border-color: #3e3e3e;
 
-		--comment-background-color: #1f1e28;
+		--comment-background-color: #161616;
 		--comment-border-width: 1px;
 
 		--header-line-height: 1.15;
@@ -131,10 +130,10 @@ html[data-theme='DARK'] ::selection {
 		--primary-background-color: #e4f6fe;
 		--primary-background-active-color: #b3defa;
 
-		--inline-code-background-color: #ffe1fb;
+		--inline-code-background-color: #e1e5ff;
 		--code-background-color: #011627;
 
-		--comment-background-color: var(--background-color);
+		--comment-background-color: #f4f4f6;
 		--comment-border-width: 2px;
 
 		--header-line-height: 1.1;

@@ -4,7 +4,6 @@
       <a href="{{ post.url | url }}" class="postlist-link">
         {{post.data.title}}
       </a>
-      <p>{{ post.data.description }}</p>
       <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | shortReadableDate }}</time>
     </li>
   {% endfor %}

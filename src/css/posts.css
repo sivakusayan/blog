@@ -250,7 +250,7 @@ hr {
 
 .postlist li {
     position: relative;
-	margin-bottom: var(--medium-spacing);
+	margin-bottom: var(--spacing);
 
     display: flex;
     flex-direction: column;
@@ -260,7 +260,7 @@ hr {
 }
 
 .postlist li a[href] {
-    font-size: 130%;
+    font-size: 100%;
 }
 
 .postlist li a[href]::after {
