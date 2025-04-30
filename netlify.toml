@@ -7,5 +7,5 @@
     Cache-Control = "public, max-age=31536000"
 [[redirects]]
   from = "https://email.mail.sayansivakumaran.com/*"
-  to = "https://mailgun.org"
+  to = "https://mailgun.org/:splat"
   status = 301 
