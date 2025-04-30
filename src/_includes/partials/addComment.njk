@@ -1,4 +1,4 @@
-{% macro addComment(parent, fileSlug, url) %}
+{% macro addComment(parent, fileSlug, url, title) %}
 <form id="form:{{ parent }}"class="comment-form" method="post"
 action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments">
    <ul>
@@ -27,8 +27,9 @@ action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments
    
    {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
    <input type="hidden" name="options[subscribe]" value="email">
+   <input type="hidden" name="options[title]" value="{{ title }}">
    <input type="hidden" name="fields[post]" value="{{ fileSlug }}">
-   <input type="hidden" name="options[origin]" value="https://sayansivakumaran.com/{{ url }}">
+   <input type="hidden" name="options[origin]" value="https://sayansivakumaran.com{{ url }}">
    <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
    <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
  

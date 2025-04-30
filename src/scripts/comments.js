@@ -58,7 +58,7 @@ for (const previewButton of markdownPreviewButtons) {
 			previewButton.innerHTML = oldButtonText;
 			previewButton.removeAttribute('aria-disabled');
 
-            // Todo: Do we want to support syntax highlighting?
+			// Todo: Do we want to support syntax highlighting?
 			const md = window
 				.markdownit('zero', {
 					linkify: true,
@@ -70,8 +70,8 @@ for (const previewButton of markdownPreviewButtons) {
 				md.render(content);
 			dialog.showModal();
 
-            const dialogHeading = dialog.querySelector('h1');
-            dialogHeading.focus();
+			const dialogHeading = dialog.querySelector('h1');
+			dialogHeading.focus();
 		});
 	});
 	closeButton.addEventListener('click', () => {
@@ -100,6 +100,13 @@ for (const previewButton of markdownPreviewButtons) {
 		localStorage.setItem(key, commentTextArea.value);
 	};
 	form.onsubmit = (e) => {
-		localStorage.removeItem(key);
+		localStorage.setItem('keyToRemoveOnSuccess', key);
 	};
 }
+
+// Clears the cache of any drafted comments if form submission was successful.
+if (window.location.pathname === '/comment-submitted/') {
+	const keyToRemove = localStorage.getItem('keyToRemoveOnSuccess');
+	localStorage.removeItem(keyToRemove);
+}
+localStorage.removeItem('keyToRemoveOnSuccess');

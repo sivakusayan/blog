@@ -1,6 +1,6 @@
 {% from "partials/addComment.njk" import addComment %}
 
-{% macro comment(entry, fileSlug, url) %}
+{% macro comment(entry, fileSlug, url, title) %}
 <blockquote id="{{ entry._id }}">
    <div class="blog-comment">
        <div class="comment-header">
@@ -16,7 +16,7 @@
    {%- if not entry.parent %}
          <details class="reply-container">
             <summary>Add Reply</summary>
-            {{ addComment(entry._id, fileSlug, url) }}
+            {{ addComment(entry._id, fileSlug, url, title) }}
          </details>
    {%- endif %}
    </div>
