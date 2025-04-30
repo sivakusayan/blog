@@ -31,7 +31,7 @@ comments:
   # Destination path (filename) for the data files. Accepts placeholders.
   #
   filename: "entry{@timestamp}"
-  path: "_data/comments/{fields.post}"
+  path: "src/_data/comments/{fields.post}"
 
   # The format of the generated data files. Accepted values are "json", "yaml"
   # or "frontmatter"
