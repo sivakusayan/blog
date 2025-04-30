@@ -18,8 +18,11 @@ action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments
      <br>
      <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe"/>
 
+   <label for="website:{{ parent }}">Website</label>
+   <input type="url" id="website:{{ parent }}" name="fields[website]" placeholder="https://yourwebsite.com">
+
    <label for="email:{{ parent }}">Email</label>
-   <input id="email:{{ parent }}" name="fields[email]" placeholder="john.doe@gmail.com">
+   <input type="email" id="email:{{ parent }}" name="fields[email]" placeholder="john.doe@gmail.com">
  
      <label for="message:{{ parent }}">Comment<span aria-hidden="true">*</span></label>
      <br>

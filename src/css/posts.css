@@ -373,6 +373,10 @@ ul.comments .comment-header {
     padding: var(--spacing);
 }
 
+input {
+    width: 20rem;
+}
+
 input,
 textarea {
 	border-radius: 2px;

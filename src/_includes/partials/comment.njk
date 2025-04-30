@@ -4,7 +4,13 @@
 <blockquote id="{{ entry._id }}">
    <div class="blog-comment">
        <div class="comment-header">
-         <cite>{{ entry.name }}</cite>
+         <cite>
+         {%- if entry.website %}
+             <a rel="external nofollow ugc" href="{{ entry.website }}">{{ entry.name }}</a>
+         {%- else %}
+              {{ entry.name }}
+         {%- endif %}
+         </cite>
          •
          <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
          <a class="comment-anchor" href="#{{ entry._id }}">Permalink</a>
