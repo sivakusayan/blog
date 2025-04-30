@@ -25,11 +25,10 @@ templateClass: tmpl-post
 
 <div>
 <h2>Comments</h2>
- 
  {%- if (staticmanEntries | length) > 0 %}
    <ul class="comments">
    {%- for entry in staticmanEntries | reverse %}
-    <li class="comment-list-item">{{ comment(entry, page.fileSlug) }}</li>
+    <li class="comment-list-item">{{ comment(entry, page.fileSlug, page.url) }}</li>
    {%- endfor %}
    </ul>
  {%- else %}
@@ -37,5 +36,5 @@ templateClass: tmpl-post
  {%- endif %}
  
 <h3>Add a comment</h3>
-{{ addComment("", page.fileSlug) }}
+{{ addComment("", page.fileSlug, page.url) }}
 </div>
