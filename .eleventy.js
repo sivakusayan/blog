@@ -25,6 +25,7 @@ const {
 	getRegularPosts,
 	getTodayLearnedPosts,
 	isTodayLearnedPost,
+    isMathPost,
 	getPreviousTodayLearnedPost,
 	getNextTodayLearnedPost,
 	getPreviousRegularPost,
@@ -32,7 +33,7 @@ const {
 	withCodeBlockCompressor,
 } = require('./scripts/filters.js');
 
-module.exports = function (eleventyConfig) {
+module.exports = async (eleventyConfig) => {
 	eleventyConfig.addPassthroughCopy('src/css');
 	eleventyConfig.addPassthroughCopy('src/fonts');
 	eleventyConfig.addPassthroughCopy('src/favicon');
@@ -76,6 +77,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('getRegularPosts', getRegularPosts);
 	eleventyConfig.addFilter('getTodayLearnedPosts', getTodayLearnedPosts);
 	eleventyConfig.addFilter('isTodayLearnedPost', isTodayLearnedPost);
+	eleventyConfig.addFilter('isMathPost', isMathPost);
 	eleventyConfig.addFilter(
 		'getPreviousTodayLearnedPost',
 		getPreviousTodayLearnedPost,
@@ -107,17 +109,14 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
 
-	eleventyConfig.addCollection('postsWithComments', function (collection) {
-        processComments(collection);
-        return [];
-	});
-
 	// Customize Markdown library and settings:
+    const markdownItMathTemml = await import('markdown-it-math/temml');
 	let markdownLibrary = markdownIt({
 		html: true,
 		linkify: true,
 	})
 		.use(markdownItAttrs)
+        .use(markdownItMathTemml.default)
 		.use(markdownItAnchor, {
 			permalink: headerLink({
 				safariReaderFix: true,
@@ -126,6 +125,11 @@ module.exports = function (eleventyConfig) {
 			slugify: eleventyConfig.getFilter('slugify'),
 		});
 	eleventyConfig.setLibrary('md', markdownLibrary);
+
+    eleventyConfig.addCollection('postsWithComments', async (collection) => {
+        await processComments(collection);
+        return [];
+	});
 
 	// Override Browsersync defaults (used only with --serve)
 	eleventyConfig.setBrowserSyncConfig({

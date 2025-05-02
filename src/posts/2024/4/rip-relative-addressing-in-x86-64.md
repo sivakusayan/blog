@@ -3,6 +3,7 @@ title: RIP relative addressing in x86-64
 description: Learning about RIP relative addressing in x86-64.
 date: 2024-04-18
 isTodayLearned: true
+math: true
 tags:
   - Systems
 layout: layouts/post.njk

@@ -5,13 +5,17 @@ const { allowedMarkdown } = require('../constants.js');
  * For each post, constructs a tree hierarchy of comments from
  * the flat list of comments in the data hierarchy.
  */
-processComments = (collection) => {
+processComments = async (collection) => {
+	const markdownItMathTemml = (await import('markdown-it-math/temml')).default;
+
 	collection.getFilteredByTag('posts').forEach(function (item) {
 		// If a post doesn't have any comments, we don't need to
 		// do any further processing.
 		if (!item.data.comments[item.fileSlug]) return;
 
-		const md = markdownIt('zero', { linkify: true }).enable(allowedMarkdown);
+		const md = markdownIt('zero', { linkify: true })
+			.enable(allowedMarkdown)
+			.use(markdownItMathTemml);
 
 		let comments = Object.values(item.data.comments[item.fileSlug]);
 		comments = comments.map((comment) => ({

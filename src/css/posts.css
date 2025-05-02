@@ -440,3 +440,17 @@ dialog h1:focus {
 dialog::backdrop {
     backdrop-filter: blur(5px);
 }
+
+
+/*=======================================
+ * MathJax
+ *======================================*/
+
+/* Let's force MathJax to display centered math even when
+ * not using the display math mode. We need the importants because
+ * the MathJax script loads CSS after ours, overriding our customizations.*/
+mjx-container[jax="CHTML"][display="true"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}

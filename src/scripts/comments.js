@@ -8,6 +8,7 @@
  */
 const MARKDOWN_SCRIPT_SRC =
 	'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js';
+const MARKDOWN_MATH_SCRIPT_SRC = 'https://cdn.jsdelivr.net/npm/markdown-it-math@5.2.0/index.min.js';
 const markdownScriptExists = () => {
 	return !!document.querySelector('script[src*="markdown-it"]');
 };
@@ -17,18 +18,10 @@ const markdownScriptExists = () => {
  * is loaded. Immediately invokes the callback if the markdown script
  * is already loaded.
  */
-const withMarkdownItScript = (callback) => {
-	if (markdownScriptExists()) {
-		callback();
-		return;
-	}
-
-	const markdownScript = document.createElement('script');
-	markdownScript.setAttribute('src', MARKDOWN_SCRIPT_SRC);
-	document.head.appendChild(markdownScript);
-	markdownScript.onload = () => {
-		callback();
-	};
+const withMarkdownItScript = async (callback) => {
+    window.markdownIt = (await import('markdown-it')).default;
+    window.markdownItMathTemml = (await import('markdown-it-math/temml')).default;
+    callback();
 };
 
 const markdownPreviewButtons = document.querySelectorAll('button[data-dialog]');
@@ -59,15 +52,20 @@ for (const previewButton of markdownPreviewButtons) {
 			previewButton.removeAttribute('aria-disabled');
 
 			// Todo: Do we want to support syntax highlighting?
-			const md = window
-				.markdownit('zero', {
+			const md = markdownIt('zero', {
 					linkify: true,
 					highlight: (str) =>
 						`<pre class='language-text'><code>${md.utils.escapeHtml(str)}</code></pre>`,
 				})
-				.enable(allowedMarkdown);
-			document.getElementById(`preview-content-root:${id}`).innerHTML =
-				md.render(content);
+				.enable(allowedMarkdown)
+                .use(markdownItMathTemml, {
+                    temmlOptions: {}
+                });
+			document.getElementById(`preview-content-root:${id}`).innerHTML = md.render(content);
+            if (MathJax) {
+                MathJax.typeset();
+            }
+
 			dialog.showModal();
 
 			const dialogHeading = dialog.querySelector('h1');
