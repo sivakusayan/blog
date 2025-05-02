@@ -3,7 +3,14 @@
 action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments">
    <ul>
      <li>You can optionally enter an email to be notified of replies. You can always unsubscribe.</li>
-     <li>Comments allow most markdown, such as tables, links, and code blocks.</li>
+     <li>You have lots of options for writing comments:
+       <ul>
+         <li>Most markdown, such as tables, links, and code blocks, are allowed.</li>
+         <li>Raw HTML is not allowed. Writing HTML in code blocks is allowed.</a>
+         <li>TeX is allowed for mathematical typesetting. <a
+         href="https://temml.org/docs/en/supported">Temml lists the supported commands.</a></li>
+       </ul>
+
      <li>
         If you have JavaScript enabled:
        <ul>
@@ -39,7 +46,7 @@ action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments
    <button type="submit">Submit</button>
 
 <dialog id="preview:{{ parent }}">
-  <h1 tabindex="-1">Comment Preview</h1>
+  <h1 autofocus tabindex="-1">Comment Preview</h1>
   <div class="comments" id="preview-content-root:{{ parent }}">
   </div>
   <button type="button" id="close-preview:{{ parent }}"autofocus>Close</button>

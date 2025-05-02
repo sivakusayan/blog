@@ -2,26 +2,41 @@
  * Javascript enhancements for commenting functionality.
  */
 
-/**
- * 1. Allow users to preview how their markdown comments will render
- *    once the comment is accepted.
- */
+const SVG_LOADER = `<svg aria-hidden="true" class="loader" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><style>.spinner_9y7u{animation:spinner_fUkk 2.4s linear infinite;animation-delay:-2.4s}.spinner_DF2s{animation-delay:-1.6s}.spinner_q27e{animation-delay:-.8s}@keyframes spinner_fUkk{8.33%{x:13px;y:1px}25%{x:13px;y:1px}33.3%{x:13px;y:13px}50%{x:13px;y:13px}58.33%{x:1px;y:13px}75%{x:1px;y:13px}83.33%{x:1px;y:1px}}</style><rect class="spinner_9y7u" x="1" y="1" rx="1" width="10" height="10"/><rect class="spinner_9y7u spinner_DF2s" x="1" y="1" rx="1" width="10" height="10"/><rect class="spinner_9y7u spinner_q27e" x="1" y="1" rx="1" width="10" height="10"/></svg>`;
 const MARKDOWN_SCRIPT_SRC =
 	'https://cdnjs.cloudflare.com/ajax/libs/markdown-it/13.0.2/markdown-it.min.js';
-const MARKDOWN_MATH_SCRIPT_SRC = 'https://cdn.jsdelivr.net/npm/markdown-it-math@5.2.0/index.min.js';
+const MARKDOWN_MATH_SCRIPT_SRC =
+	'https://cdn.jsdelivr.net/npm/markdown-it-math@5.2.0/index.min.js';
 const markdownScriptExists = () => {
 	return !!document.querySelector('script[src*="markdown-it"]');
 };
 
 /**
- * Ensures that the passed in function runs while the markdown script
- * is loaded. Immediately invokes the callback if the markdown script
- * is already loaded.
+ * 1. Allow users to preview how their markdown comments will render
+ *    once the comment is accepted.
  */
-const withMarkdownItScript = async (callback) => {
-    window.markdownIt = (await import('markdown-it')).default;
-    window.markdownItMathTemml = (await import('markdown-it-math/temml')).default;
-    callback();
+
+/**
+ * Ensures that the passed in function runs while both Markdown and TeX 
+ * scripts are loaded. Immediately invokes the callback if the scripts
+ * were already loaded.
+ */
+const withCommentFormattingScripts = async (callback) => {
+    if (window.markdownIt) {
+        callback();
+        return;
+    }
+	// Eagerly load the temml script, because it's a dependency we
+	// will indirectly need anyway.
+	const [markdownIt, markdownItMathTemml] = await Promise.all([
+		import('markdown-it'),
+		import('markdown-it-math/temml'),
+		import('temml'),
+	]);
+
+	window.markdownIt = markdownIt.default;
+	window.markdownItMathTemml = markdownItMathTemml.default;
+	callback();
 };
 
 const markdownPreviewButtons = document.querySelectorAll('button[data-dialog]');
@@ -44,32 +59,39 @@ for (const previewButton of markdownPreviewButtons) {
 		const content = document.getElementById(`message:${id}`).value;
 
 		const oldButtonText = previewButton.innerHTML;
-		previewButton.innerHTML = 'Loading <code>markdown-it</code> library...';
+        let newText = 'Loading Markdown and TeX libraries...';
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        if (!prefersReducedMotion) {
+            newText = SVG_LOADER + `<span style="margin-left: 1.5rem">${newText}</span>`;
+        }
+		previewButton.innerHTML = newText;
 		previewButton.setAttribute('aria-disabled', 'true');
 
-		withMarkdownItScript(() => {
+		withCommentFormattingScripts(() => {
 			previewButton.innerHTML = oldButtonText;
 			previewButton.removeAttribute('aria-disabled');
 
 			// Todo: Do we want to support syntax highlighting?
 			const md = markdownIt('zero', {
-					linkify: true,
-					highlight: (str) =>
-						`<pre class='language-text'><code>${md.utils.escapeHtml(str)}</code></pre>`,
-				})
+				linkify: true,
+				highlight: (str) =>
+					`<pre class='language-text'><code>${md.utils.escapeHtml(str)}</code></pre>`,
+			})
 				.enable(allowedMarkdown)
-                .use(markdownItMathTemml, {
-                    temmlOptions: {}
-                });
-			document.getElementById(`preview-content-root:${id}`).innerHTML = md.render(content);
-            if (MathJax) {
-                MathJax.typeset();
-            }
+				.use(markdownItMathTemml, {
+					temmlOptions: {},
+				});
+			document.getElementById(`preview-content-root:${id}`).innerHTML =
+				md.render(content);
+
+            // As mentioned in the MathJax documents, MathJax will not automatically
+            // detect newly inserted MathML. We need to do this manually to properly format
+            // any potentially rendered math.
+			if (MathJax) {
+				MathJax.typeset();
+			}
 
 			dialog.showModal();
-
-			const dialogHeading = dialog.querySelector('h1');
-			dialogHeading.focus();
 		});
 	});
 	closeButton.addEventListener('click', () => {
