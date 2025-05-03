@@ -1,0 +1,57 @@
+{% macro addComment(parent, fileSlug, url, title) %}
+<form id="form:{{ parent }}"class="comment-form" method="post"
+action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusayan/blog/main/comments">
+   <ul>
+     <li>You can optionally enter an email to be notified of replies. You can always unsubscribe.</li>
+     <li>You have lots of options for writing comments:
+       <ul>
+         <li>Most markdown, such as tables, links, and code blocks, are allowed.</li>
+         <li>Raw HTML is not allowed. Writing HTML in code blocks is allowed.</a>
+         <li>TeX is allowed for mathematical typesetting. <a
+         href="https://temml.org/docs/en/supported">Temml lists the supported commands.</a></li>
+       </ul>
+
+     <li>
+        If you have JavaScript enabled:
+       <ul>
+         <li>You can preview your markdown to see what the comment will look like when rendered.</li>
+         <li>Drafted comments are saved off in local storage, so you can leave and finish your thoughts
+         later.</li>
+       </ul>
+     </li>
+   </ul>
+
+     <label for="name:{{ parent }}">Name<span aria-hidden="true">*</span></label>
+     <br>
+     <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe"/>
+
+   <label for="website:{{ parent }}">Website</label>
+   <input type="url" id="website:{{ parent }}" name="fields[website]" placeholder="https://yourwebsite.com">
+
+   <label for="email:{{ parent }}">Email</label>
+   <input type="email" id="email:{{ parent }}" name="fields[email]" placeholder="john.doe@gmail.com">
+ 
+     <label for="message:{{ parent }}">Comment<span aria-hidden="true">*</span></label>
+     <br>
+     <textarea required="true" id="message:{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
+   
+   {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
+   <input type="hidden" name="options[subscribe]" value="email">
+   <input type="hidden" name="options[title]" value="{{ title }}">
+   <input type="hidden" name="fields[post]" value="{{ fileSlug }}">
+   <input type="hidden" name="options[origin]" value="{{ url | htmlBaseUrl }}">
+   <input type="hidden" name="options[redirect]" value="{{ "/comment-submitted/" | htmlBaseUrl }}">
+   <input type="hidden" name="options[redirectError]" value="{{ "/comment-error/" | htmlBaseUrl }}">
+ 
+   <button type="submit">Submit</button>
+   {# Hack to make sure NVDA reads out the updated button label when scripts are loading, as
+      reading of aria-disabled state seems to conflict with that otherwise #}
+   <button aria-live="polite" type="button" data-dialog="preview:{{ parent }}" data-close="close-preview:{{ parent }}" class="hide-script-disabled">Preview Comment</button>
+ </form>
+<dialog id="preview:{{ parent }}">
+  <h1 autofocus tabindex="-1">Comment Preview</h1>
+  <div class="comments" id="preview-content-root:{{ parent }}">
+  </div>
+  <button type="button" id="close-preview:{{ parent }}"autofocus>Close</button>
+</dialog>
+{% endmacro %}

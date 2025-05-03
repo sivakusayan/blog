@@ -29,6 +29,45 @@ currently minified. -->
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-sans-normal.woff2">
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-sans-bold.woff2">
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-source-serif-italic.woff2">
+    {%- if collections.posts | isMathPost(page) %}
+        <noscript>
+            <link type="font/woff2" as="font" href="/fonts/latinmodernmath.woff2">
+            <link type="font/woff2" as="font" href="/fonts/Temml.woff2">
+            <link rel="stylesheet" href="/css/third_party/Temml-Latin-Modern.css">
+        </noscript>
+        <script>
+            MathJax = {
+              loader: {load: ['ui/safe']},
+              options: {
+                safeOptions: {
+                    safeProtocols: {
+                        http: false,
+                        file: false
+                    }
+                },
+                menuOptions: {
+                  settings: {
+                    assistiveMml: true,   // true to enable assistive MathML
+                    collapsible: false,   // true to enable collapsible math
+                    explorer: true      // true to enable the expression explorer
+                  }
+                }
+              }
+            };
+        </script>
+        <script async src="/scripts/load-correct-math-renderer.js"></script>
+    {%- endif %}
+
+    <script type="importmap">
+      {
+        "imports": {
+          "markdown-it": "https://cdn.jsdelivr.net/npm/markdown-it@14.1.0/+esm",
+          "markdown-it-math": "https://cdn.jsdelivr.net/npm/markdown-it-math@5.2.0/+esm",
+          "markdown-it-math/temml": "https://cdn.jsdelivr.net/npm/markdown-it-math@5.2.0/temml.js",
+          "temml": "/scripts/third_party/temml.mjs"
+        }
+      }
+    </script>
 
     {%- css %}{% include "src/css/third_party/typography.css" %}{% endcss %}
     {%- css %}{% include "src/css/third_party/reset.css" %}{% endcss %}
@@ -49,6 +88,7 @@ currently minified. -->
           .documentElement
           .setAttribute("data-theme", localStorage.theme);
     </script>
+
   </head>
   <body>
     {{ header(collections.all, page.url) }}
@@ -58,14 +98,16 @@ currently minified. -->
     </main>
 
     {{ footer() }}
+    {% js %}{% include "constants.js" %}{% endjs %}
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
-    {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
-    <!-- Serve JS inline on prod for performance, since we have so little JS it's not worth the HTTP + caching overhead -->
+    {% js %}{% include "src/scripts/theming-settings.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/math-settings.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/comments.js" %}{% endjs %}
     {%- if eleventy.env.runMode === "serve" %}
-      <script src="{% getBundleFileUrl "js" %}"></script>
+      <script type="module" src="{% getBundleFileUrl "js" %}"></script>
     {%- else  %}
-      <script>
+      <script type="module">
         {% getBundle "js" %}
       </script>
     {%- endif %}

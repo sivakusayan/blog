@@ -8,7 +8,7 @@ function getLinks() {
 	try {
 		// Get all the links
 		const links = document.querySelectorAll(
-			'main a[href]:not(.header-anchor,.back-to-top)',
+            'main a[href]:not(.header-anchor,.comment-anchor,.back-to-top):not([data-printing=ignore])',
 		);
 
 		// Create emtpy arrays for later population.
@@ -73,17 +73,23 @@ function getLinks() {
 	}
 }
 
-addEventListener('beforeprint', event => {
+addEventListener('beforeprint', (event) => {
 	if (!linksContainerInitialized) {
 		getLinks();
 		linksContainerInitialized = true;
 	}
-	document.body
-		.querySelectorAll('details')
-		.forEach(detail => detail.setAttribute('open', true));
+	document.body.querySelectorAll('details').forEach((detail) => {
+        // We obviously don't want comment forms to be expanded,
+        // that will simply waste paper.
+        if (detail.classList.contains('reply-container')) {
+            console.log(detail.classList);
+            return false;
+        }
+		detail.setAttribute('open', true);
+	});
 });
-addEventListener('afterprint', event => {
+addEventListener('afterprint', (event) => {
 	document.body
 		.querySelectorAll('details')
-		.forEach(detail => detail.removeAttribute('open'));
+		.forEach((detail) => detail.removeAttribute('open'));
 });

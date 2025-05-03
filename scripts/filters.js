@@ -86,6 +86,14 @@ module.exports = {
 		}
 		return false;
 	},
+	isMathPost: (posts, page) => {
+		for (post of posts) {
+			if (post.page.inputPath === page.inputPath) {
+				return post.data.math;
+			}
+		}
+		return false;
+	},
 	getPreviousTodayLearnedPost: (posts, page) =>
 		getPreviousPost(posts, page, (post) => post.data.isTodayLearned),
 	getNextTodayLearnedPost: (posts, page) =>

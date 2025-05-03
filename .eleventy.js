@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+const eleventy = require('@11ty/eleventy');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
@@ -11,6 +12,7 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require('markdown-it-attrs');
 
+const { processComments } = require('./scripts/process-comments.js');
 const { headerLink } = require('./scripts/permalink.js');
 const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
 const {
@@ -24,6 +26,7 @@ const {
 	getRegularPosts,
 	getTodayLearnedPosts,
 	isTodayLearnedPost,
+	isMathPost,
 	getPreviousTodayLearnedPost,
 	getNextTodayLearnedPost,
 	getPreviousRegularPost,
@@ -31,13 +34,20 @@ const {
 	withCodeBlockCompressor,
 } = require('./scripts/filters.js');
 
-module.exports = function (eleventyConfig) {
+module.exports = async (eleventyConfig) => {
 	eleventyConfig.addPassthroughCopy('src/css');
 	eleventyConfig.addPassthroughCopy('src/fonts');
 	eleventyConfig.addPassthroughCopy('src/favicon');
 	eleventyConfig.addPassthroughCopy('src/posts/resources');
 	eleventyConfig.addPassthroughCopy('src/scripts');
 
+	const baseURL =
+		process.env.ENVIRONMENT === 'production'
+			? 'https://sayansivakumaran.com'
+			: 'http://localhost:8080';
+	eleventyConfig.addPlugin(eleventy.HtmlBasePlugin, {
+		baseHref: baseURL,
+	});
 	eleventyConfig.addPlugin(pluginSyntaxHighlight);
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(pluginRss);
@@ -75,6 +85,7 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('getRegularPosts', getRegularPosts);
 	eleventyConfig.addFilter('getTodayLearnedPosts', getTodayLearnedPosts);
 	eleventyConfig.addFilter('isTodayLearnedPost', isTodayLearnedPost);
+	eleventyConfig.addFilter('isMathPost', isMathPost);
 	eleventyConfig.addFilter(
 		'getPreviousTodayLearnedPost',
 		getPreviousTodayLearnedPost,
@@ -83,21 +94,50 @@ module.exports = function (eleventyConfig) {
 	eleventyConfig.addFilter('getPreviousRegularPost', getPreviousRegularPost);
 	eleventyConfig.addFilter('getNextRegularPost', getNextRegularPost);
 
+	eleventyConfig.addFilter('dateOnly', function (dateVal, locale = 'en-us') {
+		var theDate = new Date(dateVal);
+		const options = {
+			year: 'numeric',
+			month: 'numeric',
+			day: 'numeric',
+		};
+		return theDate.toLocaleDateString(locale, options);
+	});
+
+	eleventyConfig.addFilter('timeOnly', function (dateVal, locale = 'en-us') {
+		var theDate = new Date(dateVal);
+		const options = {
+			hour: '2-digit',
+			minute: '2-digit',
+		};
+
+		return theDate.toLocaleTimeString('en-US', options);
+	});
+
 	eleventyConfig.addCollection('tagList', tagList);
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
 
 	// Customize Markdown library and settings:
+	const markdownItMathTemml = await import('markdown-it-math/temml');
 	let markdownLibrary = markdownIt({
 		html: true,
 		linkify: true,
-	}).use(markdownItAttrs).use(markdownItAnchor, {
-		permalink: headerLink({
-			safariReaderFix: true,
-		}),
-		level: [1, 2, 3, 4],
-		slugify: eleventyConfig.getFilter('slugify'),
-	});
+	})
+		.use(markdownItAttrs)
+		.use(markdownItMathTemml.default)
+		.use(markdownItAnchor, {
+			permalink: headerLink({
+				safariReaderFix: true,
+			}),
+			level: [1, 2, 3, 4],
+			slugify: eleventyConfig.getFilter('slugify'),
+		});
 	eleventyConfig.setLibrary('md', markdownLibrary);
+
+	eleventyConfig.addCollection('postsWithComments', async (collection) => {
+		await processComments(collection);
+		return [];
+	});
 
 	// Override Browsersync defaults (used only with --serve)
 	eleventyConfig.setBrowserSyncConfig({

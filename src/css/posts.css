@@ -2,7 +2,7 @@ aside {
 	margin: var(--medium-spacing) 0;
 	padding: var(--spacing);
 	border: 1.5px solid var(--text-color);
-	border-top: 7px solid;
+	border-top: 5px solid;
 	border-radius: 2px;
 }
 
@@ -15,16 +15,15 @@ aside a {
 }
 
 blockquote {
+    margin-bottom: var(--spacing);
 	padding-left: var(--spacing);
-	border-left: 10px solid var(--text-color);
-}
-
-blockquote p {
-	font-style: italic;
+	border-left: 8px solid var(--text-color);
+    font-style: italic;
 }
 
 .tree {
-	margin: var(--medium-spacing) 0; }
+	margin: var(--medium-spacing) 0;
+}
 
 .tree,
 .tree ul {
@@ -95,61 +94,61 @@ caption {
 	margin-bottom: var(--small-spacing);
 }
 .tags {
-    font-size: 90%;
-    list-style: none;
-    display: flex;
-    gap: var(--small-spacing);
-    padding-left: 0;
-    flex-wrap: wrap;
+	font-size: 90%;
+	list-style: none;
+	display: flex;
+	gap: var(--small-spacing);
+	padding-left: 0;
+	flex-wrap: wrap;
 }
 
 .tags a[href] {
-    padding: 0 var(--small-spacing);
-    border-radius: 20px;
+	padding: 0 var(--small-spacing);
+	border-radius: 20px;
 
-    text-decoration: none;
-    background-color: var(--footer-background-color);
-    color: var(--footer-text-color);
-    outline-offset: 16px;
+	text-decoration: none;
+	background-color: var(--footer-background-color);
+	color: var(--footer-text-color);
+	outline-offset: 16px;
 }
 
 .tags a[href]:hover {
-    color: var(--text-color);
+	color: var(--text-color);
 }
 
 .tags a[href]:focus {
-    outline-offset: 2px;
+	outline-offset: 2px;
 }
 
-html[data-theme="DARK"] .tags a[href] {
-    border: 1.5px solid currentColor;
+html[data-theme='DARK'] .tags a[href] {
+	border: 1.5px solid currentColor;
 }
-html[data-theme="DARK"] .tags a[href]:hover {
-    border-color: transparent;
+html[data-theme='DARK'] .tags a[href]:hover {
+	border-color: transparent;
 }
 
 @media (prefers-color-scheme: dark) {
-    .tags a[href] {
-        border: 1.5px solid currentColor;
-    }
-    .tags a[href]:hover {
-        border-color: transparent;
-    }
-    html[data-theme="LIGHT"] .tags a[href] {
-        border: none;
-    }
+	.tags a[href] {
+		border: 1.5px solid currentColor;
+	}
+	.tags a[href]:hover {
+		border-color: transparent;
+	}
+	html[data-theme='LIGHT'] .tags a[href] {
+		border: none;
+	}
 }
 
-details {
+.post-content details {
 	margin: var(--medium-spacing) 0;
 	transition:
 		border-color 0.2s,
 		width 0.1s;
 }
 
-details summary {
+.post-content details summary {
 	border: 1.5px solid var(--text-color);
-	border-top: 7px solid;
+	border-top: 5px solid;
 	padding: var(--spacing);
 	transition:
 		background-color 0.2s,
@@ -161,12 +160,12 @@ details summary {
 	border-radius: 2px;
 }
 
-details[open] {
+.post-content details[open] {
 	border: 1.5px solid var(--text-color);
 	border-top: 0px;
 }
 
-details[open] summary {
+.post-content details[open] summary {
 	border-right: none;
 	border-left: none;
 }
@@ -175,43 +174,42 @@ details[open] summary {
 	width: 45ch;
 }
 
-.details-grouper {
+.post-content .details-grouper {
 	margin: var(--medium-spacing) 0;
 	list-style: none;
 	padding: 0;
 }
 
-.details-grouper details {
+.post-content .details-grouper details {
 	margin: var(--spacing) 0;
 }
 
-details[open] {
+.post-content details[open] {
 	width: 60ch;
 }
 
-details[open] .details-content {
+.post-content details[open] .details-content {
 	margin: var(--small-spacing) 0;
 	padding: var(--small-spacing) var(--spacing);
 	width: 60ch;
 }
 
-details[open] .details-content *:last-child {
+.post-content details[open] .details-content *:last-child {
 	margin-bottom: 0;
 }
 
-summary:hover {
+.post-content summary:hover {
 	background-color: var(--primary-background-active-color);
 	cursor: pointer;
 }
 
 @media only screen and (max-width: 620px) {
 	.post-content details,
-	details[open],
-	details[open] .details-content {
+	.post-content details[open],
+	.post-content details[open] .details-content {
 		width: auto;
 	}
 }
-
 
 pre[class*='language-'] {
 	transition:
@@ -225,7 +223,7 @@ pre[class*='language-'] {
 }
 
 pre:focus-visible,
-summary:focus {
+.post-content summary:focus {
 	outline: 5px solid var(--primary-color);
 	outline-offset: 5px;
 }
@@ -240,7 +238,7 @@ dd {
 }
 
 hr {
-	margin: var(--medium-spacing) 0;
+	margin: var(--largeish-spacing) 0;
 }
 
 .postlist {
@@ -249,7 +247,28 @@ hr {
 }
 
 .postlist li {
-	margin-bottom: var(--medium-spacing);
+    position: relative;
+	margin-bottom: var(--spacing);
+
+    display: flex;
+    flex-direction: column;
+
+    border-left: 3px solid var(--text-color);
+    padding-left: var(--spacing);
+}
+
+.postlist li a[href] {
+    font-size: 100%;
+}
+
+.postlist li a[href]::after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 
 .post-header {
@@ -257,6 +276,182 @@ hr {
 }
 
 img {
+	border: 2px solid var(--text-color);
+	border-radius: 5px;
+}
+
+/*=======================================
+ * Comments
+ *======================================*/
+
+ul.comments {
+	padding-left: 0;
+	list-style: none;
+}
+
+.blog-comment-wrapper {
+    border-left-width: 0px;
+    padding-left: 0px;
+    font-style: inherit;
+}
+
+.blog-comment {
+    background-color: var(--comment-background-color);
+	border: var(--comment-border-width) solid var(--text-color);
+	padding: var(--spacing);
+    border-radius: 5px;
+}
+
+ul.comments li.comment-list-item:not(:first-child) {
+	margin-top: var(--semi-medium-spacing);
+}
+
+ul.comments .comment-header {
+	margin-bottom: var(--spacing);
+	display: flex;
+	justify-content: flex-start;
+	gap: var(--small-spacing);
+	flex-wrap: wrap;
+}
+
+.comments p:last-child {
+	margin-bottom: 0;
+}
+
+.comments cite {
+	font-family: inherit;
+	font-style: normal;
+	font-weight: bold;
+}
+
+.comments ul.subcomments {
+    list-style: none;
+    margin-left: var(--semi-medium-spacing);
+}
+
+.comments ul.subcomments li {
+	margin-top: var(--spacing);
+}
+
+.comments .reply-container {
+    margin-top: var(--spacing);
+    display: inline-block;
+}
+
+.comments details[open] {
+    width: 100%;
+}
+
+.comments summary {
+	transition:
+        background-color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+	outline-offset: 12px;
+    padding: var(--small-spacing);
     border: 2px solid var(--text-color);
-    border-radius: 10px;
+    background-color: var(--inline-code-background-color);
+    font-size: 90%;
+}
+
+.comments summary:focus {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 5px;
+}
+
+.comments summary:hover {
+	background-color: var(--primary-background-active-color);
+	cursor: pointer;
+}
+
+.comments form {
+    padding: var(--spacing);
+}
+
+input {
+    width: 20rem;
+}
+
+input,
+textarea {
+	border-radius: 2px;
+	border: 1.5px solid var(--text-color);
+	padding: var(--small-spacing);
+	display: block;
+	margin-bottom: var(--spacing);
+
+	outline-offset: 15px;
+	transition:
+		color 0.1s,
+		background-color 0.1s,
+		border-color 0.1s,
+		outline 0.1s,
+		outline-offset 0.1s;
+}
+
+input:focus,
+textarea:focus {
+	outline: 5px solid var(--primary-color);
+	outline-offset: 4px;
+}
+
+form.comment-form textarea {
+	height: 10rem;
+}
+
+form.comment-form textarea {
+	width: 100%;
+}
+
+form.comment-form button {
+	margin-top: var(--spacing);
+}
+
+dialog {
+    width: var(--max-content-width);
+    border-radius: 5px;
+    border: 1px solid var(--text-color);
+    background-color: var(--comment-background-color);
+    color: var(--text-color);
+}
+
+dialog h1 {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing);
+    border-radius: 1px;
+    outline-offset: 15px;
+    transition: outline .15s, outline-offset .15s;
+}
+
+dialog h1:focus {
+	outline: 5px solid var(--primary-color);
+    outline-offset: 5px;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+button[data-dialog] {
+    position: relative;
+}
+
+
+/*=======================================
+ * MathJax
+ *======================================*/
+
+/* Let's force MathJax to display centered math even when
+ * not using the display math mode. We need the importants because
+ * the MathJax script loads CSS after ours, overriding our customizations.*/
+mjx-container[jax="CHTML"][display="true"] {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.CtxtMenu_Menu {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0px 2px 5px #808080 !important;
 }

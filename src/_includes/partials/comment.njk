@@ -1,0 +1,37 @@
+{% from "partials/addComment.njk" import addComment %}
+
+{% macro comment(entry, fileSlug, url, title) %}
+<blockquote class="blog-comment-wrapper" id="{{ entry._id }}">
+   <div class="blog-comment">
+       <div class="comment-header">
+         <cite>
+         {%- if entry.website %}
+             <a rel="external nofollow ugc" href="{{ entry.website }}">{{ entry.name }}</a>
+         {%- else %}
+              {{ entry.name }}
+         {%- endif %}
+         </cite>
+         <span aria-hidden="true">•</span>
+         <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
+         <a class="comment-anchor" href="#{{ entry._id }}">Permalink</a>
+       </div>
+       <div>
+         {{ entry.message | safe}} 
+       </div>
+
+   {%- if not entry.parent %}
+         <details class="reply-container">
+            <summary>Add Reply</summary>
+            {{ addComment(entry._id, fileSlug, url, title) }}
+         </details>
+   {%- endif %}
+   </div>
+   {%- if (entry.children | length) > 0 %}
+   <ul aria-label="Replies" class="subcomments">
+     {%- for childEntry in entry.children %}
+     <li>{{ comment(childEntry) }}</li>  
+     {%- endfor %}
+   </ul>
+   {%- endif %}
+ </blockquote>
+{% endmacro %} 

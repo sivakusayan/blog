@@ -3,11 +3,14 @@ layout: layouts/base.njk
 templateClass: tmpl-post
 ---
 
+{% from "partials/comment.njk" import comment %}
+{% from "partials/addComment.njk" import addComment %}
+
 <div>
   <div class="post-content">
     <div class="post-header">
       {%- if collections.posts | isTodayLearnedPost(page) %}
-        <h1 id="Skip">TIL: {{ title }}</h1>
+        <h1 id="Skip">Today I Learned: {{ title }}</h1>
       {%- else %}
         <h1 id="Skip">{{ title }}</h1>
       {% endif %}
@@ -16,36 +19,22 @@ templateClass: tmpl-post
     {{ content | safe | withTableOfContents | withDetails | withCodeBlockCompressor}}
   </div>
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
-  <h2>Tagged</h2>
-  <div class="tags">
-    {%- for tag in tags | filterTagList %}
-      {%- set tagUrl %}/tags/{{ tag | slugify }}/{% endset %}
-      <a href="{{ tagUrl }}">{{ tag }}</a>
-    {%- endfor %}
-  </div>
 </div>
 
+<hr>
+
 <div>
-  {%- if collections.posts %}
-    {%- if collections.posts | isTodayLearnedPost(page) %}
-      {%- set nextPost = collections.posts | getNextTodayLearnedPost(page) %}
-      {%- set previousPost = collections.posts | getPreviousTodayLearnedPost(page) %}
-    {%- else %}
-      {%- set nextPost = collections.posts | getNextRegularPost(page) %}
-      {%- set previousPost = collections.posts | getPreviousRegularPost(page) %}
-    {%- endif %}
-      <hr>
-        {%- if nextPost %}
-        <p>
-            <span><b>Next: </b></span>
-            <a href="{{ nextPost.url | url }}">{{ nextPost.data.title }}</a>
-        </p>
-        {% endif %}
-        {%- if previousPost %}
-        <p>
-            <span><b>Previous: </b></span>
-            <a href="{{ previousPost.url | url }}">{{ previousPost.data.title }}</a>
-        </p>
-        {% endif %}
+<h2>Comments</h2>
+ {%- if (staticmanEntries | length) > 0 %}
+   <ul class="comments">
+   {%- for entry in staticmanEntries | reverse %}
+    <li class="comment-list-item">{{ comment(entry, page.fileSlug, page.url, title) }}</li>
+   {%- endfor %}
+   </ul>
+ {%- else %}
+ <p>No comments just yet!</p>
  {%- endif %}
+ 
+<h3>Add a comment</h3>
+{{ addComment("", page.fileSlug, page.url, title) }}
 </div>
