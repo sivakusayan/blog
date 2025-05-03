@@ -11,7 +11,7 @@
               {{ entry.name }}
          {%- endif %}
          </cite>
-         •
+         <span aria-hidden="true">•</span>
          <time datetime="{{ entry.date | htmlDateString}}">{{ entry.date | dateOnly}} at {{ entry.date | timeOnly}}</time>
          <a class="comment-anchor" href="#{{ entry._id }}">Permalink</a>
        </div>
