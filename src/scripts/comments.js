@@ -17,15 +17,15 @@ const markdownScriptExists = () => {
  */
 
 /**
- * Ensures that the passed in function runs while both Markdown and TeX 
+ * Ensures that the passed in function runs while both Markdown and TeX
  * scripts are loaded. Immediately invokes the callback if the scripts
  * were already loaded.
  */
-const withCommentFormattingScripts = async (callback) => {
-    if (window.markdownIt) {
-        callback();
-        return;
-    }
+const withMathFormattingScripts = async (callback) => {
+	if (window.markdownIt && window.markdownItMathTemml) {
+		callback();
+		return;
+	}
 	// Eagerly load the temml script, because it's a dependency we
 	// will indirectly need anyway.
 	const [markdownIt, markdownItMathTemml] = await Promise.all([
@@ -36,6 +36,16 @@ const withCommentFormattingScripts = async (callback) => {
 
 	window.markdownIt = markdownIt.default;
 	window.markdownItMathTemml = markdownItMathTemml.default;
+	callback();
+};
+
+const withMarkdownFormattingScripts = async (callback) => {
+	if (window.markdownIt) {
+		callback();
+		return;
+	}
+	const markdownIt = await import('markdown-it');
+	window.markdownIt = markdownIt.default;
 	callback();
 };
 
@@ -59,40 +69,54 @@ for (const previewButton of markdownPreviewButtons) {
 		const content = document.getElementById(`message:${id}`).value;
 
 		const oldButtonText = previewButton.innerHTML;
-        let newText = 'Loading Markdown and TeX libraries...';
-        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if (!prefersReducedMotion) {
-            newText = SVG_LOADER + `<span style="margin-left: 1.5rem">${newText}</span>`;
-        }
+		let newText = 'Loading formatting libraries...';
+		const prefersReducedMotion = window.matchMedia(
+			'(prefers-reduced-motion: reduce)',
+		).matches;
+		if (!prefersReducedMotion) {
+			newText =
+				SVG_LOADER + `<span style="margin-left: 1.5rem">${newText}</span>`;
+		}
 		previewButton.innerHTML = newText;
 		previewButton.setAttribute('aria-disabled', 'true');
 
-		withCommentFormattingScripts(() => {
+        // The markdown math parser is an extremely heavy dependency. While we don't have a great
+        // way to detect if the content has LaTeX in it without lots of code, this is a reasonably
+        // good heuristic.
+		const probablyNeedsMath = content.indexOf('$') > -1;
+		const onScriptDependenciesLoaded = () => {
 			previewButton.innerHTML = oldButtonText;
 			previewButton.removeAttribute('aria-disabled');
 
 			// Todo: Do we want to support syntax highlighting?
-			const md = markdownIt('zero', {
+			let md = markdownIt('zero', {
 				linkify: true,
 				highlight: (str) =>
 					`<pre class='language-text'><code>${md.utils.escapeHtml(str)}</code></pre>`,
-			})
-				.enable(allowedMarkdown)
-				.use(markdownItMathTemml, {
-					temmlOptions: {},
-				});
+			}).enable(allowedMarkdown);
+
+			if (window.markdownItMathTemml) {
+				md = md.use(window.markdownItMathTemml);
+			}
+
 			document.getElementById(`preview-content-root:${id}`).innerHTML =
 				md.render(content);
 
-            // As mentioned in the MathJax documents, MathJax will not automatically
-            // detect newly inserted MathML. We need to do this manually to properly format
-            // any potentially rendered math.
+			// As mentioned in the MathJax documents, MathJax will not automatically
+			// detect newly inserted MathML. We need to do this manually to properly format
+			// any potentially rendered math.
 			if (MathJax && MathJax.typeset) {
 				MathJax.typeset();
 			}
 
 			dialog.showModal();
-		});
+		};
+
+		if (probablyNeedsMath) {
+			withMathFormattingScripts(onScriptDependenciesLoaded);
+		} else {
+			withMarkdownFormattingScripts(onScriptDependenciesLoaded);
+		}
 	});
 	closeButton.addEventListener('click', () => {
 		dialog.close();

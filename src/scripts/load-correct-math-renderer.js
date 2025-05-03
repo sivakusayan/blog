@@ -10,8 +10,6 @@ const appendLinkElement = (href, opts) => {
 	document.head.appendChild(link);
 };
 
-console.log(mathRenderer);
-
 if (mathRenderer === "MATH_JAX") {
 	const script = document.createElement('script');
 	script.setAttribute('src', MATH_JAX_SRC);
