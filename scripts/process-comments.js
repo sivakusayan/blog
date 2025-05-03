@@ -11,7 +11,7 @@ processComments = async (collection) => {
 	collection.getFilteredByTag('posts').forEach(function (item) {
 		// If a post doesn't have any comments, we don't need to
 		// do any further processing.
-		if (!item.data.comments[item.fileSlug]) return;
+		if (!item.data.comments?.[item.fileSlug]) return;
 
 		const md = markdownIt('zero', { linkify: true })
 			.enable(allowedMarkdown)
