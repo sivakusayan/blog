@@ -333,9 +333,9 @@ ul.comments .comment-header {
 	margin-top: var(--spacing);
 }
 
-.comments details {
+.comments .reply-container {
     margin-top: var(--spacing);
-	width: 6rem;
+    display: inline-block;
 }
 
 .comments details[open] {
