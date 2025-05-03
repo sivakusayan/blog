@@ -50,3 +50,10 @@ footer nav {
 		margin: 0;
 	}
 }
+
+@media only screen and (max-width: 570px) {
+    .button-group {
+       flex-direction: column;
+       align-items: start;
+    }
+}

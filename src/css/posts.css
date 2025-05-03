@@ -339,7 +339,7 @@ ul.comments .comment-header {
 }
 
 .comments details[open] {
-	width: auto;
+    width: 100%;
 }
 
 .comments summary {

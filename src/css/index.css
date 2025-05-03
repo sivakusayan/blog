@@ -369,6 +369,9 @@ code {
 	header nav {
 		padding: 0 var(--spacing);
 	}
+    form input {
+        width: 100%;
+    }
 
 	.anchor {
 		position: relative;
@@ -380,14 +383,9 @@ code {
 	}
 }
 
-@media only screen and (max-width: 350px) {
+@media only screen and (max-width: 400px) {
 	ul {
 		padding-left: var(--spacing);
-	}
-
-	ul.post-chain {
-		flex-direction: column;
-		gap: var(--spacing);
 	}
 }
 
