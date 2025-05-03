@@ -4,7 +4,7 @@ let currentToggledMathButton = mathJaxButton;
 
 const MathRenderer = Object.freeze({
 	MATH_JAX: 'MATH_JAX',
-	MATH_ML: 'MATH_ML'
+	MATH_ML: 'MATH_ML',
 });
 
 const setMathRenderer = (renderer) => {
@@ -33,7 +33,4 @@ const updatePressedMathRendererButton = (renderer) => {
 
 mathJaxButton.onclick = (e) => setMathRenderer(MathRenderer.MATH_JAX);
 mathMLButton.onclick = (e) => setMathRenderer(MathRenderer.MATH_ML);
-
-// We don't need to restore the theme here when the page loads.
-// We load it at the end of the <head> tag to prevent FOUS.
 if ('mathRenderer' in localStorage) setMathRenderer(localStorage.mathRenderer);

@@ -31,8 +31,8 @@ currently minified. -->
     <link rel="preload" type="font/woff2" crossorigin as="font" href="/fonts/open-source-serif-italic.woff2">
     {%- if collections.posts | isMathPost(page) %}
         <noscript>
-            <link type="font/woff2" crossorigin as="font" href="/fonts/latinmodernmath.woff2">
-            <link type="font/woff2" crossorigin as="font" href="/fonts/Temml.woff2">
+            <link type="font/woff2" as="font" href="/fonts/latinmodernmath.woff2">
+            <link type="font/woff2" as="font" href="/fonts/Temml.woff2">
             <link rel="stylesheet" href="/css/third_party/Temml-Latin-Modern.css">
         </noscript>
         <script>
@@ -55,7 +55,7 @@ currently minified. -->
               }
             };
         </script>
-        <script id="MathJax-script" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/mml-chtml.min.js"></script>
+        <script async src="/scripts/load-correct-math-renderer.js"></script>
     {%- endif %}
 
     <script type="importmap">
@@ -101,8 +101,8 @@ currently minified. -->
     {% js %}{% include "constants.js" %}{% endjs %}
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
-    {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
-    {% js %}{% include "src/scripts/math.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/theming-settings.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/math-settings.js" %}{% endjs %}
     {% js %}{% include "src/scripts/comments.js" %}{% endjs %}
     {%- if eleventy.env.runMode === "serve" %}
       <script type="module" src="{% getBundleFileUrl "js" %}"></script>
