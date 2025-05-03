@@ -44,6 +44,8 @@ action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusaya
    <input type="hidden" name="options[redirectError]" value="{{ "/comment-error/" | htmlBaseUrl }}">
  
    <button type="submit">Submit</button>
+   {# Hack to make sure NVDA reads out the updated button label when scripts are loading, as
+      reading of aria-disabled state seems to conflict with that otherwise #}
    <button aria-live="polite" type="button" data-dialog="preview:{{ parent }}" data-close="close-preview:{{ parent }}" class="hide-script-disabled">Preview Comment</button>
  </form>
 <dialog id="preview:{{ parent }}">
