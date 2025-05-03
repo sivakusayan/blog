@@ -43,14 +43,13 @@ action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusaya
    <input type="hidden" name="options[redirect]" value="{{ "/comment-submitted/" | htmlBaseUrl }}">
    <input type="hidden" name="options[redirectError]" value="{{ "/comment-error/" | htmlBaseUrl }}">
  
-
+<button type="button" data-dialog="preview:{{ parent }}" data-close="close-preview:{{ parent }}" class="hide-script-disabled">Preview Comment</button>
+   <button type="submit">Submit</button>
+ </form>
 <dialog id="preview:{{ parent }}">
   <h1 autofocus tabindex="-1">Comment Preview</h1>
   <div class="comments" id="preview-content-root:{{ parent }}">
   </div>
-  <button type="button" id="close-preview:{{ parent }}"autofocus>Close</button>
+  <button aria-live="polite" type="button" id="close-preview:{{ parent }}"autofocus>Close</button>
 </dialog>
-<button type="button" data-dialog="preview:{{ parent }}" data-close="close-preview:{{ parent }}" class="hide-script-disabled">Preview Comment</button>
-   <button type="submit">Submit</button>
- </form>
 {% endmacro %}
