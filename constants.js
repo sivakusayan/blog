@@ -17,11 +17,11 @@ const allowedMarkdown = [
     'fence',
 ];
 
-const isNode = () => {
+const isNodeRuntime = () => {
     return typeof process === 'object';
 }
 
-if (isNode()) {
+if (isNodeRuntime()) {
 	module.exports = {
 		allowedMarkdown,
 	};

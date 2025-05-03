@@ -1,5 +1,6 @@
 const fs = require('fs');
 
+const eleventy = require('@11ty/eleventy');
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight');
 const pluginNavigation = require('@11ty/eleventy-navigation');
 const pluginRss = require('@11ty/eleventy-plugin-rss');
@@ -11,7 +12,7 @@ const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require('markdown-it-attrs');
 
-const { processComments } = require('./scripts/process-comments.js')
+const { processComments } = require('./scripts/process-comments.js');
 const { headerLink } = require('./scripts/permalink.js');
 const { tagList, todayLearnedTagList } = require('./scripts/collections.js');
 const {
@@ -25,7 +26,7 @@ const {
 	getRegularPosts,
 	getTodayLearnedPosts,
 	isTodayLearnedPost,
-    isMathPost,
+	isMathPost,
 	getPreviousTodayLearnedPost,
 	getNextTodayLearnedPost,
 	getPreviousRegularPost,
@@ -40,6 +41,13 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addPassthroughCopy('src/posts/resources');
 	eleventyConfig.addPassthroughCopy('src/scripts');
 
+	const baseURL =
+		process.env.ENVIRONMENT === 'production'
+			? 'https://sayansivakumaran.com'
+			: 'http://localhost:8080';
+	eleventyConfig.addPlugin(eleventy.HtmlBasePlugin, {
+		baseHref: baseURL,
+	});
 	eleventyConfig.addPlugin(pluginSyntaxHighlight);
 	eleventyConfig.addPlugin(pluginNavigation);
 	eleventyConfig.addPlugin(pluginRss);
@@ -110,13 +118,13 @@ module.exports = async (eleventyConfig) => {
 	eleventyConfig.addCollection('todayLearnedTagList', todayLearnedTagList);
 
 	// Customize Markdown library and settings:
-    const markdownItMathTemml = await import('markdown-it-math/temml');
+	const markdownItMathTemml = await import('markdown-it-math/temml');
 	let markdownLibrary = markdownIt({
 		html: true,
 		linkify: true,
 	})
 		.use(markdownItAttrs)
-        .use(markdownItMathTemml.default)
+		.use(markdownItMathTemml.default)
 		.use(markdownItAnchor, {
 			permalink: headerLink({
 				safariReaderFix: true,
@@ -126,9 +134,9 @@ module.exports = async (eleventyConfig) => {
 		});
 	eleventyConfig.setLibrary('md', markdownLibrary);
 
-    eleventyConfig.addCollection('postsWithComments', async (collection) => {
-        await processComments(collection);
-        return [];
+	eleventyConfig.addCollection('postsWithComments', async (collection) => {
+		await processComments(collection);
+		return [];
 	});
 
 	// Override Browsersync defaults (used only with --serve)

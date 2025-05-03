@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"description": "A starter repository for a blog web site using the Eleventy static site generator.",
 	"scripts": {
-		"build": "npx @11ty/eleventy",
 		"bench": "DEBUG=Eleventy:Benchmark* npx @11ty/eleventy",
 		"watch": "npx @11ty/eleventy --watch",
 		"serve": "npx @11ty/eleventy --serve",
-		"start": "npx @11ty/eleventy --serve",
+		"start": "ENVIRONMENT=development npx @11ty/eleventy --serve",
+		"build": "ENVIRONMENT=production npx @11ty/eleventy",
 		"debug": "DEBUG=* npx @11ty/eleventy",
 		"pa11y-ci:sitemap": "pa11y-ci --sitemap http://localhost:8080/sitemap.xml",
 		"test:pa11y-ci": "npx start-server-and-test start 8080 pa11y-ci:sitemap"

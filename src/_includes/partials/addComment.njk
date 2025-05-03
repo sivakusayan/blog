@@ -1,6 +1,6 @@
 {% macro addComment(parent, fileSlug, url, title) %}
 <form id="form:{{ parent }}"class="comment-form" method="post"
-action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments">
+action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusayan/blog/nonsense-branch/comments">
    <ul>
      <li>You can optionally enter an email to be notified of replies. You can always unsubscribe.</li>
      <li>You have lots of options for writing comments:
@@ -39,9 +39,9 @@ action="http://localhost:8080/v2/entry/sivakusayan/blog/nonsense-branch/comments
    <input type="hidden" name="options[subscribe]" value="email">
    <input type="hidden" name="options[title]" value="{{ title }}">
    <input type="hidden" name="fields[post]" value="{{ fileSlug }}">
-   <input type="hidden" name="options[origin]" value="https://sayansivakumaran.com{{ url }}">
-   <input type="hidden" name="options[redirect]" value="http://localhost:8081/comment-submitted">
-   <input type="hidden" name="options[redirectError]" value="http://localhost:8081/comment-error">
+   <input type="hidden" name="options[origin]" value="{{ url | htmlBaseUrl }}">
+   <input type="hidden" name="options[redirect]" value="{{ "/comment-submitted/" | htmlBaseUrl }}">
+   <input type="hidden" name="options[redirectError]" value="{{ "/comment-error/" | htmlBaseUrl }}">
  
    <button type="submit">Submit</button>
 
