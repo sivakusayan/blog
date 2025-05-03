@@ -1,7 +1,7 @@
 {% from "partials/addComment.njk" import addComment %}
 
 {% macro comment(entry, fileSlug, url, title) %}
-<blockquote id="{{ entry._id }}">
+<blockquote class="blog-comment-wrapper" id="{{ entry._id }}">
    <div class="blog-comment">
        <div class="comment-header">
          <cite>
@@ -27,7 +27,7 @@
    {%- endif %}
    </div>
    {%- if (entry.children | length) > 0 %}
-   <ul class="subcomments">
+   <ul aria-label="Replies" class="subcomments">
      {%- for childEntry in entry.children %}
      <li>{{ comment(childEntry) }}</li>  
      {%- endfor %}

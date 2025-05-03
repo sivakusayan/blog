@@ -15,12 +15,10 @@ aside a {
 }
 
 blockquote {
+    margin-bottom: var(--spacing);
 	padding-left: var(--spacing);
-	border-left: 10px solid var(--text-color);
-}
-
-blockquote p {
-	font-style: italic;
+	border-left: 8px solid var(--text-color);
+    font-style: italic;
 }
 
 .tree {
@@ -291,9 +289,10 @@ ul.comments {
 	list-style: none;
 }
 
-.comments blockquote {
+.blog-comment-wrapper {
     border-left-width: 0px;
     padding-left: 0px;
+    font-style: inherit;
 }
 
 .blog-comment {
@@ -301,10 +300,6 @@ ul.comments {
 	border: var(--comment-border-width) solid var(--text-color);
 	padding: var(--spacing);
     border-radius: 5px;
-}
-
-.comments p {
-	font-style: normal;
 }
 
 ul.comments li.comment-list-item:not(:first-child) {
@@ -453,4 +448,10 @@ mjx-container[jax="CHTML"][display="true"] {
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
+}
+
+.CtxtMenu_Menu {
+    background-color: var(--background-color) !important;
+    color: var(--text-color) !important;
+    box-shadow: 0px 2px 5px #808080 !important;
 }

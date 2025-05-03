@@ -21,10 +21,11 @@ footer a[href]:hover {
 	margin: auto;
 }
 
-.theme-picker {
+.button-group {
 	display: flex;
 	flex-wrap: wrap;
-	gap: var(--spacing);
+	gap: var(--small-spacing);
+    align-items: center;
 }
 
 .social-media {

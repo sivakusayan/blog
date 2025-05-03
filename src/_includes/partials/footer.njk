@@ -1,4 +1,5 @@
 {% from "partials/themePicker.njk" import themePicker %}
+{% from "partials/mathRenderPicker.njk" import mathRenderPicker %}
 
 {% macro footer() %}
     <footer>
@@ -9,6 +10,7 @@
                 <a href="/rss.xml">RSS</a>
             </div>
             {{ themePicker() }}
+            {{ mathRenderPicker() }}
             <div>
                 <p>If you find an issue on this site and you have the spoons, please <a href="https://github.com/sivakusayan/blog/issues">report it on Github</a>. </p>
             </div>

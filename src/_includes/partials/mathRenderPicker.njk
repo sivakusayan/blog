@@ -1,0 +1,12 @@
+{% macro mathRenderPicker() %}
+<div class="hide-script-disabled button-group" role="group">
+    <span>Math Renderer:</span>
+    <!-- Needed to show focus styles, since buttons already styled with outline property -->
+    <div class="button-wrapper">
+    <button id="math-jax-button" aria-pressed="true">Render with MathJax</button>
+    </div>
+    <div class="button-wrapper">
+    <button id="math-ml-button" aria-pressed="false">Render with MathML</button>
+    </div>
+</div>
+{% endmacro %}

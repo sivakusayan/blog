@@ -102,6 +102,7 @@ currently minified. -->
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming.js" %}{% endjs %}
+    {% js %}{% include "src/scripts/math.js" %}{% endjs %}
     {% js %}{% include "src/scripts/comments.js" %}{% endjs %}
     {%- if eleventy.env.runMode === "serve" %}
       <script type="module" src="{% getBundleFileUrl "js" %}"></script>
