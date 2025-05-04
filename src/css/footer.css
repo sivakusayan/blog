@@ -44,6 +44,10 @@ footer nav {
 	margin-top: calc(-1 * var(--medium-spacing));
 }
 
+ul.webring li {
+    padding: var(--small-spacing);
+}
+
 @media only screen and (max-width: 660px) {
 	.footer-wrapper {
 		width: auto;
