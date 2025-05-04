@@ -1,0 +1,64 @@
+---
+title: Accessibility Statement 
+layout: layouts/base.njk
+permalink: /accessibility/
+---
+ 
+ <h1 id="Skip">Accessibility Statement</h1>
+
+ <p>
+    One of the reasons I blog is because I love to share weird niche things I learned, and
+    to hopefully find other people with similar interests. It would be dissapointing if
+    accessibility issues got in the way of that. 
+ </p>
+
+ <p>
+    This site is committed to providing an experience that functions for the widest possible audience, regardless of technology or ability.
+    I strive to meet the <a href="https://www.w3.org/TR/WCAG22/">WCAG 2.2 level AA guidelines</a> by default. If, for some reason, you actually
+    care about my content (thank you!) and need certain level AAA accommodations, please <a href="mailto:sivakusayan@gmail.com">email me</a> and 
+    we can figure something out.
+ </p>
+
+ <p>
+    Of course, I'm human and I make mistakes. I use <code>pa11y-ci</code> and aXe scans to help add some level of
+    automation, and I try to test this website on Chromium, Firefox, and Safari. If you find any
+    issues I missed, please <a href="mailto:sivakusayan@gmail.com">email me</a> or write a <a
+    href="https://github.com/sivakusayan/blog/issues">Github issue</a> so we can get it resolved.
+ </p>
+
+ <h2>Math Accessibility Instructions</h2>
+
+<p>
+     I unfortunately was not able to find a definitive answer for what the best way to render
+     accessible math on the web was. For example, while many mailing lists seem to suggest MathJax 
+     is the golden standard for accessible math rendering, I had trouble using explorer mode on Orca 
+     (though this might just be my unfamiliarity with the tool).
+ </p>
+
+<p>
+     To solve this, I added the ability to change whether Math is rendered into regular MathML or as
+     enhanced MathJax as a <a href="#math-render-picker">site-level setting</a>. You should pick the option that is most convenient for
+     you. All math is rendered as MathML if JavaScript is disabled.
+ </p>
+
+<p>
+    If you decide to stick with MathJax, you should know that it has a very customizable experience
+    through a context menu exposed on any math expression. I encourage you to explore and pick
+    settings that work for you.
+</p>
+
+<h2>Known Issues</h2>
+<ul>
+    <li>
+    <p>
+        <strong>Issue:</strong> The MathJax context menu does not show up while using the "Comment Preview" functionality in
+        the comment form. This is because the context menu implementation does not seem to account for
+        HTML dialog elements.
+    </p>
+    <p>
+        <strong>Workaround:</strong> You can still use the MathJax context menu on math present in
+        the blog post itself, or on other users' comments. Any accessibility settings set there
+        should carry over to math displayed in the "Comment Preview" dialog.
+    </p>
+    </li>
+</ul>

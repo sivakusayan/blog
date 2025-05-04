@@ -105,8 +105,8 @@ for (const previewButton of markdownPreviewButtons) {
 			// As mentioned in the MathJax documents, MathJax will not automatically
 			// detect newly inserted MathML. We need to do this manually to properly format
 			// any potentially rendered math.
-			if (MathJax && MathJax.typeset) {
-				MathJax.typeset();
+			if (window.MathJax && window.MathJax.typeset) {
+				window.MathJax.typeset();
 			}
 
 			dialog.showModal();
