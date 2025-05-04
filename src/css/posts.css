@@ -429,6 +429,7 @@ dialog h1:focus {
 }
 
 dialog::backdrop {
+    -webkit-backdrop-filter: blur(5px);
     backdrop-filter: blur(5px);
 }
 
