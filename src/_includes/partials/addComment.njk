@@ -23,7 +23,7 @@ action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusaya
 
      <label for="name:{{ parent }}">Name<span aria-hidden="true">*</span></label>
      <br>
-     <input required="true" id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe"/>
+     <input required id="name:{{ parent }}" type="text" name="fields[name]" placeholder="John Doe"/>
 
    <label for="website:{{ parent }}">Website</label>
    <input type="url" id="website:{{ parent }}" name="fields[website]" placeholder="https://yourwebsite.com">
@@ -33,7 +33,7 @@ action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusaya
  
      <label for="message:{{ parent }}">Comment<span aria-hidden="true">*</span></label>
      <br>
-     <textarea required="true" id="message:{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
+     <textarea required id="message:{{ parent }}" name="fields[message]" placeholder="Here's the thing..."></textarea>
    
    {%- if parent %} <input type="hidden" name="fields[parent]" value="{{ parent }}"> {%- endif %}
    <input type="hidden" name="options[subscribe]" value="email">
@@ -52,6 +52,6 @@ action="https://staticman-hs69o.ondigitalocean.app/staticman/v2/entry/sivakusaya
   <h1 autofocus tabindex="-1">Comment Preview</h1>
   <div class="comments" id="preview-content-root:{{ parent }}">
   </div>
-  <button type="button" id="close-preview:{{ parent }}"autofocus>Close</button>
+  <button type="button" id="close-preview:{{ parent }}">Close</button>
 </dialog>
 {% endmacro %}
