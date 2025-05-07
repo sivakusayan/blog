@@ -456,3 +456,8 @@ mjx-container[jax="CHTML"][display="true"] {
     color: var(--text-color) !important;
     box-shadow: 0px 2px 5px #808080 !important;
 }
+
+math {
+    font-style: inherit;
+    font-weight: inherit;
+}
