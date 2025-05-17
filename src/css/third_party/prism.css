@@ -162,10 +162,6 @@ pre {
 	color-scheme: dark;
 }
 
-a code {
-    text-decoration: underline;
-}
-
 pre[class*='language-'] {
 	border-radius: 5px;
 }

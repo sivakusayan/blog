@@ -24,9 +24,12 @@ a[href]:focus {
 	outline-offset: 0px;
 }
 
-a[href].visited {
-    text-decoration-style: wavy;
-    text-decoration-thickness: from-font;
+main a[href]:not(.back-to-top):not(.header-anchor) {
+    color: var(--link-color);
+}
+
+main a[href]:visited:not(.back-to-top):not(.header-anchor) {
+    color: var(--text-color);
 }
 
 :target {
@@ -101,4 +104,12 @@ a[href].back-to-top {
 	.skip-link-wrapper:focus-within {
 		left: var(--spacing);
 	}
+}
+
+h2 a,
+h2 a code,
+h3 a {
+	text-decoration: none;
+	color: inherit;
+	line-height: var(--header-line-height);
 }

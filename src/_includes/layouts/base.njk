@@ -73,10 +73,10 @@ currently minified. -->
     {%- css %}{% include "src/css/third_party/reset.css" %}{% endcss %}
     {%- css %}{% include "src/css/third_party/prism.css" %}{% endcss %}
     {%- css %}{% include "src/css/index.css" %}{% endcss %}
-    {%- css %}{% include "src/css/posts.css" %}{% endcss %}
     {%- css %}{% include "src/css/header.css" %}{% endcss %}
     {%- css %}{% include "src/css/footer.css" %}{% endcss %}
     {%- css %}{% include "src/css/links.css" %}{% endcss %}
+    {%- css %}{% include "src/css/posts.css" %}{% endcss %}
     {%- css %}{% include "src/css/print-styles.css" %}{% endcss %}
     {%- css %}{% include "src/css/high-contrast.css" %}{% endcss %}
     <link rel="preload stylesheet" as="style" href="{% getBundleFileUrl "css" %}">
@@ -100,7 +100,6 @@ currently minified. -->
     {{ footer() }}
     {% js %}{% include "constants.js" %}{% endjs %}
     {% js %}{% include "src/scripts/index.js" %}{% endjs %}
-    {% js %}{% include "src/scripts/links.js" %}{% endjs %}
     {% js %}{% include "src/scripts/printing.js" %}{% endjs %}
     {% js %}{% include "src/scripts/theming-settings.js" %}{% endjs %}
     {% js %}{% include "src/scripts/math-settings.js" %}{% endjs %}
