@@ -24,6 +24,11 @@ a[href]:focus {
 	outline-offset: 0px;
 }
 
+a[href].visited {
+    text-decoration-style: wavy;
+    text-decoration-thickness: from-font;
+}
+
 :target {
 	scroll-margin-top: 3rem;
 	animation: 0.7s highlight;
