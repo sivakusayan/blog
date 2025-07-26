@@ -88,6 +88,10 @@ html[data-theme='DARK'] ::selection {
 	color: rgb(6, 6, 6, 0.99);
 }
 
+html[data-theme='DARK'] svg {
+   filter: invert(85%); 
+}
+
 @media (prefers-color-scheme: dark) {
 	:root {
 		color-scheme: dark;
@@ -123,6 +127,10 @@ html[data-theme='DARK'] ::selection {
 		color: rgb(6, 6, 6, 0.99);
 	}
 
+    svg {
+      filter: invert(85%); 
+    }
+
 	html[data-theme='LIGHT'] {
 		color-scheme: light;
 
@@ -154,6 +162,10 @@ html[data-theme='DARK'] ::selection {
 	html[data-theme='LIGHT'] ::selection {
 		background-color: rgb(18, 18, 18, 0.99);
 		color: rgb(245, 243, 243, 0.99);
+	}
+
+	html[data-theme='LIGHT'] svg {
+        filter: none;
 	}
 
 	html[data-theme='LIGHT'] footer ::selection,
@@ -265,6 +277,14 @@ main {
 	flex-grow: 1;
 	width: var(--max-content-width);
 	margin: auto;
+}
+
+.overflow-max-content-width {
+    height: auto;
+    width: calc(var(--max-content-width) * 1.4);
+    position: relative;
+    left: calc(-1 * var(--max-content-width) * 1.4 / 2 + 50%);
+    margin: var(--medium-spacing) 0;
 }
 
 p {
