@@ -81,20 +81,20 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
 ## Vocabulary 
 We'll use:
 
-- $S$ to denote some arbitrary structure with $n \geq 0$ members.
+- \\(S\\) to denote some arbitrary structure with \\(n \geq 0\\) members.
   - Again, for the sake of simplicity, let's ignore structures with bitfield members for now.
-- $m_i$ to denote the $i$th member of the structure, with $0 \leq i \lt n$.
-- $s_i$ to denote the `sizeof` member $m_i$.
-- $a_i$ to denote the alignment of member $m_i$, where $a_i=2^{k_i}$ for some integer $k_i \geq 0$
-  - Note that this isn't necessarily equal to the `alignof` member $m_i$, as a programmer has the
+- \\(m_i\\) to denote the \\(i\\)th member of the structure, with \\(0 \leq i \lt n\\).
+- \\(s_i\\) to denote the `sizeof` member \\(m_i\\).
+- \\(a_i\\) to denote the alignment of member \\(m_i\\), where \\(a_i=2^{k_i}\\) for some integer \\(k_i \geq 0\\)
+  - Note that this isn't necessarily equal to the `alignof` member \\(m_i\\), as a programmer has the
       option to override the alignment of a structure member.
-  - My hope is that restricting $a_i$ to be a power of 2 is a reasonable assumption. I don't know if
+  - My hope is that restricting \\(a_i\\) to be a power of 2 is a reasonable assumption. I don't know if
       there are any exotic architectures where that doesn't apply, but if there are this blog post
       does not apply to those architectures.
-- $p_i$ to denote the padding between members $m_i$ and $m_{i+1}$ (or the trailing padding if $m_i$
+- \\(p_i\\) to denote the padding between members \\(m_i\\) and \\(m_{i+1}\\) (or the trailing padding if \\(m_i\\)
     is the last member of the structure)
 
-It might be interesting to you that we make a distinction between the size $s_i$ and alignment $a_i$
+It might be interesting to you that we make a distinction between the size \\(s_i\\) and alignment \\(a_i\\)
 of structure members. This is because they aren't always equal. For example, executing [this program
 on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:9,positionColumn:1,positionLineNumber:9,selectionStartColumn:1,selectionStartLineNumber:9,startColumn:1,startLineNumber:9),source:'%23include+%3Cstdio.h%3E%0A%23include+%3Cstdalign.h%3E%0A%0Aint+main(void)+%7B%0A++++printf(%22Size+of+double:+%25lu%5Cn%22,+sizeof(double))%3B%0A++++printf(%22Alignment+of+double:+%25lu%22,+alignof(double))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:25,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:2,lang:___c,libs:!(),options:'-m32',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:25,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4) 
 shows that when compiling for 32 bit systems with the `-m32` flag, `gcc` will report that
@@ -131,7 +131,7 @@ struct Foo {
 
 The `sizeof` this structure should be 12 bytes. Indeed, this is how `sizeof` is normally computed ([try it out on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:18,positionColumn:1,positionLineNumber:18,selectionStartColumn:1,selectionStartLineNumber:18,startColumn:1,startLineNumber:18),source:'%23include+%3Cstdio.h%3E%0A%0Astruct+Foo+%7B%0A++++short+a%3B+//+Takes+up+bytes+1+and+2+%0A%0A++++int+b%3B+++//+Pad+to+a+4+byte+boundary,+then+takes+up+bytes+4+through+8+%0A%0A++++short+c%3B+//+No+padding+needed.+Takes+up+bytes+9+and+10.+%0A%0A+++++++++++++//+Trailing+padding+needed+to+make+sure+consecutive+copies+of+Foo+in%0A+++++++++++++//+an+array+are+aligned.+Add+2+final+bytes+of+padding.%0A%7D%3B%0A%0Aint+main(void)+%7B%0A++++printf(%22Sizeof+Foo:+%25zu%22,+sizeof(struct+Foo))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4)), 
 and this computation is correct as long as the structure `Foo` is aligned on a 4 byte boundary. In other
-words, let $M$ be the memory address that `Foo` starts at. Then this computation is correct as long
+words, let \\(M\\) be the memory address that `Foo` starts at. Then this computation is correct as long
 as:
 
 $$M \equiv 0\pmod{4}$$
@@ -306,7 +306,7 @@ If you're confused why we need to add 2 bytes of trailing padding, suppose that 
 `Foo`. Without the trailing padding in the example above, the `int` in the second instance of `Foo`
 would be misaligned.
 
-However, suppose that we hypothetically had a memory allocator that could allocate a memory address $M$ such that 
+However, suppose that we hypothetically had a memory allocator that could allocate a memory address \\(M\\) such that 
 
 $$M \equiv 2\pmod{4}$$
 
@@ -344,7 +344,7 @@ alignment of all structure members.
 
 Of course, it isn't useful to create a memory allocator that is flexible enough to support the
 allocations above. The struct `Foo` has an ordering of its members that ensures that `sizeof(struct
-Foo) = 8` even when $M \equiv 0 \pmod{4}$:
+Foo) = 8` even when \\(M \equiv 0 \pmod{4}\\):
 
 ```c
 // Ordering the members of Foo from largest alignment
@@ -365,7 +365,7 @@ We'll resolve this strange inconsistency later, and we'll prove that:
 
 $$\text{sizeof}(S,0) = \text{sizeof}(S,M)$$ 
 
-for any memory address $M$ that's divisible by the largest alignment in the structure $S$.
+for any memory address \\(M\\) that's divisible by the largest alignment in the structure \\(S\\).
 In other words, we will mathematically prove what we usually take for granted: that the value of
 `sizeof` effectively only takes one argument as long as the structure is aligned in a particular
 way.
@@ -392,10 +392,10 @@ hopefully make the proof of the consistency of `sizeof` easier to digest.
 We're going to [steal a concept from LLVM](https://clang.llvm.org/docs/LanguageExtensions.html#datasizeof) 
 known as `__datasizeof`, which is defined to be the `sizeof` a structure but without the tail padding. 
 We'll examine the properties of `__datasizeof` first to reduce edge cases needed in our analysis of
-`sizeof`, and we'll denote this function mathematically as $\text{dsizeof}$.
+`sizeof`, and we'll denote this function mathematically as \\(\text{dsizeof}\\).
 
 To compute an example, let's examine our structure `Foo` again, and determine what
-$\text{dsizeof}(\text{Foo}, 0)$ ends up being:
+\\(\text{dsizeof}(\text{Foo}, 0)\\) ends up being:
 
 ```c
 struct Foo {
@@ -420,9 +420,9 @@ $$
 \text{dsizeof}(\text{Foo}, 2) = 8
 $$
 
-Armed with some examples, let's come up with a general equation for $\text{dsizeof}$. 
-Let $M$ be the memory address that a structure $S$ starts at. Then we can compute 
-$\text{dsizeof}(S,M)$ as follows:
+Armed with some examples, let's come up with a general equation for \\(\text{dsizeof}\\). 
+Let \\(M\\) be the memory address that a structure \\(S\\) starts at. Then we can compute 
+\\(\text{dsizeof}(S,M)\\) as follows:
 
 $$
 \text{dsizeof}(S, M) = s_0 + p_0 + s_1 + p_1 + \ldots + s_{n-1} + p_{n-1} + s_n
@@ -431,41 +431,41 @@ $$
 All this is really saying is that the `dsizeof` some structure is the sum of the
 structure member sizes and the needed padding between those members.
 
-However, for $0 \leq i \leq n$, we know that $p_i$ cannot be some arbitrary integer - it must satisfy two constraints.
-First, the choice of $p_i$ must make it so the memory address of $m_{i+1}$ is divisible by $a_{i+1}$. 
+However, for \\(0 \leq i \leq n\\), we know that \\(p_i\\) cannot be some arbitrary integer - it must satisfy two constraints.
+First, the choice of \\(p_i\\) must make it so the memory address of \\(m_{i+1}\\) is divisible by \\(a_{i+1}\\). 
 In other words, the padding must be chosen to make sure the memory address of the structure's next member respects that member's alignment. 
 
-If we notice that the expression $M + s_0 + p_0 + \ldots + s_i + p_i$ represents the starting memory address of member
-$m_{i+1}$, we can encode this requirement recursively as:
+If we notice that the expression \\(M + s_0 + p_0 + \ldots + s_i + p_i\\) represents the starting memory address of member
+\\(m_{i+1}\\), we can encode this requirement recursively as:
 
 $$
 M + s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}}
 $$
 
-Second, we must ensure that $p_i$ is the smallest positive solution to the above equation. 
-This is because if we have some integer solution to the above equation $p_i=k$, then $p_i=k+ca_{i+1}$ is also a solution for any arbitrary
-integer $c$. So we add the final restriction on the value of each $p_i$:
+Second, we must ensure that \\(p_i\\) is the smallest positive solution to the above equation. 
+This is because if we have some integer solution to the above equation \\(p_i=k\\), then \\(p_i=k+ca_{i+1}\\) is also a solution for any arbitrary
+integer \\(c\\). So we add the final restriction on the value of each \\(p_i\\):
 
 $$
 0 \leq p_i \lt a_{i+1} 
 $$
 
-which guarantees the uniqueness of $p_i$.
+which guarantees the uniqueness of \\(p_i\\).
 
 ### Proving the consistency of `dsizeof`
 
 As an intermediary step to proving the consistency of `sizeof`, we would like the prove the
 following lemma:
 
-**Lemma 1:** Let $M$ be any memory address evenly divisible by the largest alignment in $S$.
+**Lemma 1:** Let \\(M\\) be any memory address evenly divisible by the largest alignment in \\(S\\).
 Then we have that:
 $$
 \text{dsizeof}(S,0) = \text{dsizeof}(S,M)
 $$
 
 **Proof:** We'll need to come up with some notation to differentiate the paddings in both
-sides of the equation. For $0 \leq i \leq n$, we'll write $p_i$ to denote the paddings inside of
-$\text{dsizeof}(S, 0)$, and we'll write $b_i$ to denote the paddings inside of $\text{dsizeof}(S, M)$.
+sides of the equation. For \\(0 \leq i \leq n\\), we'll write \\(p_i\\) to denote the paddings inside of
+\\(\text{dsizeof}(S, 0)\\), and we'll write \\(b_i\\) to denote the paddings inside of \\(\text{dsizeof}(S, M)\\).
 Thus, our equations become:
 
 $$
@@ -475,10 +475,10 @@ $$
 \text{dsizeof}(S, M) = s_0 + b_0 + s_1 + b_1 + \ldots + s_{n-1} + b_{n-1} + s_n
 $$
 
-All we need to show is that for any $i$, we have \\(b_i = p_i\\), at which point we know that
-$\text{dsizeof}(S, 0) = \text{dsizeof}(S, M)$.
+All we need to show is that for any \\(i\\), we have \\(b_i = p_i\\), at which point we know that
+\\(\text{dsizeof}(S, 0) = \text{dsizeof}(S, M)\\).
 
-First, recall our restrictions that each padding must satisfy. We know that for each $p_i$:
+First, recall our restrictions that each padding must satisfy. We know that for each \\(p_i\\):
 
 $$
 s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}}
@@ -487,7 +487,7 @@ $$
 0 \leq p_i \lt a_{i+1} 
 $$
 
-Similarly, we know that for each $b_i$:
+Similarly, we know that for each \\(b_i\\):
 
 $$
 \begin{equation}
@@ -498,10 +498,10 @@ $$
 0 \leq b_i \lt a_{i+1} 
 $$
 
-However, for the $b_i$ case, we know that by definition $M$ is divisible by the greatest alignment
-$a_{\text{max}}=2^{k_{\text{max}}}$
-in $S$. Since we know that each $a_i=2^{k_i} \leq 2^{k_{\text{max}}}$, 
-that means that $M$ is divisible by any ${a_i}$, and so $M \equiv 0 \pmod{a_i}$ for all $i$. 
+However, for the \\(b_i\\) case, we know that by definition \\(M\\) is divisible by the greatest alignment
+\\(a_{\text{max}}=2^{k_{\text{max}}}\\)
+in \\(S\\). Since we know that each \\(a_i=2^{k_i} \leq 2^{k_{\text{max}}}\\), 
+that means that \\(M\\) is divisible by any \\({a_i}\\), and so \\(M \equiv 0 \pmod{a_i}\\) for all \\(i\\). 
 
 So we can instead write:
 
@@ -513,7 +513,7 @@ s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}}
 \end{align*}
 $$
 
-We now have the pair of equations below that we can do induction over to show that each $b_i = p_i$:
+We now have the pair of equations below that we can do induction over to show that each \\(b_i = p_i\\):
 
 $$
 \begin{align}
@@ -522,7 +522,7 @@ s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}}
 \end{align}
 $$
 
-Let's start with the case of $i=0$. Then we have the equations:
+Let's start with the case of \\(i=0\\). Then we have the equations:
 
 $$
 s_0 + p_0 \equiv 0 \pmod{a_1}
@@ -531,7 +531,7 @@ $$
 s_0 + b_0 \equiv 0 \pmod{a_1}
 $$
 
-However, since the lefthand sides are both equal to $0$ modulo $a_1$, we can then write:
+However, since the lefthand sides are both equal to \\(0\\) modulo \\(a_1\\), we can then write:
 $$
 s_0 + p_0 \equiv s_0 + b_0 \pmod{a_1}
 $$
@@ -539,11 +539,11 @@ $$
 p_0 \equiv b_0 \pmod{a_1}
 $$
 
-So we know that $p_0$ and $b_0$ are in the same equivalence class. However, because $0 \leq p_0 \lt
-a_1$, and $0 \leq b_0 \lt a_1$, we know that $p_0=b_0$, and we are done with the base case.
+So we know that \\(p_0\\) and \\(b_0\\) are in the same equivalence class. However, because $0 \leq p_0 \lt
+a_1\\(, and \\)0 \leq b_0 \lt a_1\\(, we know that \\)p_0=b_0$, and we are done with the base case.
 
-Now, for the final step, we need to show that for any $0 \lt j \lt i \leq n$, if $p_{j}=b_{j}$ then
-$p_{i}=b_{i}$. However, we can solve this by similar techniques used to prove the base case:
+Now, for the final step, we need to show that for any \\(0 \lt j \lt i \leq n\\), if \\(p_{j}=b_{j}\\) then
+\\(p_{i}=b_{i}\\). However, we can solve this by similar techniques used to prove the base case:
 
 $$
 s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}}
@@ -555,51 +555,51 @@ $$
 s_0 + b_0 + \ldots + s_i + b_i \equiv s_0 + p_0 + \ldots + s_i + p_i  \pmod{a_{i+1}}
 $$
 
-Since we know that all of the prior $b_j$ and $p_j$ are equal, we can rewrite these equations as:
+Since we know that all of the prior \\(b_j\\) and \\(p_j\\) are equal, we can rewrite these equations as:
 
 $$
 s_0 + p_0 + \ldots + s_i + b_i \equiv s_0 + p_0 + \ldots + s_i + p_i  \pmod{a_{i+1}}
 $$
 
-so we can subtract the terms $s_0 + p_0 + \ldots + s_i$ from both sides of the equation to get:
+so we can subtract the terms \\(s_0 + p_0 + \ldots + s_i\\) from both sides of the equation to get:
 
 $$
 b_i \equiv p_i \pmod{a_{i+1}}
 $$
 
-So $b_i$ and $p_i$ are in the same equivalence class. However, once again, because $0 \leq b_i \lt
-a_{i+1}$, and $0 \leq p_i \lt a_{i+1}$, we know that $p_i=b_i$ for any $i$. Since all of the paddings are
+So \\(b_i\\) and \\(p_i\\) are in the same equivalence class. However, once again, because $0 \leq b_i \lt
+a_{i+1}\\(, and \\)0 \leq p_i \lt a_{i+1}\\(, we know that \\)p_i=b_i\\( for any \\)i$. Since all of the paddings are
 equal in both cases, we are done with the proof.
 
 ### The equation for `sizeof`
 
-Okay, we now have a mathematical formula for $\text{dsizeof}(S,M)$ and we know it's consistent when we have
-certain restrictions on the memory address $M$. We would like to use this to come up with an
+Okay, we now have a mathematical formula for \\(\text{dsizeof}(S,M)\\) and we know it's consistent when we have
+certain restrictions on the memory address \\(M\\). We would like to use this to come up with an
 equation for `sizeof`.
 
-However, hopefully this is simple enough. Since $\text{dsizeof}$ is simply `sizeof` without the
+However, hopefully this is simple enough. Since \\(\text{dsizeof}\\) is simply `sizeof` without the
 trailing padding, we can write:
 
 $$
 \text{sizeof(S,M)} = \text{dsizeof(S,M)} + p
 $$
 
-where $p$ represents the trailing padding of the structure. Once again, $p$ cannot be arbitrary: we
-must choose $p$ such that if we have an array of structure $S$, each instance of $S$ must have the
-same size and offsets inside of $S$.
+where \\(p\\) represents the trailing padding of the structure. Once again, \\(p\\) cannot be arbitrary: we
+must choose \\(p\\) such that if we have an array of structure \\(S\\), each instance of \\(S\\) must have the
+same size and offsets inside of \\(S\\).
 
-Defining such a $p$ seems hard, in my opinion. As the discussion prior shows, we can have "valid"
-alignments of $S$ that are not just the largest alignment in $S$. In order to simplify things, I
+Defining such a \\(p\\) seems hard, in my opinion. As the discussion prior shows, we can have "valid"
+alignments of \\(S\\) that are not just the largest alignment in \\(S\\). In order to simplify things, I
 will again restrict this scope of this blog post - we will only study structures aligned on the
 largest alignment of their members.
 
-Thus, let $a$ be the largest alignment in $S$. We choose $p$ such that:
+Thus, let \\(a\\) be the largest alignment in \\(S\\). We choose \\(p\\) such that:
 
 $$
 M + \text{dsizeof(S,M)} + p = 0 \pmod{a}
 $$
 
-and of course, we still desire that $p$ be the smallest positive solution to the above:
+and of course, we still desire that \\(p\\) be the smallest positive solution to the above:
 
 $$0 \leq p \lt a$$
 
@@ -608,12 +608,12 @@ $$0 \leq p \lt a$$
 We finally get to the important lemma that we need before we can even begin to think about finding
 the minima of `sizeof`.
 
-**Lemma 2:** Let $M$ be any memory address evenly divisible by the largest alignment in $S$.
+**Lemma 2:** Let \\(M\\) be any memory address evenly divisible by the largest alignment in \\(S\\).
 Then we have that:
 $$
 \text{sizeof}(S,0) = \text{sizeof}(S,M)
 $$
-**Proof:** Expanding the definition of $\text{sizeof}$, we have:
+**Proof:** Expanding the definition of \\(\text{sizeof}\\), we have:
 
 $$
 \text{sizeof}(S,0) = \text{dsizeof(S,0)} + p
@@ -622,7 +622,7 @@ $$
 \text{sizeof}(S,M) = \text{dsizeof(S,M)} + b
 $$
 
-where $p$ and $b$ respectively must satisfy the constraints:
+where \\(p\\) and \\(b\\) respectively must satisfy the constraints:
 
 $$
 \text{dsizeof(S,0)} + p = 0 \pmod{a}
@@ -631,7 +631,7 @@ $$
 M + \text{dsizeof(S,M)} + b = 0 \pmod{a}
 $$
 
-Again, by our choice of $M$, we know that $M = 0 \pmod{a}$, and so we have:
+Again, by our choice of \\(M\\), we know that \\(M = 0 \pmod{a}\\), and so we have:
 
 $$
 \text{dsizeof(S,0)} + p = \text{dsizeof(S,M)} + b \pmod{a} 
@@ -640,7 +640,7 @@ $$
 p = b \pmod{a}
 $$
 
-And since we have both $0 \leq p \lt a$ and $0 \leq b \lt a$, we know that $p=b$ and we are done.
+And since we have both \\(0 \leq p \lt a\\) and \\(0 \leq b \lt a\\), we know that \\(p=b\\) and we are done.
 
 ## Proving that ordering by alignment is optimal for 'simple' structures
 
@@ -648,8 +648,8 @@ To keep our mathematics simple, we're going to restrict the class of structures 
 more. To start with, we're going to define a **primitive** structure as any structure where all
 members satisfy the following conditions:
 
-- Each $a_n$ is equal to a power of 2
-- $s_n = ca_n$ for some $c \geq 0$
+- Each \\(a_n\\) is equal to a power of 2
+- \\(s_n = ca_n\\) for some \\(c \geq 0\\)
 
 Effectively, this is a structure whose members are all primitives, so that no structure members
 are aggregate data types of their own. Furthermore, no structure members are "unusually aligned".
@@ -675,13 +675,13 @@ struct Bar {
 
 We're going to prove an intermediary lemma.
 
-**Lemma 3:** Let $S$ be a primitive structure. Ordering the members of $S$ from largest to smallest
-alignment will minimize the value of $\text{dsizeof(S)}$.
+**Lemma 3:** Let \\(S\\) be a primitive structure. Ordering the members of \\(S\\) from largest to smallest
+alignment will minimize the value of \\(\text{dsizeof(S)}\\).
 
-**Proof:** It suffices to show that ordering the members of $S$ from largest to smallest alignment
-will make each of the intermediary $p_n=0$. We do this by mathematical induction.
+**Proof:** It suffices to show that ordering the members of \\(S\\) from largest to smallest alignment
+will make each of the intermediary \\(p_n=0\\). We do this by mathematical induction.
 
-First, we prove the base case. We want to show that if $a_0 \geq a_1$, then $p_0=0$. However, we
+First, we prove the base case. We want to show that if \\(a_0 \geq a_1\\), then \\(p_0=0\\). However, we
 know that:
 
 $$
@@ -691,24 +691,24 @@ $$
 s_1=c_1a_1
 $$
 
-However, since $a_0 \geq a_1$, we know that $a_0$ is evenly divisible by $a_0$, and thus $s_0$ is
-evenly divisible by $a_1$. Since $s_1$ starts at the memory address $s_0+p_0$, we have it that
-$p_0=0$.
+However, since \\(a_0 \geq a_1\\), we know that \\(a_0\\) is evenly divisible by \\(a_0\\), and thus \\(s_0\\) is
+evenly divisible by \\(a_1\\). Since \\(s_1\\) starts at the memory address \\(s_0+p_0\\), we have it that
+\\(p_0=0\\).
 
-Next, we want to show that for $0 \lt j \lt i \leq n$, $p_j=0$ implies that $p_i=0$. We know that
-$p_i$ must satisfy the equation:
+Next, we want to show that for \\(0 \lt j \lt i \leq n\\), \\(p_j=0\\) implies that \\(p_i=0\\). We know that
+\\(p_i\\) must satisfy the equation:
 
 $$
 M + s_0 + p_0 + s_1 + p_1 + \ldots s_{i-1} + p_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
 $$
 
-But since all $p_j=0$, we know that:
+But since all \\(p_j=0\\), we know that:
 
 $$
 M + s_0 + s_1 + \ldots s_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
 $$
 
-and since each $s_n=c_na_n$, we can rewrite the above as:
+and since each \\(s_n=c_na_n\\), we can rewrite the above as:
 
 $$
 M + c_0a_0 + c_1a_1 + \ldots c_{i-1}a_{i-1} + c_ia_i + p_i \equiv 0 \pmod{a_{i+1}}
@@ -717,13 +717,13 @@ $$
 a_0 \geq a_1 \geq a_2 \geq \ldots \geq a_{i-1} \geq a_i \geq a_{i+1}
 $$
 
-Since each $a_n$ is a power of two, we know that:
+Since each \\(a_n\\) is a power of two, we know that:
 
 $$
 M + c_0a_0 + c_1a_1 + \ldots c_{i-1}a_{i-1} + c_ia_i \equiv 0 \pmod{a_{i+1}}
 $$
 
-and we are done, as $p_i=0$.
+and we are done, as \\(p_i=0\\).
 
 ## Counterexample to Clang's optin.performance.Padding Analyzer
 
