@@ -16,6 +16,43 @@ templateClass: tmpl-post
       {% endif %}
       <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
     </div>
+      {%- if collections.posts | isMathPost(page) %}
+        <noscript>
+            <aside>
+                <p>
+                    Unfortunately, you'll need JavaScript in order to view nicely formatted math on this page.
+                    You'll see raw LaTeX otherwise. I tried looking into server-side rendering of LaTeX, but I ran into two problems:
+                </p>
+                <ul>
+                    <li>
+                        MathJax <a href="https://groups.google.com/g/mathjax-users/c/9UCXP0rCwv8">does not support attaching its accessibility menu if it's
+                        pre-rendered on the server</a>.
+                        You might say that semantic MathML is enough, but to be honest, I suspect 
+                        MathJax features like explorer mode is mandatory when dealing with
+                        complicated diagrams. The <a href="https://en.wikipedia.org/wiki/Snake_lemma">Snake Lemma</a> 
+                        is probably one good example.
+                    </li>
+                    <li>
+                        If I use another intermediary TeX to MathML generator such as Temml, then
+                        use MathJax's MathML input processor to attach the accessibility menu, it
+                        prevents me from using more specialized LaTeX environments such as
+                        <code>\begin{align}</code>. It seems like Temmls' MathML output somehow conflicts with
+                        the MathML processing of MathJax.
+                    </li>
+                </ul>
+               <p> 
+                    I ultimately chose to support loading of MathJax accessibility features and support
+                    of complex LaTeX environments over support of viewing math posts without JavaScript. 
+                    Maybe this can be revisited once MathJax supports standalone loading of its
+                    accessibility extension.
+               </p>
+               <p>
+                    Sorry.
+               </p>
+            </aside>
+        </noscript>
+      {% endif %}
+
     {{ content | safe | withTableOfContents | withDetails | withCodeBlockCompressor}}
   </div>
   <a class="back-to-top" href="#Skip">Go back to top &ShortUpArrow;</a>
