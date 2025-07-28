@@ -1,4 +1,4 @@
-const MATH_JAX_SRC = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/mml-chtml.js';
+const MATH_JAX_SRC = 'https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js';
 const mathRenderer = localStorage?.mathRenderer || "MATH_JAX";
 
 const appendLinkElement = (href, opts) => {
