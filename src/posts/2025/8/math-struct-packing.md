@@ -357,7 +357,8 @@ struct Foo {
 ```
 
 However, I hope the strange example I gave shows that it isn't immediately obvious that `sizeof`
-will give the same value no matter what memory address we place the structure at.
+will give the same value no matter what memory address we place the structure at, even if we
+restrict placing the structure at memory addresses that result in usable array layouts.
 
 From this, I claim that `sizeof` is, in reality, a function of two arguments when applied to structures. 
 The first argument is the structure in question, and the second argument is the memory address the structure starts at. 
@@ -584,18 +585,18 @@ Okay, we now have a mathematical formula for \\(\text{dsizeof}(S,M)\\) and we kn
 certain restrictions on the memory address \\(M\\). We would like to use this to come up with an
 equation for `sizeof`.
 
-However, hopefully this is simple enough. Since \\(\text{dsizeof}\\) is simply `sizeof` without the
+This should be simple enough. Since \\(\text{dsizeof}\\) is simply `sizeof` without the
 trailing padding, we can write:
 
 $$
-\text{sizeof(S,M)} = \text{dsizeof(S,M)} + p
+\text{sizeof}(S,M) = \text{dsizeof}(S,M) + p
 $$
 
 where \\(p\\) represents the trailing padding of the structure. Once again, \\(p\\) cannot be arbitrary: we
 must choose \\(p\\) such that if we have an array of structure \\(S\\), each instance of \\(S\\) must have the
 same size and offsets inside of \\(S\\).
 
-Defining such a \\(p\\) seems hard, in my opinion. As the discussion prior shows, we can have "valid"
+Defining such a \\(p\\) seems hard, in my opinion. As the discussion in ["A potential ambiguity in the definition of sizeof"](#a-potential-ambiguity-in-the-definition-of-sizeof) shows, we can have "valid"
 alignments of \\(S\\) that are not just the largest alignment in \\(S\\). In order to simplify things, I
 will again restrict this scope of this blog post - we will only study structures aligned on the
 largest alignment of their members.
@@ -603,12 +604,11 @@ largest alignment of their members.
 Thus, let \\(a\\) be the largest alignment in \\(S\\). We choose \\(p\\) such that:
 
 $$
-M + \text{dsizeof(S,M)} + p = 0 \pmod{a}
+M + \text{dsizeof}(S,M) + p = 0 \pmod{a}
 $$
 
-and of course, we still desire that \\(p\\) be the smallest positive solution to the above:
-
-$$0 \leq p \lt a$$
+and of course, we still desire that \\(p\\) be the smallest positive solution to the above, so we
+add the restriction that \\(0 \leq p \lt a\\).
 
 ### Proving the consistency of `sizeof`
 
@@ -623,28 +623,31 @@ $$
 **Proof:** Expanding the definition of \\(\text{sizeof}\\), we have:
 
 $$
-\text{sizeof}(S,0) = \text{dsizeof(S,0)} + p
-$$
-$$
-\text{sizeof}(S,M) = \text{dsizeof(S,M)} + b
+\begin{align}
+\text{sizeof}(S,0) = \text{dsizeof}(S,0) + p \\\\
+\text{sizeof}(S,M) = \text{dsizeof}(S,M) + b
+\end{align}
 $$
 
 where \\(p\\) and \\(b\\) respectively must satisfy the constraints:
 
 $$
-\text{dsizeof(S,0)} + p = 0 \pmod{a}
-$$
-$$
-M + \text{dsizeof(S,M)} + b = 0 \pmod{a}
+\begin{align}
+\text{dsizeof}(S,0) + p = 0 \pmod{a} \\\\
+M + \text{dsizeof}(S,M) + b = 0 \pmod{a}
+\end{align}
 $$
 
-Again, by our choice of \\(M\\), we know that \\(M = 0 \pmod{a}\\), and so we have:
+Recall that by **Lemma 1** we know that \\(\text{dsizeof}(S,0)=\text{dsizeof}(S,M)\\), so it suffices
+to show that the trailing paddings \\(p\\) and \\(b\\) are equal.
+
+By our choice of \\(M\\), we know that \\(M = 0 \pmod{a}\\), and so with (16) and (17) we have:
 
 $$
-\text{dsizeof(S,0)} + p = \text{dsizeof(S,M)} + b \pmod{a} 
-$$
-$$
+\begin{align}
+\text{dsizeof(S,0)} + p = \text{dsizeof(S,M)} + b \pmod{a} \\\\
 p = b \pmod{a}
+\end{align}
 $$
 
 And since we have both \\(0 \leq p \lt a\\) and \\(0 \leq b \lt a\\), we know that \\(p=b\\) and we are done.
