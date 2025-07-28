@@ -478,24 +478,20 @@ $$
 All we need to show is that for any \\(i\\), we have \\(b_i = p_i\\), at which point we know that
 \\(\text{dsizeof}(S, 0) = \text{dsizeof}(S, M)\\).
 
-First, recall our restrictions that each padding must satisfy. We know that for each \\(p_i\\):
+First, recall our restrictions that each padding must satisfy. We know that for each \\(p_i\\) and
+\\(b_i\\):
 
 $$
-s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}}
-$$
-$$
-0 \leq p_i \lt a_{i+1} 
-$$
-
-Similarly, we know that for each \\(b_i\\):
-
-$$
-\begin{equation}
+\begin{align}
+0 + s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}} \\\\
 M + s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}}
-\end{equation}
+\end{align}
 $$
 $$
+\begin{align*}
+0 \leq p_i \lt a_{i+1} \\\\
 0 \leq b_i \lt a_{i+1} 
+\end{align*}
 $$
 
 However, for the \\(b_i\\) case, we know that by definition \\(M\\) is divisible by the greatest alignment
@@ -503,7 +499,7 @@ However, for the \\(b_i\\) case, we know that by definition \\(M\\) is divisible
 in \\(S\\). Since we know that each \\(a_i=2^{k_i} \leq 2^{k_{\text{max}}}\\), 
 that means that \\(M\\) is divisible by any \\({a_i}\\), and so \\(M \equiv 0 \pmod{a_i}\\) for all \\(i\\). 
 
-So we can instead write:
+So we can instead transform equation (2) into:
 
 $$
 \begin{align*}
@@ -513,7 +509,7 @@ s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}}
 \end{align*}
 $$
 
-We now have the pair of equations below that we can do induction over to show that each \\(b_i = p_i\\):
+We now have the pair of equations below that we can do mathematical induction over to show that each \\(b_i = p_i\\):
 
 $$
 \begin{align}
@@ -525,50 +521,61 @@ $$
 Let's start with the case of \\(i=0\\). Then we have the equations:
 
 $$
-s_0 + p_0 \equiv 0 \pmod{a_1}
-$$
-$$
+\begin{align}
+s_0 + p_0 \equiv 0 \pmod{a_1} \\\\
 s_0 + b_0 \equiv 0 \pmod{a_1}
+\end{align}
 $$
 
-However, since the lefthand sides are both equal to \\(0\\) modulo \\(a_1\\), we can then write:
+However, since the lefthand sides of (5) and (6) are both equivalent to \\(0 \pmod{a_1}\\), we can then write:
 $$
-s_0 + p_0 \equiv s_0 + b_0 \pmod{a_1}
-$$
-$$
+\begin{align}
+s_0 + p_0 \equiv s_0 + b_0 \pmod{a_1} \\\\
 p_0 \equiv b_0 \pmod{a_1}
+\end{align}
 $$
 
-So we know that \\(p_0\\) and \\(b_0\\) are in the same equivalence class. However, because $0 \leq p_0 \lt
-a_1\\(, and \\)0 \leq b_0 \lt a_1\\(, we know that \\)p_0=b_0$, and we are done with the base case.
+So we know that \\(p_0\\) and \\(b_0\\) are in the same equivalence class. However, because \\(0 \leq p_0 \lt
+a_1\\), and \\(0 \leq b_0 \lt a_1\\), we know that \\(p_0=b_0\\), and we are done with the base case.
 
 Now, for the final step, we need to show that for any \\(0 \lt j \lt i \leq n\\), if \\(p_{j}=b_{j}\\) then
 \\(p_{i}=b_{i}\\). However, we can solve this by similar techniques used to prove the base case:
 
 $$
-s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}}
+\begin{align}
+s_0 + p_0 + \ldots + s_i + p_i \equiv 0 \pmod{a_{i+1}} \\\\
+s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}} \\\\
+\end{align}
 $$
+
+Once again, since the lefthand sides of (9) and (10) are both equivalent to \\(0 \pmod{a_{i+1}}\\), we can set
+them equal to each other: 
+
 $$
-s_0 + b_0 + \ldots + s_i + b_i \equiv 0 \pmod{a_{i+1}}
-$$
-$$
+\begin{equation}
 s_0 + b_0 + \ldots + s_i + b_i \equiv s_0 + p_0 + \ldots + s_i + p_i  \pmod{a_{i+1}}
+\end{equation}
 $$
 
-Since we know that all of the prior \\(b_j\\) and \\(p_j\\) are equal, we can rewrite these equations as:
+And by the induction step we know that all of the prior \\(b_j\\) and \\(p_j\\) are equal, so we can
+rewrite (11) by replacing all of the prior \\(b_j\\) on the lefthand side with \\(p_j\\):
 
 $$
+\begin{equation}
 s_0 + p_0 + \ldots + s_i + b_i \equiv s_0 + p_0 + \ldots + s_i + p_i  \pmod{a_{i+1}}
+\end{equation}
 $$
 
-so we can subtract the terms \\(s_0 + p_0 + \ldots + s_i\\) from both sides of the equation to get:
+so we can subtract the terms \\(s_0 + p_0 + \ldots + s_i\\) from both sides of (12) to get:
 
 $$
+\begin{equation}
 b_i \equiv p_i \pmod{a_{i+1}}
+\end{equation}
 $$
 
-So \\(b_i\\) and \\(p_i\\) are in the same equivalence class. However, once again, because $0 \leq b_i \lt
-a_{i+1}\\(, and \\)0 \leq p_i \lt a_{i+1}\\(, we know that \\)p_i=b_i\\( for any \\)i$. Since all of the paddings are
+So \\(b_i\\) and \\(p_i\\) are in the same equivalence class. However, once again, because \\(0 \leq b_i \lt
+a_{i+1}\\), and \\(0 \leq p_i \lt a_{i+1}\\), we know that \\(p_i=b_i\\) for any \\(i\\). Since all of the paddings are
 equal in both cases, we are done with the proof.
 
 ### The equation for `sizeof`
