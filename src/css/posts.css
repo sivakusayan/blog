@@ -461,3 +461,11 @@ math {
     font-style: inherit;
     font-weight: inherit;
 }
+
+/**
+ * Sad attempt to right-justify the QED box.
+ * Good enough I guess.
+ */
+.qed {
+    float: right;
+}
