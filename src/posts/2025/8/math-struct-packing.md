@@ -969,6 +969,8 @@ struct FooInefficient {
     __attribute__((aligned(8))) uint8_t flags[9];
 };
 
+// Clearly "inefficient" structure to test that clang's
+// static analyzer is running at all.
 struct Baz {
     char firstChar;
     double firstDouble;
