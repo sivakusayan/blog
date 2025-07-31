@@ -33,7 +33,7 @@ For better or worse, my undergraduate math background led me to be curious about
 isn't optimal. More specifically, I had two questions:
 
 - **Does ordering structure members from largest to smallest alignment always give a size minimal
-  layout?** <br>It turns out that the answer is no, and it is not hard to construct a counterexample. But we can describe a class of "simple" structures where the answer always is yes!
+  layout?** <br>As most people know, the answer is no, and it is not hard to construct a counterexample. But we can describe a class of "simple" structures where the answer always is yes!
 
 - **Clang's [optin.performance.Padding analyzer](https://clang.llvm.org/docs/analyzer/checkers.html#optin-performance-padding) uses a slightly different algorithm than what is commonly recommended to find an order that minimizes a structure's size. Does this algorithm always find a size minimal
   layout?** <br>It turns out the answer is still no! Once again, we can construct [an admittedly contrived counterexample](#counterexample-to-clangs-optin-performance-padding-analyzer)
@@ -89,6 +89,8 @@ We'll use:
   - My hope is that restricting \\(a_i\\) to be a power of 2 is a reasonable assumption. I don't know if
       there are any exotic architectures where that doesn't apply, but if there are this blog post
       does not apply to those architectures.
+- \\(a_\text{max}\\) to denote the maximum alignment out of all \\(a_i\\) in \\(S\\). In other words, \\(a_\text{max}\\) is the smallest integer such that \\(a_\text{max} \geq a_i\\)
+  for all \\(i\\).
 - \\(p_i\\) to denote the padding between members \\(m_i\\) and \\(m_{i+1}\\) (or the trailing padding if \\(m_i\\)
     is the last member of the structure)
 
@@ -106,7 +108,7 @@ that we'll use for the rest of the blog post.
 
 ### A potential ambiguity in the definition of `sizeof`
 
-First off, the definition of `sizeof` from 6.5.3.4, paragraph 4 of the [C23 standard](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3096.pdf) is:
+First off, the definition of `sizeof` from 6.5.3.4, paragraph 4 of the [C23 standard (PDF)](https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3096.pdf) is:
 
 >When [sizeof is] applied to an operand that has structure or union type, the result is the total number of bytes in such an object, including internal and trailing padding.
 
@@ -128,8 +130,10 @@ struct Foo {
 ```
 
 The `sizeof` this structure should be 12 bytes. Indeed, this is how `sizeof` is normally computed ([try it out on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:18,positionColumn:1,positionLineNumber:18,selectionStartColumn:1,selectionStartLineNumber:18,startColumn:1,startLineNumber:18),source:'%23include+%3Cstdio.h%3E%0A%0Astruct+Foo+%7B%0A++++short+a%3B+//+Takes+up+bytes+1+and+2+%0A%0A++++int+b%3B+++//+Pad+to+a+4+byte+boundary,+then+takes+up+bytes+4+through+8+%0A%0A++++short+c%3B+//+No+padding+needed.+Takes+up+bytes+9+and+10.+%0A%0A+++++++++++++//+Trailing+padding+needed+to+make+sure+consecutive+copies+of+Foo+in%0A+++++++++++++//+an+array+are+aligned.+Add+2+final+bytes+of+padding.%0A%7D%3B%0A%0Aint+main(void)+%7B%0A++++printf(%22Sizeof+Foo:+%25zu%22,+sizeof(struct+Foo))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:50,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4)), 
-and this computation is correct as long as the structure `Foo` is aligned on a 4 byte boundary. In other
-words, let \\(M\\) be the memory address that `Foo` starts at. Then this computation is correct as long
+and this computation is correct as long as the structure `Foo` is aligned on the largest alignment
+of its members, which happens to be \\(a_\text{max}=4\\).
+
+Here is another way to state this. Let \\(M\\) be the memory address that `Foo` starts at. Then this computation is correct as long
 as:
 
 $$M \equiv 0\pmod{4}$$
@@ -340,7 +344,7 @@ However, note that in this constructed example we have a structure that is not a
 alignment of its largest member, and it still allows sensible array layouts that guarantee the
 alignment of all structure members.
 
-Of course, it isn't useful to create a memory allocator that is flexible enough to support the
+Of course, it (maybe?) isn't useful to create a memory allocator that is flexible enough to support the
 allocations above. The struct `Foo` has an ordering of its members that ensures that `sizeof(struct
 Foo) = 8` even when \\(M \equiv 0 \pmod{4}\\):
 
@@ -442,7 +446,7 @@ However, for \\(0 \lt i \leq n\\), we know that \\(p_i\\) cannot be some arbitra
 First, the choice of \\(p_i\\) must make it so the memory address of \\(m_{i+1}\\) is divisible by \\(a_{i+1}\\). 
 In other words, the padding must be chosen to make sure the memory address of the structure's next member respects that member's alignment. 
 
-If we notice that the expression \\(M + s_0 + p_0 + \ldots + s_i + p_i\\) represents the starting memory address of member
+If we notice that the expression \\(M + s_1 + p_1 + \ldots + s_i + p_i\\) represents the starting memory address of member
 \\(m_{i+1}\\), we can encode this requirement recursively as:
 
 $$
@@ -464,7 +468,7 @@ which guarantees the uniqueness of \\(p_i\\).
 As an intermediary step to proving the consistency of `sizeof`, we would like the prove the
 following lemma:
 
-**Lemma 1:** Let \\(M\\) be any memory address evenly divisible by the largest alignment in \\(S\\).
+**Lemma 1:** Let \\(M\\) be any memory address evenly divisible by \\(a_\text{max}\\), the largest alignment in \\(S\\).
 Then we have that:
 $$
 \text{dsizeof}(S,0) = \text{dsizeof}(S,M)
@@ -482,7 +486,7 @@ $$
 \text{dsizeof}(S, M) = s_1 + b_1 + s_2 + b_2 + \ldots + s_{n-1} + b_{n-1} + s_n
 $$
 
-All we need to show is that for any \\(i\\), we have \\(b_i = p_i\\), at which point we know that
+All we need to show is that for any \\(0 \lt i \leq n-1 \\), we have \\(b_i = p_i\\), at which point we know that
 \\(\text{dsizeof}(S, 0) = \text{dsizeof}(S, M)\\).
 
 First, recall our restrictions that each padding must satisfy. We know that for each \\(p_i\\) and
@@ -501,7 +505,7 @@ $$
 \end{align*}
 $$
 
-However, for the \\(b_i\\) case, we know that by definition \\(M\\) is divisible by the greatest alignment
+However, in the case of equation (2), we know that by definition \\(M\\) is divisible by the greatest alignment
 \\(a_{\text{max}}=2^{k_{\text{max}}}\\)
 in \\(S\\). Since we know that each \\(a_i=2^{k_i} \leq 2^{k_{\text{max}}}\\), 
 that means that \\(M\\) is divisible by any \\({a_i}\\), and so \\(M \equiv 0 \pmod{a_i}\\) for all \\(i\\). 
@@ -668,13 +672,14 @@ To keep our mathematics simple, we're going to restrict the class of structures 
 more. To start with, we're going to define a **primitive** structure as any structure where all
 members satisfy the following conditions:
 
-- Each \\(a_n\\) is equal to a power of 2
-- \\(s_n = ca_n\\) for some \\(c \geq 0\\)
+- Each \\(a_i\\) is equal to a power of 2
+- \\(s_i = ca_i\\) for some \\(c \geq 0\\)
 
-Effectively, this is a structure whose members are all primitives, so that no structure members
-are aggregate data types of their own. Furthermore, no structure members are "unusually aligned".
+Loosely speaking, this is a structure whose members are all primitives, and so is one of the
+simplest structures we can reason about. Furthermore, no structure members have "unusual alignments"
+that were manually given to them by the programmer through specifiers such as `alignas`.
 
-For example, `Foo` and `Bar` would be primitive structures, but `Baz` and `Qux` are not:
+For example, `Foo` and `Bar` would be primitive structures, but `Baz` is not:
 
 ```c
 // Nothing out of the ordinary here, this is definitely primitive.
@@ -684,37 +689,55 @@ struct Foo {
     char third;
 }
 
-// OK - the member 'second' is an aggregate data type, but since
-// the array size is always a multiple of the alignment of double,
-// this structure still "behaves nicely"
+// First off, recall when targeting 32-bit x86, GCC asserts that double has an alignment
+// of 4, so this specifier is not a no-op. Secondly, even though the programmer manually
+// overrides the alignment, this is still a primitive structure as the size is a multiple
+// of its alignment.
 struct Bar {
     int first;
-    double[5] second;
+    alignas(8) double second;
+}
+
+// This is definitely not primitive, as (assuming we are on 32-bit or 64-bit systems),
+// 32 does not evenly divide into the double's size of 8.
+struct Baz {
+    int first;
+    alignas(32) double second;
 }
 ```
+
+You might have already noticed that it is not just structures with primitive members that can be considered primitive 
+structures - structures with fixed array members and nested structures qualify as well, as long as they weren't given
+unusual alignments. However, we'll get to that later.
 
 ### Ordering members of a primitive structure by alignment minimizes sizeof 
 
 We're going to prove an intermediary lemma.
 
-**Lemma 3:** Let \\(S\\) be a primitive structure. Ordering the members of \\(S\\) from largest to smallest
-alignment will minimize the value of \\(\text{dsizeof(S)}\\).
+**Lemma 3:** Let \\(S\\) be a primitive structure aligned on \\(a_\text{max}\\), the largest alignment in \\(S\\). 
+Ordering the members of \\(S\\) from largest to smallest alignment will minimize the value of \\(\text{dsizeof(S, M)}\\).
 
-**Proof:** It suffices to show that ordering the members of \\(S\\) from largest to smallest alignment
-will make each of the intermediary \\(p_n=0\\). We do this by mathematical induction.
-
-First, we prove the base case. We want to show that if \\(a_0 \geq a_1\\), then \\(p_0=0\\). However, we
-know that:
+**Proof:** Recall the definition of \\(\text{dsizeof(S, M)}:
 
 $$
-s_0=c_0a_0
+\text{dsizeof}(S, M) = s_1 + p_1 + s_2 + p_2 + \ldots + s_{n-1} + p_{n-1} + s_n \\
 $$
+
+It suffices to show that ordering the members of \\(S\\) from largest to smallest alignment
+will make each of the intermediary paddings \\(p_i=0\\), for \\(0 \lt i \leq n-1\\). We do this by mathematical induction.
+
+First, we prove the base case. We want to show that if we choose an ordering of structure members such that \\(a_1 \geq a_2\\), 
+then \\(p_1=0\\). However, we know that:
+
 $$
 s_1=c_1a_1
 $$
+$$
+s_2=c_2a_2
+$$
 
-However, since \\(a_0 \geq a_1\\), we know that \\(a_0\\) is evenly divisible by \\(a_0\\), and thus \\(s_0\\) is
-evenly divisible by \\(a_1\\). Since \\(s_1\\) starts at the memory address \\(s_0+p_0\\), we have it that
+Since \\(a_1 \geq a_2\\), we know that \\(a_1\\) is evenly divisible by \\(a_2\\), and thus \\(s_1\\) is
+evenly divisible by \\(a_2\\). Since \\(s_2\\) starts at the memory address \\(s_1+p_0\\), we have it that
 \\(p_0=0\\).
 
 Next, we want to show that for \\(0 \lt j \lt i \leq n\\), \\(p_j=0\\) implies that \\(p_i=0\\). We know that
