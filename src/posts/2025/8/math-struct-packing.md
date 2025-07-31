@@ -33,7 +33,7 @@ For better or worse, my undergraduate math background led me to be curious about
 isn't optimal. More specifically, I had two questions:
 
 - **Does ordering structure members from largest to smallest alignment always give a size minimal
-  layout?** <br>As most people know, the answer is no, and it is not hard to construct a counterexample. But we can describe a class of "simple" structures where the answer always is yes!
+  layout?** <br>As most people know, the answer is no, and [it is not hard to construct a counterexample](#counterexample-to-the-ordering-by-alignment-algorithm). But we can describe a class of "simple" structures where the answer always is yes!
 
 - **Clang's [optin.performance.Padding analyzer](https://clang.llvm.org/docs/analyzer/checkers.html#optin-performance-padding) uses a slightly different algorithm than what is commonly recommended to find an order that minimizes a structure's size. Does this algorithm always find a size minimal
   layout?** <br>It turns out the answer is still no! Once again, we can construct [an admittedly contrived counterexample](#counterexample-to-clangs-optin-performance-padding-analyzer)
@@ -710,69 +710,225 @@ You might have already noticed that it is not just structures with primitive mem
 structures - structures with fixed array members and nested structures qualify as well, as long as they weren't given
 unusual alignments. However, we'll get to that later.
 
-### Ordering members of a primitive structure by alignment minimizes sizeof 
+### Ordering members of a primitive structure by alignment minimizes dsizeof 
 
-We're going to prove an intermediary lemma.
+We're going to prove an intermediary lemma. I've seen people online use this style of argument to
+justify that ordering the members of a structure from largest to smallest alignment optimizes the
+size, albeit in a handwavy way. We'll fill in the skipped details here. 
 
 **Lemma 3:** Let \\(S\\) be a primitive structure aligned on \\(a_\text{max}\\), the largest alignment in \\(S\\). 
 Ordering the members of \\(S\\) from largest to smallest alignment will minimize the value of \\(\text{dsizeof(S, M)}\\).
 
-**Proof:** Recall the definition of \\(\text{dsizeof(S, M)}:
+**Proof:** Recall the definition of \\(\text{dsizeof}(S, M)\\):
 
 $$
 \text{dsizeof}(S, M) = s_1 + p_1 + s_2 + p_2 + \ldots + s_{n-1} + p_{n-1} + s_n \\
 $$
 
-It suffices to show that ordering the members of \\(S\\) from largest to smallest alignment
+It suffices to show that ordering the members of \\(S\\) from the largest to smallest alignment
 will make each of the intermediary paddings \\(p_i=0\\), for \\(0 \lt i \leq n-1\\). We do this by mathematical induction.
 
 First, we prove the base case. We want to show that if we choose an ordering of structure members such that \\(a_1 \geq a_2\\), 
-then \\(p_1=0\\). However, we know that:
+then \\(p_1=0\\), where \\(p_1\\) must satisfy:
 
 $$
-s_1=c_1a_1
-$$
-$$
-s_2=c_2a_2
-$$
-
-Since \\(a_1 \geq a_2\\), we know that \\(a_1\\) is evenly divisible by \\(a_2\\), and thus \\(s_1\\) is
-evenly divisible by \\(a_2\\). Since \\(s_2\\) starts at the memory address \\(s_1+p_0\\), we have it that
-\\(p_0=0\\).
-
-Next, we want to show that for \\(0 \lt j \lt i \leq n\\), \\(p_j=0\\) implies that \\(p_i=0\\). We know that
-\\(p_i\\) must satisfy the equation:
-
-$$
-M + s_0 + p_0 + s_1 + p_1 + \ldots s_{i-1} + p_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
+\begin{align}
+M + s_1 + p_1 \equiv 0 \pmod{a_2} \\\\
+0 + s_1 + p_1 \equiv 0 \pmod{a_2} \\\\
+s_1 + p_1 \equiv 0 \pmod{a_2}
+\end{align}
 $$
 
-But since all \\(p_j=0\\), we know that:
+However, since \\(S\\) is a primitive structure, we know that \\(s_1=c_1a_1\\) for some
+positive integer \\(c_1\\). Since \\(2^{k_1} = a_1 \geq a_2 = 2^{k_2}\\), we know that \\(a_1\\) is evenly divisible by \\(a_2\\), 
+and thus \\(s_1\\) is evenly divisible by \\(a_2\\). 
+
+However, by equation (20) we know that \\(p_1 \equiv 0 \pmod{a_2}\\) and since \\(0 \leq p_1 \lt
+a_2\\) we immediately know that \\(p_1=0\\). 
+
+Next, we prove the induction step. We need to show that, for any \\(1 \lt i \leq n\\), if \\(p_{j}=0\\) for all \\(1 \leq j \lt i\\), then
+\\(p_{i}=0\\). Recall that \\(p_i\\) must satisfy the following:
 
 $$
-M + s_0 + s_1 + \ldots s_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
+\begin{align}
+M + s_1 + p_1 + \ldots s_{i-1} + p_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}} \\\\
+0 + s_1 + p_1 + \ldots s_{i-1} + p_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}} \\\\
+s_1 + p_1 + \ldots s_{i-1} + p_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
+\end{align}
 $$
 
-and since each \\(s_n=c_na_n\\), we can rewrite the above as:
+But since all \\(p_j=0\\), we know from equation (23) that:
 
 $$
-M + c_0a_0 + c_1a_1 + \ldots c_{i-1}a_{i-1} + c_ia_i + p_i \equiv 0 \pmod{a_{i+1}}
-$$
-$$
-a_0 \geq a_1 \geq a_2 \geq \ldots \geq a_{i-1} \geq a_i \geq a_{i+1}
+s_1 + s_2 + \ldots s_{i-1} + s_i + p_i \equiv 0 \pmod{a_{i+1}}
 $$
 
-Since each \\(a_n\\) is a power of two, we know that:
+and since each \\(s_i=c_ia_i\\), we can rewrite the above as:
 
 $$
-M + c_0a_0 + c_1a_1 + \ldots c_{i-1}a_{i-1} + c_ia_i \equiv 0 \pmod{a_{i+1}}
+\begin{equation}
+c_1a_1 + c_2a_2 + \ldots c_{i-1}a_{i-1} + c_ia_i + p_i \equiv 0 \pmod{a_{i+1}}
+\end{equation}
 $$
 
-and we are done, as \\(p_i=0\\). <span class="qed">\\(\blacksquare\\)</span>
+Recall that since we have chosen an order of structure members that goes from largest alignment to
+smallest alignment, we also have:
+
+$$
+a_1 \geq a_2 \geq a_3 \geq \ldots \geq a_{i-1} \geq a_i \geq a_{i+1}
+$$
+
+And since each alignment is a power of two, we know that \\(a_{i+1}\\) must evenly divide 
+\\(c_1a_1 + c_2a_2 + \ldots c_{i-1}a_{i-1} + c_ia_i\\). Putting this together with equation (24)
+we immediately know that:
+
+$$
+p_i \equiv 0 \pmod{a_{i+1}}
+$$
+
+and we are done, as \\(p_i=0\\) by our constraints on \\(p_i\\). <span class="qed">\\(\blacksquare\\)</span>
+
+### Ordering members of a primitive structure by alignment minimizes sizeof 
+
+With **Lemma 3** in our belt, proving that ordering structure members of a primitive structure by alignment will minimize `sizeof`
+becomes significantly easier. 
+
+Proving **Lemma 4** might seem pedantic, as intuitively minimizing the `__datasizeof` a structure should also minimize `sizeof`. However, we have to make sure that there is no situation where, for some odd reason, 
+
+It is intuitively clear why that is the case, but we should translate our intuition into proof. And
+if our intuition is correct, hopefully writing down the proof should be easy!
+
+**Lemma 4:** Let \\(S\\) be a primitive structure aligned on \\(a_\text{max}\\), the largest alignment in \\(S\\). 
+Ordering the members of \\(S\\) from largest to smallest alignment will minimize the value of \\(\text{sizeof}(S, M)\\).
+
+**Proof:** Let \\(S_\alpha\\) be the structure formed from taking the members of \\(S\\) and
+ordering them from the largest to smallest alignment, and let \\(S_\beta\\) be the structure formed from
+any permutation of the members of \\(S\\). We wish to prove that: 
+
+$$\text{sizeof}(S_\alpha, M) \leq \text{sizeof}(S_\beta, M)$$
+
+Expanding the definition of \\(\text{sizeof}\\), we know that:
+
+$$
+\begin{align}
+\text{sizeof}(S_\alpha,M) = \text{dsizeof}(S_\alpha,M) + p_\alpha \\\\
+\text{sizeof}(S_\beta,M) = \text{dsizeof}(S_\beta,M) + p_\beta
+\end{align}
+$$
+
+Furthermore, by our constraints on the tail padding \\(p_\alpha\\), we know that:
+
+$$
+\begin{align}
+M + \text{dsizeof}(S_\alpha,M) + p_\alpha \equiv 0 \pmod{a_\text{max}} \\\\
+\text{dsizeof}(S_\alpha,M) + p_\alpha \equiv 0 \pmod{a_\text{max}} \\\\
+\end{align}
+$$
+
+However, if we notice the lefthand side of equation (28) is just the definition of \\(\text{sizeof}(S_\alpha, M)\\), we
+know that:
+
+$$
+\text{sizeof}(S_\alpha, M) \equiv 0 \pmod{a_\text{max}}
+$$
+
+And in particular, it means that \\(\text{sizeof}(S_\alpha,M) = c_{\alpha}a_\text{max}\\) for some positive integer 
+\\(c_\alpha\\). By a similar argument, we can conclude that \\(\text{sizeof}(S_\beta,M) = c_{\beta}a_\text{max}\\) for
+some positive integer \\(c_\beta\\).
+
+However, recall that \\(0 \leq p_\alpha \lt a_\text{max}\\), and \\(0 \leq p_\beta \lt
+a_\text{max}\\). We can put this information together with equation (28) to notice that:
+
+$$
+\begin{equation}
+(c_{\alpha} - 1)a_\text{max} \lt \text{dsizeof}(S_\alpha, M) \leq c_{\alpha}a_\text{max}
+\end{equation}
+$$
+
+and we can copy-paste that argument to come to a similar conclusion about \\(\text{dsizeof}(S_\beta,
+M)\\):
+
+$$
+\begin{equation}
+(c_{\beta} - 1)a_\text{max} \lt \text{dsizeof}(S_\beta, M) \leq c_{\beta}a_\text{max}
+\end{equation}
+$$
+
+By **Lemma 3**, we know that \\(\text{dsizeof}(S_\alpha, M) \leq \text{dsizeof}(S_\beta, M)\\), and if
+we put that together with equations (29) and (30) we know that:
+
+$$
+\begin{gather}
+(c_{\alpha} - 1)a_\text{max} \lt \text{dsizeof}(S_\alpha, M) \leq \text{dsizeof}(S_\beta, M) \leq c_{\beta}a_\text{max} \\\\
+(c_{\alpha} - 1)a_\text{max} \lt c_{\beta}a_\text{max} \\\\
+(c_{\alpha} - 1) \lt c_{\beta}
+\end{gather}
+$$
+
+And since \\(c_{\alpha}\\) is the smallest integer greater than \\(c_{\alpha} - 1\\), we in particular
+have that \\(c_{\alpha} \leq c_{\beta}\\). Thus:
+
+$$
+\text{sizeof}(S_\alpha,M) = c_{\alpha}a_\text{max} \leq c_{\beta}a_\text{max} =
+\text{sizeof}(S_\beta,M)
+$$
+
+and we are done with the proof. <span class="qed">\\(\blacksquare\\)</span>
 
 ### What other structures can be classified as primitive structures?
 
+Remember that our only requirement for a structure to be a primitive structure is that
+all members satisfy the following:
+
+- Each \\(a_i\\) is equal to a power of 2
+- \\(s_i = ca_i\\) for some \\(c \geq 0\\)
+
+If a member is a primitive data type, these conditions are surely true. But these conditions also
+hold if a structure member is a structure itself. This is because the starting address of a
+structure \\(S\\) is always some multiple of \\(a_\text{max}\\), and since we choose trailing
+padding for the structure so that the structure ends on a multiple of \\(a_\text{max}\\), the
+difference between the starting and ending memory addresses of \\(S\\) reveals that the size of
+\\(S\\) is also a multiple of \\(a_\text{max}\\). 
+
+We also have the above conditions hold true if a structure member is a fixed array of primitive
+members. This is because the alignment of the array is just the alignment of the primitive member
+itself, and the size of the array is just a multiple of the size of the primitive member.
+
+In other words, **Lemma 4** is applicable to a wider variety of structures than just those whose
+members are primitive data types.
+
 ### Counterexample to the 'ordering by alignment' algorithm
+
+It's easy to generate a counter example for why the 'ordering by alignment' algorithm doesn't always
+minimize the size of a structure. For example, consider the following structure on a 32-bit system:
+
+```c
+struct Foo {
+    __attribute__((aligned(8))) int someInt;
+    __attribute__((aligned(8))) double someDouble;
+    short someShort;
+}
+
+```
+
+It is clear that the members are sorted by alignment, but we can find a layout of `Foo` that is
+smaller than the layout found previously:
+
+```c
+struct Foo {
+    __attribute__((aligned(8))) int someInt;
+    short someShort;
+    __attribute__((aligned(8))) double someDouble;
+}
+```
+
+You can try [both of these examples on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:20,positionColumn:1,positionLineNumber:20,selectionStartColumn:1,selectionStartLineNumber:1,startColumn:1,startLineNumber:1),source:'%23include+%3Cstdio.h%3E%0A%0Astruct+FooInefficient+%7B%0A++++__attribute__((aligned(8)))+int+someInt%3B%0A++++__attribute__((aligned(8)))+double+someDouble%3B%0A++++short+someShort%3B%0A%7D%3B%0A%0Astruct+Foo+%7B%0A++++__attribute__((aligned(8)))+int+someInt%3B%0A++++short+someShort%3B%0A++++__attribute__((aligned(8)))+double+someDouble%3B%0A%7D%3B%0A%0Aint+main(void)+%7B%0A++++printf(%22Size+of+FooInefficient:+%25zu%5Cn%22,+sizeof(struct+FooInefficient))%3B%0A++++printf(%22Size+of+Foo:+%25zu%5Cn%22,+sizeof(struct+Foo))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:45.36247334754797,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cclang2010,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+clang+20.1.0+(C,+Editor+%231)',t:'0')),header:(),k:26.22601279317697,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cclang2010,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:2,lang:___c,libs:!(),options:'-m32',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+clang+20.1.0+(C,+Editor+%231)',t:'0')),header:(),k:28.411513859275054,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4).
+
+This might imply that some kind of "gap-filling" algorithm would always give the optimal output.
+However, you have to be careful here - it is possible that "filling the gap" earlier might result in
+an unfillable gap later that's larger than the gap we were trying to fill. Clang attempts to write
+an algorithm like this, and while it's mostly correct, we can still find structures where it fails
+to find the optimal size.
 
 ## Counterexample to Clang's optin.performance.Padding Analyzer
 
@@ -858,3 +1014,57 @@ $ ./a.out
 Size of struct Foo: 24
 Size of struct FooInefficient: 32
 ```
+
+## Further Questions
+
+There were a couple of interesting questions to explore, but I decided against including them in
+this blog post as it was already getting long. Perhaps I could write a part 2 exploring these
+questions if people wanted!
+
+### Mathematical correctness of other structure rearranging algorithms
+
+While we gave a counterexample to the correctness of Clang's algorithm, it would be interesting to
+mathematically characterize a group of structures where Clang's algorithm can always minimize their
+size. It would be interesting to try and analyze the algorithm of `pahole` as well, although I
+vaguely remember it not accounting for `alignas` specifiers (you should double check, I could be
+remembering incorrectly).
+
+Furthermore, the problem of rearranging structure members to minimize size is clearly not unique to C.
+It would be interesting to:
+
+- Analyze the correctness of [Java's layout algorithm](https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/fieldLayoutBuilder.cpp)
+  - There is a [thorough writeup about this in Oracle's Java Bug Database](https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8237767) if you're curious.
+- Analyze the correctness of [Rust's layout algorithm](https://github.com/rust-lang/rust/blob/master/compiler/rustc_abi/src/layout.rs)
+  - Again, there is a [thorough writeup about this by Austin Hicks](https://camlorn.net/posts/April%202017/rust-struct-field-reordering/) if you're curious (although probably a bit outdated).
+- Try to come up with a layout algorithm for C++ classes, and characterize what kind of data
+  structures it will create an optimal layout for. 
+  - This might be trivial to do once we know how to optimize a C structure layout, but I don't
+    really know enough about the memory layout of C++ classes to say.
+
+### Usefulness of memory allocators flexible enough to allocate memory at exotic alignments
+
+Earlier, we noticed that there are other valid alignments for a structure \\(S\\) that is not just \\(a_\text{max}\\). 
+In particular, in our discussion in ["A potential ambiguity in the definition of sizeof"](#a-potential-ambiguity-in-the-definition-of-sizeof), we saw 
+that a given layout of `Foo` could be denser depending on what memory address we started it out on. 
+
+It turned out to not be useful in that case because we found a layout of `Foo` that was just as
+dense at \\(M \equiv 0 \pmod{4}\\) as the initial layout of `Foo` was at \\(M \equiv 2
+\pmod{4}\\). However, this begs another question.
+
+Suppose that a structure \\(S\\) has "valid alignments" at both memory addresses \\(M_\alpha\\) and
+\\(M_\beta\\) such that:
+
+$$
+\begin{gather*}
+M_\alpha \equiv 0 \pmod{a_\text{max}} \\\\
+M_\beta \equiv b \pmod{c}
+\end{gather*}
+$$
+
+for some positive integers \\(b\\) and \\(c\\). Is it true that the minimal size that we
+could find when starting \\(S\\) at \\(M_\alpha\\) is equal to the minimal size that we could find
+when starting \\(S\\) at \\(M_\beta\\)? Can we ever find denser/smaller layouts of \\(S\\) at
+\\(M_\beta\\) than we could at \\(M_\alpha\\)?
+
+The answer to the above question might have interesting implications on how flexible memory
+allocator implementations should be!
