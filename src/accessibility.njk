@@ -30,14 +30,17 @@ permalink: /accessibility/
 <ul>
     <li>
     <p>
-        <strong>Issue:</strong> The MathJax context menu does not show up while using the "Comment Preview" functionality in
+        The MathJax context menu does not show up while using the "Comment Preview" functionality in
         the comment form. This is because the context menu implementation does not seem to account for
-        HTML dialog elements.
+        HTML dialog elements. As a workaround, you can still access the context menu on math present
+        in the blog post itself, or on other users' comments.
     </p>
+    </li>
+    <li>
     <p>
-        <strong>Workaround:</strong> You can still use the MathJax context menu on math present in
-        the blog post itself, or on other users' comments. Any accessibility settings set there
-        should carry over to math displayed in the "Comment Preview" dialog.
+        Long MathJax equations do not break onto multiple lines. This is <a
+        href="https://docs.mathjax.org/en/latest/output/linebreaks.html">not
+        yet supported in MathJax version 3.</a>
     </p>
     </li>
 </ul>
