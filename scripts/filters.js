@@ -89,7 +89,7 @@ module.exports = {
 	isMathPost: (posts, page) => {
 		for (post of posts) {
 			if (post.page.inputPath === page.inputPath) {
-				return post.data.math;
+				return post.data.isMathPost;
 			}
 		}
 		return false;

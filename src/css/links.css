@@ -25,7 +25,7 @@ a[href]:focus {
 }
 
 main a[href]:not(.back-to-top):not(.header-anchor) {
-    color: var(--link-color);
+    color: var(--text-color);
 }
 
 main a[href]:visited:not(.back-to-top):not(.header-anchor) {

@@ -171,7 +171,7 @@ html[data-theme='DARK'] .tags a[href]:hover {
 }
 
 .post-content details {
-	width: 45ch;
+	width: 55ch;
 }
 
 .post-content .details-grouper {
@@ -185,13 +185,13 @@ html[data-theme='DARK'] .tags a[href]:hover {
 }
 
 .post-content details[open] {
-	width: 60ch;
+	width: 70ch;
 }
 
 .post-content details[open] .details-content {
 	margin: var(--small-spacing) 0;
 	padding: var(--small-spacing) var(--spacing);
-	width: 60ch;
+	width: 70ch;
 }
 
 .post-content details[open] .details-content *:last-child {
@@ -442,15 +442,6 @@ button[data-dialog] {
  * MathJax
  *======================================*/
 
-/* Let's force MathJax to display centered math even when
- * not using the display math mode. We need the importants because
- * the MathJax script loads CSS after ours, overriding our customizations.*/
-mjx-container[jax="CHTML"][display="true"] {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
 .CtxtMenu_Menu {
     background-color: var(--background-color) !important;
     color: var(--text-color) !important;
@@ -460,4 +451,12 @@ mjx-container[jax="CHTML"][display="true"] {
 math {
     font-style: inherit;
     font-weight: inherit;
+}
+
+/**
+ * Sad attempt to right-justify the QED box.
+ * Good enough I guess.
+ */
+.qed {
+    float: right;
 }

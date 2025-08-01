@@ -11,6 +11,7 @@ const uglifyJS = require('uglify-js');
 const markdownIt = require('markdown-it');
 const markdownItAnchor = require('markdown-it-anchor');
 const markdownItAttrs = require('markdown-it-attrs');
+const mathjax3 = require('markdown-it-mathjax3');
 
 const { processComments } = require('./scripts/process-comments.js');
 const { headerLink } = require('./scripts/permalink.js');
@@ -124,7 +125,6 @@ module.exports = async (eleventyConfig) => {
 		linkify: true,
 	})
 		.use(markdownItAttrs)
-		.use(markdownItMathTemml.default)
 		.use(markdownItAnchor, {
 			permalink: headerLink({
 				safariReaderFix: true,
