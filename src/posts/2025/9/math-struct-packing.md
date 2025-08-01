@@ -1,6 +1,6 @@
 ---
 title: A Brief Look at the Mathematics of Structure Packing
-date: 2025-07-25
+date: 2025-08-01
 layout: layouts/post.njk
 isMathPost: true
 ---
@@ -60,9 +60,8 @@ so my skills may be rusty and the proofs may contain errors. Please let me know 
 This can become a complicated topic if the scope is too wide, so let's narrow the scope a bit.
 
 1. **I will not analyze structures with bitfield members.** From a cursory reading, it seems like
-   the layout of bitfield members in a structure is a complicated implementation-defined topic, and
-   I don't really have the hardware knowledge to reason about it in any real way, across every
-   potential architecture out there. So let's ignore this case for now.
+   the layout of bitfield members in a structure is a complicated implementation-defined topic.  I don't really have 
+   the knowledge to reason about this in any real way across every potential target out there. So let's ignore this case for now.
 
 2. **I will not make any claims about the 'performance' of a size minimal layout.** Performance is
    obviously a complicated topic, and what is 'performant' can change depending on the metric you
@@ -103,8 +102,8 @@ shows that when compiling for 32 bit systems with the `-m32` flag, `gcc` will re
 ## Formulating a mathematical definition of `sizeof`
 
 We can't do any mathematics here unless we know how to write `sizeof` down as an equation.
-Let's attempt to formulate one, and we'll then prove an important property of `sizeof`
-that we'll use for the rest of the blog post.
+Let's attempt to formulate one, and we'll then prove an important property of `sizeof` that
+is normally taken for granted.
 
 ### A potential ambiguity in the definition of `sizeof`
 
@@ -316,13 +315,13 @@ $$M \equiv 2\pmod{4}$$
 That is, it could allocate memory such that the address it returns would have a remainder of 2 when
 divided by 4. Then, if we start `Foo` at that memory address, it would have size of 8 bytes: 
 
-- The first member `short a` would already be aligned, and would take up bytes 2 and 3
+- The first member `short a` would already be aligned, and would take up bytes 2 and 3.
 - The second member `int b` would already be aligned because it would start at a memory address divisible by 4, 
   and would take up bytes 4 through 7.
-- The third member `short c` would already be aligned, and would take up bytes 8 and 9 
+- The third member `short c` would already be aligned, and would take up bytes 8 and 9.
 - There is no trailing padding needed, since in an array the first instance of `Foo` would end on a
   memory address that has remainder 2 when divided by 4, so we can immediately start the next
-  instance of `Foo`
+  instance of `Foo`.
 
 We could visualize this computation as follows:
 
@@ -365,13 +364,18 @@ However, I hope the strange example I gave shows that it isn't immediately obvio
 will give the same value no matter what memory address we place the structure at, even if we
 restrict placing the structure at memory addresses that result in usable array layouts.
 
-From this, I claim that `sizeof` is, in reality, a function of two arguments when applied to structures. 
-The first argument is the structure in question, and the second argument is the memory address the structure starts at. 
+From this, I claim that `sizeof` is, in reality, a function of two arguments when applied to structures:
+
+$$
+\text{sizeof}(S,M)
+$$
+
+where the first argument \\(S\\) is the structure in question, and the second argument \\(M\\) is the memory address the structure starts at. 
 We'll resolve this strange inconsistency later, and we'll prove that: 
 
 $$\text{sizeof}(S,0) = \text{sizeof}(S,M)$$ 
 
-for any memory address \\(M\\) that's divisible by the largest alignment in the structure \\(S\\).
+if the memory address \\(M\\) is divisible by the largest alignment \\(a_\text{max}\\) in the structure \\(S\\).
 In other words, we will mathematically prove what we usually take for granted: that the value of
 `sizeof` effectively only takes one argument as long as the structure is aligned in a particular
 way.
@@ -398,6 +402,14 @@ We're going to [steal a concept from LLVM](https://clang.llvm.org/docs/LanguageE
 known as `__datasizeof`, which is defined to be the `sizeof` a structure but without the tail padding. 
 We'll examine the properties of `__datasizeof` first to reduce edge cases needed in our analysis of
 `sizeof`, and we'll denote this function mathematically as \\(\text{dsizeof}\\).
+
+Similar to `sizeof`, it turns out that \\(\text{dsizeof}\\) is a function of two arguments:
+
+$$
+\text{dsizeof}(S,M)
+$$
+
+where, once again, the first argument \\(S\\) is the structure in question, and the second argument \\(M\\) is the memory address the structure starts at. 
 
 To compute an example, let's examine our structure `Foo` again, and determine what
 \\(\text{dsizeof}(\text{Foo}, 0)\\) ends up being:
@@ -445,7 +457,7 @@ $$
 All this is really saying is that the `dsizeof` some structure is the sum of the
 structure member sizes and the needed padding between those members.
 
-However, for \\(0 \lt i \leq n\\), we know that \\(p_i\\) cannot be some arbitrary integer - it must satisfy two constraints.
+However, for \\(0 \lt i \lt n\\), we know that \\(p_i\\) cannot be some arbitrary integer - it must satisfy two constraints.
 First, the choice of \\(p_i\\) must make it so the memory address of \\(m_{i+1}\\) is divisible by \\(a_{i+1}\\). 
 In other words, the padding must be chosen to make sure the memory address of the structure's next member respects that member's alignment. 
 
@@ -478,7 +490,7 @@ $$
 $$
 
 **Proof:** We'll need to come up with some notation to differentiate the paddings in both
-sides of the equation. For \\(0 \leq i \leq n\\), we'll write \\(p_i\\) to denote the paddings inside of
+sides of the equation. For \\(0 \lt i \leq n\\), we'll write \\(p_i\\) to denote the paddings inside of
 \\(\text{dsizeof}(S, 0)\\), and we'll write \\(b_i\\) to denote the paddings inside of \\(\text{dsizeof}(S, M)\\).
 Thus, our equations become:
 
@@ -549,10 +561,10 @@ p_1 \equiv b_1 \pmod{a_2}
 \end{align}
 $$
 
-So we know that \\(p_1\\) and \\(b_1\\) are in the same equivalence class. However, because \\(0 \leq p_1 \lt
-a_1\\), and \\(0 \leq b_1 \lt a_1\\), we know that \\(p_1=b_1\\), and we are done with the base case.
+So we know that \\(p_1\\) and \\(b_1\\) are in the same equivalence class. However, by our constraints on the padding between
+structure members, we know that \\(0 \leq p_1 \lt a_2\\), and \\(0 \leq b_1 \lt a_2\\). From there, we know that \\(p_1=b_1\\), and we are done with the base case.
 
-Now, we need to handle the induction step. We need to show that, for any \\(1 \lt i \leq n\\), if \\(p_{j}=b_{j}\\) for all \\(1 \leq j \lt i\\), then
+Now, we need to handle the induction step. We need to show that, for any \\(1 \lt i \leq n - 1\\), if \\(p_{j}=b_{j}\\) for all \\(1 \leq j \lt i\\), then
 \\(p_{i}=b_{i}\\). However, we can solve this by similar techniques used to prove the base case.
 Recall from equations (3) and (4) that we have:
 
@@ -669,14 +681,16 @@ And since we have both \\(0 \leq p \lt a_\text{max}\\) and \\(0 \leq b \lt a_\te
 
 ## When is ordering by alignment optimal? 
 
+We finally have a good mathematical definition of `sizeof`, and we have shown that the value of
+`sizeof` is consistent as long as we align the structure \\(S\\) on the largest alignment of its
+members \\(a_\text{max}\\). Let's try to find out when the value of `sizeof` is minimized.
+
 ### Primitive structures 
 
 To keep our mathematics simple, we're going to restrict the class of structures that we study once
-more. To start with, we're going to define a **primitive** structure as any structure where all
-members satisfy the following conditions:
-
-- Each \\(a_i\\) is equal to a power of 2
-- \\(s_i = ca_i\\) for some \\(c \geq 0\\)
+more. To start with, we're going to define a **primitive** structure as any structure where, for
+each member \\(m_i\\), we have it that \\(s_i = ca_i\\) for some \\(c \geq 0\\). In other words, the
+size of each structure member is a multiple of the same member's alignment.
 
 Loosely speaking, this is a structure whose members are all primitives, and so is one of the
 simplest structures we can reason about. Furthermore, no structure members have "unusual alignments"
@@ -791,15 +805,30 @@ $$
 
 and we are done, as \\(p_i=0\\) by our constraints on \\(p_i\\). <span class="qed">\\(\blacksquare\\)</span>
 
+<details>
+<summary>On minimizing structure size on ternary computers</summary>
+<p>
+Notice that, in the above proof, the fact that each \(a_i\) was a power of 2 didn't play any particularly
+important role, besides ensuring that \(a_i\) is divisible by \(a_j\) if \(i \geq j\). 
+</p>
+<p>
+Assuming a hypothetical ternary computer follows similar rules for alignment as today's binary
+computers, that seems to imply that the above lemma would be true even if each \(a_i=3^{k_i}\) 
+for some positive \(k_i\). In other words, on such a ternary computer ordering the members of a
+structure from largest to smallest alignment would minimize \(\text{dsizeof}(S,M)\).
+</p>
+
+<p>
+In fact, we could extrapolate that the above lemma would be true as long as each \(a_i=b^{k_i}\)
+for some base \(b\), and so ordering the members of a primitive structure aligned on \(a_\text{max}\) 
+from largest to smallest alignment would minimize the size even on computers based on powers of \(b\).
+</p>
+</details>
+
 ### Ordering members of a primitive structure by alignment minimizes sizeof 
 
 With **Lemma 3** in our belt, proving that ordering structure members of a primitive structure by alignment will minimize `sizeof`
 becomes significantly easier. 
-
-Proving **Lemma 4** might seem pedantic, as intuitively minimizing the `__datasizeof` a structure should also minimize `sizeof`. However, we have to make sure that there is no situation where, for some odd reason, 
-
-It is intuitively clear why that is the case, but we should translate our intuition into proof. And
-if our intuition is correct, hopefully writing down the proof should be easy!
 
 **Lemma 4:** Let \\(S\\) be a primitive structure aligned on \\(a_\text{max}\\), the largest alignment in \\(S\\). 
 Ordering the members of \\(S\\) from largest to smallest alignment will minimize the value of \\(\text{sizeof}(S, M)\\).
@@ -881,10 +910,7 @@ and we are done with the proof. <span class="qed">\\(\blacksquare\\)</span>
 ### What other structures can be classified as primitive structures?
 
 Remember that our only requirement for a structure to be a primitive structure is that
-all members satisfy the following:
-
-- Each \\(a_i\\) is equal to a power of 2
-- \\(s_i = ca_i\\) for some \\(c \geq 0\\)
+all members \\(m_i\\) satisfy \\(s_i = ca_i\\) for some \\(c \geq 0\\).
 
 If a member is a primitive data type, these conditions are surely true. But these conditions also
 hold if a structure member is a structure itself. This is because the starting address of a
@@ -893,7 +919,7 @@ padding for the structure so that the structure ends on a multiple of \\(a_\text
 difference between the starting and ending memory addresses of \\(S\\) reveals that the size of
 \\(S\\) is also a multiple of \\(a_\text{max}\\). 
 
-We also have the above conditions hold true if a structure member is a fixed array of primitive
+The above conditions also hold true if a structure member is a fixed array of primitive
 members. This is because the alignment of the array is just the alignment of the primitive member
 itself, and the size of the array is just a multiple of the size of the primitive member.
 

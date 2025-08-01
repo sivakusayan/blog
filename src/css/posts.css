@@ -171,7 +171,7 @@ html[data-theme='DARK'] .tags a[href]:hover {
 }
 
 .post-content details {
-	width: 45ch;
+	width: 55ch;
 }
 
 .post-content .details-grouper {
@@ -185,13 +185,13 @@ html[data-theme='DARK'] .tags a[href]:hover {
 }
 
 .post-content details[open] {
-	width: 60ch;
+	width: 70ch;
 }
 
 .post-content details[open] .details-content {
 	margin: var(--small-spacing) 0;
 	padding: var(--small-spacing) var(--spacing);
-	width: 60ch;
+	width: 70ch;
 }
 
 .post-content details[open] .details-content *:last-child {
