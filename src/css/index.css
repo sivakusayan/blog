@@ -279,14 +279,6 @@ main {
 	margin: auto;
 }
 
-.overflow-max-content-width {
-    height: auto;
-    width: calc(var(--max-content-width) * 1.4);
-    position: relative;
-    left: calc(-1 * var(--max-content-width) * 1.4 / 2 + 50%);
-    margin: var(--medium-spacing) 0;
-}
-
 p {
 	margin-bottom: var(--spacing);
 }
@@ -354,6 +346,21 @@ code {
 	position: absolute;
 	top: 0.24rem;
 	left: -1.5rem;
+}
+
+.overflow-max-content-width {
+    height: auto;
+    width: calc(var(--max-content-width) * 1.4);
+    position: relative;
+    left: calc(-1 * var(--max-content-width) * 1.4 / 2 + 50%);
+    margin: var(--medium-spacing) 0;
+}
+
+@media only screen and (max-width: 1250px) {
+    .overflow-max-content-width {
+        width: unset;
+        left: 0;
+    }
 }
 
 @media only screen and (max-width: 620px) {
