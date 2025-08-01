@@ -12,6 +12,5 @@ for (const code of codeElements) {
 		// accname of its contents, which will probably be many, MANY lines of
 		// code.
 		code.ariaLabel = 'Code Snippet';
-		code.setAttribute('role', 'region');
 	}
 }
