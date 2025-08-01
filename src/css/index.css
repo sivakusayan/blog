@@ -356,7 +356,21 @@ code {
     margin: var(--medium-spacing) 0;
 }
 
-@media only screen and (max-width: 1250px) {
+@media only screen and (max-width: 1100px) {
+    .overflow-max-content-width {
+        width: calc(var(--max-content-width) * 1.2);
+        left:  calc(-1 * var(--max-content-width) * 1.2 / 2 + 50%);
+    }
+}
+
+@media only screen and (max-width: 900px) {
+    .overflow-max-content-width {
+        width: 100%;
+        left: 0;
+    }
+}
+
+@media only screen and (max-width: 700px) {
     .overflow-max-content-width {
         width: unset;
         left: 0;
