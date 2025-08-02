@@ -69,7 +69,7 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
    which *might* make your memory-bound workload faster.
    - <p>Figuring out an "optimally performing" layout of a structure seems to be an active area of
      research. You can search for the keywords <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C50&q=%22structure+splitting%22+AND+%22llvm%22&btnG=">structure splitting</a> and <a href="https://scholar.google.com/scholar?start=0&q=%22field+reordering%22&hl=en&as_sdt=0,50">field reordering</a> if you're
-     curious. The literature seems to suggest that it's often smarter to layout a structure accounting for access patterns rather than purely minimizing size.</p>
+     curious. The literature seems to suggest that it's often smarter to find structure layouts accounting for access patterns rather than purely minimizing size.</p>
 3. **I will assume that we care about alignment.** If not, we can trivially solve the problem by
    adding ` __attribute__((__packed__)) ` to the structure. There has been [some discussion](https://lemire.me/blog/2012/05/31/data-alignment-for-speed-myth-or-reality/) questioning 
    how important alignment is on modern processors, but to my understanding there are still platforms 
