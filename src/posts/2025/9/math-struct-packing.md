@@ -1050,10 +1050,9 @@ Size of struct FooInefficient: 32
 ## Further Questions
 
 There were a couple of interesting questions to explore, but I decided against including them in
-this blog post as it was already getting long. Perhaps I could write a part 2 exploring these
-questions if people wanted!
+this blog post as it was already getting long.
 
-### Mathematical correctness of other structure rearranging algorithms
+### Ability of other structure rearranging algorithms to minimize size
 
 While we gave a counterexample to the correctness of Clang's algorithm, it would be interesting to
 mathematically characterize a group of structures where Clang's algorithm can always minimize their
@@ -1067,7 +1066,8 @@ It would be interesting to:
 - Analyze the ability of [Java's layout algorithm](https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/fieldLayoutBuilder.cpp) to minimize size
   - There is a [thorough writeup about this in Oracle's Java Bug Database](https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8237767) if you're curious.
   - As mentioned earlier, it seems like most research into Java layout organization seems to favor layouts that are friendly to the access patterns of the program. 
-    This is probably better for performance than purely trying to minimize size.
+    This is probably better for performance than purely trying to minimize size, and so perhaps this
+    line of questioning isn't useful.
 - Analyze the ability of [Rust's layout algorithm](https://github.com/rust-lang/rust/blob/master/compiler/rustc_abi/src/layout.rs) to minimize size
   - Again, there is a [thorough writeup about this by Austin Hicks](https://camlorn.net/posts/April%202017/rust-struct-field-reordering/) if you're curious (although probably a bit outdated).
 - Try to come up with a layout algorithm for C++ classes, and characterize what kind of data
