@@ -41,12 +41,11 @@ isn't optimal. More specifically, I had two questions:
 
 I tried to find pre-existing mathematical answers to the problems above, but I didn't have much luck outside of
 people concluding the correctness of these algorithms from trying them out on a couple of very
-simple examples, or giving handwavy proofs that missed edge cases. 
+simple examples, giving handwavy proofs that missed edge cases, or just calling the problem trivial. 
 
-It's possible that these answers are 
-too trivial to write down, that these problems can be solved by a trivial application of some theory I'm unfamiliar with, 
-or that answering these questions isn't very useful. But I'm hoping that since this was interesting to me, this is
-interesting enough for me to share with other people!
+It's almost certain that mathematical answers are available in literature I'm unfamiliar with. But I
+wasn't able to find them, so my curiosity led me to try and give answers to the problems above on my own. 
+It was definitely a good homework problem for me, at the very least!
 
 The rest of this blog post fills in the details needed for providing an answer to the first
 question above. We don't need any powerful mathematical tools here - because we add so many restrictions 
@@ -68,7 +67,9 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
    are defining performance by. Even worse, designing good experiments is [famously hard](https://dl.acm.org/doi/10.1145/1508284.1508275)!
    The hope is, however, that a size minimal layout will increase the density of data in cache, 
    which *might* make your memory-bound workload faster.
-
+   - <p>Figuring out an "optimally performing" layout of a structure seems to be an active area of
+     research. You can search for the keywords <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C50&q=%22structure+splitting%22+AND+%22llvm%22&btnG=">structure splitting</a> and <a href="https://scholar.google.com/scholar?start=0&q=%22field+reordering%22&hl=en&as_sdt=0,50">field reordering</a> if you're
+     curious. The literature seems to suggest that it's often smarter to layout a structure accounting for access patterns rather than purely minimizing size.</p>
 3. **I will assume that we care about alignment.** If not, we can trivially solve the problem by
    adding ` __attribute__((__packed__)) ` to the structure. There has been [some discussion](https://lemire.me/blog/2012/05/31/data-alignment-for-speed-myth-or-reality/) questioning 
    how important alignment is on modern processors, but to my understanding there are still platforms 
@@ -93,8 +94,8 @@ We'll use:
 - \\(p_i\\) to denote the padding between members \\(m_i\\) and \\(m_{i+1}\\) (or the trailing padding if \\(m_i\\)
     is the last member of the structure)
 
-It might be interesting to you that we make a distinction between the size \\(s_i\\) and alignment \\(a_i\\)
-of structure members. This is because they aren't always equal. For example, executing [this program
+Some might be curious why we make a distinction between the size \\(s_i\\) and alignment \\(a_i\\)
+of structure members, as I see people conflate the two sometimes. This is because they aren't always equal. For example, executing [this program
 on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:9,positionColumn:1,positionLineNumber:9,selectionStartColumn:1,selectionStartLineNumber:9,startColumn:1,startLineNumber:9),source:'%23include+%3Cstdio.h%3E%0A%23include+%3Cstdalign.h%3E%0A%0Aint+main(void)+%7B%0A++++printf(%22Size+of+double:+%25lu%5Cn%22,+sizeof(double))%3B%0A++++printf(%22Alignment+of+double:+%25lu%22,+alignof(double))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:50,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:25,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cg151,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:2,lang:___c,libs:!(),options:'-m32',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+gcc+15.1+(C,+Editor+%231)',t:'0')),header:(),k:25,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4) 
 shows that when compiling for 32 bit systems with the `-m32` flag, `gcc` will report that
 `sizeof(double)` is 8 bytes but the `alignof(double)` is 4 bytes.
@@ -1063,9 +1064,11 @@ remembering incorrectly).
 Furthermore, the problem of rearranging structure members to minimize size is clearly not unique to C.
 It would be interesting to:
 
-- Analyze the correctness of [Java's layout algorithm](https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/fieldLayoutBuilder.cpp)
+- Analyze the ability of [Java's layout algorithm](https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/fieldLayoutBuilder.cpp) to minimize size
   - There is a [thorough writeup about this in Oracle's Java Bug Database](https://bugs.java.com/bugdatabase/view_bug.do?bug_id=JDK-8237767) if you're curious.
-- Analyze the correctness of [Rust's layout algorithm](https://github.com/rust-lang/rust/blob/master/compiler/rustc_abi/src/layout.rs)
+  - As mentioned earlier, it seems like most research into Java layout organization seems to favor layouts that are friendly to the access patterns of the program. 
+    This is probably better for performance than purely trying to minimize size.
+- Analyze the ability of [Rust's layout algorithm](https://github.com/rust-lang/rust/blob/master/compiler/rustc_abi/src/layout.rs) to minimize size
   - Again, there is a [thorough writeup about this by Austin Hicks](https://camlorn.net/posts/April%202017/rust-struct-field-reordering/) if you're curious (although probably a bit outdated).
 - Try to come up with a layout algorithm for C++ classes, and characterize what kind of data
   structures it will create an optimal layout for. 
