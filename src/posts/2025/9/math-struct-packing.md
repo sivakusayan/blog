@@ -1052,7 +1052,7 @@ Size of struct FooInefficient: 32
 There were a couple of interesting questions to explore, but I decided against including them in
 this blog post as it was already getting long.
 
-### Ability of other structure rearranging algorithms to minimize size
+### Ability of other field reordering algorithms to minimize size
 
 While we gave a counterexample to the correctness of Clang's algorithm, it would be interesting to
 mathematically characterize a group of structures where Clang's algorithm can always minimize their
@@ -1060,7 +1060,7 @@ size. It would be interesting to try and analyze the algorithm of `pahole` as we
 vaguely remember it not accounting for `alignas` specifiers (you should double check, I could be
 remembering incorrectly).
 
-Furthermore, the problem of rearranging structure members to minimize size is clearly not unique to C.
+Furthermore, the problem of reordering field members to minimize size is clearly not unique to C.
 It would be interesting to:
 
 - Analyze the ability of [Java's layout algorithm](https://github.com/openjdk/jdk/blob/master/src/hotspot/share/classfile/fieldLayoutBuilder.cpp) to minimize size
