@@ -491,7 +491,7 @@ $$
 $$
 
 **Proof:** We'll need to come up with some notation to differentiate the paddings in both
-sides of the equation. For \\(0 \lt i \leq n\\), we'll write \\(p_i\\) to denote the paddings inside of
+sides of the equation. For \\(0 \lt i \leq n-1\\), we'll write \\(p_i\\) to denote the paddings inside of
 \\(\text{dsizeof}(S, 0)\\), and we'll write \\(b_i\\) to denote the paddings inside of \\(\text{dsizeof}(S, M)\\).
 Thus, our equations become:
 
@@ -502,7 +502,7 @@ $$
 \text{dsizeof}(S, M) = s_1 + b_1 + s_2 + b_2 + \ldots + s_{n-1} + b_{n-1} + s_n
 $$
 
-All we need to show is that for any \\(0 \lt i \leq n-1 \\), we have \\(b_i = p_i\\), at which point we know that
+All we need to show is that for any \\(i\\), we have \\(b_i = p_i\\), at which point we know that
 \\(\text{dsizeof}(S, 0) = \text{dsizeof}(S, M)\\).
 
 First, recall our restrictions that each padding must satisfy. We know that for each \\(p_i\\) and
@@ -810,7 +810,7 @@ and we are done, as \\(p_i=0\\) by our constraints on \\(p_i\\). <span class="qe
 <summary>On minimizing structure size on ternary computers</summary>
 <p>
 Notice that, in the above proof, the fact that each \(a_i\) was a power of 2 didn't play any particularly
-important role, besides ensuring that \(a_i\) is divisible by \(a_j\) if \(i \geq j\). 
+important role, besides ensuring that \(a_i\) evenly divides by \(a_j\) if \(i \geq j\). 
 </p>
 <p>
 Assuming a hypothetical ternary computer follows similar rules for alignment as today's binary
