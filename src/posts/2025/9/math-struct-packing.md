@@ -5,7 +5,7 @@ layout: layouts/post.njk
 isMathPost: true
 ---
 
-It's common knowledge (depending on what you do) that the memory layout of a structure in C can
+It's common knowledge that the memory layout of a structure in C can
 change depending on the order its members were declared in. For example, on my x86-64 processor,
 `sizeof(Foo)` is not equal to `sizeof(Bar)`, even though they effectively have the
 same members. [You can try it out yourself on Godbolt](https://godbolt.org/#g:!((g:!((g:!((h:codeEditor,i:(filename:'1',fontScale:14,fontUsePx:'0',j:1,lang:___c,selection:(endColumn:1,endLineNumber:14,positionColumn:1,positionLineNumber:14,selectionStartColumn:1,selectionStartLineNumber:14,startColumn:1,startLineNumber:14),source:'%23include+%3Cstdio.h%3E%0A%0Astruct+Foo+%7B%0A++++char+firstChar%3B%0A++++double+firstDouble%3B%0A++++char+secondChar%3B%0A%7D%3B%0A%0Astruct+Bar+%7B%0A++++double+firstDouble%3B%0A++++char+firstChar%3B%0A++++char+secondChar%3B%0A%7D%3B%0A%0Aint+main(void)+%7B%0A++++printf(%22Size+of+Foo:+%25zu%5Cn%22,+sizeof(struct+Foo))%3B%0A++++printf(%22Size+of+Bar:+%25zu%22,+sizeof(struct+Bar))%3B%0A++++return+0%3B%0A%7D%0A'),l:'5',n:'0',o:'C+source+%231',t:'0')),k:45.36247334754797,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cclang2010,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:1,lang:___c,libs:!(),options:'',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+clang+20.1.0+(C,+Editor+%231)',t:'0')),header:(),k:26.22601279317697,l:'4',n:'0',o:'',s:0,t:'0'),(g:!((h:executor,i:(argsPanelShown:'1',compilationPanelShown:'0',compiler:cclang2010,compilerName:'',compilerOutShown:'0',execArgs:'',execStdin:'',fontScale:14,fontUsePx:'0',j:2,lang:___c,libs:!(),options:'-m32',overrides:!(),runtimeTools:!(),source:1,stdinPanelShown:'1',wrap:'1'),l:'5',n:'0',o:'Executor+x86-64+clang+20.1.0+(C,+Editor+%231)',t:'0')),header:(),k:28.411513859275054,l:'4',n:'0',o:'',s:0,t:'0')),l:'2',n:'0',o:'',t:'0')),version:4).
@@ -123,9 +123,9 @@ struct Foo {
 
     short c; // No padding needed. Takes up bytes 8 and 9. 
 
-             // Trailing padding needed to make sure consecutive copies of Foo in
-             // an array are aligned. As the alignment of Foo is 4, 
-             // add 2 final bytes of padding.
+             // Trailing padding needed to make sure consecutive 
+             // copies of Foo in an array are aligned. As the 
+             // alignment of Foo is 4, add 2 final bytes of padding.
 }
 ```
 
@@ -342,6 +342,7 @@ that it was to allow successive members in an array of structures to be aligned.
   - Yes, I know C and C++ are very different. I think this discussion is still relevant to C though,
       and ultimately I'm hoping that our discussion here is abstract enough to be language agnostic.
 - [(Quora) In C, why must the size of a struct be divisible by the size of its largest member?](https://www.quora.com/In-C-why-must-the-size-of-a-struct-be-divisible-by-the-size-of-its-largest-member)
+- [(Algorithms for Modern Hardware) Structure Alignment](https://en.algorithmica.org/hpc/cpu-cache/alignment/#structure-alignment)
 
 However, note that in this constructed example we have a structure that is not aligned by the
 alignment of its largest member, and it still allows sensible array layouts that guarantee the
@@ -725,7 +726,7 @@ struct Baz {
 ```
 
 You might have already noticed that it is not just structures with primitive members that can be considered primitive 
-structures - structures with fixed array members and nested structures qualify as well, as long as they weren't given
+structures - structures containing fixed length arrays and nested structures qualify as well, as long as they weren't given
 unusual alignments. However, we'll get to that later.
 
 ### Ordering members of a primitive structure by alignment minimizes dsizeof 
@@ -920,7 +921,7 @@ padding for the structure so that the structure ends on a multiple of \\(a_\text
 difference between the starting and ending memory addresses of \\(S\\) reveals that the size of
 \\(S\\) is also a multiple of \\(a_\text{max}\\). 
 
-The above conditions also hold true if a structure member is a fixed array of primitive
+The above conditions also hold true if a structure member is a fixed length array of primitive
 members. This is because the alignment of the array is just the alignment of the primitive member
 itself, and the size of the array is just a multiple of the size of the primitive member.
 
