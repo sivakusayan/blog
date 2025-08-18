@@ -33,7 +33,7 @@
 	--comment-border-width: 2px;
 
 	--header-line-height: 1.1;
-	--paragraph-line-height: 1.4;
+	--paragraph-line-height: 1.36;
 	--spacing: 1.2rem;
 	--hover-outline-width: 3px;
 	--active-outline-width: 2px;
@@ -153,7 +153,7 @@ html[data-theme='DARK'] svg {
 		--comment-border-width: 2px;
 
 		--header-line-height: 1.1;
-		--paragraph-line-height: 1.4;
+		--paragraph-line-height: 1.36;
 		--spacing: 1.2rem;
 		--hover-outline-width: 3px;
 		--active-outline-width: 2px;
