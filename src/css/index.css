@@ -33,8 +33,8 @@
 	--comment-border-width: 2px;
 
 	--header-line-height: 1.1;
-	--paragraph-line-height: 1.32;
-	--spacing: 1rem;
+	--paragraph-line-height: 1.4;
+	--spacing: 1.2rem;
 	--hover-outline-width: 3px;
 	--active-outline-width: 2px;
 }
@@ -153,8 +153,8 @@ html[data-theme='DARK'] svg {
 		--comment-border-width: 2px;
 
 		--header-line-height: 1.1;
-		--paragraph-line-height: 1.32;
-		--spacing: 1rem;
+		--paragraph-line-height: 1.4;
+		--spacing: 1.2rem;
 		--hover-outline-width: 3px;
 		--active-outline-width: 2px;
 	}
@@ -397,7 +397,7 @@ code {
 
 @media only screen and (max-width: 850px) {
 	:root {
-		font-size: 100%;
+		font-size: 90%;
 	}
 	main {
 		width: auto;
