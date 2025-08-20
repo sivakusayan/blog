@@ -1019,7 +1019,7 @@ above code into the file `main.c`:
 clang --analyze -Xclang -analyzer-checker=optin.performance.Padding -Xclang -analyzer-config -Xclang optin.performance.Padding:AllowedPad=0  main.c
 ```
 
-On my x86-64 machine, notice how there are only warnings for the structure `Baz`, and none for `FooInefficient`: 
+On my x86-64 machine, when using clang version 20.1.8, notice how there are only warnings for the structure `Baz`, and none for `FooInefficient`: 
 
 ```shell
 $ clang --analyze -Xclang -analyzer-checker=optin.performance.Padding -Xclang -analyzer-config -Xclang optin.performance.Padding:AllowedPad=0  main.c
