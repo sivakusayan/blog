@@ -359,11 +359,12 @@ struct Foo {
 }
 ```
 
-Furthermore, supporting strange memory layouts like the above would require making compiler and memory allocator
-implementations quite a bit more complicated, so it probably wouldn't happen in practice. 
+Furthermore, being able to use this trick for structures like `Foo` doesn't necessarily mean it would work for other
+structures. It is likely we can construct structures where we can show mathematically that the only "valid" alignment 
+of that structure is at \\(a_\text{max}\\).
 
-However, I hope the strange example I gave shows that it isn't immediately obvious that `sizeof`
-will give the same value no matter what memory address we place the structure at, even if we
+However, the point of this example is to show that it isn't immediately obvious that `sizeof`
+will give the same value no matter what memory address we place an arbitrary structure at, even if we
 restrict placing the structure at memory addresses that result in usable array layouts.
 
 From this, I claim that `sizeof` is, in reality, a function of two arguments when applied to structures:
@@ -378,10 +379,9 @@ We'll resolve this strange inconsistency later, and we'll prove that:
 $$\text{sizeof}(S,0) = \text{sizeof}(S,M)$$ 
 
 if the memory address \\(M\\) is divisible by the largest alignment \\(a_\text{max}\\) in the structure \\(S\\).
-In other words, we will mathematically prove what we usually take for granted: that the value of
-`sizeof` effectively only takes one argument as long as the structure is aligned in a particular
-way.
-
+In other words, we will mathematically prove what we usually take for granted: as long as a
+structure is aligned in a particular way, `sizeof` is a unary operator and we can compute `sizeof`
+pretending that the structure starts at memory address 0.
 <aside>
 <p>
 We'll actually prove something slightly stronger - that the offsets of structure members are consistent as 
