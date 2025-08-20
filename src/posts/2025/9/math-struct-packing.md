@@ -39,13 +39,12 @@ isn't optimal. More specifically, I had two questions:
   layout?** <br>It turns out the answer is still no! Once again, we can construct [an admittedly contrived counterexample](#counterexample-to-clangs-optin-performance-padding-analyzer)
     that we can optimize better by hand.
 
-I tried to find pre-existing mathematical answers to the problems above, but I didn't have much luck outside of
+I tried to find formal mathematical answers to the problems above, but I didn't have much luck outside of
 people concluding the correctness of these algorithms from trying them out on a couple of very
 simple examples, giving handwavy proofs that missed edge cases, or just calling the problem trivial. 
 
-It's almost certain that mathematical answers are available in literature I'm unfamiliar with. But I
-wasn't able to find them, so my curiosity led me to try and give answers to the problems above on my own. 
-It was definitely a good homework problem for me, at the very least!
+It's almost certain that mathematical answers are available in literature I'm unfamiliar with. But I wasn't able to find them, so my curiosity led me to 
+try and give answers to the problems above on my own. It was definitely a good homework problem for me, at the very least!
 
 The rest of this blog post fills in the details needed for providing an answer to the first
 question above. We don't need any powerful mathematical tools here - because we add so many restrictions 
@@ -61,6 +60,7 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
 1. **I will not analyze structures with bitfield members.** From a cursory reading, it seems like
    the layout of bitfield members in a structure is a complicated implementation-defined topic.  I don't really have 
    the knowledge to reason about this in any real way across every potential target out there. So let's ignore this case for now.
+   - <p>Interestingly enough, <a href="https://github.com/llvm/llvm-project/blob/478b4b012f6c70f799ffeb3523b5a160aed8726b/clang/lib/StaticAnalyzer/Checkers/PaddingChecker.cpp#L169">Clang's static analyzer also considers this case to be hard</a>.</p>
 
 2. **I will not make any claims about the 'performance' of a size minimal layout.** Performance is
    obviously a complicated topic, and what is 'performant' can change depending on the metric you
@@ -69,7 +69,7 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
    which *might* make your memory-bound workload faster.
    - <p>Figuring out an "optimally performing" layout of a structure seems to be an active area of
      research. You can search for the keywords <a href="https://scholar.google.com/scholar?hl=en&as_sdt=0%2C50&q=%22structure+splitting%22+AND+%22llvm%22&btnG=">structure splitting</a> and <a href="https://scholar.google.com/scholar?start=0&q=%22field+reordering%22&hl=en&as_sdt=0,50">field reordering</a> if you're
-     curious. The literature seems to suggest that it's often smarter to find structure layouts accounting for access patterns rather than purely minimizing size.</p>
+     curious. The literature seems to suggest that it's often smarter to find structure layouts accounting for access patterns rather than purely minimizing size, although that does require having knowledge about what the access pattern of a program looks like.</p>
 3. **I will assume that we care about alignment.** If not, we can trivially solve the problem by
    adding ` __attribute__((__packed__)) ` to the structure. There has been [some discussion](https://lemire.me/blog/2012/05/31/data-alignment-for-speed-myth-or-reality/) questioning 
    how important alignment is on modern processors, but to my understanding there are still platforms 
