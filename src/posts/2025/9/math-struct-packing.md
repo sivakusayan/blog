@@ -331,7 +331,7 @@ We could visualize this computation as follows:
 As far as I can see, there is nothing mathematically wrong with this scenario besides requiring a hypothetical 
 memory allocator that is flexible enough to support allocations like this.
 
-Indeed, I was curious why it was required for a structure to have an alignment equal to the alignment of its largest members. 
+Indeed, I was curious why it was required for a structure to have an alignment equal to the alignment of its largest member. 
 I failed to find anything in the standard about this, and most online resources I could find claimed 
 that it was to allow successive members in an array of structures to be aligned.
 
