@@ -64,7 +64,7 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
 
 2. **I will not make any claims about the 'performance' of a size minimal layout.** Performance is
    obviously a complicated topic, and what is 'performant' can change depending on the metric you
-   are defining performance by. Even worse, designing good experiments is [famously hard](https://dl.acm.org/doi/10.1145/1508284.1508275)!
+   are defining performance by. Even worse, designing good experiments is [famously hard](https://dl.acm.org/doi/10.1145/1508284.1508275).
    The hope is, however, that a size minimal layout will increase the density of data in cache, 
    which *might* make your memory-bound workload faster.
    - <p>Figuring out an "optimally performing" layout of a structure seems to be an active area of
