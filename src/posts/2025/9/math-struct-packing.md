@@ -332,7 +332,7 @@ As far as I can see, there is nothing mathematically wrong with this scenario be
 memory allocator that is flexible enough to support allocations like this.
 
 Indeed, I was curious why it was required for a structure to have an alignment equal to the alignment of its largest members. 
-I failed to find anything in the standard about this, and the only online resources I could find claimed 
+I failed to find anything in the standard about this, and most online resources I could find claimed 
 that it was to allow successive members in an array of structures to be aligned.
 
 - [(StackOverflow) Is the `alignof` of a struct always the maximum `alignof` of its constituents?](https://stackoverflow.com/questions/46009715/is-the-alignof-of-a-struct-always-the-maximum-alignof-of-its-constituents)
@@ -340,13 +340,12 @@ that it was to allow successive members in an array of structures to be aligned.
   - Yes, I know C and C++ are very different. I think this discussion is still relevant to C though,
       and ultimately I'm hoping that our discussion here is abstract enough to be language agnostic.
 - [(Quora) In C, why must the size of a struct be divisible by the size of its largest member?](https://www.quora.com/In-C-why-must-the-size-of-a-struct-be-divisible-by-the-size-of-its-largest-member)
-- [(Algorithms for Modern Hardware) Structure Alignment](https://en.algorithmica.org/hpc/cpu-cache/alignment/#structure-alignment)
 
 However, note that in this constructed example we have a structure that is not aligned by the
 alignment of its largest member, and it still allows sensible array layouts that guarantee the
 alignment of all structure members.
 
-Of course, it (maybe?) isn't useful to create a memory allocator that is flexible enough to support the
+Of course, it probably isn't useful to create a memory allocator that is flexible enough to support the
 allocations above. The struct `Foo` has an ordering of its members that ensures that `sizeof(struct
 Foo) = 8` even when \\(M \equiv 0 \pmod{4}\\):
 
@@ -359,6 +358,9 @@ struct Foo {
     short c;
 }
 ```
+
+Furthermore, supporting strange memory layouts like the above would require making compiler and memory allocator
+implementations quite a bit more complicated, so it probably wouldn't happen in practice. 
 
 However, I hope the strange example I gave shows that it isn't immediately obvious that `sizeof`
 will give the same value no matter what memory address we place the structure at, even if we
