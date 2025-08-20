@@ -331,7 +331,8 @@ We could visualize this computation as follows:
 As far as I can see, there is nothing mathematically wrong with this scenario besides requiring a hypothetical 
 memory allocator that is flexible enough to support allocations like this.
 
-Indeed, I was curious why it was required for a structure to have an alignment equal to the alignment of its largest member. 
+Indeed, I was curious why it was required for a structure to have an alignment equal to the largest
+alignment of its members. 
 I failed to find anything in the standard about this, and most online resources I could find claimed 
 that it was to allow successive members in an array of structures to be aligned.
 
@@ -342,8 +343,8 @@ that it was to allow successive members in an array of structures to be aligned.
 - [(Quora) In C, why must the size of a struct be divisible by the size of its largest member?](https://www.quora.com/In-C-why-must-the-size-of-a-struct-be-divisible-by-the-size-of-its-largest-member)
 
 However, note that in this constructed example we have a structure that is not aligned by the
-alignment of its largest member, and it still allows sensible array layouts that guarantee the
-alignment of all structure members.
+largest alignment of its members, and it still allows sensible array layouts that guarantee that
+all structure members are aligned.
 
 Of course, it probably isn't useful to create a memory allocator that is flexible enough to support the
 allocations above. The struct `Foo` has an ordering of its members that ensures that `sizeof(struct
