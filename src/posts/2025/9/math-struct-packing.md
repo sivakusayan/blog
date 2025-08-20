@@ -314,7 +314,7 @@ However, suppose that we hypothetically had a memory allocator that could alloca
 $$M \equiv 2\pmod{4}$$
 
 That is, it could allocate memory such that the address it returns would have a remainder of 2 when
-divided by 4. Then, if we start `Foo` at that memory address, it would have size of 8 bytes: 
+divided by 4. Then, if we start `Foo` at that memory address, it would have a size of 8 bytes: 
 
 - The first member `short a` would already be aligned, and would take up bytes 2 and 3.
 - The second member `int b` would already be aligned because it would start at a memory address divisible by 4, 
