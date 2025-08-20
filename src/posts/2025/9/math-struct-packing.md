@@ -362,11 +362,14 @@ struct Foo {
 
 Furthermore, being able to use this trick for structures like `Foo` doesn't necessarily mean it would work for other
 structures. It is likely we can construct structures where we can show mathematically that the only "valid" alignment 
-of that structure is at \\(a_\text{max}\\).
+of that structure is at \\(a_\text{max}\\). Not to mention that this would be an ABI break if other processes aren't
+using the same trick for `Foo` that this hypothetical program is.
 
 However, the point of this example is to show that it isn't immediately obvious that `sizeof`
 will give the same value no matter what memory address we place an arbitrary structure at, even if we
-restrict placing the structure at memory addresses that result in usable array layouts.
+restrict placing the structure at memory addresses that result in usable array layouts. The example structure `Foo`
+can start at memory addresses \\(M \equiv 0 \pmod{4}\\) and  \\(M \equiv 2 \pmod{4}\\) and we would have no issues
+with inconsistent member offsets and alignments when in an array, although the value of `sizeof(struct Foo)` would differ in both cases.
 
 From this, I claim that `sizeof` is, in reality, a function of two arguments when applied to structures:
 
