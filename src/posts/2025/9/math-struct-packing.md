@@ -29,11 +29,10 @@ smallest will _usually_ (?) give you a size minimizing layout. If this discussio
 are lots of good articles and videos on the topic, though ["The Lost Art of Structure Packing"](http://www.catb.org/esr/structure-packing) 
 seems to be the most popular.
 
-For better or worse, my undergraduate math background led me to be curious about when the strategy above is or 
-isn't optimal. More specifically, I had two questions:
+I was curious if we could get a more precise answer on when the strategy above is or isn't optimal. More specifically, I had two questions:
 
 - **Does ordering structure members from largest to smallest alignment always give a size minimal
-  layout?** <br>As most people know, the answer is no, and [it is not hard to construct a counterexample](#counterexample-to-the-ordering-by-alignment-algorithm). But we can describe a class of "simple" structures where the answer always is yes!
+  layout?** <br>As most people know, the answer is no, and [it is trivial to construct a counterexample](#counterexample-to-the-ordering-by-alignment-algorithm). But we can describe a class of "simple" structures where the answer always is yes!
 
 - **Clang's [optin.performance.Padding analyzer](https://clang.llvm.org/docs/analyzer/checkers.html#optin-performance-padding) uses a slightly different algorithm than what is commonly recommended to find an order that minimizes a structure's size. Does this algorithm always find a size minimal
   layout?** <br>It turns out the answer is still no! Once again, we can construct [an admittedly contrived counterexample](#counterexample-to-clangs-optin-performance-padding-analyzer)
@@ -48,8 +47,8 @@ try and give answers to the problems above on my own. It was definitely a good h
 
 The rest of this blog post fills in the details needed for providing an answer to the first
 question above. We don't need any powerful mathematical tools here - because we add so many restrictions 
-on the problem, a familiarity with modular arithmetic will be enough. Of course, I haven't done any math in a while, 
-so my skills may be rusty and the proofs may contain errors. Please let me know if you find any. 🙂
+on the problem, a familiarity with modular arithmetic will be enough. Of course, I haven't done any math 
+since my undergrad, so my skills may be rusty and the proofs may contain errors. Please let me know if you find any. 🙂
 
 <table-of-contents></table-of-contents>
 
@@ -362,7 +361,7 @@ struct Foo {
 
 Furthermore, being able to use this trick for structures like `Foo` doesn't necessarily mean it would work for other
 structures. It is likely we can construct structures where we can show mathematically that the only "valid" alignment 
-of that structure is at \\(a_\text{max}\\). Not to mention that this would be an ABI break if other processes aren't
+of that structure is at \\(a_\text{max}\\). Not to mention that this would be an ABI break if other programs aren't
 using the same trick for `Foo` that this hypothetical program is.
 
 However, the point of this example is to show that it isn't immediately obvious that `sizeof`
