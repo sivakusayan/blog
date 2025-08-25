@@ -1,4 +1,4 @@
-name: accessibility tests
+name: HTML Validation and Accessibility Tests
 
 on: [push]
 
@@ -7,7 +7,7 @@ env:
 
 jobs:
   build:
-    name: Build site and run pa11y-ci tests
+    name: Build site and run tests
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +23,9 @@ jobs:
 
       - name: Build eleventy and run pa11y-ci
         run: npm run test:pa11y-ci
+
+      - name: Install nu HTML validator
+        run: brew install vnu
+
+      - name: Run Nu validator
+        run: vnu --skip-non-html --Werror --verbose _site
