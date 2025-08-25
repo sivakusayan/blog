@@ -1,11 +1,32 @@
 [build]
   publish = "_site"
   command = "npm run build"
+
 [[headers]]
   for = "/fonts/*"
     [headers.values]
     Cache-Control = "public, max-age=31536000"
+
 [[redirects]]
   from = "https://email.mail.sayansivakumaran.com/*"
   to = "https://mailgun.org/:splat"
   status = 200 
+
+[[redirects]]
+  from = "/posts"
+  to = "/"
+  status = 301 
+
+# Permanently deleted pages.
+[[redirects]]
+  from = "/tags/*"
+  to = "/404"
+  status = 410 
+[[redirects]]
+  from = "/posts/2023/7/chromium-selective-ignore-spec/"
+  to = "/"
+  status = 410
+[[redirects]]
+  from = "/feed/feed.xml"
+  to = "/"
+  status = 410
