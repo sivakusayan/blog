@@ -115,7 +115,7 @@ Program received signal SIGBUS, Bus error.
     at vfprintf-internal.c:638
 #1  0x00007ffff7e392c1 in __vfprintf_internal (s=0x7ffff7fae7a0 <_IO_2_1_stdout_>, format=0x7ffff7fc0004 "Hi", ap=ap@entry=0x7fffffffd9a8, mode_flags=mode_flags@entry=0)
     at vfprintf-internal.c:1544
-#2  0x00007ffff7e2f162 in __printf (format=<optimized out>) at printf.c:33
+#2  0x00007ffff7e2f162 in __printf (format=&lt;optimized out&gt;) at printf.c:33
 ```
 
 We get a similar crash if we replace the call to `printf` with a call to `puts`.
