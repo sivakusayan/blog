@@ -80,7 +80,7 @@ This can become a complicated topic if the scope is too wide, so let's narrow th
 ## Vocabulary 
 We'll use:
 
-- \\(S\\) to denote some arbitrary structure with \\(n \geq 0\\) members.
+- \\(S\\) to denote some arbitrary structure with \\(n \gt 0\\) members.
   - Again, for the sake of simplicity, let's ignore structures with bitfield members for now.
 - \\(m_i\\) to denote the \\(i\\)th member of the structure, with \\(0 \lt i \leq n\\).
 - \\(s_i\\) to denote the `sizeof` member \\(m_i\\).
