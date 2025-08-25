@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /comment-submitted/
+Disallow: /comment-error/
+
+Host: https://sayansivakumaran.com/
+
+Sitemap: https://sayansivakumaran.com/sitemap.xml

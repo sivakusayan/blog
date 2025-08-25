@@ -36,6 +36,8 @@ const {
 } = require('./scripts/filters.js');
 
 module.exports = async (eleventyConfig) => {
+    // Put robots.txt in root
+    eleventyConfig.addPassthroughCopy({'src/robots.txt': '/robots.txt' });
 	eleventyConfig.addPassthroughCopy('src/css');
 	eleventyConfig.addPassthroughCopy('src/fonts');
 	eleventyConfig.addPassthroughCopy('src/favicon');
