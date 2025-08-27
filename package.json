@@ -47,7 +47,7 @@
 	},
 	"devDependencies": {
 		"@11ty/eleventy-plugin-rss": "1.2.0",
-		"pa11y-ci": "3.1.0",
+		"pa11y-ci": "4.0.1",
 		"start-server-and-test": "2.0.13",
 		"vnu-jar": "^24.10.17"
 	},
