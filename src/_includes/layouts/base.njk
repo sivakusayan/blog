@@ -32,6 +32,9 @@ currently minified. -->
     {%- if collections.posts | isMathPost(page) %}
         <script>
             MathJax = {
+              output: {
+                font: 'mathjax-tex'
+              },
               tex: { 
                 tags: 'ams' 
               },
@@ -53,7 +56,7 @@ currently minified. -->
               }
             };
         </script>
-        <script async src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-chtml.js"></script>
+        <script async src="https://cdn.jsdelivr.net/npm/mathjax@4.0.0/tex-chtml.js"></script>
     {%- endif %}
 
     <script type="importmap">
