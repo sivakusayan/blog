@@ -24,9 +24,9 @@
   status = 410 
 [[redirects]]
   from = "/posts/2023/7/chromium-selective-ignore-spec/"
-  to = "/"
+  to = "/404"
   status = 410
 [[redirects]]
   from = "/feed/feed.xml"
-  to = "/"
+  to = "/404"
   status = 410
