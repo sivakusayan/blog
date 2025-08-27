@@ -662,6 +662,7 @@ __metadata:
     start-server-and-test: "npm:2.0.11"
     temml: "npm:^0.11.6"
     uglify-js: "npm:3.18.0"
+    vnu-jar: "npm:^24.10.17"
   languageName: unknown
   linkType: soft
 
@@ -4417,6 +4418,13 @@ __metadata:
   version: 3.0.1
   resolution: "valid-data-url@npm:3.0.1"
   checksum: 10c0/ffc7cac681976ca2db01003dc14286f75241309e90d96e505580469125c83c2de6b5203f0222226cb08f6daf0aff7de9855655c28a64e8590e7b58c01694a896
+  languageName: node
+  linkType: hard
+
+"vnu-jar@npm:^24.10.17":
+  version: 24.10.17
+  resolution: "vnu-jar@npm:24.10.17"
+  checksum: 10c0/f02139d0d0b4335375b6f4a8057130d1a54f19ac90555ae3bfb169c8fa1b51ac4b6bfc61818fab7bb3b75cfc6bfdcc1bdd588ae07fef3af2ba5b89807174d2ec
   languageName: node
   linkType: hard
 
