@@ -1,7 +1,6 @@
 ---
 title: A Brief Look at the Mathematics of Structure Packing
-description: Mathematically analyzing when structures in programming languages (such as C or Rust) have
-their size minimized.
+description: Mathematically analyzing when structures in programming languages (such as C or Rust) have their size minimized.
 date: 2025-08-01
 layout: layouts/post.njk
 isMathPost: true
