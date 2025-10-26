@@ -36,17 +36,17 @@ we want](https://github.com/iproute2/iproute2/blob/1c344b988c1475dc308335afb9ce5
 
 ```text
 commit 30b557929f2aaeeee59e1bbaad7c804bcae40e7b
-Author: david decotigny <decot@googlers.com>
+Author: david decotigny &lt;decot@googlers.com&gt;
 Date:   Mon May 5 20:38:18 2014 -0700
 
-    iproute2: show counter of carrier on<->off transitions
+    iproute2: show counter of carrier on&lt;-&gt;off transitions
 
-    This patch allows to display the current counter of carrier on<->off
-    transitions (IFLA_CARRIER_CHANGES, see kernel commit "expose number of
-    carrier on/off changes"):
+    This patch allows to display the current counter of carrier on&lt;-&gt;off
+    transitions (IFLA_CARRIER_CHANGES, see kernel commit &quot;expose number of
+    carrier on/off changes&quot;):
 
       ip -s -s link show dev eth0
-      32: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 ...
+      32: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 ...
         link/ether ................. brd ff:ff:ff:ff:ff:ff
         RX: bytes  packets  errors  dropped overrun mcast
         125552461  258881   0       0       0       10150
@@ -58,11 +58,11 @@ Date:   Mon May 5 20:38:18 2014 -0700
                    0        0       0       0        3
 
     Tested:
-      - kernel with patch "net-sysfs: expose number of carrier on/off
-        changes": see "transns" column above
-      - kernel wthout the patch: "transns" not displayed (as expected)
+      - kernel with patch &quot;net-sysfs: expose number of carrier on/off
+        changes&quot;: see &quot;transns&quot; column above
+      - kernel wthout the patch: &quot;transns&quot; not displayed (as expected)
 
-    Signed-off-by: David Decotigny <decot@googlers.com>
+    Signed-off-by: David Decotigny &lt;decot@googlers.com&gt;
 ```
 
 Sadly, I wasn't able to immediately figure out what a `carrier` was from the [mentioned kernel commit](https://github.com/torvalds/linux/commit/2d3b479df41a10e2f41f9259fcba775bd34de6e4) either. Some resources online seem to imply that `carrier_changes` count the number of times a specific interface went up or down, which seems plausible as the `transns` number seems to go up whenever I manually toggle my computer's `wlo1` interface on and off.
