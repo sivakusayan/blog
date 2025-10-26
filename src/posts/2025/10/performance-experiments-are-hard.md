@@ -14,9 +14,20 @@ and wanted to start compiling a list for myself. Maybe it's useful for you too.
 
 ## Systems Programming
 - [Producing wrong data without doing anything wrong!](https://dl.acm.org/doi/10.1145/1508284.1508275)
+- [Systems Benchmarking Crimes](https://gernot-heiser.org/benchmarking-crimes.html)
 - [Can Hardware Performance Counters be Trusted?](https://ieeexplore.ieee.org/document/4636099)
 - [Nondeterminism in Hardware Performance Counters](https://ieeexplore.ieee.org/document/6557172)
-- [Systems Benchmarking Crimes](https://gernot-heiser.org/benchmarking-crimes.html)
+
+You can probably find a fair amount of other papers that talk about the variability of hardware performance counters.
+An easy example is that counting the number of instructions retired for a specific program may vary wildly if you include
+kernel space events, as trap handlers can cause inconsistencies between executions.
+
+Another problem to keep in mind is that you should double check that the performance counters your tool advertises are actually
+listed in your processor manual. For example, when using `perf list`, the tool advertises that I can measure `l2_latency.l2_cycles_waiting_on_fills`,
+even though I couldn't find that event anywhere in my Zen3 manual. It seems like the [PR that added support for measuring that event](https://github.com/torvalds/linux/commit/da66658638c947cab0fb157289f03698453ff8d5)
+added that event because the measured count was non-zero, even though it wasn't listed in the manual. It was submitted and approved by AMD employees,
+so I might just be overly cautious, but I personally wouldn't feel comfortable using that event for any rigorous measurement (and would wonder why there wasn't
+a revision to the documentation if it _is_ a valid event).
 
 ## Java
 
