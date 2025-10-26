@@ -18,11 +18,7 @@ and wanted to start compiling a list for myself. Maybe it's useful for you too.
 - [Can Hardware Performance Counters be Trusted?](https://ieeexplore.ieee.org/document/4636099)
 - [Nondeterminism in Hardware Performance Counters](https://ieeexplore.ieee.org/document/6557172)
 
-You can probably find a fair amount of other papers that talk about the variability of hardware performance counters.
-An easy example is that counting the number of instructions retired for a specific program may vary wildly if you include
-kernel space events, as trap handlers can cause inconsistencies between executions.
-
-Another problem to keep in mind is that you should double check that the performance counters your tool advertises are actually
+A note on performance counters. Depending on how paranoid you are, you should double check that the performance counters your tool advertises are actually
 listed in your processor manual. For example, when using `perf list`, the tool advertises that I can measure `l2_latency.l2_cycles_waiting_on_fills`,
 even though I couldn't find that event anywhere in my Zen3 manual. It seems like the [PR that added support for measuring that event](https://github.com/torvalds/linux/commit/da66658638c947cab0fb157289f03698453ff8d5)
 added that event because the measured count was non-zero, even though it wasn't listed in the manual. It was submitted and approved by AMD employees,
@@ -33,6 +29,7 @@ a revision to the documentation if it _is_ a valid event).
 
 - [Statistically rigorous Java performance evaluation](https://dl.acm.org/doi/10.1145/1297027.1297033)
 - [The DaCapo Benchmarks: Java Benchmarking Development and Analysis](https://www.cs.purdue.edu/homes/hosking/papers/oopsla06~.pdf)
+- [Don’t Trust Your Profiler: An Empirical Study on the Precision and Accuracy of Java Profilers](https://dl.acm.org/doi/10.1145/3617651.3622985)
 
 ## Networking
 
