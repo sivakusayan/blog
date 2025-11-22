@@ -35,8 +35,8 @@ currently minified. -->
               output: {
                 font: 'mathjax-tex'
               },
-              tex: { 
-                tags: 'ams' 
+              tex: {
+                tags: 'ams'
               },
               loader: {load: ['ui/safe', 'ui/lazy']},
               options: {
@@ -46,12 +46,14 @@ currently minified. -->
                         file: false
                     }
                 },
-                menuOptions: {
-                  settings: {
-                    assistiveMml: true,   // true to enable assistive MathML
-                    collapsible: false,   // true to enable collapsible math
-                    explorer: false       // False by default, as this JavaScript is very expensive. 
-                  }
+                enableExplorer: true,
+                a11y: {
+                  speech: true,
+                  braille: true,
+                  backgroundColor: 'Yellow',
+                  backgroundOpacity: 100,
+                  foregroundColor: 'Black',
+                  foregroundOpacity: 100,
                 }
               }
             };
@@ -84,7 +86,7 @@ currently minified. -->
 
     <!-- Needed to prevent FOUS -->
     <script>
-      if (localStorage.theme) 
+      if (localStorage.theme)
         document
           .documentElement
           .setAttribute("data-theme", localStorage.theme);
