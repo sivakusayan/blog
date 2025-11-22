@@ -52,7 +52,7 @@
 		"vnu-jar": "^24.10.17"
 	},
 	"resolutions": {
-		"@11ty/eleventy-plugin-syntaxhighlight/prismjs": "git+https://github.com:sivakusayan/prism.git"
+		"@11ty/eleventy-plugin-syntaxhighlight/prismjs": "github:sivakusayan/prism#d76df7d30f7776419aa2259b7484f68d552d2384"
 	},
 	"packageManager": "yarn@4.1.0"
 }
